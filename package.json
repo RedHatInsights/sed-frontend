@@ -1,5 +1,5 @@
 {
-  "name": "frontend-starter-app",
+  "name": "sed-frontend",
   "version": "1.1.0",
   "private": false,
   "scripts": {
@@ -88,11 +88,11 @@
     "webpack-cli": "4.5.0"
   },
   "insights": {
-    "appname": "starter"
+    "appname": "sed"
   },
   "routes": {
     "prefix": "insights",
-    "appname": "starter",
+    "appname": "sed",
     "samplePage": "/sample",
     "oops": "/oops",
     "noPermissions": "/no-permissions"
