@@ -91,9 +91,8 @@
     "appname": "sed"
   },
   "routes": {
-    "prefix": "insights",
     "appname": "sed",
-    "samplePage": "/sample",
+    "sed": "/",
     "oops": "/oops",
     "noPermissions": "/no-permissions"
   }
