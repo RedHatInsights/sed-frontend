@@ -34,12 +34,12 @@ export const Routes = () => (
     }
   >
     <Switch>
-      <Route path={paths.samplePage} component={SamplePage} />
+      <Route path={paths.sed} component={SamplePage} />
       <Route path={paths.oops} component={OopsPage} />
       <Route path={paths.noPermissions} component={NoPermissionsPage} />
       {/* Finally, catch all unmatched routes */}
       <Route>
-        <Redirect to={paths.samplePage} />
+        <Redirect to={paths.sed} />
       </Route>
     </Switch>
   </Suspense>
