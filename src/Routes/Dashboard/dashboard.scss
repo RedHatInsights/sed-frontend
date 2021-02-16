@@ -1,0 +1,26 @@
+.dashboard__ {
+  &content {
+    min-height: 100%;
+    background-color: var(--pf-global--BackgroundColor--100);
+  }
+
+  &header {
+    display: flex;
+    align-items: end;
+  }
+  &success-status {
+    color: var(--pf-global--success-color--100)
+  }
+  &navtab-title {
+    width: 100%;
+  }
+  &tabs-content {
+    display: flex;
+  }
+  &tabs-nav{
+    flex-shrink: 0;
+  }
+  &sample-route {
+    border-left: 1px solid var(--pf-global--BorderColor--100);
+  }
+}

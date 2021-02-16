@@ -4,8 +4,8 @@ import { Bullseye, Spinner } from '@patternfly/react-core';
 import pckg from '../package.json';
 const { routes: paths } = pckg;
 
-const SamplePage = lazy(() =>
-  import(/* webpackChunkName: "SamplePage" */ './Routes/SamplePage/SamplePage')
+const Dashboard = lazy(() =>
+  import(/* webpackChunkName: "Dashboard" */ './Routes/Dashboard')
 );
 
 export const Routes = () => (
@@ -17,7 +17,7 @@ export const Routes = () => (
     }
   >
     <Switch>
-      <Route path={paths.sed} component={SamplePage} />
+      <Route path={paths.sed} component={Dashboard} />
     </Switch>
   </Suspense>
 );
