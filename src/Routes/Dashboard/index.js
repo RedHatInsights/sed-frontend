@@ -1,9 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import {
   Button,
   Divider,
+  Flex,
   Level,
   LevelItem,
   Popover,
@@ -12,7 +13,10 @@ import {
   Text,
   Title,
 } from '@patternfly/react-core';
-import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
+import {
+  OutlinedQuestionCircleIcon,
+  InProgressIcon,
+} from '@patternfly/react-icons';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import {
   PageHeader,
@@ -22,6 +26,9 @@ import {
 import './dashboard.scss';
 import NavTabs from '../../Components/NavTabs';
 import SampleTabRoute from './SampleTabRoute';
+import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
+import { useDispatch } from 'react-redux';
+import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
 
 const tabItems = [
   {
@@ -55,9 +62,23 @@ const tabItems = [
 ];
 
 const SamplePage = () => {
+  const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
+  const [wasConfirmed, setWasConfirmed] = useState(false);
+  const dispatch = useDispatch();
   useEffect(() => {
     insights?.chrome?.appAction?.('sample-page');
   }, []);
+  useEffect(() => {
+    let listener;
+    if (wasConfirmed) {
+      listener = setTimeout(() => {
+        setWasConfirmed(false);
+      }, 5000);
+    }
+    return () => {
+      clearTimeout(listener);
+    };
+  }, [wasConfirmed]);
 
   return (
     <React.Fragment>
@@ -89,15 +110,31 @@ const SamplePage = () => {
                   <Title headingLevel="h3" size="md">
                     RHEL 8 systems connected
                   </Title>
-                  <Title headingLevel="h3" size="2xl">
-                    1032
-                  </Title>
+                  <Flex
+                    alignContent={{ default: 'alignContentCenter' }}
+                    alignItems={{ default: 'alignItemsCenter' }}
+                  >
+                    <Title headingLevel="h3" size="2xl">
+                      1032
+                    </Title>
+                    {wasConfirmed && (
+                      <Text
+                        className="dashboard__in-progress-text"
+                        component="small"
+                      >
+                        <InProgressIcon />
+                        &nbsp;Changes being applied
+                      </Text>
+                    )}
+                  </Flex>
                   <a href="#">
                     Connect RHEL 6 and 7 systems (link does not work)
                   </a>
                 </LevelItem>
                 <LevelItem>
-                  <Button>Save changes</Button>
+                  <Button onClick={() => setConfirmChangesOpen(true)}>
+                    Save changes
+                  </Button>
                   <Button variant="link">
                     <a href="#">View log</a>
                   </Button>
@@ -125,6 +162,22 @@ const SamplePage = () => {
           </div>
         </div>
       </Main>
+      <ConfirmChangesModal
+        isOpen={confirmChangesOpen}
+        handleCancel={() => setConfirmChangesOpen(false)}
+        handleConfirm={() => {
+          setWasConfirmed(true);
+          setConfirmChangesOpen(false);
+          dispatch(
+            addNotification({
+              variant: 'success',
+              title: 'Changes saved',
+              description:
+                'Your service enablement changes are being applied to connected systems',
+            })
+          );
+        }}
+      />
     </React.Fragment>
   );
 };
