@@ -29,6 +29,7 @@ import SampleTabRoute from './SampleTabRoute';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
 import { useDispatch } from 'react-redux';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
+import ConnectLog from '../../Components/ConnectLog';
 
 const tabItems = [
   {
@@ -63,6 +64,7 @@ const tabItems = [
 
 const SamplePage = () => {
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
+  const [logsOpen, setLogsOpen] = useState(false);
   const [wasConfirmed, setWasConfirmed] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -135,8 +137,8 @@ const SamplePage = () => {
                   <Button onClick={() => setConfirmChangesOpen(true)}>
                     Save changes
                   </Button>
-                  <Button variant="link">
-                    <a href="#">View log</a>
+                  <Button onClick={() => setLogsOpen(true)} variant="link">
+                    View log
                   </Button>
                 </LevelItem>
               </Level>
@@ -178,6 +180,7 @@ const SamplePage = () => {
           );
         }}
       />
+      <ConnectLog isOpen={logsOpen} onClose={() => setLogsOpen(false)} />
     </React.Fragment>
   );
 };
