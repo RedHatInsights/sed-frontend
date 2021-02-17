@@ -100,6 +100,7 @@ const SamplePage = () => {
                 </LevelItem>
                 <LevelItem>
                   <Button
+                    ouiaId="primary-save-button"
                     isDisabled={!madeChanges}
                     onClick={() => setConfirmChangesOpen(true)}
                   >

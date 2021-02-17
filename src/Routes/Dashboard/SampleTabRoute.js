@@ -47,7 +47,11 @@ const SampleTabRoute = ({ setMadeChanges }) => {
         bodyContent={<p>Popover description</p>}
         position="bottom"
       >
-        <Button variant="plain" className="pf-u-p-xs">
+        <Button
+          ouiaId="title-popover-button"
+          variant="plain"
+          className="pf-u-p-xs"
+        >
           <OutlinedQuestionCircleIcon color="grey" />
         </Button>
       </Popover>
@@ -81,6 +85,7 @@ const SampleTabRoute = ({ setMadeChanges }) => {
           <StackItem>
             <Switch
               id="connect-to-insights"
+              ouiaId="connect-to-insights"
               aria-label="Connect to Red Hat Insights"
               isChecked={connectToInsights}
               onChange={() => setConnectToInsights(!connectToInsights)}
@@ -105,6 +110,7 @@ const SampleTabRoute = ({ setMadeChanges }) => {
                     className="pf-u-mt-md"
                     key="use-openscap"
                     id="use-openscap"
+                    ouiaId="use-openscap"
                     aria-label="Use OpenSCAP for Compliance policies"
                     isChecked={useOpenSCAP}
                     onChange={() => setUseOpenSCAP(!useOpenSCAP)}
@@ -128,6 +134,7 @@ const SampleTabRoute = ({ setMadeChanges }) => {
                     className="pf-u-mt-md"
                     key="use-resource-optimization"
                     id="use-resource-optimization"
+                    ouiaId="use-resource-optimization"
                     aria-label="Use Resource Optimization analysis"
                     isChecked={useAnalysis}
                     onChange={() => setUseAnalysis(!useAnalysis)}
@@ -154,6 +161,7 @@ const SampleTabRoute = ({ setMadeChanges }) => {
                     className="pf-u-mt-md"
                     key="enable-cloud-connector"
                     id="enable-cloud-connector"
+                    ouiaId="enable-cloud-connector"
                     aria-label="Enable Cloud Connector"
                     isChecked={enableCloudConnector}
                     onChange={() =>
