@@ -66,6 +66,7 @@ const SamplePage = () => {
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
   const [logsOpen, setLogsOpen] = useState(false);
   const [wasConfirmed, setWasConfirmed] = useState(false);
+  const [madeChanges, setMadeChanges] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     insights?.chrome?.appAction?.('sample-page');
@@ -129,12 +130,13 @@ const SamplePage = () => {
                       </Text>
                     )}
                   </Flex>
-                  <a href="#">
-                    Connect RHEL 6 and 7 systems (link does not work)
-                  </a>
+                  <a href="#">Connect RHEL 6 and 7 systems</a>
                 </LevelItem>
                 <LevelItem>
-                  <Button onClick={() => setConfirmChangesOpen(true)}>
+                  <Button
+                    isDisabled={!madeChanges}
+                    onClick={() => setConfirmChangesOpen(true)}
+                  >
                     Save changes
                   </Button>
                   <Button onClick={() => setLogsOpen(true)} variant="link">
@@ -158,7 +160,7 @@ const SamplePage = () => {
                 <div>No component yet</div>
               </Route>
               <Route path={['/', tabItems[0].pathname]}>
-                <SampleTabRoute />
+                <SampleTabRoute setMadeChanges={setMadeChanges} />
               </Route>
             </Switch>
           </div>

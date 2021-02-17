@@ -1,5 +1,8 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useState, useEffect } from 'react';
 import {
+  Badge,
+  Button,
+  Popover,
   Stack,
   StackItem,
   Switch,
@@ -7,26 +10,66 @@ import {
   TextContent,
   Title,
 } from '@patternfly/react-core';
-
+import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
+import propTypes from 'prop-types';
 import '@patternfly/react-styles/css/components/Table/table.css';
 
-const SampleTabRoute = () => {
+const SampleTabRoute = ({ setMadeChanges }) => {
+  const defaults = {
+    connectToInsights: true,
+    useOpenSCAP: false,
+    useAnalysis: false,
+    enableCloudConnector: false,
+  };
+  const [connectToInsights, setConnectToInsights] = useState(
+    defaults.connectToInsights
+  );
+  const [useOpenSCAP, setUseOpenSCAP] = useState(defaults.useOpenSCAP);
+  const [useAnalysis, setUseAnalysis] = useState(defaults.useAnalysis);
+  const [enableCloudConnector, setEnableCloudConnector] = useState(
+    defaults.enableCloudConnector
+  );
+
+  useEffect(() => {
+    setMadeChanges(
+      connectToInsights != defaults.connectToInsights ||
+        useOpenSCAP != defaults.useOpenSCAP ||
+        useAnalysis != defaults.useAnalysis ||
+        enableCloudConnector != defaults.enableCloudConnector
+    );
+  }, [connectToInsights, useOpenSCAP, useAnalysis, enableCloudConnector]);
+
+  const getPopover = () => {
+    return (
+      <Popover
+        aria-label="connected-dashboard-description"
+        headerContent={<div>Desc header</div>}
+        bodyContent={<p>Popover description</p>}
+        position="bottom"
+      >
+        <Button variant="plain" className="pf-u-p-xs">
+          <OutlinedQuestionCircleIcon color="grey" />
+        </Button>
+      </Popover>
+    );
+  };
+
   return (
     <Stack hasGutter className="dashboard__sample-route pf-u-p-md">
       <StackItem>
         <Title headingLevel="h2" size="2xl">
-          Red hat Insights
+          Red Hat Insights
         </Title>
-        <TextContent>
+        <TextContent className="pf-u-mt-md">
           <Text component="p">
-            Esse culpa anim do incididunt non cillum nisi esse officia. Culpa
-            elit amet dolore aliqua veniam adipisicing qui anim ea magna. Est
-            anim ex proident tempor nostrud. Veniam aliqua sunt est Lorem
-            proident voluptate. Laboris labore mollit irure officia. Dolore sit
-            velit cillum ut irure esse velit exercitation esse consectetur.
-            Aliquip reprehenderit duis deserunt fugiat proident ex in eiusmod
-            pariatur ipsum sint. Lorem ipsum reprehenderit veniam in esse velit
-            qui ad. Reprehenderit laborum laboris aute ipsum.
+            Red Hat Insights is a proactive operational efficiency and security
+            risk management solution in Red Hat Enterprise Linux (RHEL)
+            subscriptions for versions 6.4 and higher, as well as public cloud
+            versions of RHEL. It helps identify, prioritize, and resolve risks
+            to security, compliance, performance, availability, and stability
+            before they become urgent issues. Insights also enables users to
+            monitor for adherence to internal policies and understand
+            configuration changes over time.
           </Text>
         </TextContent>
       </StackItem>
@@ -37,8 +80,10 @@ const SampleTabRoute = () => {
         <Stack hasGutter className="pf-u-mt-lg">
           <StackItem>
             <Switch
-              id="top-foo"
-              aria-label="foo"
+              id="connect-to-insights"
+              aria-label="Connect to Red Hat Insights"
+              isChecked={connectToInsights}
+              onChange={() => setConnectToInsights(!connectToInsights)}
               label={
                 <Fragment>
                   <Title headingLevel="h4" size="md">
@@ -46,43 +91,93 @@ const SampleTabRoute = () => {
                   </Title>
                   <TextContent>
                     <Text component="small">
-                      Id culpa nostrud magna cupidatat commodo dolor tempor enim
-                      nisi irure duis sunt. Amet commodo dolore adipisicing
-                      velit aliquip est. Id laboris aute pariatur nulla. Fugiat
-                      qui exercitation ad sit. Dolore sit eiusmod et cupidatat
-                      qui cillum nulla pariatur consequat nulla irure deserunt
-                      incididunt esse.
+                      Required to use Insights applications. Enables Advisor,
+                      Drift, Patch, Vulnerability and Policies applications.
                     </Text>
                   </TextContent>
                 </Fragment>
               }
             />
             <div className="pf-u-pl-3xl">
-              {[1, 2, 3].map((val) => (
-                <Switch
-                  className="pf-u-mt-md"
-                  key={val}
-                  id={`${val}-nested-switch`}
-                  aria-label={`${val}-nested-switch`}
-                  label={
-                    <Fragment>
-                      <Title headingLevel="h4" size="md">
-                        Nested switch {val}
-                      </Title>
-                      <TextContent>
-                        <Text component="small">
-                          Id culpa nostrud magna cupidatat commodo dolor tempor
-                          enim nisi irure duis sunt. Amet commodo dolore
-                          adipisicing velit aliquip est. Id laboris aute
-                          pariatur nulla. Fugiat qui exercitation ad sit. Dolore
-                          sit eiusmod et cupidatat qui cillum nulla pariatur
-                          consequat nulla irure deserunt incididunt esse.
-                        </Text>
-                      </TextContent>
-                    </Fragment>
-                  }
-                />
-              ))}
+              <Stack>
+                <StackItem>
+                  <Switch
+                    className="pf-u-mt-md"
+                    key="use-openscap"
+                    id="use-openscap"
+                    aria-label="Use OpenSCAP for Compliance policies"
+                    isChecked={useOpenSCAP}
+                    onChange={() => setUseOpenSCAP(!useOpenSCAP)}
+                    label={
+                      <Fragment>
+                        <Title headingLevel="h4" size="md">
+                          Use OpenSCAP for Compliance policies
+                          {getPopover()}
+                        </Title>
+                        <TextContent>
+                          <Text component="small">
+                            Required to use Compliance application
+                          </Text>
+                        </TextContent>
+                      </Fragment>
+                    }
+                  />
+                </StackItem>
+                <StackItem>
+                  <Switch
+                    className="pf-u-mt-md"
+                    key="use-resource-optimization"
+                    id="use-resource-optimization"
+                    aria-label="Use Resource Optimization analysis"
+                    isChecked={useAnalysis}
+                    onChange={() => setUseAnalysis(!useAnalysis)}
+                    label={
+                      <Fragment>
+                        <Title headingLevel="h4" size="md">
+                          Use Resource Optimization analysis
+                          <Badge className="pf-u-ml-sm pf-u-mr-xs" isRead>
+                            Beta
+                          </Badge>
+                          {getPopover()}
+                        </Title>
+                        <TextContent>
+                          <Text component="small">
+                            Required to use Resource Optimization application
+                          </Text>
+                        </TextContent>
+                      </Fragment>
+                    }
+                  />
+                </StackItem>
+                <StackItem>
+                  <Switch
+                    className="pf-u-mt-md"
+                    key="enable-cloud-connector"
+                    id="enable-cloud-connector"
+                    aria-label="Enable Cloud Connector"
+                    isChecked={enableCloudConnector}
+                    onChange={() =>
+                      setEnableCloudConnector(!enableCloudConnector)
+                    }
+                    label={
+                      <Fragment>
+                        <Title headingLevel="h4" size="md">
+                          Enable Cloud Connector to fix issues directly from
+                          Insights
+                          {getPopover()}
+                        </Title>
+                        <TextContent>
+                          <Text component="small">
+                            Cloud Connector allows you to push Remediation
+                            Ansible Playbooks directly from Insights to your
+                            systems.
+                          </Text>
+                        </TextContent>
+                      </Fragment>
+                    }
+                  />
+                </StackItem>
+              </Stack>
             </div>
           </StackItem>
           <StackItem>
@@ -116,6 +211,10 @@ const SampleTabRoute = () => {
       </StackItem>
     </Stack>
   );
+};
+
+SampleTabRoute.propTypes = {
+  setMadeChanges: propTypes.func.isRequired,
 };
 
 export default SampleTabRoute;
