@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
-
 import {
   Button,
   Divider,
@@ -24,43 +22,11 @@ import {
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 
 import './dashboard.scss';
-import NavTabs from '../../Components/NavTabs';
 import SampleTabRoute from './SampleTabRoute';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
 import { useDispatch } from 'react-redux';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import ConnectLog from '../../Components/ConnectLog';
-
-const tabItems = [
-  {
-    eventKey: 0,
-    pathname: '/red-hat-insights',
-    title: (
-      <Level hasGutter className="dashboard__navtab-title">
-        <LevelItem>Red Hat Insights</LevelItem>
-        <LevelItem>
-          <Text component="b">
-            <span className="dashboard__success-status">ON</span>
-          </Text>
-        </LevelItem>
-      </Level>
-    ),
-  },
-  {
-    eventKey: 1,
-    pathname: '/red-hat-subscription-manager',
-    title: (
-      <Level hasGutter className="dashboard__navtab-title">
-        <LevelItem>Red Hat Subscription manager</LevelItem>
-        <LevelItem>
-          <Text component="b">
-            <span className="dashboard__success-status">ON</span>
-          </Text>
-        </LevelItem>
-      </Level>
-    ),
-  },
-];
 
 const SamplePage = () => {
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
@@ -147,23 +113,7 @@ const SamplePage = () => {
             </StackItem>
           </Stack>
           <Divider />
-          <div className="dashboard__tabs-content">
-            <NavTabs
-              tabItems={tabItems}
-              TabsProps={{
-                isVertical: true,
-                className: 'dashboard__tabs-nav pf-u-mr-lg',
-              }}
-            />
-            <Switch>
-              <Route path={tabItems[1].pathname}>
-                <div>No component yet</div>
-              </Route>
-              <Route path={['/', tabItems[0].pathname]}>
-                <SampleTabRoute setMadeChanges={setMadeChanges} />
-              </Route>
-            </Switch>
-          </div>
+          <SampleTabRoute setMadeChanges={setMadeChanges} />
         </div>
       </Main>
       <ConfirmChangesModal

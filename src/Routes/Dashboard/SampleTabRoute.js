@@ -55,7 +55,7 @@ const SampleTabRoute = ({ setMadeChanges }) => {
   };
 
   return (
-    <Stack hasGutter className="dashboard__sample-route pf-u-p-md">
+    <Stack hasGutter className="pf-u-p-md">
       <StackItem>
         <Title headingLevel="h2" size="2xl">
           Red Hat Insights
@@ -179,33 +179,6 @@ const SampleTabRoute = ({ setMadeChanges }) => {
                 </StackItem>
               </Stack>
             </div>
-          </StackItem>
-          <StackItem>
-            <Title headingLevel="h3" size="xl">
-              Exclusions
-            </Title>
-            <table className="pf-c-table pf-m-grid-md">
-              <thead>
-                <tr>
-                  <th>Condition</th>
-                  <th>Settings</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>tag=&quot;prod&quot;</td>
-                  <td>Red Hat Insights - Off</td>
-                </tr>
-                <tr>
-                  <td>tag=&quot;dev&quot;</td>
-                  <td>
-                    Red Hat Insights - On
-                    <br />
-                    YARA - On
-                  </td>
-                </tr>
-              </tbody>
-            </table>
           </StackItem>
         </Stack>
       </StackItem>

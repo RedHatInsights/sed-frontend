@@ -20,9 +20,6 @@
   &tabs-nav{
     flex-shrink: 0;
   }
-  &sample-route {
-    border-left: 1px solid var(--pf-global--BorderColor--100);
-  }
   &in-progress-text {
     color: var(--pf-global--palette--blue-500);
     > svg {
