@@ -1,6 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { Route, Switch } from 'react-router-dom';
-
 import {
   Button,
   Divider,
@@ -24,48 +22,17 @@ import {
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 
 import './dashboard.scss';
-import NavTabs from '../../Components/NavTabs';
 import SampleTabRoute from './SampleTabRoute';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
 import { useDispatch } from 'react-redux';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import ConnectLog from '../../Components/ConnectLog';
 
-const tabItems = [
-  {
-    eventKey: 0,
-    pathname: '/red-hat-insights',
-    title: (
-      <Level hasGutter className="dashboard__navtab-title">
-        <LevelItem>Red Hat Insights</LevelItem>
-        <LevelItem>
-          <Text component="b">
-            <span className="dashboard__success-status">ON</span>
-          </Text>
-        </LevelItem>
-      </Level>
-    ),
-  },
-  {
-    eventKey: 1,
-    pathname: '/red-hat-subscription-manager',
-    title: (
-      <Level hasGutter className="dashboard__navtab-title">
-        <LevelItem>Red Hat Subscription manager</LevelItem>
-        <LevelItem>
-          <Text component="b">
-            <span className="dashboard__success-status">ON</span>
-          </Text>
-        </LevelItem>
-      </Level>
-    ),
-  },
-];
-
 const SamplePage = () => {
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
   const [logsOpen, setLogsOpen] = useState(false);
   const [wasConfirmed, setWasConfirmed] = useState(false);
+  const [madeChanges, setMadeChanges] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     insights?.chrome?.appAction?.('sample-page');
@@ -129,12 +96,14 @@ const SamplePage = () => {
                       </Text>
                     )}
                   </Flex>
-                  <a href="#">
-                    Connect RHEL 6 and 7 systems (link does not work)
-                  </a>
+                  <a href="#">Connect RHEL 6 and 7 systems</a>
                 </LevelItem>
                 <LevelItem>
-                  <Button onClick={() => setConfirmChangesOpen(true)}>
+                  <Button
+                    ouiaId="primary-save-button"
+                    isDisabled={!madeChanges}
+                    onClick={() => setConfirmChangesOpen(true)}
+                  >
                     Save changes
                   </Button>
                   <Button onClick={() => setLogsOpen(true)} variant="link">
@@ -145,23 +114,7 @@ const SamplePage = () => {
             </StackItem>
           </Stack>
           <Divider />
-          <div className="dashboard__tabs-content">
-            <NavTabs
-              tabItems={tabItems}
-              TabsProps={{
-                isVertical: true,
-                className: 'dashboard__tabs-nav pf-u-mr-lg',
-              }}
-            />
-            <Switch>
-              <Route path={tabItems[1].pathname}>
-                <div>No component yet</div>
-              </Route>
-              <Route path={['/', tabItems[0].pathname]}>
-                <SampleTabRoute />
-              </Route>
-            </Switch>
-          </div>
+          <SampleTabRoute setMadeChanges={setMadeChanges} />
         </div>
       </Main>
       <ConfirmChangesModal

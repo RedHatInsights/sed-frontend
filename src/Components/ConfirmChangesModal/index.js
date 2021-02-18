@@ -28,7 +28,7 @@ const ConfirmChangesModal = ({
           type="button"
           onClick={handleCancel}
         >
-          Confirm Cancel
+          Cancel
         </Button>,
       ]}
     >
@@ -38,7 +38,7 @@ const ConfirmChangesModal = ({
           settings will also be applied to <b>all future systems</b> that are
           connect through Red Hat Connect (rhc).
         </Text>
-        <Text component="p">
+        <Text component="p" className="pf-u-mb-sm">
           Upon confirmation, an Ansible Playbook will be pushed to 1032 systems
           to apply changes.
         </Text>
