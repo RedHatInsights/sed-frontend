@@ -1,5 +1,5 @@
 const SECTION = 'settings';
-const APP_ID = 'sed';
+const APP_ID = 'connector';
 const FRONTEND_PORT = 8002;
 const routes = {};
 

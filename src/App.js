@@ -11,7 +11,7 @@ const App = (props) => {
     registry.register({ notifications: notificationsReducer });
     insights.chrome.init();
 
-    insights.chrome.identifyApp('sed');
+    insights.chrome.identifyApp('connector');
     return insights.chrome.on('APP_NAVIGATION', (event) =>
       this.props.history.push(`/${event.navId}`)
     );
