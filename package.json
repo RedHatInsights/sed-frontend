@@ -88,9 +88,9 @@
     "webpack-cli": "4.5.0"
   },
   "insights": {
-    "appname": "sed"
+    "appname": "connector"
   },
   "routes": {
-    "sed": "/"
+    "connector": "/"
   }
 }

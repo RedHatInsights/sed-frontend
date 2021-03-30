@@ -17,7 +17,7 @@ export const Routes = () => (
     }
   >
     <Switch>
-      <Route path={paths.sed} component={Dashboard} />
+      <Route path={paths.connector} component={Dashboard} />
     </Switch>
   </Suspense>
 );
