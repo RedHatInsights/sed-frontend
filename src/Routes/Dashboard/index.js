@@ -31,6 +31,7 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import ConnectLog from '../../Components/ConnectLog';
 import activeStateReducer from '../../store/currStateReducer';
+import logReducer from '../../store/logReducer';
 import { fetchCurrState, saveCurrState } from '../../store/actions';
 
 const SamplePage = () => {
@@ -51,8 +52,8 @@ const SamplePage = () => {
   );
   const dispatch = useDispatch();
   useEffect(() => {
-    insights?.chrome?.appAction?.('sample-page');
-    getRegistry().register({ activeStateReducer });
+    insights?.chrome?.appAction?.('cloud-connector-dashboard');
+    getRegistry().register({ activeStateReducer, logReducer });
     dispatch(fetchCurrState());
   }, []);
 
