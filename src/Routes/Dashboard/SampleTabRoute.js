@@ -14,15 +14,11 @@ import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 import '@patternfly/react-styles/css/components/Table/table.css';
 
-const SampleTabRoute = ({ setMadeChanges }) => {
-  const defaults = {
-    connectToInsights: true,
-    useOpenSCAP: false,
-    useAnalysis: false,
-    enableCloudConnector: false,
-  };
+const SampleTabRoute = ({ setMadeChanges, defaults, onChange }) => {
   const [connectToInsights, setConnectToInsights] = useState(
-    defaults.connectToInsights
+    defaults.useOpenSCAP ||
+      defaults.useAnalysis ||
+      defaults.enableCloudConnector
   );
   const [useOpenSCAP, setUseOpenSCAP] = useState(defaults.useOpenSCAP);
   const [useAnalysis, setUseAnalysis] = useState(defaults.useAnalysis);
@@ -31,13 +27,14 @@ const SampleTabRoute = ({ setMadeChanges }) => {
   );
 
   useEffect(() => {
+    setConnectToInsights(useOpenSCAP || useAnalysis || enableCloudConnector);
     setMadeChanges(
-      connectToInsights != defaults.connectToInsights ||
-        useOpenSCAP != defaults.useOpenSCAP ||
+      useOpenSCAP != defaults.useOpenSCAP ||
         useAnalysis != defaults.useAnalysis ||
         enableCloudConnector != defaults.enableCloudConnector
     );
-  }, [connectToInsights, useOpenSCAP, useAnalysis, enableCloudConnector]);
+    onChange({ useOpenSCAP, useAnalysis, enableCloudConnector });
+  }, [useOpenSCAP, useAnalysis, enableCloudConnector]);
 
   const getPopover = () => {
     return (
@@ -88,7 +85,11 @@ const SampleTabRoute = ({ setMadeChanges }) => {
               ouiaId="connect-to-insights"
               aria-label="Connect to Red Hat Insights"
               isChecked={connectToInsights}
-              onChange={() => setConnectToInsights(!connectToInsights)}
+              onChange={() => {
+                setUseOpenSCAP(() => !connectToInsights);
+                setUseAnalysis(() => !connectToInsights);
+                setEnableCloudConnector(() => !connectToInsights);
+              }}
               label={
                 <Fragment>
                   <Title headingLevel="h4" size="md">
@@ -196,6 +197,20 @@ const SampleTabRoute = ({ setMadeChanges }) => {
 
 SampleTabRoute.propTypes = {
   setMadeChanges: propTypes.func.isRequired,
+  defaults: propTypes.shape({
+    useOpenSCAP: propTypes.bool,
+    useAnalysis: propTypes.bool,
+    enableCloudConnector: propTypes.bool,
+  }),
+  onChange: propTypes.func.isRequired,
+};
+
+SampleTabRoute.defaultProps = {
+  defaults: {
+    useOpenSCAP: false,
+    useAnalysis: false,
+    enableCloudConnector: false,
+  },
 };
 
 export default SampleTabRoute;

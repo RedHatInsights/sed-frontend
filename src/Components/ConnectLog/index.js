@@ -1,116 +1,46 @@
-import React, { Fragment, useState } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import {
   Table,
   TableHeader,
   TableBody,
   TableVariant,
-  expandable,
 } from '@patternfly/react-table';
 import PropTypes from 'prop-types';
 import { Modal } from '@patternfly/react-core';
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchLog } from '../../store/actions';
 import { DateFormat } from '@redhat-cloud-services/frontend-components/DateFormat';
-import { InProgressIcon } from '@patternfly/react-icons';
-import LogNestedTable from './LogNestedtable';
+import { SkeletonTable } from '@redhat-cloud-services/frontend-components/SkeletonTable';
 
 const columns = [
   {
     title: 'Initiated date/time',
-    cellFormatters: [expandable],
   },
   'Initiator',
-  'Status',
-  'Playbook',
 ];
 
-const initialRows = [
-  {
-    isOpen: false,
+const rowsMapper = (results) =>
+  results.map(({ account, created_at: createdAt, id }) => ({
+    id,
     cells: [
       <Fragment key="date">
-        <DateFormat date={new Date()} type="exact" />
+        <DateFormat date={new Date(createdAt)} extraTitle="Created at: " />
       </Fragment>,
-      'John Doe',
-      <Fragment key="status">
-        <div>
-          <InProgressIcon />
-          &nbsp; In progress
-        </div>
-      </Fragment>,
-      <Fragment key="download">
-        <a href="#">Download</a>
-      </Fragment>,
+      account,
     ],
-  },
-  {
-    parent: 0,
-    cells: [
-      <Fragment key="nested-table">
-        <LogNestedTable />
-      </Fragment>,
-    ],
-  },
-  {
-    isOpen: false,
-    cells: [
-      <Fragment key="date">
-        <DateFormat date={new Date()} type="exact" />
-      </Fragment>,
-      'John Doe',
-      <Fragment key="status">
-        <div>
-          <InProgressIcon />
-          &nbsp; In progress
-        </div>
-      </Fragment>,
-      <Fragment key="download">
-        <a href="#">Download</a>
-      </Fragment>,
-    ],
-  },
-  {
-    parent: 2,
-    cells: [
-      <Fragment key="nested-table">
-        <LogNestedTable />
-      </Fragment>,
-    ],
-  },
-  {
-    isOpen: false,
-    cells: [
-      <Fragment key="date">
-        <DateFormat date={new Date()} type="exact" />
-      </Fragment>,
-      'John Doe',
-      <Fragment key="status">
-        <div>
-          <InProgressIcon />
-          &nbsp; In progress
-        </div>
-      </Fragment>,
-      <Fragment key="download">
-        <a href="#">Download</a>
-      </Fragment>,
-    ],
-  },
-  {
-    parent: 4,
-    cells: [
-      <Fragment key="nested-table">
-        <LogNestedTable />
-      </Fragment>,
-    ],
-  },
-];
+  }));
 
 const ConnectLog = ({ isOpen = false, onClose }) => {
-  const [rows, setRows] = useState(initialRows);
-  const onCollapse = (event, rowKey, isOpen) => {
-    setRows((rows) =>
-      rows.map((row, index) => (index === rowKey ? { ...row, isOpen } : row))
-    );
-  };
-
+  const dispatch = useDispatch();
+  const logLoaded = useSelector(
+    ({ logReducer }) => logReducer?.loaded || false
+  );
+  const rows = useSelector(({ logReducer }) => logReducer?.results || []);
+  useEffect(() => {
+    if (isOpen) {
+      dispatch(fetchLog());
+    }
+  }, [isOpen]);
   return (
     <Modal
       title="Red Hat connect log"
@@ -118,16 +48,19 @@ const ConnectLog = ({ isOpen = false, onClose }) => {
       isOpen={isOpen}
       onClose={onClose}
     >
-      <Table
-        aria-label="Logs table"
-        variant={TableVariant.compact}
-        onCollapse={onCollapse}
-        rows={rows}
-        cells={columns}
-      >
-        <TableHeader />
-        <TableBody />
-      </Table>
+      {logLoaded ? (
+        <Table
+          aria-label="Logs table"
+          variant={TableVariant.compact}
+          rows={rowsMapper(rows)}
+          cells={columns}
+        >
+          <TableHeader />
+          <TableBody />
+        </Table>
+      ) : (
+        <SkeletonTable colSize={2} rowSize={10} />
+      )}
     </Modal>
   );
 };
