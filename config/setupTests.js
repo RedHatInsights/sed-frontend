@@ -8,3 +8,10 @@ global.shallow = shallow;
 global.render = render;
 global.mount = mount;
 global.React = React;
+global.insights = {
+  chrome: {
+    auth: {
+      getUser: () => ({}),
+    },
+  },
+};

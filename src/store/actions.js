@@ -1,5 +1,10 @@
-import { configApi, updateCurrState } from '../api';
-import { GET_CURR_STATE, GET_LOG, SET_CURR_STATE } from './actionTypes';
+import { configApi, updateCurrState, getConnectedHosts } from '../api';
+import {
+  GET_CURR_STATE,
+  GET_LOG,
+  SET_CURR_STATE,
+  GET_CONNECTED_HOSTS,
+} from './actionTypes';
 
 export const fetchCurrState = () => ({
   type: GET_CURR_STATE,
@@ -11,7 +16,12 @@ export const saveCurrState = (data) => ({
   payload: updateCurrState(data),
 });
 
-export const fetchLog = () => ({
+export const fetchLog = ({ perPage = 50, page = 1 } = {}) => ({
   type: GET_LOG,
-  payload: configApi.getStates(),
+  payload: configApi.getStates(perPage, (page - 1) * perPage),
+});
+
+export const fetchConnectedHosts = () => ({
+  type: GET_CONNECTED_HOSTS,
+  payload: getConnectedHosts(),
 });

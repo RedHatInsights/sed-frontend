@@ -1,6 +1,5 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import {
-  Badge,
   Button,
   Popover,
   Stack,
@@ -16,25 +15,23 @@ import '@patternfly/react-styles/css/components/Table/table.css';
 
 const SampleTabRoute = ({ setMadeChanges, defaults, onChange }) => {
   const [connectToInsights, setConnectToInsights] = useState(
-    defaults.useOpenSCAP ||
-      defaults.useAnalysis ||
+    defaults.hasInsights ||
+      defaults.useOpenSCAP ||
       defaults.enableCloudConnector
   );
   const [useOpenSCAP, setUseOpenSCAP] = useState(defaults.useOpenSCAP);
-  const [useAnalysis, setUseAnalysis] = useState(defaults.useAnalysis);
   const [enableCloudConnector, setEnableCloudConnector] = useState(
     defaults.enableCloudConnector
   );
 
   useEffect(() => {
-    setConnectToInsights(useOpenSCAP || useAnalysis || enableCloudConnector);
     setMadeChanges(
-      useOpenSCAP != defaults.useOpenSCAP ||
-        useAnalysis != defaults.useAnalysis ||
+      connectToInsights !== defaults.hasInsights ||
+        useOpenSCAP !== defaults.useOpenSCAP ||
         enableCloudConnector != defaults.enableCloudConnector
     );
-    onChange({ useOpenSCAP, useAnalysis, enableCloudConnector });
-  }, [useOpenSCAP, useAnalysis, enableCloudConnector]);
+    onChange({ useOpenSCAP, enableCloudConnector });
+  }, [useOpenSCAP, enableCloudConnector, connectToInsights]);
 
   const getPopover = () => {
     return (
@@ -86,9 +83,12 @@ const SampleTabRoute = ({ setMadeChanges, defaults, onChange }) => {
               aria-label="Connect to Red Hat Insights"
               isChecked={connectToInsights}
               onChange={() => {
-                setUseOpenSCAP(() => !connectToInsights);
-                setUseAnalysis(() => !connectToInsights);
-                setEnableCloudConnector(() => !connectToInsights);
+                const newHasInsights = !connectToInsights;
+                setConnectToInsights(() => newHasInsights);
+                if (!newHasInsights) {
+                  setUseOpenSCAP(() => false);
+                  setEnableCloudConnector(() => false);
+                }
               }}
               label={
                 <Fragment>
@@ -114,7 +114,13 @@ const SampleTabRoute = ({ setMadeChanges, defaults, onChange }) => {
                     ouiaId="use-openscap"
                     aria-label="Use OpenSCAP for Compliance policies"
                     isChecked={useOpenSCAP}
-                    onChange={() => setUseOpenSCAP(!useOpenSCAP)}
+                    onChange={() => {
+                      setUseOpenSCAP((prevValue) => {
+                        const newUseOpenSCAP = !prevValue;
+                        setConnectToInsights(() => true);
+                        return newUseOpenSCAP;
+                      });
+                    }}
                     label={
                       <Fragment>
                         <Title headingLevel="h4" size="md">
@@ -133,41 +139,20 @@ const SampleTabRoute = ({ setMadeChanges, defaults, onChange }) => {
                 <StackItem>
                   <Switch
                     className="pf-u-mt-md"
-                    key="use-resource-optimization"
-                    id="use-resource-optimization"
-                    ouiaId="use-resource-optimization"
-                    aria-label="Use Resource Optimization analysis"
-                    isChecked={useAnalysis}
-                    onChange={() => setUseAnalysis(!useAnalysis)}
-                    label={
-                      <Fragment>
-                        <Title headingLevel="h4" size="md">
-                          Use Resource Optimization analysis
-                          <Badge className="pf-u-ml-sm pf-u-mr-xs" isRead>
-                            Beta
-                          </Badge>
-                          {getPopover()}
-                        </Title>
-                        <TextContent>
-                          <Text component="small">
-                            Required to use Resource Optimization application
-                          </Text>
-                        </TextContent>
-                      </Fragment>
-                    }
-                  />
-                </StackItem>
-                <StackItem>
-                  <Switch
-                    className="pf-u-mt-md"
                     key="enable-cloud-connector"
                     id="enable-cloud-connector"
                     ouiaId="enable-cloud-connector"
                     aria-label="Enable Cloud Connector"
                     isChecked={enableCloudConnector}
-                    onChange={() =>
-                      setEnableCloudConnector(!enableCloudConnector)
-                    }
+                    onChange={() => {
+                      setEnableCloudConnector((prevValue) => {
+                        const newEnableCloudConnector = !prevValue;
+                        if (newEnableCloudConnector) {
+                          setConnectToInsights(() => true);
+                        }
+                        return newEnableCloudConnector;
+                      });
+                    }}
                     label={
                       <Fragment>
                         <Title headingLevel="h4" size="md">
@@ -199,7 +184,7 @@ SampleTabRoute.propTypes = {
   setMadeChanges: propTypes.func.isRequired,
   defaults: propTypes.shape({
     useOpenSCAP: propTypes.bool,
-    useAnalysis: propTypes.bool,
+    hasInsights: propTypes.bool,
     enableCloudConnector: propTypes.bool,
   }),
   onChange: propTypes.func.isRequired,
@@ -208,7 +193,7 @@ SampleTabRoute.propTypes = {
 SampleTabRoute.defaultProps = {
   defaults: {
     useOpenSCAP: false,
-    useAnalysis: false,
+    hasInsights: false,
     enableCloudConnector: false,
   },
 };
