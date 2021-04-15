@@ -14,10 +14,10 @@ const connectedSystemsPending = (state) => ({
 const connectedSystemsFulfilled = (state, { payload }) => ({
   ...state,
   loaded: true,
-  hosts: payload?.results,
-  total: payload?.count,
-  page: payload?.page,
-  perPage: payload?.per_page,
+  hosts: payload?.results || [],
+  total: payload?.count || 0,
+  page: payload?.page || 0,
+  perPage: payload?.per_page || 0,
 });
 
 export default applyReducerHash(

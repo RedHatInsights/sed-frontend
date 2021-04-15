@@ -15,7 +15,6 @@ const currStateFulfilled = (state, { payload }) => ({
   loaded: true,
   values: {
     useOpenSCAP: payload?.state?.compliance_openscap === 'enabled',
-    useAnalysis: payload?.state?.insights === 'enabled',
     enableCloudConnector: payload?.state?.remediations === 'enabled',
     hasInsights: payload?.state?.insights === 'enabled',
   },

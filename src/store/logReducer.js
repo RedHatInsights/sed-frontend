@@ -13,7 +13,7 @@ const logPending = (state) => ({
 const logFulfilled = (state, { payload }) => ({
   ...state,
   loaded: true,
-  ...payload,
+  ...(payload || {}),
 });
 
 export default applyReducerHash(
