@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState, useCallback } from 'react';
 import {
   Table,
   TableHeader,
@@ -7,11 +7,18 @@ import {
   expandable,
 } from '@patternfly/react-table';
 import PropTypes from 'prop-types';
-import { Modal } from '@patternfly/react-core';
-import { useSelector, useDispatch } from 'react-redux';
+import {
+  Modal,
+  Pagination,
+  Skeleton,
+  PaginationVariant,
+} from '@patternfly/react-core';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { fetchLog } from '../../store/actions';
 import { DateFormat } from '@redhat-cloud-services/frontend-components/DateFormat';
 import { SkeletonTable } from '@redhat-cloud-services/frontend-components/SkeletonTable';
+import { TableToolbar } from '@redhat-cloud-services/frontend-components/TableToolbar';
+import { PrimaryToolbar } from '@redhat-cloud-services/frontend-components/PrimaryToolbar';
 import flatMap from 'lodash/flatMap';
 import LogNestedTable from './LogNestedtable';
 
@@ -64,16 +71,36 @@ const ConnectLog = ({ isOpen = false, onClose }) => {
     ({ logReducer }) => logReducer?.loaded || false
   );
   const rows = useSelector(({ logReducer }) => logReducer?.results || []);
+  const pagination = useSelector(
+    ({ logReducer }) => ({
+      itemCount: logReducer?.total,
+      perPage: logReducer?.limit,
+      page:
+        Math.floor((logReducer?.offset || 0) / (logReducer?.limit || 0)) + 1,
+    }),
+    shallowEqual
+  );
   useEffect(() => {
     if (isOpen) {
-      dispatch(fetchLog());
+      dispatch(fetchLog({}));
     }
   }, [isOpen]);
-  const onCollapse = (event, rowKey, isOpen, { id }) => {
+  const onCollapse = (_e, _key, isOpen, { id }) => {
     setOpened(() =>
       isOpen ? [...opened, id] : opened.filter((openId) => openId !== id)
     );
   };
+
+  const setPage = useCallback(
+    (_e, pageNumber) =>
+      dispatch(fetchLog({ page: pageNumber, perPage: pagination.perPage })),
+    [dispatch, pagination.perPage]
+  );
+
+  const setPerPage = useCallback(
+    (_e, perPage) => dispatch(fetchLog({ page: 1, perPage })),
+    [dispatch]
+  );
 
   return (
     <Modal
@@ -82,6 +109,19 @@ const ConnectLog = ({ isOpen = false, onClose }) => {
       isOpen={isOpen}
       onClose={onClose}
     >
+      <PrimaryToolbar
+        pagination={
+          logLoaded ? (
+            {
+              ...pagination,
+              onSetPage: setPage,
+              onPerPageSelect: setPerPage,
+            }
+          ) : (
+            <Skeleton width="33%" />
+          )
+        }
+      />
       {logLoaded ? (
         <Table
           aria-label="Logs table"
@@ -96,6 +136,18 @@ const ConnectLog = ({ isOpen = false, onClose }) => {
       ) : (
         <SkeletonTable colSize={2} rowSize={10} />
       )}
+      <TableToolbar isFooter>
+        {logLoaded ? (
+          <Pagination
+            {...pagination}
+            variant={PaginationVariant.bottom}
+            onSetPage={setPage}
+            onPerPageSelect={setPerPage}
+          />
+        ) : (
+          <Skeleton width="33%" />
+        )}
+      </TableToolbar>
     </Modal>
   );
 };

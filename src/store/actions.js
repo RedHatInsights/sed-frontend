@@ -16,9 +16,9 @@ export const saveCurrState = (data) => ({
   payload: updateCurrState(data),
 });
 
-export const fetchLog = () => ({
+export const fetchLog = ({ perPage = 50, page = 1 } = {}) => ({
   type: GET_LOG,
-  payload: configApi.getStates(),
+  payload: configApi.getStates(perPage, (page - 1) * perPage),
 });
 
 export const fetchConnectedHosts = () => ({
