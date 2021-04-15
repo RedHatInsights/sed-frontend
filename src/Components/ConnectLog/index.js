@@ -100,7 +100,7 @@ const ConnectLog = ({ isOpen = false, onClose }) => {
   );
   useEffect(() => {
     if (isOpen) {
-      dispatch(fetchLog({}));
+      dispatch(fetchLog());
     }
   }, [isOpen]);
   const onCollapse = (_e, _key, isOpen, { id }) => {

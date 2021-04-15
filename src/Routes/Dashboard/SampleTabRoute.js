@@ -27,7 +27,7 @@ const SampleTabRoute = ({ setMadeChanges, defaults, onChange }) => {
   useEffect(() => {
     setMadeChanges(
       connectToInsights !== defaults.hasInsights ||
-        useOpenSCAP != defaults.useOpenSCAP ||
+        useOpenSCAP !== defaults.useOpenSCAP ||
         enableCloudConnector != defaults.enableCloudConnector
     );
     onChange({ useOpenSCAP, enableCloudConnector });
@@ -115,11 +115,11 @@ const SampleTabRoute = ({ setMadeChanges, defaults, onChange }) => {
                     aria-label="Use OpenSCAP for Compliance policies"
                     isChecked={useOpenSCAP}
                     onChange={() => {
-                      const newUseOpenSCAP = !useOpenSCAP;
-                      setUseOpenSCAP(() => newUseOpenSCAP);
-                      if (newUseOpenSCAP) {
+                      setUseOpenSCAP((prevValue) => {
+                        const newUseOpenSCAP = !prevValue;
                         setConnectToInsights(() => true);
-                      }
+                        return newUseOpenSCAP;
+                      });
                     }}
                     label={
                       <Fragment>
@@ -145,11 +145,13 @@ const SampleTabRoute = ({ setMadeChanges, defaults, onChange }) => {
                     aria-label="Enable Cloud Connector"
                     isChecked={enableCloudConnector}
                     onChange={() => {
-                      const newEnableCloudConnector = !enableCloudConnector;
-                      setEnableCloudConnector(() => newEnableCloudConnector);
-                      if (newEnableCloudConnector) {
-                        setConnectToInsights(() => true);
-                      }
+                      setEnableCloudConnector((prevValue) => {
+                        const newEnableCloudConnector = !prevValue;
+                        if (newEnableCloudConnector) {
+                          setConnectToInsights(() => true);
+                        }
+                        return newEnableCloudConnector;
+                      });
                     }}
                     label={
                       <Fragment>
