@@ -12,6 +12,7 @@ import {
   Title,
   Spinner,
   Bullseye,
+  Skeleton,
 } from '@patternfly/react-core';
 import {
   OutlinedQuestionCircleIcon,
@@ -32,7 +33,12 @@ import { addNotification } from '@redhat-cloud-services/frontend-components-noti
 import ConnectLog from '../../Components/ConnectLog';
 import activeStateReducer from '../../store/currStateReducer';
 import logReducer from '../../store/logReducer';
-import { fetchCurrState, saveCurrState } from '../../store/actions';
+import connectedSystemsReducer from '../../store/connectedSystems';
+import {
+  fetchCurrState,
+  saveCurrState,
+  fetchConnectedHosts,
+} from '../../store/actions';
 
 const SamplePage = () => {
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
@@ -42,19 +48,31 @@ const SamplePage = () => {
   const activeStateLoaded = useSelector(
     ({ activeStateReducer }) => activeStateReducer?.loaded
   );
-  const { useOpenSCAP, useAnalysis, enableCloudConnector } = useSelector(
+  const { useOpenSCAP, enableCloudConnector, hasInsights } = useSelector(
     ({ activeStateReducer }) => ({
       useOpenSCAP: activeStateReducer?.values?.useOpenSCAP,
-      useAnalysis: activeStateReducer?.values?.useAnalysis,
       enableCloudConnector: activeStateReducer?.values?.enableCloudConnector,
+      hasInsights: activeStateReducer?.values?.hasInsights,
+    }),
+    shallowEqual
+  );
+  const { systemsLoaded, systemsCount } = useSelector(
+    ({ connectedSystemsReducer }) => ({
+      systemsLoaded: connectedSystemsReducer?.loaded,
+      systemsCount: connectedSystemsReducer?.total,
     }),
     shallowEqual
   );
   const dispatch = useDispatch();
   useEffect(() => {
     insights?.chrome?.appAction?.('cloud-connector-dashboard');
-    getRegistry().register({ activeStateReducer, logReducer });
+    getRegistry().register({
+      activeStateReducer,
+      logReducer,
+      connectedSystemsReducer,
+    });
     dispatch(fetchCurrState());
+    dispatch(fetchConnectedHosts());
   }, []);
 
   return (
@@ -91,12 +109,16 @@ const SamplePage = () => {
                     alignContent={{ default: 'alignContentCenter' }}
                     alignItems={{ default: 'alignItemsCenter' }}
                   >
-                    <Title headingLevel="h3" size="2xl">
-                      1032
-                    </Title>
+                    {systemsLoaded ? (
+                      <Title headingLevel="h3" size="2xl">
+                        {systemsCount}
+                      </Title>
+                    ) : (
+                      <Skeleton width="33%" />
+                    )}
+
                     {!activeStateLoaded &&
                       useOpenSCAP !== undefined &&
-                      useAnalysis !== undefined &&
                       enableCloudConnector !== undefined && (
                         <Text
                           className="dashboard__in-progress-text"
@@ -107,12 +129,14 @@ const SamplePage = () => {
                         </Text>
                       )}
                   </Flex>
-                  <a href="#">Connect RHEL 6 and 7 systems</a>
+                  <a href="./insights/registration">
+                    Connect RHEL 6 and 7 systems
+                  </a>
                 </LevelItem>
                 <LevelItem>
                   <Button
                     ouiaId="primary-save-button"
-                    isDisabled={!madeChanges}
+                    isDisabled={!systemsLoaded || !madeChanges}
                     onClick={() => setConfirmChangesOpen(true)}
                   >
                     Save changes
@@ -126,15 +150,13 @@ const SamplePage = () => {
           </Stack>
           <Divider />
           {activeStateLoaded ||
-          (useOpenSCAP !== undefined &&
-            useAnalysis !== undefined &&
-            enableCloudConnector !== undefined) ? (
+          (useOpenSCAP !== undefined && enableCloudConnector !== undefined) ? (
             <SampleTabRoute
               setMadeChanges={setMadeChanges}
               defaults={{
                 useOpenSCAP,
-                useAnalysis,
                 enableCloudConnector,
+                hasInsights,
               }}
               onChange={(data) => {
                 dataRef.current = data;
@@ -150,6 +172,7 @@ const SamplePage = () => {
       <ConfirmChangesModal
         isOpen={confirmChangesOpen}
         handleCancel={() => setConfirmChangesOpen(false)}
+        systemsCount={systemsCount}
         handleConfirm={() => {
           setConfirmChangesOpen(false);
           (async () => {
