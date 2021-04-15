@@ -5,6 +5,7 @@ import {
   TableBody,
   TableVariant,
   expandable,
+  cellWidth,
 } from '@patternfly/react-table';
 import PropTypes from 'prop-types';
 import {
@@ -12,6 +13,7 @@ import {
   Pagination,
   Skeleton,
   PaginationVariant,
+  Button,
 } from '@patternfly/react-core';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
 import { fetchLog } from '../../store/actions';
@@ -21,6 +23,8 @@ import { TableToolbar } from '@redhat-cloud-services/frontend-components/TableTo
 import { PrimaryToolbar } from '@redhat-cloud-services/frontend-components/PrimaryToolbar';
 import flatMap from 'lodash/flatMap';
 import LogNestedTable from './LogNestedtable';
+import { downloadFile } from '../../utils/helpers';
+import { configApi } from '../../api';
 
 const columns = [
   {
@@ -28,7 +32,10 @@ const columns = [
     cellFormatters: [expandable],
   },
   'Initiator',
-  'Playbook',
+  {
+    title: 'Playbook',
+    transforms: [cellWidth(20)],
+  },
 ];
 
 const rowsMapper = (results, opened) =>
@@ -42,9 +49,20 @@ const rowsMapper = (results, opened) =>
             <DateFormat date={new Date(createdAt)} extraTitle="Created at: " />
           </Fragment>,
           account,
-          {
-            title: 'Download',
-          },
+          <Fragment key={`download file-${id}`}>
+            <Button
+              variant="link"
+              isInline
+              onClick={() => {
+                (async () => {
+                  const data = await configApi.getPlaybookById(id);
+                  downloadFile(data);
+                })();
+              }}
+            >
+              Download
+            </Button>
+          </Fragment>,
         ],
       },
       {
@@ -105,7 +123,7 @@ const ConnectLog = ({ isOpen = false, onClose }) => {
   return (
     <Modal
       title="Red Hat connect log"
-      variant="large"
+      variant="medium"
       isOpen={isOpen}
       onClose={onClose}
     >
@@ -134,7 +152,7 @@ const ConnectLog = ({ isOpen = false, onClose }) => {
           <TableBody />
         </Table>
       ) : (
-        <SkeletonTable colSize={2} rowSize={10} />
+        <SkeletonTable colSize={3} rowSize={10} />
       )}
       <TableToolbar isFooter>
         {logLoaded ? (
