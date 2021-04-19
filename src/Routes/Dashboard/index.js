@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { Suspense, useEffect, useRef, useState, lazy } from 'react';
 import {
   Button,
   Divider,
@@ -39,6 +39,15 @@ import {
   saveCurrState,
   fetchConnectedHosts,
 } from '../../store/actions';
+import { Link, Route } from 'react-router-dom';
+import pckg from '../../../package.json';
+const { routes: paths } = pckg;
+
+const ConnectSystemsModal = lazy(() =>
+  import(
+    /* webpackChunkName: "ConnectSystemsModal" */ '../../Components/ConnectSystemsModal/ConnectSystemsModal'
+  )
+);
 
 const SamplePage = () => {
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
@@ -77,6 +86,19 @@ const SamplePage = () => {
 
   return (
     <React.Fragment>
+      <Suspense
+        fallback={
+          <Bullseye>
+            <Spinner />
+          </Bullseye>
+        }
+      >
+        <Route
+          exact
+          path={paths.connectSystemsModal}
+          component={ConnectSystemsModal}
+        />
+      </Suspense>
       <PageHeader>
         <PageHeaderTitle
           title={
@@ -129,9 +151,9 @@ const SamplePage = () => {
                         </Text>
                       )}
                   </Flex>
-                  <a href="./insights/registration">
+                  <Link to={paths.connectSystemsModal}>
                     Connect RHEL 6 and 7 systems
-                  </a>
+                  </Link>
                 </LevelItem>
                 <LevelItem>
                   <Button
