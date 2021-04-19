@@ -49,6 +49,7 @@ import {
 import { Link, Route } from 'react-router-dom';
 import pckg from '../../../package.json';
 import NoSystemsAlert from '../../Components/NoSytemsAlert';
+import ActivationKeys from '../../Components/ActivationKeys';
 
 const { routes: paths } = pckg;
 
@@ -225,6 +226,9 @@ const SamplePage = () => {
               <Spinner size="xl" />
             </Bullseye>
           )}
+          <div className="pf-u-mt-xl">
+            <ActivationKeys />
+          </div>
         </div>
       </Main>
       <ConfirmChangesModal
