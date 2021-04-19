@@ -69,7 +69,7 @@ describe('actions', () => {
   test('fetchConnectedHosts', async () => {
     mock
       .onGet(
-        '/api/inventory/v1/hosts?filter[system_profile][rhc_client_id]=not_nil&fields[system_profile]=rhc_client_id,rhc_config_state'
+        '/api/inventory/v1/hosts?filter[system_profile][rhc_client_id]=not_nil&fields[system_profile]=rhc_client_id,rhc_config_state&staleness=fresh&staleness=stale&&registered_with=insights'
       )
       .reply(200, {});
     const action = fetchConnectedHosts();

@@ -25,6 +25,7 @@ import {
   OutlinedQuestionCircleIcon,
   InProgressIcon,
 } from '@patternfly/react-icons';
+import { useHistory } from 'react-router-dom';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
 import {
@@ -37,7 +38,6 @@ import SampleTabRoute from './SampleTabRoute';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
-import ConnectLog from '../../Components/ConnectLog';
 import activeStateReducer from '../../store/currStateReducer';
 import logReducer from '../../store/logReducer';
 import connectedSystemsReducer from '../../store/connectedSystems';
@@ -58,10 +58,14 @@ const ConnectSystemsModal = lazy(() =>
   )
 );
 
+const ConnectLog = lazy(() =>
+  import(/* webpackChunkName: "ConnectLog" */ '../../Components/ConnectLog')
+);
+
 const SamplePage = () => {
+  const { push } = useHistory();
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
   const [isGuideOpen, setIsGuideOpen] = useState(true);
-  const [logsOpen, setLogsOpen] = useState(false);
   const [madeChanges, setMadeChanges] = useState(false);
   const dataRef = useRef();
   const activeStateLoaded = useSelector(
@@ -96,19 +100,36 @@ const SamplePage = () => {
 
   return (
     <React.Fragment>
-      <Suspense
-        fallback={
-          <Bullseye>
-            <Spinner />
-          </Bullseye>
-        }
-      >
-        <Route
-          exact
-          path={paths.connectSystemsModal}
-          component={ConnectSystemsModal}
-        />
-      </Suspense>
+      <Route
+        exact
+        path={paths.connectSystemsModal}
+        render={() => (
+          <Suspense
+            fallback={
+              <Bullseye>
+                <Spinner />
+              </Bullseye>
+            }
+          >
+            <ConnectSystemsModal />
+          </Suspense>
+        )}
+      />
+      <Route
+        exact
+        path={paths.logModal}
+        render={() => (
+          <Suspense
+            fallback={
+              <Bullseye>
+                <Spinner />
+              </Bullseye>
+            }
+          >
+            <ConnectLog />
+          </Suspense>
+        )}
+      />
       <PageHeader>
         <PageHeaderTitle
           title={
@@ -178,7 +199,7 @@ const SamplePage = () => {
                   >
                     Save changes
                   </Button>
-                  <Button onClick={() => setLogsOpen(true)} variant="link">
+                  <Button onClick={() => push(paths.logModal)} variant="link">
                     View log
                   </Button>
                 </LevelItem>
@@ -228,7 +249,6 @@ const SamplePage = () => {
           })();
         }}
       />
-      <ConnectLog isOpen={logsOpen} onClose={() => setLogsOpen(false)} />
     </React.Fragment>
   );
 };

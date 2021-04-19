@@ -95,6 +95,8 @@
     "appname": "connector"
   },
   "routes": {
-    "connector": "/"
+    "connector": "/",
+    "connectSystemsModal": "/connect-systems",
+    "logModal": "/log"
   }
 }
