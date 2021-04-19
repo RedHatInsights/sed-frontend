@@ -1,4 +1,11 @@
-import React, { Suspense, useEffect, useRef, useState, lazy } from 'react';
+import React, {
+  Suspense,
+  useEffect,
+  useRef,
+  useState,
+  lazy,
+  Fragment,
+} from 'react';
 import {
   Button,
   Divider,
@@ -41,6 +48,8 @@ import {
 } from '../../store/actions';
 import { Link, Route } from 'react-router-dom';
 import pckg from '../../../package.json';
+import NoSystemsAlert from '../../Components/NoSytemsAlert';
+
 const { routes: paths } = pckg;
 
 const ConnectSystemsModal = lazy(() =>
@@ -51,6 +60,7 @@ const ConnectSystemsModal = lazy(() =>
 
 const SamplePage = () => {
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
+  const [isGuideOpen, setIsGuideOpen] = useState(true);
   const [logsOpen, setLogsOpen] = useState(false);
   const [madeChanges, setMadeChanges] = useState(false);
   const dataRef = useRef();
@@ -119,6 +129,11 @@ const SamplePage = () => {
         />
       </PageHeader>
       <Main>
+        <Fragment>
+          {systemsLoaded && systemsCount === 0 && isGuideOpen && (
+            <NoSystemsAlert handleClose={() => setIsGuideOpen(false)} />
+          )}
+        </Fragment>
         <div className="dashboard__content">
           <Stack className="pf-u-p-md">
             <StackItem>
