@@ -60,7 +60,7 @@ const NoSystemsAlert = ({ handleClose }) => (
               }
             >
               <ClipboardCopy>
-                rhc --connect -[activationkey-namehere] -[organization Id]
+                rhc connect -[activationkey-namehere] -[organization Id]
               </ClipboardCopy>
             </FormGroup>
           </GridItem>
@@ -74,9 +74,7 @@ const NoSystemsAlert = ({ handleClose }) => (
                 </span>
               }
             >
-              <ClipboardCopy>
-                rhc --connect -[username] -[password]
-              </ClipboardCopy>
+              <ClipboardCopy>rhc connect -[username] -[password]</ClipboardCopy>
             </FormGroup>
           </GridItem>
         </Grid>
