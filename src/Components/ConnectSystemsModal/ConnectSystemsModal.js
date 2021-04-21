@@ -60,14 +60,17 @@ const ConnectSystemsModal = () => {
             helperText={<CopyHelperText />}
           >
             <ClipboardCopy>
-              rhc connect -[activationkey-namehere] -[organization ID]
+              rhc connect -u &#60;username&#62; -p &#60;password&#62;
             </ClipboardCopy>
           </FormGroup>
           <FormGroup
             label="Register with a username and password"
             helperText={<CopyHelperText />}
           >
-            <ClipboardCopy>rhc connect -[username] -[password]</ClipboardCopy>
+            <ClipboardCopy>
+              rhc connect -a &#60;activation-key&#62; -o&nbsp;
+              &#60;organization-id&#62;
+            </ClipboardCopy>
           </FormGroup>
         </div>
       </TextContent>
