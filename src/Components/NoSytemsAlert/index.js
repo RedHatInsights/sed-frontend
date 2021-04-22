@@ -60,13 +60,14 @@ const NoSystemsAlert = ({ handleClose }) => (
               }
             >
               <ClipboardCopy>
-                rhc connect -u &#60;username&#62; -p &#60;password&#62;
+                rhc connect -a &#60;activation-key&#62; -o&nbsp;
+                &#60;organization-id&#62;
               </ClipboardCopy>
             </FormGroup>
           </GridItem>
           <GridItem sm={12} md={6} lg={4}>
             <FormGroup
-              label="Register with ausername and password"
+              label="Register with a username and password"
               helperText={
                 <span className="pf-c-form__helper-text">
                   Click the <CopyIcon /> icon on a row to copy the command with
@@ -75,8 +76,7 @@ const NoSystemsAlert = ({ handleClose }) => (
               }
             >
               <ClipboardCopy>
-                rhc connect -a &#60;activation-key&#62; -o&nbsp;
-                &#60;organization-id&#62;
+                rhc connect -u &#60;username&#62; -p &#60;password&#62;
               </ClipboardCopy>
             </FormGroup>
           </GridItem>
