@@ -8,7 +8,6 @@ import React, {
 } from 'react';
 import {
   Button,
-  Divider,
   Flex,
   Level,
   LevelItem,
@@ -20,12 +19,14 @@ import {
   Spinner,
   Bullseye,
   Skeleton,
+  Tabs,
+  Tab,
+  TabTitleText,
 } from '@patternfly/react-core';
 import {
   OutlinedQuestionCircleIcon,
   InProgressIcon,
 } from '@patternfly/react-icons';
-import { useHistory } from 'react-router-dom';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
 import {
@@ -34,7 +35,6 @@ import {
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 
 import './dashboard.scss';
-import SampleTabRoute from './SampleTabRoute';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
@@ -49,6 +49,8 @@ import {
 import { Link, Route } from 'react-router-dom';
 import pckg from '../../../package.json';
 import NoSystemsAlert from '../../Components/NoSytemsAlert';
+import ActivationKeys from '../../Components/ActivationKeys';
+import Services from '../../Components/Services/Services';
 
 const { routes: paths } = pckg;
 
@@ -63,7 +65,7 @@ const ConnectLog = lazy(() =>
 );
 
 const SamplePage = () => {
-  const { push } = useHistory();
+  const [activeTabKey, setActiveTabKey] = useState('services');
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
   const [isGuideOpen, setIsGuideOpen] = useState(true);
   const [madeChanges, setMadeChanges] = useState(false);
@@ -191,40 +193,48 @@ const SamplePage = () => {
                     Connect RHEL 6 and 7 systems
                   </Link>
                 </LevelItem>
-                <LevelItem>
-                  <Button
-                    ouiaId="primary-save-button"
-                    isDisabled={!systemsLoaded || !madeChanges}
-                    onClick={() => setConfirmChangesOpen(true)}
-                  >
-                    Save changes
-                  </Button>
-                  <Button onClick={() => push(paths.logModal)} variant="link">
-                    View log
-                  </Button>
-                </LevelItem>
               </Level>
             </StackItem>
           </Stack>
-          <Divider />
-          {activeStateLoaded ||
-          (useOpenSCAP !== undefined && enableCloudConnector !== undefined) ? (
-            <SampleTabRoute
-              setMadeChanges={setMadeChanges}
-              defaults={{
-                useOpenSCAP,
-                enableCloudConnector,
-                hasInsights,
-              }}
-              onChange={(data) => {
-                dataRef.current = data;
-              }}
-            />
-          ) : (
-            <Bullseye>
-              <Spinner size="xl" />
-            </Bullseye>
-          )}
+          <Tabs
+            activeKey={activeTabKey}
+            onSelect={(_event, activeTabKey) => setActiveTabKey(activeTabKey)}
+          >
+            <Tab
+              title={<TabTitleText>Services</TabTitleText>}
+              eventKey="services"
+            >
+              {activeStateLoaded ||
+              (useOpenSCAP !== undefined &&
+                enableCloudConnector !== undefined) ? (
+                <Services
+                  madeChanges={madeChanges}
+                  setConfirmChangesOpen={setConfirmChangesOpen}
+                  setMadeChanges={setMadeChanges}
+                  defaults={{
+                    useOpenSCAP,
+                    enableCloudConnector,
+                    hasInsights,
+                  }}
+                  onChange={(data) => {
+                    dataRef.current = data;
+                  }}
+                />
+              ) : (
+                <Bullseye>
+                  <Spinner className="pf-u-p-lg" size="xl" />
+                </Bullseye>
+              )}
+            </Tab>
+            <Tab
+              eventKey="activation-keys"
+              title={<TabTitleText>Activation keys</TabTitleText>}
+            >
+              <div className="pf-u-m-md">
+                <ActivationKeys />
+              </div>
+            </Tab>
+          </Tabs>
         </div>
       </Main>
       <ConfirmChangesModal
