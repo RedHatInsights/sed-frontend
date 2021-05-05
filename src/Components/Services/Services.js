@@ -1,6 +1,8 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import {
   Button,
+  Level,
+  LevelItem,
   Popover,
   Stack,
   StackItem,
@@ -9,11 +11,30 @@ import {
   TextContent,
   Title,
 } from '@patternfly/react-core';
+import { shallowEqual, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
+
+import pckg from '../../../package.json';
 import '@patternfly/react-styles/css/components/Table/table.css';
 
-const SampleTabRoute = ({ setMadeChanges, defaults, onChange }) => {
+const { routes: paths } = pckg;
+
+const Services = ({
+  setMadeChanges,
+  defaults,
+  onChange,
+  madeChanges,
+  setConfirmChangesOpen,
+}) => {
+  const { push } = useHistory();
+  const { systemsLoaded } = useSelector(
+    ({ connectedSystemsReducer }) => ({
+      systemsLoaded: connectedSystemsReducer?.loaded,
+    }),
+    shallowEqual
+  );
   const [connectToInsights, setConnectToInsights] = useState(
     defaults.hasInsights ||
       defaults.useOpenSCAP ||
@@ -55,9 +76,25 @@ const SampleTabRoute = ({ setMadeChanges, defaults, onChange }) => {
   return (
     <Stack hasGutter className="pf-u-p-md">
       <StackItem>
-        <Title headingLevel="h2" size="2xl">
-          Red Hat Insights
-        </Title>
+        <Level>
+          <LevelItem>
+            <Title headingLevel="h2" size="2xl">
+              Red Hat Insights
+            </Title>
+          </LevelItem>
+          <LevelItem>
+            <Button
+              ouiaId="primary-save-button"
+              isDisabled={!systemsLoaded || !madeChanges}
+              onClick={() => setConfirmChangesOpen(true)}
+            >
+              Save changes
+            </Button>
+            <Button onClick={() => push(paths.logModal)} variant="link">
+              View log
+            </Button>
+          </LevelItem>
+        </Level>
         <TextContent className="pf-u-mt-md">
           <Text component="p">
             Red Hat Insights is a proactive operational efficiency and security
@@ -180,7 +217,7 @@ const SampleTabRoute = ({ setMadeChanges, defaults, onChange }) => {
   );
 };
 
-SampleTabRoute.propTypes = {
+Services.propTypes = {
   setMadeChanges: propTypes.func.isRequired,
   defaults: propTypes.shape({
     useOpenSCAP: propTypes.bool,
@@ -188,9 +225,11 @@ SampleTabRoute.propTypes = {
     enableCloudConnector: propTypes.bool,
   }),
   onChange: propTypes.func.isRequired,
+  madeChanges: propTypes.bool,
+  setConfirmChangesOpen: propTypes.func.isRequired,
 };
 
-SampleTabRoute.defaultProps = {
+Services.defaultProps = {
   defaults: {
     useOpenSCAP: false,
     hasInsights: false,
@@ -198,4 +237,4 @@ SampleTabRoute.defaultProps = {
   },
 };
 
-export default SampleTabRoute;
+export default Services;
