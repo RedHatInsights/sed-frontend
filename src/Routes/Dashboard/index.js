@@ -12,7 +12,6 @@ import {
   Flex,
   Level,
   LevelItem,
-  Popover,
   Stack,
   StackItem,
   Text,
@@ -27,10 +26,7 @@ import {
   SplitItem,
   Split,
 } from '@patternfly/react-core';
-import {
-  OutlinedQuestionCircleIcon,
-  InProgressIcon,
-} from '@patternfly/react-icons';
+import { InProgressIcon } from '@patternfly/react-icons';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import {
   PageHeader,
@@ -147,19 +143,7 @@ const SamplePage = () => {
         <PageHeaderTitle
           title={
             <Split hasGutter>
-              <SplitItem>
-                Red Hat connector Dashboard&nbsp;
-                <Popover
-                  aria-label="connected-dashboard-description"
-                  headerContent={<div>Desc header</div>}
-                  bodyContent={<p>Popover description</p>}
-                  position="bottom"
-                >
-                  <Button variant="plain" className="pf-u-p-xs">
-                    <OutlinedQuestionCircleIcon color="grey" />
-                  </Button>
-                </Popover>
-              </SplitItem>
+              <SplitItem>Red Hat connector Dashboard</SplitItem>
               <SplitItem isFilled>
                 <Label color="cyan">Tech preview</Label>
               </SplitItem>
@@ -263,6 +247,7 @@ const SamplePage = () => {
         isOpen={confirmChangesOpen}
         handleCancel={() => setConfirmChangesOpen(false)}
         systemsCount={systemsCount}
+        data={dataRef.current}
         handleConfirm={() => {
           setConfirmChangesOpen(false);
           (async () => {

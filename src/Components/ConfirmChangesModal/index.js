@@ -1,13 +1,15 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { configApi } from '../../api';
 import { Button, Modal, Text, TextContent } from '@patternfly/react-core';
-import { pluralize } from '../../utils/helpers';
+import { pluralize, downloadFile } from '../../utils/helpers';
 
 const ConfirmChangesModal = ({
   isOpen = false,
   handleCancel,
   handleConfirm,
   systemsCount,
+  data,
 }) => {
   return (
     <Modal
@@ -48,7 +50,21 @@ const ConfirmChangesModal = ({
           {systemsCount} {pluralize(systemsCount, 'system')} to apply changes.
         </Text>
       </TextContent>
-      <a href="#">View playbook</a>
+      <Button
+        variant="link"
+        onClick={() => {
+          (async () => {
+            const playbook = await configApi.getPlaybookPreview({
+              compliance_openscap: data.useOpenSCAP ? 'enabled' : 'disabled',
+              insights: data.hasInsights ? 'enabled' : 'disabled',
+              remediations: data.enableCloudConnector ? 'enabled' : 'disabled',
+            });
+            downloadFile(playbook);
+          })();
+        }}
+      >
+        View playbook
+      </Button>
     </Modal>
   );
 };
@@ -58,6 +74,11 @@ ConfirmChangesModal.propTypes = {
   handleConfirm: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
   systemsCount: PropTypes.number.isRequired,
+  data: PropTypes.shape({
+    useOpenSCAP: PropTypes.bool,
+    enableCloudConnector: PropTypes.bool,
+    hasInsights: PropTypes.bool,
+  }),
 };
 
 export default ConfirmChangesModal;
