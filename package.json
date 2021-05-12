@@ -44,7 +44,7 @@
     "@patternfly/react-core": "4.90.2",
     "@patternfly/react-icons": "^4.9.9",
     "@patternfly/react-table": "4.20.15",
-    "@redhat-cloud-services/config-manager-client": "^1.0.64",
+    "@redhat-cloud-services/config-manager-client": "^1.0.66",
     "@redhat-cloud-services/frontend-components": "^3.0.3",
     "@redhat-cloud-services/frontend-components-notifications": "^3.0.3",
     "@redhat-cloud-services/frontend-components-utilities": "^3.0.2",
