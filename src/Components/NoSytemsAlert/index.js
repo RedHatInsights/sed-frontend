@@ -3,16 +3,14 @@ import PropTypes from 'prop-types';
 import {
   Alert,
   AlertActionCloseButton,
-  ClipboardCopy,
   Form,
-  FormGroup,
   Grid,
   GridItem,
   Text,
   TextContent,
   Title,
 } from '@patternfly/react-core';
-import { CopyIcon } from '@patternfly/react-icons';
+import { RegisterWithActivationKey, RegisterWithUserName } from '../FormGroups';
 
 const NoSystemsAlert = ({ handleClose }) => (
   <Alert
@@ -33,7 +31,7 @@ const NoSystemsAlert = ({ handleClose }) => (
       </Text>
       <Text>
         Systems will be automatically set up to use the services turned on in
-        the &#34;Services&#34; tab.
+        the dashboard below.
       </Text>
       <Text>Red Hat connector is for RHEL 8.4 systems and newer.</Text>
       <Text>
@@ -50,35 +48,10 @@ const NoSystemsAlert = ({ handleClose }) => (
       <Form onSubmit={(event) => event.preventDefault()}>
         <Grid hasGutter>
           <GridItem sm={12} md={6} lg={4}>
-            <FormGroup
-              label="Register with an activation key"
-              helperText={
-                <span className="pf-c-form__helper-text">
-                  Click the <CopyIcon /> icon on a row to copy the command with
-                  your values
-                </span>
-              }
-            >
-              <ClipboardCopy>
-                rhc connect -a &#60;activation-key&#62; -o&nbsp;
-                &#60;organization-id&#62;
-              </ClipboardCopy>
-            </FormGroup>
+            <RegisterWithActivationKey />
           </GridItem>
           <GridItem sm={12} md={6} lg={4}>
-            <FormGroup
-              label="Register with a username and password"
-              helperText={
-                <span className="pf-c-form__helper-text">
-                  Click the <CopyIcon /> icon on a row to copy the command with
-                  your values
-                </span>
-              }
-            >
-              <ClipboardCopy>
-                rhc connect -u &#60;username&#62; -p &#60;password&#62;
-              </ClipboardCopy>
-            </FormGroup>
+            <RegisterWithUserName />
           </GridItem>
         </Grid>
       </Form>

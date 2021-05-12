@@ -1,14 +1,16 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useContext } from 'react';
 import { Routes } from './Routes';
 
-import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
 import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
 import { notificationsReducer } from '@redhat-cloud-services/frontend-components-notifications/redux';
+import { RegistryContext } from './store';
 
 const App = (props) => {
+  const { getRegistry } = useContext(RegistryContext);
   useEffect(() => {
-    const registry = getRegistry();
-    registry.register({ notifications: notificationsReducer });
+    getRegistry().register({ notifications: notificationsReducer });
+  }, [getRegistry]);
+  useEffect(() => {
     insights.chrome.init();
 
     insights.chrome.identifyApp('connector');

@@ -4,3 +4,4 @@ globals:
   shallow: readonly
   render: 'readonly'
   mount: 'readonly'
+  IS_DEV: 'readonly'
