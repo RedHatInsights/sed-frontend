@@ -4,14 +4,18 @@ import LogsTable from './LogsTable';
 import SystemsTable from './SystemsTable';
 import { useHistory } from 'react-router-dom';
 import pckg from '../../../package.json';
+import { useDispatch } from 'react-redux';
+import { clearNotifications } from '@redhat-cloud-services/frontend-components-notifications/redux';
 const { routes: paths } = pckg;
 
 const tabMapper = ['runs', 'systems'];
 
 const ConnectLog = () => {
   const [activeTabKey, setActiveTabKey] = useState(0);
+  const dispatch = useDispatch();
   const { push, location } = useHistory();
   useEffect(() => {
+    dispatch(clearNotifications());
     const searchParams = new URLSearchParams(location.search);
     const activeTab = tabMapper.findIndex(
       (item) => item === searchParams.get('active_tab')

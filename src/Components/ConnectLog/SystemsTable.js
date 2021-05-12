@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
-import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
+import { RegistryContext } from '../../store';
 
 const SystemsTable = () => {
   const getEntitiesRef = useRef(() => undefined);
+  const { getRegistry } = useContext(RegistryContext);
   return (
     <InventoryTable
       variant="compact"

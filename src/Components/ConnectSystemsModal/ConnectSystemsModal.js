@@ -1,26 +1,12 @@
 import React from 'react';
-import {
-  ClipboardCopy,
-  FormGroup,
-  FormHelperText,
-  Modal,
-  ModalVariant,
-  Text,
-  TextContent,
-} from '@patternfly/react-core';
-import { CopyIcon } from '@patternfly/react-icons';
+import { Modal, ModalVariant, Text, TextContent } from '@patternfly/react-core';
 import { useHistory } from 'react-router-dom';
 
 import './ConnectSystemsModal.scss';
 
 import pckg from '../../../package.json';
+import { RegisterWithActivationKey, RegisterWithUserName } from '../FormGroups';
 const { routes: paths } = pckg;
-
-const CopyHelperText = () => (
-  <FormHelperText isHidden={false} className="pf-u-mt-sm">
-    Click the <CopyIcon /> icon on a row to copy the command with your values
-  </FormHelperText>
-);
 
 const ConnectSystemsModal = () => {
   const { push } = useHistory();
@@ -55,23 +41,8 @@ const ConnectSystemsModal = () => {
           .
         </Text>
         <div className="pf-c-form inc-c-connector__connect-systems-modal-form">
-          <FormGroup
-            label="Register with an activation key"
-            helperText={<CopyHelperText />}
-          >
-            <ClipboardCopy>
-              rhc connect -u &#60;username&#62; -p &#60;password&#62;
-            </ClipboardCopy>
-          </FormGroup>
-          <FormGroup
-            label="Register with a username and password"
-            helperText={<CopyHelperText />}
-          >
-            <ClipboardCopy>
-              rhc connect -a &#60;activation-key&#62; -o&nbsp;
-              &#60;organization-id&#62;
-            </ClipboardCopy>
-          </FormGroup>
+          <RegisterWithActivationKey />
+          <RegisterWithUserName />
         </div>
       </TextContent>
     </Modal>

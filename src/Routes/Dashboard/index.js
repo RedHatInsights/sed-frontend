@@ -5,6 +5,7 @@ import React, {
   useState,
   lazy,
   Fragment,
+  useContext,
 } from 'react';
 import {
   Button,
@@ -22,13 +23,15 @@ import {
   Tabs,
   Tab,
   TabTitleText,
+  Label,
+  SplitItem,
+  Split,
 } from '@patternfly/react-core';
 import {
   OutlinedQuestionCircleIcon,
   InProgressIcon,
 } from '@patternfly/react-icons';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
-import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
 import {
   PageHeader,
   PageHeaderTitle,
@@ -46,11 +49,12 @@ import {
   saveCurrState,
   fetchConnectedHosts,
 } from '../../store/actions';
-import { Link, Route } from 'react-router-dom';
+import { useHistory, Route } from 'react-router-dom';
 import pckg from '../../../package.json';
 import NoSystemsAlert from '../../Components/NoSytemsAlert';
 import ActivationKeys from '../../Components/ActivationKeys';
 import Services from '../../Components/Services/Services';
+import { RegistryContext } from '../../store';
 
 const { routes: paths } = pckg;
 
@@ -65,11 +69,15 @@ const ConnectLog = lazy(() =>
 );
 
 const SamplePage = () => {
+  const history = useHistory();
+  const { getRegistry } = useContext(RegistryContext);
   const [activeTabKey, setActiveTabKey] = useState('services');
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
   const [isGuideOpen, setIsGuideOpen] = useState(true);
   const [madeChanges, setMadeChanges] = useState(false);
   const dataRef = useRef();
+  const dispatch = useDispatch();
+
   const activeStateLoaded = useSelector(
     ({ activeStateReducer }) => activeStateReducer?.loaded
   );
@@ -88,9 +96,8 @@ const SamplePage = () => {
     }),
     shallowEqual
   );
-  const dispatch = useDispatch();
+
   useEffect(() => {
-    insights?.chrome?.appAction?.('cloud-connector-dashboard');
     getRegistry().register({
       activeStateReducer,
       logReducer,
@@ -98,6 +105,10 @@ const SamplePage = () => {
     });
     dispatch(fetchCurrState());
     dispatch(fetchConnectedHosts());
+  }, [getRegistry]);
+
+  useEffect(() => {
+    insights?.chrome?.appAction?.('cloud-connector-dashboard');
   }, []);
 
   return (
@@ -135,19 +146,32 @@ const SamplePage = () => {
       <PageHeader>
         <PageHeaderTitle
           title={
-            <div className="dashboard__header">
-              Red Hat Connect Dashboard&nbsp;
-              <Popover
-                aria-label="connected-dashboard-description"
-                headerContent={<div>Desc header</div>}
-                bodyContent={<p>Popover description</p>}
-                position="bottom"
-              >
-                <Button variant="plain" className="pf-u-p-xs">
-                  <OutlinedQuestionCircleIcon color="grey" />
+            <Split hasGutter>
+              <SplitItem>
+                Red Hat connector Dashboard&nbsp;
+                <Popover
+                  aria-label="connected-dashboard-description"
+                  headerContent={<div>Desc header</div>}
+                  bodyContent={<p>Popover description</p>}
+                  position="bottom"
+                >
+                  <Button variant="plain" className="pf-u-p-xs">
+                    <OutlinedQuestionCircleIcon color="grey" />
+                  </Button>
+                </Popover>
+              </SplitItem>
+              <SplitItem isFilled>
+                <Label color="cyan">Tech preview</Label>
+              </SplitItem>
+              <SplitItem>
+                <Button
+                  variant="primary"
+                  onClick={() => history.push(paths.connectSystemsModal)}
+                >
+                  Connect systems
                 </Button>
-              </Popover>
-            </div>
+              </SplitItem>
+            </Split>
           }
         />
       </PageHeader>
@@ -163,7 +187,7 @@ const SamplePage = () => {
               <Level>
                 <LevelItem>
                   <Title headingLevel="h3" size="md">
-                    RHEL 8 systems connected
+                    Systems connected with Red Hat connector
                   </Title>
                   <Flex
                     alignContent={{ default: 'alignContentCenter' }}
@@ -189,9 +213,7 @@ const SamplePage = () => {
                         </Text>
                       )}
                   </Flex>
-                  <Link to={paths.connectSystemsModal}>
-                    Connect RHEL 6 and 7 systems
-                  </Link>
+                  <a href="./insights/inventory">View in Inventory</a>
                 </LevelItem>
               </Level>
             </StackItem>

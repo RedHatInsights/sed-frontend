@@ -21,6 +21,12 @@ plugins.push(
   )
 );
 
+plugins.push(
+  new (require('webpack').DefinePlugin)({
+    IS_DEV: true,
+  })
+);
+
 module.exports = {
   ...webpackConfig,
   plugins,
