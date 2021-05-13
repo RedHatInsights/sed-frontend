@@ -14,6 +14,12 @@ plugins.push(
   )
 );
 
+plugins.push(
+  new (require('webpack').DefinePlugin)({
+    IS_DEV: false,
+  })
+);
+
 module.exports = function (env) {
   if (env && env.analyze === 'true') {
     plugins.push(new BundleAnalyzerPlugin());
