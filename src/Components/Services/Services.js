@@ -3,7 +3,6 @@ import {
   Button,
   Level,
   LevelItem,
-  Popover,
   Stack,
   StackItem,
   Switch,
@@ -13,7 +12,6 @@ import {
 } from '@patternfly/react-core';
 import { shallowEqual, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 
 import pckg from '../../../package.json';
@@ -53,25 +51,6 @@ const Services = ({
     );
     onChange({ useOpenSCAP, enableCloudConnector });
   }, [useOpenSCAP, enableCloudConnector, connectToInsights]);
-
-  const getPopover = () => {
-    return (
-      <Popover
-        aria-label="connected-dashboard-description"
-        headerContent={<div>Desc header</div>}
-        bodyContent={<p>Popover description</p>}
-        position="bottom"
-      >
-        <Button
-          ouiaId="title-popover-button"
-          variant="plain"
-          className="pf-u-p-xs"
-        >
-          <OutlinedQuestionCircleIcon color="grey" />
-        </Button>
-      </Popover>
-    );
-  };
 
   return (
     <Stack hasGutter className="pf-u-p-md">
@@ -162,7 +141,6 @@ const Services = ({
                       <Fragment>
                         <Title headingLevel="h4" size="md">
                           Use OpenSCAP for Compliance policies
-                          {getPopover()}
                         </Title>
                         <TextContent>
                           <Text component="small">
@@ -195,7 +173,6 @@ const Services = ({
                         <Title headingLevel="h4" size="md">
                           Enable Cloud Connector to fix issues directly from
                           Insights
-                          {getPopover()}
                         </Title>
                         <TextContent>
                           <Text component="small">
