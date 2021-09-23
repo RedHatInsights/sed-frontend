@@ -4,7 +4,7 @@ import React from 'react';
 
 const CopyHelperText = () => (
   <FormHelperText isHidden={false} className="pf-u-mt-sm">
-    Click the <CopyIcon /> icon on a row to copy the command with your values
+    Click the <CopyIcon /> icon on a row to copy the command
   </FormHelperText>
 );
 

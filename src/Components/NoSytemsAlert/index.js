@@ -26,16 +26,13 @@ const NoSystemsAlert = ({ handleClose }) => (
   >
     <TextContent>
       <Text>
-        Red Hat connector allows you to connect your systems to Red Hat with one
-        command.
+        Red Hat connector allows you to register with Red Hat Subscription
+        Management (RHSM), connect to Red Hat Insights, and manage your Insights
+        connections with one command.
       </Text>
       <Text>
-        Systems will be automatically set up to use the services turned on in
-        the dashboard below.
-      </Text>
-      <Text>Red Hat connector is for RHEL 8.4 systems and newer.</Text>
-      <Text>
-        To register other RHEL systems, check out the&nbsp;
+        Red Hat connector connects RHEL 7.9+ and 8.4+ systems. To register other
+        systems with RHSM or Insights, check out the&nbsp;
         <a
           target="_blank"
           rel="noreferer noopener"
