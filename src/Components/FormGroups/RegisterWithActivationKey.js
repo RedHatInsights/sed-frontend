@@ -1,8 +1,16 @@
-import { ClipboardCopy, FormGroup, Tooltip } from '@patternfly/react-core';
+import {
+  ClipboardCopy,
+  FormGroup,
+  Popover,
+  Text,
+  TextContent,
+} from '@patternfly/react-core';
 import React from 'react';
 import CopyHelperText from './CopyHelperText';
-import { OutlinedQuestionCircleIcon } from '@patternfly/react-icons';
-import { Stack, StackItem } from '@patternfly/react-core';
+import {
+  OutlinedQuestionCircleIcon,
+  ExternalLinkAltIcon,
+} from '@patternfly/react-icons';
 
 const RegisterWithActivationKey = () => {
   return (
@@ -10,25 +18,50 @@ const RegisterWithActivationKey = () => {
       label={
         <span>
           Register with an activation key&nbsp;
-          <Tooltip
+          <Popover
             position="right"
-            content={
-              <Stack hasGutter>
-                <StackItem>
-                  Recommended for accounts without Simple Content Access enable
-                </StackItem>
-                <StackItem>
-                  Systems can be registered using an actication key &amp; the
-                  organiztaion ID. Using activation keys allows systems to be
-                  associated to specific subscriptions. Activation keys can be
-                  viewed on the &quot;Activation keys&quot; tab of the Red Hat
-                  connector UI or on the customer portal.
-                </StackItem>
-              </Stack>
+            bodyContent={
+              <TextContent>
+                <Text>
+                  Recommended for most users, and accounts who do not have
+                  Simple Content Access (SCA) enabled. Activation keys allow
+                  systems to be associated with specific subscriptions and
+                  service levels.
+                </Text>
+                <Text className="pf-u-mb-0">
+                  Activation key: Organization administrators can view, create,
+                  and edit activation keys through&nbsp;
+                  <Text
+                    href="https://access.redhat.com/management/activation_keys"
+                    component="a"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Red Hat Subscription Management&nbsp;
+                    <ExternalLinkAltIcon />
+                  </Text>
+                  on the Customer Portal.
+                </Text>
+                <Text>
+                  Organization ID: The organization ID is a Candlepin-specific
+                  identifier, and can be accessed through the Customer Portal on
+                  the&nbsp;
+                  <Text
+                    href="https://access.redhat.com/management/activation_keys"
+                    component="a"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    activation keys&nbsp;
+                    <ExternalLinkAltIcon />
+                  </Text>
+                  &nbsp;page.
+                </Text>
+              </TextContent>
             }
           >
             <OutlinedQuestionCircleIcon />
-          </Tooltip>
+          </Popover>
         </span>
       }
       helperText={<CopyHelperText />}

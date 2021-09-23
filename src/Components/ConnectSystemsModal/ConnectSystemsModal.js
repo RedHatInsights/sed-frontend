@@ -20,16 +20,14 @@ const ConnectSystemsModal = () => {
       className="connector"
     >
       <TextContent>
-        <Text className="pf-u-mb-0">
-          Red Hat connector allows you to connect your systems to Red Hat with
-          one command.
-        </Text>
-        <Text>Connect, register and manage.</Text>
-        <Text className="pf-u-mb-sm">
-          Red Hat connector is for RHEL 8.4 systems and newer.
+        <Text>
+          Red Hat connector allows you to register with Red Hat Subscription
+          Management (RHSM), connect to Red Hat Insights, and manage your
+          Insights connections with one command.
         </Text>
         <Text>
-          To register other RHEL systems, check out the{' '}
+          Red Hat connector connects RHEL 7.9+ and 8.4+ systems. To register
+          other systems with RHSM or Insights, check out the{' '}
           <Text
             href="./insights/registration"
             component="a"
