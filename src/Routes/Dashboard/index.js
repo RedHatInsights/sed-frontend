@@ -155,6 +155,11 @@ const SamplePage = () => {
                   Connect systems
                 </Button>
               </SplitItem>
+              <SplitItem>
+                <Button variant="link">
+                  <a href="./insights/inventory">View systems in Inventory</a>
+                </Button>
+              </SplitItem>
             </Split>
           }
         />
@@ -166,42 +171,6 @@ const SamplePage = () => {
           )}
         </Fragment>
         <div className="dashboard__content">
-          <Stack className="pf-u-p-md">
-            <StackItem>
-              <Level>
-                <LevelItem>
-                  <Title headingLevel="h3" size="md">
-                    Systems connected with Red Hat connector
-                  </Title>
-                  <Flex
-                    alignContent={{ default: 'alignContentCenter' }}
-                    alignItems={{ default: 'alignItemsCenter' }}
-                  >
-                    {systemsLoaded ? (
-                      <Title headingLevel="h3" size="2xl">
-                        {systemsCount}
-                      </Title>
-                    ) : (
-                      <Skeleton width="33%" />
-                    )}
-
-                    {!activeStateLoaded &&
-                      useOpenSCAP !== undefined &&
-                      enableCloudConnector !== undefined && (
-                        <Text
-                          className="dashboard__in-progress-text"
-                          component="small"
-                        >
-                          <InProgressIcon />
-                          &nbsp;Changes being applied
-                        </Text>
-                      )}
-                  </Flex>
-                  <a href="./insights/inventory">View in Inventory</a>
-                </LevelItem>
-              </Level>
-            </StackItem>
-          </Stack>
           <Tabs
             activeKey={activeTabKey}
             onSelect={(_event, activeTabKey) => setActiveTabKey(activeTabKey)}
