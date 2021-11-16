@@ -1,56 +1,46 @@
-import React, {
-  Suspense,
-  useEffect,
-  useRef,
-  useState,
-  lazy,
-  Fragment,
-  useContext,
-} from 'react';
 import {
-  Button,
-  Flex,
-  Level,
-  LevelItem,
-  Stack,
-  StackItem,
-  Text,
-  Title,
-  Spinner,
   Bullseye,
-  Skeleton,
-  Tabs,
-  Tab,
-  TabTitleText,
+  Button,
   Label,
-  SplitItem,
+  Spinner,
   Split,
+  SplitItem,
+  Tab,
+  Tabs,
+  TabTitleText,
 } from '@patternfly/react-core';
-import { InProgressIcon } from '@patternfly/react-icons';
+import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import {
   PageHeader,
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-
-import './dashboard.scss';
-import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
-import activeStateReducer from '../../store/currStateReducer';
-import logReducer from '../../store/logReducer';
-import connectedSystemsReducer from '../../store/connectedSystems';
-import {
-  fetchCurrState,
-  saveCurrState,
-  fetchConnectedHosts,
-} from '../../store/actions';
-import { useHistory, Route } from 'react-router-dom';
+import React, {
+  Fragment,
+  lazy,
+  Suspense,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { Route, useHistory } from 'react-router-dom';
 import pckg from '../../../package.json';
-import NoSystemsAlert from '../../Components/NoSytemsAlert';
 import ActivationKeys from '../../Components/ActivationKeys';
+import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
+import NoSystemsAlert from '../../Components/NoSytemsAlert';
 import Services from '../../Components/Services/Services';
 import { RegistryContext } from '../../store';
+import {
+  fetchConnectedHosts,
+  fetchCurrState,
+  saveCurrState,
+} from '../../store/actions';
+import connectedSystemsReducer from '../../store/connectedSystems';
+import activeStateReducer from '../../store/currStateReducer';
+import logReducer from '../../store/logReducer';
+import './dashboard.scss';
 
 const { routes: paths } = pckg;
 
