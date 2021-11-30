@@ -1,7 +1,6 @@
 import {
   Bullseye,
   Button,
-  Label,
   Spinner,
   Split,
   SplitItem,
@@ -133,10 +132,7 @@ const SamplePage = () => {
         <PageHeaderTitle
           title={
             <Split hasGutter>
-              <SplitItem>Red Hat connector Dashboard</SplitItem>
-              <SplitItem isFilled>
-                <Label color="cyan">Tech preview</Label>
-              </SplitItem>
+              <SplitItem isFilled>Red Hat connector Dashboard</SplitItem>
               <SplitItem>
                 <Button
                   variant="primary"
