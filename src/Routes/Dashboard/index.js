@@ -1,56 +1,45 @@
-import React, {
-  Suspense,
-  useEffect,
-  useRef,
-  useState,
-  lazy,
-  Fragment,
-  useContext,
-} from 'react';
 import {
-  Button,
-  Flex,
-  Level,
-  LevelItem,
-  Stack,
-  StackItem,
-  Text,
-  Title,
-  Spinner,
   Bullseye,
-  Skeleton,
-  Tabs,
-  Tab,
-  TabTitleText,
-  Label,
-  SplitItem,
+  Button,
+  Spinner,
   Split,
+  SplitItem,
+  Tab,
+  Tabs,
+  TabTitleText,
 } from '@patternfly/react-core';
-import { InProgressIcon } from '@patternfly/react-icons';
+import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import {
   PageHeader,
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-
-import './dashboard.scss';
-import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
-import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
-import activeStateReducer from '../../store/currStateReducer';
-import logReducer from '../../store/logReducer';
-import connectedSystemsReducer from '../../store/connectedSystems';
-import {
-  fetchCurrState,
-  saveCurrState,
-  fetchConnectedHosts,
-} from '../../store/actions';
-import { useHistory, Route } from 'react-router-dom';
+import React, {
+  Fragment,
+  lazy,
+  Suspense,
+  useContext,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import { Route, useHistory } from 'react-router-dom';
 import pckg from '../../../package.json';
-import NoSystemsAlert from '../../Components/NoSytemsAlert';
 import ActivationKeys from '../../Components/ActivationKeys';
+import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
+import NoSystemsAlert from '../../Components/NoSytemsAlert';
 import Services from '../../Components/Services/Services';
 import { RegistryContext } from '../../store';
+import {
+  fetchConnectedHosts,
+  fetchCurrState,
+  saveCurrState,
+} from '../../store/actions';
+import connectedSystemsReducer from '../../store/connectedSystems';
+import activeStateReducer from '../../store/currStateReducer';
+import logReducer from '../../store/logReducer';
+import './dashboard.scss';
 
 const { routes: paths } = pckg;
 
@@ -143,16 +132,18 @@ const SamplePage = () => {
         <PageHeaderTitle
           title={
             <Split hasGutter>
-              <SplitItem>Red Hat connector Dashboard</SplitItem>
-              <SplitItem isFilled>
-                <Label color="cyan">Tech preview</Label>
-              </SplitItem>
+              <SplitItem isFilled>Red Hat connector Dashboard</SplitItem>
               <SplitItem>
                 <Button
                   variant="primary"
                   onClick={() => history.push(paths.connectSystemsModal)}
                 >
                   Connect systems
+                </Button>
+              </SplitItem>
+              <SplitItem>
+                <Button variant="link">
+                  <a href="./insights/inventory">View systems in Inventory</a>
                 </Button>
               </SplitItem>
             </Split>
@@ -166,42 +157,6 @@ const SamplePage = () => {
           )}
         </Fragment>
         <div className="dashboard__content">
-          <Stack className="pf-u-p-md">
-            <StackItem>
-              <Level>
-                <LevelItem>
-                  <Title headingLevel="h3" size="md">
-                    Systems connected with Red Hat connector
-                  </Title>
-                  <Flex
-                    alignContent={{ default: 'alignContentCenter' }}
-                    alignItems={{ default: 'alignItemsCenter' }}
-                  >
-                    {systemsLoaded ? (
-                      <Title headingLevel="h3" size="2xl">
-                        {systemsCount}
-                      </Title>
-                    ) : (
-                      <Skeleton width="33%" />
-                    )}
-
-                    {!activeStateLoaded &&
-                      useOpenSCAP !== undefined &&
-                      enableCloudConnector !== undefined && (
-                        <Text
-                          className="dashboard__in-progress-text"
-                          component="small"
-                        >
-                          <InProgressIcon />
-                          &nbsp;Changes being applied
-                        </Text>
-                      )}
-                  </Flex>
-                  <a href="./insights/inventory">View in Inventory</a>
-                </LevelItem>
-              </Level>
-            </StackItem>
-          </Stack>
           <Tabs
             activeKey={activeTabKey}
             onSelect={(_event, activeTabKey) => setActiveTabKey(activeTabKey)}
