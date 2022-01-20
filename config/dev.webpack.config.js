@@ -10,6 +10,7 @@ const webpackProxy = {
   deployment: process.env.BETA ? 'beta/apps' : 'apps',
   useProxy: true,
   // localChrome: '/Users/rkaluzik/rh/insights-chrome/build/',
+  env: `stage-${process.env.BETA ? 'beta' : 'stable'}`,
   appUrl: process.env.BETA
     ? ['/beta/settings/connector']
     : ['/settings/connector'],
