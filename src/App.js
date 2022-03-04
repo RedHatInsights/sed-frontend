@@ -1,10 +1,22 @@
 import React, { Fragment, useEffect, useContext } from 'react';
 import { Routes } from './Routes';
-
+import { QueryClient, QueryClientProvider } from 'react-query';
 import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
 import { notificationsReducer } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import { RegistryContext } from './store';
 import { useHistory } from 'react-router-dom';
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 3,
+      retryDelay: 10 * 1000,
+      staleTime: Infinity,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+    },
+  },
+});
 
 const App = () => {
   const { getRegistry } = useContext(RegistryContext);
@@ -25,10 +37,12 @@ const App = () => {
   }, []);
 
   return (
-    <Fragment>
-      <NotificationsPortal />
-      <Routes />
-    </Fragment>
+    <QueryClientProvider client={queryClient}>
+      <Fragment>
+        <NotificationsPortal />
+        <Routes />
+      </Fragment>
+    </QueryClientProvider>
   );
 };
 export default App;

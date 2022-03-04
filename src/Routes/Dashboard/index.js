@@ -187,14 +187,6 @@ const SamplePage = () => {
                 </Bullseye>
               )}
             </Tab>
-            <Tab
-              eventKey="activation-keys"
-              title={<TabTitleText>Activation keys</TabTitleText>}
-            >
-              <div className="pf-u-m-md">
-                <ActivationKeys />
-              </div>
-            </Tab>
           </Tabs>
         </div>
       </Main>

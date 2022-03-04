@@ -7,7 +7,6 @@ import {
 } from '@patternfly/react-core';
 import { LockIcon } from '@patternfly/react-icons';
 import React from 'react';
-import CopyCommand from './copy-command';
 
 const NoAccessView = () => (
   <Bullseye>
@@ -20,7 +19,6 @@ const NoAccessView = () => (
         If you already know your organization ID and activation key, you can
         register systems with RHC.
       </EmptyStateBody>
-      <CopyCommand />
     </EmptyState>
   </Bullseye>
 );
