@@ -1,11 +1,9 @@
-import { useQuery, QueryObserverResult } from 'react-query';
+import { useQuery } from 'react-query';
 
 const getUserRbacPermissions = async () => {
   return Promise.resolve(
     window.insights.chrome.getUserPermissions('config-manager')
   ).then((rawRbacPermissions) => {
-    console.log(rawRbacPermissions);
-    console.log('tetatat');
     const permissions = rawRbacPermissions.map(
       (rawPermission) => rawPermission.permission
     );

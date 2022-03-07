@@ -3,6 +3,7 @@ import { useQueryClient } from 'react-query';
 import { useLocation } from 'react-router-dom';
 import useUser from '../../hooks/useUser';
 import Loading from '../LoadingState/Loading';
+import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable';
 const Authentication = ({ children }) => {
   const queryClient = useQueryClient();
   const location = useLocation();
@@ -20,7 +21,7 @@ const Authentication = ({ children }) => {
   isSuccess && window.insights?.chrome?.hideGlobalFilter();
 
   if (isError === true) {
-    return <Loading />;
+    return <Unavailable />;
   } else if (isLoading === true || isFetching === true) {
     return <Loading />;
   } else if (isSuccess === true) {

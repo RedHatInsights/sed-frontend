@@ -26,7 +26,6 @@ import React, {
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Route, useHistory } from 'react-router-dom';
 import pckg from '../../../package.json';
-import ActivationKeys from '../../Components/ActivationKeys';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
 import NoSystemsAlert from '../../Components/NoSystemsAlert';
 import Services from '../../Components/Services/Services';

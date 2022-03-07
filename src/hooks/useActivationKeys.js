@@ -1,4 +1,4 @@
-import { useQuery, QueryObserverResult } from 'react-query';
+import { useQuery } from 'react-query';
 
 const fetchActivationKeysData = async () => {
   const token = await window.insights.chrome.auth.getToken();
