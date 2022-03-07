@@ -1,4 +1,4 @@
-import { useQuery, UseQueryResult } from 'react-query';
+import { useQuery } from 'react-query';
 import { getUserRbacPermissions } from '../hooks/useRbacPermissions';
 import { authenticateUser } from '../utils/platformServices';
 
