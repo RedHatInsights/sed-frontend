@@ -28,7 +28,7 @@ import { Route, useHistory } from 'react-router-dom';
 import pckg from '../../../package.json';
 import ActivationKeys from '../../Components/ActivationKeys';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
-import NoSystemsAlert from '../../Components/NoSytemsAlert';
+import NoSystemsAlert from '../../Components/NoSystemsAlert';
 import Services from '../../Components/Services/Services';
 import { RegistryContext } from '../../store';
 import {
