@@ -7,50 +7,50 @@ import {
   Tbody,
   Td,
 } from '@patternfly/react-table';
-import { v4 as uuid } from 'uuid';
 import useActivationKeys from '../../hooks/useActivationKeys';
 import Loading from '../LoadingState/Loading';
+import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable';
 
 const ActivationKeysTable = () => {
   const columnNames = {
     name: 'Key Name',
     role: 'Role',
-    sla: 'SLA',
+    serviceLevel: 'SLA',
     usage: 'Usage',
   };
   const { isLoading, error, data } = useActivationKeys();
 
-  if (isLoading && !error) {
-    return <Loading />;
-  } else if (!isLoading && !error) {
+  const Results = () => {
     return (
-      <TableComposable
-        aria-label="ActivationKeys"
-        ouiaId={uuid()}
-        ouiaSafe={true}
-      >
+      <TableComposable aria-label="ActivationKeys">
         <Thead>
-          <Tr ouiaId={uuid()} ouiaSafe={true}>
+          <Tr ouiaSafe={true}>
             <Th>{columnNames.name}</Th>
             <Th>{columnNames.role}</Th>
-            <Th>{columnNames.sla}</Th>
+            <Th>{columnNames.serviceLevel}</Th>
             <Th>{columnNames.usage}</Th>
           </Tr>
         </Thead>
         <Tbody>
           {data.map((datum) => (
-            <Tr key={datum.name} ouiaId={uuid()} ouiaSafe={true}>
+            <Tr key={datum.name} ouiaSafe={true}>
               <Td dataLabel={columnNames.name}>{datum.name}</Td>
               <Td dataLabel={columnNames.role}>{datum.role}</Td>
-              <Td dataLabel={columnNames.role}>{datum.serviceLevel}</Td>
-              <Td dataLabel={columnNames.role}>{datum.role}</Td>
+              <Td dataLabel={columnNames.serviceLevel}>{datum.serviceLevel}</Td>
+              <Td dataLabel={columnNames.usage}>{datum.usage}</Td>
             </Tr>
           ))}
         </Tbody>
       </TableComposable>
     );
+  };
+
+  if (isLoading && !error) {
+    return <Loading />;
+  } else if (!isLoading && !error) {
+    return <Results />;
   } else {
-    return <h1>Unavailable</h1>;
+    return <Unavailable />;
   }
 };
 
