@@ -56,6 +56,12 @@ jest.mock('../../../Components/ActivationKeysTable', () => () => (
 // eslint-disable-next-line react/display-name
 jest.mock('../no-access', () => () => <div>Not Authorized</div>);
 
+jest.mock(
+  '@redhat-cloud-services/frontend-components/Unavailable',
+  // eslint-disable-next-line react/display-name
+  () => () => <div>Unavailable</div>
+);
+
 describe('ActivationKeys', () => {
   def('isLoading', () => false);
   def('isError', () => false);

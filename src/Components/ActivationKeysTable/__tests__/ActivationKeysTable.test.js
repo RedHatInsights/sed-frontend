@@ -18,6 +18,12 @@ const Table = () => (
   </QueryClientProvider>
 );
 
+jest.mock(
+  '@redhat-cloud-services/frontend-components/Unavailable',
+  // eslint-disable-next-line react/display-name
+  () => () => <div>Unavailable</div>
+);
+
 describe('ActivationKeysTable', () => {
   def('loading', () => false);
   def('error', () => false);
