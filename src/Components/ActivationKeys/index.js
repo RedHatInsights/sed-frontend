@@ -1,11 +1,5 @@
 import React from 'react';
-import {
-  Stack,
-  StackItem,
-  Text,
-  TextContent,
-  TextVariants,
-} from '@patternfly/react-core';
+import { TextVariants } from '@patternfly/react-core';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import {
   PageHeader,
@@ -22,20 +16,8 @@ const ActivationKeys = () => {
     return (
       <React.Fragment>
         <PageHeader>
-          <PageHeaderTitle
-            title={
-              <Stack>
-                <StackItem>Activation Keys</StackItem>
-                <StackItem isFilled>
-                  <TextContent>
-                    <Text component={TextVariants.h6}>
-                      Organization ID: {user.orgId}
-                    </Text>
-                  </TextContent>
-                </StackItem>
-              </Stack>
-            }
-          />
+          <PageHeaderTitle title="Activation Keys" />
+          <TextVariants.p>Orginazaion ID: {user.orgId}</TextVariants.p>
         </PageHeader>
         <Main>
           <ActivationKeysTable />

@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useContext } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Routes } from './Routes';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
@@ -38,10 +38,8 @@ const App = () => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Fragment>
-        <NotificationsPortal />
-        <Routes />
-      </Fragment>
+      <NotificationsPortal />
+      <Routes />
     </QueryClientProvider>
   );
 };

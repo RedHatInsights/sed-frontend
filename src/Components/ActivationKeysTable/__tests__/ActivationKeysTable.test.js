@@ -25,7 +25,7 @@ describe('ActivationKeysTable', () => {
     {
       name: 'A',
       role: 'B',
-      sla: 'C',
+      serviceLevel: 'C',
       usage: 'D',
     },
   ]);
