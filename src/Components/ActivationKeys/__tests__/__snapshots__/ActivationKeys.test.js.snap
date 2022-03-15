@@ -12,7 +12,10 @@ exports[`ActivationKeys renders correctly 1`] = `
     >
       Activation Keys
     </h1>
-    <p>
+    <p
+      class=""
+      data-pf-content="true"
+    >
       Orginazaion ID: 
       123
     </p>
