@@ -1,6 +1,6 @@
 import React from 'react';
 import { withRouter } from 'react-router-dom';
-import { Text, TextVariants } from '@patternfly/react-core';
+import { Text, TextContent, TextVariants } from '@patternfly/react-core';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import {
   PageHeader,
@@ -18,7 +18,9 @@ const ActivationKeys = () => {
       <React.Fragment>
         <PageHeader>
           <PageHeaderTitle title="Activation Keys" />
-          <Text component={TextVariants.p}>Orginazaion ID: {user.orgId}</Text>
+          <TextContent>
+            <Text component={TextVariants.p}>Orginazaion ID: {user.orgId}</Text>
+          </TextContent>
         </PageHeader>
         <Main>
           <ActivationKeysTable />
