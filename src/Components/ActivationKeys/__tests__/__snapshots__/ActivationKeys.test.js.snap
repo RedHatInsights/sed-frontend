@@ -10,15 +10,21 @@ exports[`ActivationKeys renders correctly 1`] = `
       class="pf-c-title pf-m-2xl"
       widget-type="InsightsPageHeaderTitle"
     >
+       
       Activation Keys
+       
     </h1>
-    <p
-      class=""
-      data-pf-content="true"
+    <div
+      class="pf-c-content"
     >
-      Orginazaion ID: 
-      123
-    </p>
+      <p
+        class=""
+        data-pf-content="true"
+      >
+        Orginazaion ID: 
+        123
+      </p>
+    </div>
   </section>
   <section
     class="pf-l-page__main-section pf-c-page__main-section"
