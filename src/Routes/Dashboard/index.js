@@ -26,7 +26,6 @@ import React, {
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Route, useHistory } from 'react-router-dom';
 import pckg from '../../../package.json';
-import ActivationKeys from '../../Components/ActivationKeys';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
 import NoSystemsAlert from '../../Components/NoSystemsAlert';
 import Services from '../../Components/Services/Services';
@@ -186,14 +185,6 @@ const SamplePage = () => {
                   <Spinner className="pf-u-p-lg" size="xl" />
                 </Bullseye>
               )}
-            </Tab>
-            <Tab
-              eventKey="activation-keys"
-              title={<TabTitleText>Activation keys</TabTitleText>}
-            >
-              <div className="pf-u-m-md">
-                <ActivationKeys />
-              </div>
             </Tab>
           </Tabs>
         </div>

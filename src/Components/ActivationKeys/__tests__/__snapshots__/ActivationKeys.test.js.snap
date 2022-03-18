@@ -1,0 +1,52 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`ActivationKeys renders correctly 1`] = `
+<div>
+  <section
+    class="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
+    widget-type="InsightsPageHeader"
+  >
+    <h1
+      class="pf-c-title pf-m-2xl"
+      widget-type="InsightsPageHeaderTitle"
+    >
+      Activation Keys
+    </h1>
+    <div
+      class="pf-c-content"
+    >
+      <p
+        class=""
+        data-pf-content="true"
+      >
+        Orginazaion ID: 
+        123
+      </p>
+    </div>
+  </section>
+  <section
+    class="pf-l-page__main-section pf-c-page__main-section"
+    page-type=""
+  >
+    <div>
+      Activation Keys Table
+    </div>
+  </section>
+</div>
+`;
+
+exports[`ActivationKeys when the user call fails renders an error message when user call fails 1`] = `
+<div>
+  <div>
+    Unavailable
+  </div>
+</div>
+`;
+
+exports[`ActivationKeys when the user does not have proper permissions redirects to not authorized page 1`] = `
+<div>
+  <div>
+    Not Authorized
+  </div>
+</div>
+`;

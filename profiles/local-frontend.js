@@ -11,5 +11,4 @@ routes[`/${SECTION}/${APP_ID}`] = {
 };
 routes[`/beta/apps/${APP_ID}`] = { host: `https://localhost:${FRONTEND_PORT}` };
 routes[`/apps/${APP_ID}`] = { host: `https://localhost:${FRONTEND_PORT}` };
-
 module.exports = { routes };
