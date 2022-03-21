@@ -19,7 +19,7 @@ exports[`ActivationKeys renders correctly 1`] = `
         class=""
         data-pf-content="true"
       >
-        Orginazaion ID: 
+        Organization ID: 
         123
       </p>
     </div>
