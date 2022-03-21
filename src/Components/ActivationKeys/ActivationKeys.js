@@ -19,7 +19,9 @@ const ActivationKeys = () => {
         <PageHeader>
           <PageHeaderTitle title="Activation Keys" />
           <TextContent>
-            <Text component={TextVariants.p}>Orginazaion ID: {user.orgId}</Text>
+            <Text component={TextVariants.p}>
+              Organization ID: {user.orgId}
+            </Text>
           </TextContent>
         </PageHeader>
         <Main>
