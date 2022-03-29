@@ -7,7 +7,11 @@ import {
   Tab,
   Tabs,
   TabTitleText,
+  Page,
+  Stack,
+  StackItem,
 } from '@patternfly/react-core';
+import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import {
@@ -29,6 +33,7 @@ import pckg from '../../../package.json';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
 import NoSystemsAlert from '../../Components/NoSystemsAlert';
 import Services from '../../Components/Services/Services';
+import ServicesRedesign from '../../Components/Services/ServicesRedesign';
 import { RegistryContext } from '../../store';
 import {
   fetchConnectedHosts,
@@ -55,7 +60,6 @@ const ConnectLog = lazy(() =>
 const SamplePage = () => {
   const history = useHistory();
   const { getRegistry } = useContext(RegistryContext);
-  const [activeTabKey, setActiveTabKey] = useState('services');
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
   const [isGuideOpen, setIsGuideOpen] = useState(true);
   const [madeChanges, setMadeChanges] = useState(false);
@@ -131,32 +135,58 @@ const SamplePage = () => {
         <PageHeaderTitle
           title={
             <Split hasGutter>
-              <SplitItem isFilled>Red Hat connector Dashboard</SplitItem>
-              <SplitItem>
+              <SplitItem isFilled>Red Hat connector Settings</SplitItem>
+              {/* <SplitItem>
                 <Button
                   variant="primary"
                   onClick={() => history.push(paths.connectSystemsModal)}
                 >
                   Connect systems
                 </Button>
-              </SplitItem>
+              </SplitItem> */}
               <SplitItem>
-                <Button variant="link">
+                {/* <Button variant="link">
                   <a href="./insights/inventory">View systems in Inventory</a>
+                </Button> */}
+                <Button
+                  onClick={() => history.push(paths.logModal)}
+                  variant="link"
+                >
+                  View log
                 </Button>
               </SplitItem>
             </Split>
           }
         />
+        <Stack hasGutter>
+          <StackItem>
+            Selections here affect Red Hat Enterprise Linux (RHEL) systems
+            connected to Red Hat with Red Hat connector (rhc). Upon saving
+            changes, Ansible Playbooks are automatically pushed to connected
+            systems to update the configuration of the connection to Red Hat.
+          </StackItem>
+          <StackItem>
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={
+                'https://access.redhat.com/documentation/en-us/red_hat_insights/2021/html-single/red_hat_connector_configuration_guide/index'
+              }
+            >
+              Connecting with Red Hat connector tool
+              {<ExternalLinkAltIcon className="pf-u-ml-sm" />}
+            </a>
+          </StackItem>
+        </Stack>
       </PageHeader>
-      <Main>
+      <Page>
         <Fragment>
           {systemsLoaded && systemsCount === 0 && isGuideOpen && (
             <NoSystemsAlert handleClose={() => setIsGuideOpen(false)} />
           )}
         </Fragment>
         <div className="dashboard__content">
-          <Tabs
+          {/* <Tabs
             activeKey={activeTabKey}
             onSelect={(_event, activeTabKey) => setActiveTabKey(activeTabKey)}
           >
@@ -187,8 +217,29 @@ const SamplePage = () => {
               )}
             </Tab>
           </Tabs>
+        </div> */}
+          {activeStateLoaded ||
+          (useOpenSCAP !== undefined && enableCloudConnector !== undefined) ? (
+            <ServicesRedesign
+              madeChanges={madeChanges}
+              setConfirmChangesOpen={setConfirmChangesOpen}
+              setMadeChanges={setMadeChanges}
+              defaults={{
+                useOpenSCAP,
+                enableCloudConnector,
+                hasInsights,
+              }}
+              onChange={(data) => {
+                dataRef.current = data;
+              }}
+            />
+          ) : (
+            <Bullseye>
+              <Spinner className="pf-u-p-lg" size="xl" />
+            </Bullseye>
+          )}
         </div>
-      </Main>
+      </Page>
       <ConfirmChangesModal
         isOpen={confirmChangesOpen}
         handleCancel={() => setConfirmChangesOpen(false)}
