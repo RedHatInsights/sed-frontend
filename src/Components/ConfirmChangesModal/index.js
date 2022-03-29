@@ -62,6 +62,7 @@ const ConfirmChangesModal = ({
             downloadFile(playbook);
           })();
         }}
+        style={{ paddingLeft: 0 }}
       >
         View playbook
       </Button>
