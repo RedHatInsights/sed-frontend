@@ -2,7 +2,8 @@ export const permissions = [
   {
     id: 'connectToInsights',
     name: 'Connect to Red Hat Insights',
-    description: 'TODO',
+    description:
+      'Required to use Insights applications. Enables Advisor, Drift, Patch, Vulnerability and Policies applications.',
   },
   {
     id: 'useOpenSCAP',
@@ -22,10 +23,20 @@ export const permissions = [
           'https://github.com/RedHatInsights/config-manager/tree/master/playbooks',
       },
     ],
+    padding: true,
   },
   {
     id: 'enableCloudConnector',
-    name: 'Enable Cloud Connector to fix issues directly from Insights',
-    description: 'TODO',
+    name:
+      'Allow Insights users to use “Remediations” to send Ansible Playbooks to fix issues on your systems',
+    description:
+      'Users can create Ansible Playbooks using the “Remediate” function in Insights and then execute these playbooks on systems in inventory. Playbooks are sent to systems to fix issues using the Cloud Connector technology.',
+    links: [
+      {
+        name: 'About Cloud Connector',
+        link:
+          'https://access.redhat.com/documentation/en-us/red_hat_insights/2021/html-single/red_hat_connector_configuration_guide/index',
+      },
+    ],
   },
 ];
