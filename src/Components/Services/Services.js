@@ -39,10 +39,7 @@ const Services = ({
     },
     useOpenSCAP: { value: defaults.useOpenSCAP, isDisabled: false },
     connectToInsights: {
-      value:
-        defaults.hasInsights ||
-        defaults.useOpenSCAP ||
-        defaults.enableCloudConnector,
+      value: defaults.hasInsights || defaults.useOpenSCAP,
       isDisabled: false,
     },
   };
@@ -77,6 +74,18 @@ const Services = ({
       });
     }
   }, [formState.connectToInsights.value]);
+
+  useEffect(() => {
+    if (formState.useOpenSCAP.value && !formState.connectToInsights.value) {
+      setFormState({
+        ...formState,
+        connectToInsights: {
+          ...formState.useOpenSCAP,
+          value: true,
+        },
+      });
+    }
+  }, [formState.useOpenSCAP.value]);
 
   useEffect(() => {
     setMadeChanges(
