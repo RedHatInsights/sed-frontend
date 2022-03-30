@@ -6,6 +6,7 @@ exports[`renders correctly 1`] = `
     class="pf-l-bullseye"
   >
     <span
+      aria-label="Contents"
       aria-valuetext="Loading..."
       class="pf-c-spinner pf-m-xl"
       role="progressbar"

@@ -91,6 +91,7 @@ exports[`ActivationKeysTable when loading renders the loading state 1`] = `
     class="pf-l-bullseye"
   >
     <span
+      aria-label="Contents"
       aria-valuetext="Loading..."
       class="pf-c-spinner pf-m-xl"
       role="progressbar"
