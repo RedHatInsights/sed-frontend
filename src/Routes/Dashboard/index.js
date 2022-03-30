@@ -63,6 +63,7 @@ const SamplePage = () => {
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
   const [isGuideOpen, setIsGuideOpen] = useState(true);
   const [madeChanges, setMadeChanges] = useState(false);
+  const [isEditing, setIsEditing] = useState(false);
   const dataRef = useRef();
   const dispatch = useDispatch();
 
@@ -224,6 +225,8 @@ const SamplePage = () => {
               madeChanges={madeChanges}
               setConfirmChangesOpen={setConfirmChangesOpen}
               setMadeChanges={setMadeChanges}
+              setIsEditing={setIsEditing}
+              isEditing={isEditing}
               defaults={{
                 useOpenSCAP,
                 enableCloudConnector,
@@ -260,6 +263,7 @@ const SamplePage = () => {
               })
             );
             setMadeChanges(false);
+            setIsEditing(false);
           })();
         }}
       />

@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   Alert,
   Button,
@@ -25,20 +25,73 @@ import {
 
 import { permissions } from './permissionsConfig';
 
-const Services = ({ defaults, setConfirmChangesOpen }) => {
-  const [formState, setFormState] = useState({
-    enableCloudConnector: defaults.enableCloudConnector,
-    useOpenSCAP: defaults.useOpenSCAP,
-    connectToInsights:
-      defaults.hasInsights ||
-      defaults.useOpenSCAP ||
-      defaults.enableCloudConnector,
-  });
+const Services = ({
+  defaults,
+  setConfirmChangesOpen,
+  onChange,
+  isEditing,
+  setIsEditing,
+}) => {
+  const initState = {
+    enableCloudConnector: {
+      value: defaults.enableCloudConnector,
+      isDisabled: false,
+    },
+    useOpenSCAP: { value: defaults.useOpenSCAP, isDisabled: false },
+    connectToInsights: {
+      value:
+        defaults.hasInsights ||
+        defaults.useOpenSCAP ||
+        defaults.enableCloudConnector,
+      isDisabled: false,
+    },
+  };
+  const [formState, setFormState] = useState(initState);
+  const [madeChanges, setMadeChanges] = useState(false);
 
-  const [isEditing, setIsEditing] = useState(false);
+  const cancelEditing = () => {
+    setFormState(initState);
+    setIsEditing(false);
+  };
+
+  useEffect(() => {
+    if (
+      defaults.hasInsights !== formState.connectToInsights.value &&
+      !formState.connectToInsights.value
+    ) {
+      setFormState({
+        ...formState,
+        useOpenSCAP: {
+          value: false,
+          isDisabled: true,
+        },
+      });
+    }
+    if (formState.connectToInsights.value && defaults.hasInsights) {
+      setFormState({
+        ...formState,
+        useOpenSCAP: {
+          ...formState.useOpenSCAP,
+          isDisabled: false,
+        },
+      });
+    }
+  }, [formState.connectToInsights.value]);
+
+  useEffect(() => {
+    setMadeChanges(
+      formState.connectToInsights.value !== defaults.hasInsights ||
+        formState.useOpenSCAP.value !== defaults.useOpenSCAP ||
+        formState.enableCloudConnector.value != defaults.enableCloudConnector
+    );
+    onChange({
+      useOpenSCAP: formState.useOpenSCAP.value,
+      enableCloudConnector: formState.enableCloudConnector.value,
+    });
+  }, [formState]);
 
   const getStatusIcon = (row) => {
-    if (formState[row.id]) {
+    if (formState[row.id].value) {
       return (
         <Flex style={{ color: 'var(--pf-global--success-color--200)' }}>
           <FlexItem>
@@ -80,6 +133,7 @@ const Services = ({ defaults, setConfirmChangesOpen }) => {
                   <Button
                     ouiaId="primary-save-button"
                     onClick={() => setConfirmChangesOpen(true)}
+                    isDisabled={!madeChanges}
                   >
                     Save changes
                   </Button>
@@ -87,7 +141,7 @@ const Services = ({ defaults, setConfirmChangesOpen }) => {
                 <ToolbarItem>
                   <Button
                     ouiaId="secondary-cancel-button"
-                    onClick={() => setIsEditing(false)}
+                    onClick={() => cancelEditing()}
                     variant="secondary"
                   >
                     Cancel
@@ -117,7 +171,11 @@ const Services = ({ defaults, setConfirmChangesOpen }) => {
           <Tbody>
             {permissions.map((row) => (
               <Tr key={row.name}>
-                <Td dataLabel="Permission" width={80}>
+                <Td
+                  dataLabel="Permission"
+                  width={80}
+                  style={row.padding && { paddingLeft: 70 }}
+                >
                   <Stack>
                     <StackItem>
                       <Flex>
@@ -159,17 +217,25 @@ const Services = ({ defaults, setConfirmChangesOpen }) => {
                     <ToggleGroup aria-label="Default with single selectable">
                       <ToggleGroupItem
                         text="Enabled"
-                        isSelected={formState[row.id]}
+                        isSelected={formState[row.id].value}
                         onChange={() =>
-                          setFormState({ ...formState, [row.id]: true })
+                          setFormState({
+                            ...formState,
+                            [row.id]: { ...formState[row.id], value: true },
+                          })
                         }
+                        isDisabled={formState[row.id].isDisabled}
                       />
                       <ToggleGroupItem
                         text="Disabled"
-                        isSelected={!formState[row.id]}
+                        isSelected={!formState[row.id].value}
                         onChange={() =>
-                          setFormState({ ...formState, [row.id]: false })
+                          setFormState({
+                            ...formState,
+                            [row.id]: { ...formState[row.id], value: false },
+                          })
                         }
+                        isDisabled={formState[row.id].isDisabled}
                       />
                     </ToggleGroup>
                   </Td>
@@ -193,6 +259,8 @@ Services.propTypes = {
   onChange: propTypes.func.isRequired,
   madeChanges: propTypes.bool,
   setConfirmChangesOpen: propTypes.func.isRequired,
+  isEditing: propTypes.bool.isRequired,
+  setIsEditing: propTypes.func.isRequired,
 };
 
 Services.defaultProps = {
