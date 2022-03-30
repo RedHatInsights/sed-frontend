@@ -4,16 +4,12 @@ import {
   Spinner,
   Split,
   SplitItem,
-  Tab,
-  Tabs,
-  TabTitleText,
   Page,
   Stack,
   StackItem,
 } from '@patternfly/react-core';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
-import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import {
   PageHeader,
   PageHeaderTitle,
@@ -33,7 +29,6 @@ import pckg from '../../../package.json';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
 import NoSystemsAlert from '../../Components/NoSystemsAlert';
 import Services from '../../Components/Services/Services';
-import ServicesRedesign from '../../Components/Services/ServicesRedesign';
 import { RegistryContext } from '../../store';
 import {
   fetchConnectedHosts,
@@ -137,18 +132,7 @@ const SamplePage = () => {
           title={
             <Split hasGutter>
               <SplitItem isFilled>Red Hat connector Settings</SplitItem>
-              {/* <SplitItem>
-                <Button
-                  variant="primary"
-                  onClick={() => history.push(paths.connectSystemsModal)}
-                >
-                  Connect systems
-                </Button>
-              </SplitItem> */}
               <SplitItem>
-                {/* <Button variant="link">
-                  <a href="./insights/inventory">View systems in Inventory</a>
-                </Button> */}
                 <Button
                   onClick={() => history.push(paths.logModal)}
                   variant="link"
@@ -187,41 +171,9 @@ const SamplePage = () => {
           )}
         </Fragment>
         <div className="dashboard__content">
-          {/* <Tabs
-            activeKey={activeTabKey}
-            onSelect={(_event, activeTabKey) => setActiveTabKey(activeTabKey)}
-          >
-            <Tab
-              title={<TabTitleText>Services</TabTitleText>}
-              eventKey="services"
-            >
-              {activeStateLoaded ||
-              (useOpenSCAP !== undefined &&
-                enableCloudConnector !== undefined) ? (
-                <Services
-                  madeChanges={madeChanges}
-                  setConfirmChangesOpen={setConfirmChangesOpen}
-                  setMadeChanges={setMadeChanges}
-                  defaults={{
-                    useOpenSCAP,
-                    enableCloudConnector,
-                    hasInsights,
-                  }}
-                  onChange={(data) => {
-                    dataRef.current = data;
-                  }}
-                />
-              ) : (
-                <Bullseye>
-                  <Spinner className="pf-u-p-lg" size="xl" />
-                </Bullseye>
-              )}
-            </Tab>
-          </Tabs>
-        </div> */}
           {activeStateLoaded ||
           (useOpenSCAP !== undefined && enableCloudConnector !== undefined) ? (
-            <ServicesRedesign
+            <Services
               madeChanges={madeChanges}
               setConfirmChangesOpen={setConfirmChangesOpen}
               setMadeChanges={setMadeChanges}

@@ -1,194 +1,249 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
+  Alert,
   Button,
-  Level,
-  LevelItem,
   Stack,
   StackItem,
-  Switch,
-  Text,
-  TextContent,
-  Title,
+  ToggleGroup,
+  ToggleGroupItem,
+  Toolbar,
+  ToolbarItem,
+  ToolbarContent,
+  FlexItem,
+  Flex,
 } from '@patternfly/react-core';
-import { shallowEqual, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { CheckCircleIcon, BanIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
+import {
+  TableComposable,
+  Thead,
+  Tr,
+  Th,
+  Tbody,
+  Td,
+} from '@patternfly/react-table';
 
-import pckg from '../../../package.json';
-import '@patternfly/react-styles/css/components/Table/table.css';
-
-const { routes: paths } = pckg;
+import { permissions } from './permissionsConfig';
 
 const Services = ({
-  setMadeChanges,
   defaults,
-  onChange,
-  madeChanges,
   setConfirmChangesOpen,
+  onChange,
+  isEditing,
+  setIsEditing,
 }) => {
-  const { push } = useHistory();
-  const { systemsLoaded } = useSelector(
-    ({ connectedSystemsReducer }) => ({
-      systemsLoaded: connectedSystemsReducer?.loaded,
-    }),
-    shallowEqual
-  );
-  const [connectToInsights, setConnectToInsights] = useState(
-    defaults.hasInsights ||
-      defaults.useOpenSCAP ||
-      defaults.enableCloudConnector
-  );
-  const [useOpenSCAP, setUseOpenSCAP] = useState(defaults.useOpenSCAP);
-  const [enableCloudConnector, setEnableCloudConnector] = useState(
-    defaults.enableCloudConnector
-  );
+  const initState = {
+    enableCloudConnector: {
+      value: defaults.enableCloudConnector,
+      isDisabled: false,
+    },
+    useOpenSCAP: { value: defaults.useOpenSCAP, isDisabled: false },
+    connectToInsights: {
+      value:
+        defaults.hasInsights ||
+        defaults.useOpenSCAP ||
+        defaults.enableCloudConnector,
+      isDisabled: false,
+    },
+  };
+  const [formState, setFormState] = useState(initState);
+  const [madeChanges, setMadeChanges] = useState(false);
+
+  const cancelEditing = () => {
+    setFormState(initState);
+    setIsEditing(false);
+  };
+
+  useEffect(() => {
+    if (
+      defaults.hasInsights !== formState.connectToInsights.value &&
+      !formState.connectToInsights.value
+    ) {
+      setFormState({
+        ...formState,
+        useOpenSCAP: {
+          value: false,
+          isDisabled: true,
+        },
+      });
+    }
+    if (formState.connectToInsights.value && defaults.hasInsights) {
+      setFormState({
+        ...formState,
+        useOpenSCAP: {
+          ...formState.useOpenSCAP,
+          isDisabled: false,
+        },
+      });
+    }
+  }, [formState.connectToInsights.value]);
 
   useEffect(() => {
     setMadeChanges(
-      connectToInsights !== defaults.hasInsights ||
-        useOpenSCAP !== defaults.useOpenSCAP ||
-        enableCloudConnector != defaults.enableCloudConnector
+      formState.connectToInsights.value !== defaults.hasInsights ||
+        formState.useOpenSCAP.value !== defaults.useOpenSCAP ||
+        formState.enableCloudConnector.value != defaults.enableCloudConnector
     );
-    onChange({ useOpenSCAP, enableCloudConnector });
-  }, [useOpenSCAP, enableCloudConnector, connectToInsights]);
+    onChange({
+      useOpenSCAP: formState.useOpenSCAP.value,
+      enableCloudConnector: formState.enableCloudConnector.value,
+    });
+  }, [formState]);
+
+  const getStatusIcon = (row) => {
+    if (formState[row.id].value) {
+      return (
+        <Flex style={{ color: 'var(--pf-global--success-color--200)' }}>
+          <FlexItem>
+            <CheckCircleIcon />
+          </FlexItem>
+          <FlexItem>Enabled</FlexItem>
+        </Flex>
+      );
+    }
+    return (
+      <Flex style={{ color: 'var(--pf-global--default-color--300)' }}>
+        <FlexItem>
+          <BanIcon />
+        </FlexItem>
+        <FlexItem>Disabled</FlexItem>
+      </Flex>
+    );
+  };
 
   return (
     <Stack hasGutter className="pf-u-p-md">
       <StackItem>
-        <Level>
-          <LevelItem>
-            <Title headingLevel="h2" size="2xl">
-              Red Hat Insights
-            </Title>
-          </LevelItem>
-          <LevelItem>
-            <Button
-              ouiaId="primary-save-button"
-              isDisabled={!systemsLoaded || !madeChanges}
-              onClick={() => setConfirmChangesOpen(true)}
-            >
-              Save changes
-            </Button>
-            <Button onClick={() => push(paths.logModal)} variant="link">
-              View log
-            </Button>
-          </LevelItem>
-        </Level>
-        <TextContent className="pf-u-mt-md">
-          <Text component="p">
-            Red Hat Insights is a proactive operational efficiency and security
-            risk management solution in Red Hat Enterprise Linux (RHEL)
-            subscriptions for versions 6.4 and higher, as well as public cloud
-            versions of RHEL. It helps identify, prioritize, and resolve risks
-            to security, compliance, performance, availability, and stability
-            before they become urgent issues. Insights also enables users to
-            monitor for adherence to internal policies and understand
-            configuration changes over time.
-          </Text>
-        </TextContent>
+        <Toolbar id="toolbar-items">
+          <ToolbarContent>
+            {!isEditing && (
+              <ToolbarItem>
+                <Button
+                  ouiaId="secondary-edit-button"
+                  onClick={() => setIsEditing(true)}
+                  variant="secondary"
+                >
+                  Change settings
+                </Button>
+              </ToolbarItem>
+            )}
+            {isEditing && (
+              <>
+                <ToolbarItem>
+                  <Button
+                    ouiaId="primary-save-button"
+                    onClick={() => setConfirmChangesOpen(true)}
+                    isDisabled={!madeChanges}
+                  >
+                    Save changes
+                  </Button>
+                </ToolbarItem>
+                <ToolbarItem>
+                  <Button
+                    ouiaId="secondary-cancel-button"
+                    onClick={() => cancelEditing()}
+                    variant="secondary"
+                  >
+                    Cancel
+                  </Button>
+                </ToolbarItem>
+                <ToolbarItem>
+                  <Alert
+                    variant="info"
+                    isInline
+                    isPlain
+                    title="Changes will affect all systems connected with Red Hat connector"
+                  />
+                </ToolbarItem>
+              </>
+            )}
+          </ToolbarContent>
+        </Toolbar>
       </StackItem>
       <StackItem>
-        <Title headingLevel="h3" size="xl">
-          Settings
-        </Title>
-        <Stack hasGutter className="pf-u-mt-lg">
-          <StackItem>
-            <Switch
-              id="connect-to-insights"
-              ouiaId="connect-to-insights"
-              aria-label="Connect to Red Hat Insights"
-              isChecked={connectToInsights}
-              onChange={() => {
-                const newHasInsights = !connectToInsights;
-                setConnectToInsights(() => newHasInsights);
-                if (!newHasInsights) {
-                  setUseOpenSCAP(() => false);
-                  setEnableCloudConnector(() => false);
-                }
-              }}
-              label={
-                <Fragment>
-                  <Title headingLevel="h4" size="md">
-                    Connect to Red Hat Insights
-                  </Title>
-                  <TextContent>
-                    <Text component="small">
-                      Required to use Insights applications. Enables Advisor,
-                      Drift, Patch, Vulnerability and Policies applications.
-                    </Text>
-                  </TextContent>
-                </Fragment>
-              }
-            />
-            <div className="pf-u-pl-3xl">
-              <Stack>
-                <StackItem>
-                  <Switch
-                    className="pf-u-mt-md"
-                    key="use-openscap"
-                    id="use-openscap"
-                    ouiaId="use-openscap"
-                    aria-label="Use OpenSCAP for Compliance policies"
-                    isChecked={useOpenSCAP}
-                    onChange={() => {
-                      setUseOpenSCAP((prevValue) => {
-                        const newUseOpenSCAP = !prevValue;
-                        setConnectToInsights(() => true);
-                        return newUseOpenSCAP;
-                      });
-                    }}
-                    label={
-                      <Fragment>
-                        <Title headingLevel="h4" size="md">
-                          Use OpenSCAP for Compliance policies
-                        </Title>
-                        <TextContent>
-                          <Text component="small">
-                            Required to use Compliance application
-                          </Text>
-                        </TextContent>
-                      </Fragment>
-                    }
-                  />
-                </StackItem>
-                <StackItem>
-                  <Switch
-                    className="pf-u-mt-md"
-                    key="enable-cloud-connector"
-                    id="enable-cloud-connector"
-                    ouiaId="enable-cloud-connector"
-                    aria-label="Enable Cloud Connector"
-                    isChecked={enableCloudConnector}
-                    onChange={() => {
-                      setEnableCloudConnector((prevValue) => {
-                        const newEnableCloudConnector = !prevValue;
-                        if (newEnableCloudConnector) {
-                          setConnectToInsights(() => true);
+        <TableComposable aria-label="Settings table">
+          <Thead>
+            <Tr>
+              <Th>Permission</Th>
+              <Th>Status</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {permissions.map((row) => (
+              <Tr key={row.name}>
+                <Td
+                  dataLabel="Permission"
+                  width={80}
+                  style={row.padding && { paddingLeft: 70 }}
+                >
+                  <Stack>
+                    <StackItem>
+                      <Flex>
+                        <FlexItem>
+                          <b>{row.name}</b>
+                        </FlexItem>
+                        {row.additionalInfo && (
+                          <FlexItem
+                            style={{ color: 'var(--pf-global--Color--100)' }}
+                          >
+                            <i>{row.additionalInfo}</i>
+                          </FlexItem>
+                        )}
+                      </Flex>
+                    </StackItem>
+                    <StackItem>{row.description}</StackItem>
+                    {row.links && (
+                      <StackItem>
+                        <Flex>
+                          {row.links.map((link) => (
+                            <FlexItem key={link.name}>
+                              <a
+                                href={link.link}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                {link.name}
+                              </a>
+                            </FlexItem>
+                          ))}
+                        </Flex>
+                      </StackItem>
+                    )}
+                  </Stack>
+                </Td>
+                {!isEditing && <Td dataLabel="Status">{getStatusIcon(row)}</Td>}
+                {isEditing && (
+                  <Td dataLabel="Status">
+                    <ToggleGroup aria-label="Default with single selectable">
+                      <ToggleGroupItem
+                        text="Enabled"
+                        isSelected={formState[row.id].value}
+                        onChange={() =>
+                          setFormState({
+                            ...formState,
+                            [row.id]: { ...formState[row.id], value: true },
+                          })
                         }
-                        return newEnableCloudConnector;
-                      });
-                    }}
-                    label={
-                      <Fragment>
-                        <Title headingLevel="h4" size="md">
-                          Enable Cloud Connector to fix issues directly from
-                          Insights
-                        </Title>
-                        <TextContent>
-                          <Text component="small">
-                            Cloud Connector allows you to push Remediation
-                            Ansible Playbooks directly from Insights to your
-                            systems.
-                          </Text>
-                        </TextContent>
-                      </Fragment>
-                    }
-                  />
-                </StackItem>
-              </Stack>
-            </div>
-          </StackItem>
-        </Stack>
+                        isDisabled={formState[row.id].isDisabled}
+                      />
+                      <ToggleGroupItem
+                        text="Disabled"
+                        isSelected={!formState[row.id].value}
+                        onChange={() =>
+                          setFormState({
+                            ...formState,
+                            [row.id]: { ...formState[row.id], value: false },
+                          })
+                        }
+                        isDisabled={formState[row.id].isDisabled}
+                      />
+                    </ToggleGroup>
+                  </Td>
+                )}
+              </Tr>
+            ))}
+          </Tbody>
+        </TableComposable>
       </StackItem>
     </Stack>
   );
@@ -204,6 +259,8 @@ Services.propTypes = {
   onChange: propTypes.func.isRequired,
   madeChanges: propTypes.bool,
   setConfirmChangesOpen: propTypes.func.isRequired,
+  isEditing: propTypes.bool.isRequired,
+  setIsEditing: propTypes.func.isRequired,
 };
 
 Services.defaultProps = {
