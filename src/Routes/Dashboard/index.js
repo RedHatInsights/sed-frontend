@@ -127,7 +127,7 @@ const SamplePage = () => {
           </Suspense>
         )}
       />
-      <PageHeader>
+      <PageHeader className="page-header">
         <PageHeaderTitle
           title={
             <Split hasGutter>
