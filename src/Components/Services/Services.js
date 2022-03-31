@@ -12,7 +12,11 @@ import {
   FlexItem,
   Flex,
 } from '@patternfly/react-core';
-import { CheckCircleIcon, BanIcon } from '@patternfly/react-icons';
+import {
+  CheckCircleIcon,
+  BanIcon,
+  ExternalLinkAltIcon,
+} from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 import {
   TableComposable,
@@ -212,6 +216,7 @@ const Services = ({
                                 rel="noopener noreferrer"
                               >
                                 {link.name}
+                                <ExternalLinkAltIcon className="pf-u-ml-sm" />
                               </a>
                             </FlexItem>
                           ))}
