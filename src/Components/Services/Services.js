@@ -107,19 +107,23 @@ const Services = ({
     if (formState[row.id].value) {
       return (
         <Flex style={{ color: 'var(--pf-global--success-color--200)' }}>
-          <FlexItem>
+          <FlexItem spacer={{ default: 'spacerXs' }}>
             <CheckCircleIcon />
           </FlexItem>
-          <FlexItem>Enabled</FlexItem>
+          <FlexItem className="status">
+            <b>Enabled</b>
+          </FlexItem>
         </Flex>
       );
     }
     return (
       <Flex style={{ color: 'var(--pf-global--default-color--300)' }}>
-        <FlexItem>
+        <FlexItem spacer={{ default: 'spacerXs' }}>
           <BanIcon />
         </FlexItem>
-        <FlexItem>Disabled</FlexItem>
+        <FlexItem className="status">
+          <b>Disabled</b>
+        </FlexItem>
       </Flex>
     );
   };
@@ -187,7 +191,7 @@ const Services = ({
                 <Td
                   dataLabel="Permission"
                   width={80}
-                  style={row.padding && { paddingLeft: 70 }}
+                  style={row.secondary && { paddingLeft: 70, fontSize: 14 }}
                 >
                   <Stack>
                     <StackItem>
@@ -204,9 +208,11 @@ const Services = ({
                         )}
                       </Flex>
                     </StackItem>
-                    <StackItem>{row.description}</StackItem>
+                    <StackItem style={{ fontSize: 14 }}>
+                      {row.description}
+                    </StackItem>
                     {row.links && (
-                      <StackItem>
+                      <StackItem className="stack-item">
                         <Flex>
                           {row.links.map((link) => (
                             <FlexItem key={link.name}>
