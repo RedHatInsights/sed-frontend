@@ -43,7 +43,7 @@ const ConfirmChangesModal = ({
             {systemsCount} connected {pluralize(systemsCount, 'system')}
           </b>
           . Selected settings will also be applied to <b>all future systems</b>{' '}
-          that are connect through Red Hat Connect (rhc).
+          that are connected through remote host configuration (rhc).
         </Text>
         <Text component="p" className="pf-u-mb-sm">
           Upon confirmation, an Ansible Playbook will be pushed to{' '}

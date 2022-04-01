@@ -10,7 +10,7 @@ export const permissions = [
     name: 'Service: Use OpenSCAP for Compliance policies',
     additionalInfo: 'Requires Insights',
     description:
-      'This setting installs OpenSCAP for connected systems and ensuresthat systems are using the most current versions of profiles and policies. OpenSCAP is required for systems to use the compliance service.',
+      'This setting installs OpenSCAP for connected systems and ensures that systems are using the most current versions of profiles and policies. OpenSCAP is required for systems to use the compliance service.',
     links: [
       {
         name: 'About Insights for RHEL Compliance',
@@ -23,7 +23,7 @@ export const permissions = [
           'https://github.com/RedHatInsights/config-manager/tree/master/playbooks',
       },
     ],
-    padding: true,
+    secondary: true,
   },
   {
     id: 'enableCloudConnector',

@@ -1,6 +1,8 @@
 import {
   Bullseye,
   Button,
+  Flex,
+  FlexItem,
   Spinner,
   Split,
   SplitItem,
@@ -42,9 +44,9 @@ import './dashboard.scss';
 
 const { routes: paths } = pckg;
 
-const ConnectSystemsModal = lazy(() =>
+const AboutRemoteHostConfigPopover = lazy(() =>
   import(
-    /* webpackChunkName: "ConnectSystemsModal" */ '../../Components/ConnectSystemsModal/ConnectSystemsModal'
+    /* webpackChunkName: "ConnectSysAboutRemoteHostConfigPopovertemsModal" */ '../../Components/AboutRemoteHostConfigPopover/AboutRemoteHostConfigPopover'
   )
 );
 
@@ -97,7 +99,7 @@ const SamplePage = () => {
 
   return (
     <React.Fragment>
-      <Route
+      {/* <Route
         exact
         path={paths.connectSystemsModal}
         render={() => (
@@ -111,7 +113,7 @@ const SamplePage = () => {
             <ConnectSystemsModal />
           </Suspense>
         )}
-      />
+      /> */}
       <Route
         exact
         path={paths.logModal}
@@ -128,27 +130,30 @@ const SamplePage = () => {
         )}
       />
       <PageHeader className="page-header">
-        <PageHeaderTitle
-          title={
-            <Split hasGutter>
-              <SplitItem isFilled>Red Hat connector Settings</SplitItem>
-              <SplitItem>
-                <Button
-                  onClick={() => history.push(paths.logModal)}
-                  variant="link"
-                >
-                  View log
-                </Button>
-              </SplitItem>
-            </Split>
-          }
-        />
+        <Split hasGutter className="page-title">
+          <SplitItem isFilled>
+            <Flex>
+              <FlexItem spacer={{ default: 'spacerSm' }}>
+                <PageHeaderTitle title="Remote Host Configuration Manager" />
+              </FlexItem>
+              <FlexItem>
+                <AboutRemoteHostConfigPopover />
+              </FlexItem>
+            </Flex>
+          </SplitItem>
+          <SplitItem>
+            <Button onClick={() => history.push(paths.logModal)} variant="link">
+              View log
+            </Button>
+          </SplitItem>
+        </Split>
         <Stack hasGutter>
           <StackItem>
             Selections here affect Red Hat Enterprise Linux (RHEL) systems
-            connected to Red Hat with Red Hat connector (rhc). Upon saving
-            changes, Ansible Playbooks are automatically pushed to connected
-            systems to update the configuration of the connection to Red Hat.
+            connected to Red Hat with remote host configuration (rhc). Upon
+            saving changes, Ansible Playbooks are automatically pushed to
+            connected systems to update the configuration of the connection to
+            Red Hat.
           </StackItem>
           <StackItem>
             <a
@@ -158,7 +163,7 @@ const SamplePage = () => {
                 'https://access.redhat.com/documentation/en-us/red_hat_insights/2021/html-single/red_hat_connector_configuration_guide/index'
               }
             >
-              Connecting with Red Hat connector tool
+              Connecting with Red Hat
               {<ExternalLinkAltIcon className="pf-u-ml-sm" />}
             </a>
           </StackItem>
