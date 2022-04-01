@@ -1,16 +1,16 @@
 import {
   ClipboardCopy,
   FormGroup,
-  Popover,
-  Text,
-  TextContent,
+  // Popover,
+  // Text,
+  // TextContent,
 } from '@patternfly/react-core';
 import React from 'react';
 import CopyHelperText from './CopyHelperText';
-import {
-  OutlinedQuestionCircleIcon,
-  ExternalLinkAltIcon,
-} from '@patternfly/react-icons';
+// import {
+//   OutlinedQuestionCircleIcon,
+//   ExternalLinkAltIcon,
+// } from '@patternfly/react-icons';
 
 const RegisterWithActivationKey = () => {
   return (
@@ -18,7 +18,7 @@ const RegisterWithActivationKey = () => {
       label={
         <span>
           Register with an activation key&nbsp;
-          <Popover
+          {/* <Popover
             position="right"
             bodyContent={
               <TextContent>
@@ -61,7 +61,7 @@ const RegisterWithActivationKey = () => {
             }
           >
             <OutlinedQuestionCircleIcon />
-          </Popover>
+          </Popover> */}
         </span>
       }
       helperText={<CopyHelperText />}
