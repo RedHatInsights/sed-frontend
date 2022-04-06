@@ -26,6 +26,7 @@ import {
   Tbody,
   Td,
 } from '@patternfly/react-table';
+import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 import { permissions } from './permissionsConfig';
 
@@ -45,6 +46,19 @@ const Services = ({
   };
   const [formState, setFormState] = useState(initState);
   const [madeChanges, setMadeChanges] = useState(false);
+
+  const { hasAccess, isLoading } = usePermissions(
+    'config-manager',
+    [
+      'config-manager:activation_keys:*',
+      'config-manager:state:read',
+      'config-manager:state:write',
+      'config-manager:state-changes:read',
+      'inventory:*:read',
+      'playbook-dispatcher:run:read',
+    ],
+    false
+  );
 
   const cancelEditing = () => {
     setFormState(initState);
@@ -98,6 +112,7 @@ const Services = ({
                   ouiaId="secondary-edit-button"
                   onClick={() => setIsEditing(true)}
                   variant="secondary"
+                  isDisabled={isLoading || !hasAccess}
                 >
                   Change settings
                 </Button>
