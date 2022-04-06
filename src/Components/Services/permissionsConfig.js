@@ -1,11 +1,5 @@
 export const permissions = [
   {
-    id: 'connectToInsights',
-    name: 'Connect to Red Hat Insights',
-    description:
-      'Required to use Insights applications. Enables Advisor, Drift, Patch, Vulnerability and Policies applications.',
-  },
-  {
     id: 'useOpenSCAP',
     name: 'Service: Use OpenSCAP for Compliance policies',
     additionalInfo: 'Requires Insights',
@@ -23,7 +17,6 @@ export const permissions = [
           'https://github.com/RedHatInsights/config-manager/tree/master/playbooks',
       },
     ],
-    secondary: true,
   },
   {
     id: 'enableCloudConnector',

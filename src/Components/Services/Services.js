@@ -42,10 +42,6 @@ const Services = ({
       isDisabled: false,
     },
     useOpenSCAP: { value: defaults.useOpenSCAP, isDisabled: false },
-    connectToInsights: {
-      value: defaults.hasInsights || defaults.useOpenSCAP,
-      isDisabled: false,
-    },
   };
   const [formState, setFormState] = useState(initState);
   const [madeChanges, setMadeChanges] = useState(false);
@@ -56,45 +52,8 @@ const Services = ({
   };
 
   useEffect(() => {
-    if (
-      defaults.hasInsights !== formState.connectToInsights.value &&
-      !formState.connectToInsights.value
-    ) {
-      setFormState({
-        ...formState,
-        useOpenSCAP: {
-          value: false,
-          isDisabled: true,
-        },
-      });
-    }
-    if (formState.connectToInsights.value && defaults.hasInsights) {
-      setFormState({
-        ...formState,
-        useOpenSCAP: {
-          ...formState.useOpenSCAP,
-          isDisabled: false,
-        },
-      });
-    }
-  }, [formState.connectToInsights.value]);
-
-  useEffect(() => {
-    if (formState.useOpenSCAP.value && !formState.connectToInsights.value) {
-      setFormState({
-        ...formState,
-        connectToInsights: {
-          ...formState.useOpenSCAP,
-          value: true,
-        },
-      });
-    }
-  }, [formState.useOpenSCAP.value]);
-
-  useEffect(() => {
     setMadeChanges(
-      formState.connectToInsights.value !== defaults.hasInsights ||
-        formState.useOpenSCAP.value !== defaults.useOpenSCAP ||
+      formState.useOpenSCAP.value !== defaults.useOpenSCAP ||
         formState.enableCloudConnector.value != defaults.enableCloudConnector
     );
     onChange({
