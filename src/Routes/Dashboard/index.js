@@ -17,7 +17,6 @@ import {
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 import React, {
-  Fragment,
   lazy,
   Suspense,
   useContext,
@@ -29,7 +28,6 @@ import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Route, useHistory } from 'react-router-dom';
 import pckg from '../../../package.json';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
-import NoSystemsAlert from '../../Components/NoSystemsAlert';
 import Services from '../../Components/Services/Services';
 import { RegistryContext } from '../../store';
 import {
@@ -58,7 +56,6 @@ const SamplePage = () => {
   const history = useHistory();
   const { getRegistry } = useContext(RegistryContext);
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
-  const [isGuideOpen, setIsGuideOpen] = useState(true);
   const [madeChanges, setMadeChanges] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const dataRef = useRef();
@@ -75,7 +72,7 @@ const SamplePage = () => {
     }),
     shallowEqual
   );
-  const { systemsLoaded, systemsCount } = useSelector(
+  const { systemsCount } = useSelector(
     ({ connectedSystemsReducer }) => ({
       systemsLoaded: connectedSystemsReducer?.loaded,
       systemsCount: connectedSystemsReducer?.total,
@@ -99,21 +96,6 @@ const SamplePage = () => {
 
   return (
     <React.Fragment>
-      {/* <Route
-        exact
-        path={paths.connectSystemsModal}
-        render={() => (
-          <Suspense
-            fallback={
-              <Bullseye>
-                <Spinner />
-              </Bullseye>
-            }
-          >
-            <ConnectSystemsModal />
-          </Suspense>
-        )}
-      /> */}
       <Route
         exact
         path={paths.logModal}
@@ -170,11 +152,6 @@ const SamplePage = () => {
         </Stack>
       </PageHeader>
       <Page>
-        <Fragment>
-          {systemsLoaded && systemsCount === 0 && isGuideOpen && (
-            <NoSystemsAlert handleClose={() => setIsGuideOpen(false)} />
-          )}
-        </Fragment>
         <div className="dashboard__content">
           {activeStateLoaded ||
           (useOpenSCAP !== undefined && enableCloudConnector !== undefined) ? (
