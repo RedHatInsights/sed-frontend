@@ -12,9 +12,9 @@ const RegisterWithActivationKey = () => (
           content={
             <div>
               Organization administrators can view, create, and edit activation
-              keys on the "Activation keys" section of console.redhat.com. The
-              organization ID is a Candlepin-specific identifier, which can be
-              accessed from the activation keys page.
+              keys on the &quot;Activation keys&quot; section of
+              console.redhat.com. The organization ID is a Candlepin-specific
+              identifier, which can be accessed from the activation keys page.
             </div>
           }
         >
