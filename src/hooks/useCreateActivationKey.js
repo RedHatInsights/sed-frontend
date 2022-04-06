@@ -30,9 +30,6 @@ const useCreateActivationKey = () => {
     onSuccess: () => {
       queryClient.resetQueries('activation_keys');
     },
-    onError: () => {
-      console.log('error hook');
-    },
   });
 };
 

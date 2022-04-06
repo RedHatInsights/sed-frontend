@@ -17,7 +17,7 @@ import {
 import ActivationKeysTable from '../ActivationKeysTable';
 import { useQueryClient } from 'react-query';
 import NoAccessView from './no-access';
-import CreateActivationKeyModal from '../Modals/CreateActivationKey';
+import CreateActivationKeyModal from '../Modals/CreateActivationKeyModal';
 const ActivationKeys = () => {
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData('user');
