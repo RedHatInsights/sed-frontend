@@ -51,7 +51,7 @@ exports[`Create Activation Key Form renders correctly when data is loaded 1`] = 
           class="pf-c-form__helper-text"
           id="undefined-helper"
         >
-          Enter the name of the activation key. Must start with a letter and end with a letter or number. Valid characters include lowercase letters from a to z, numbers from 0 to 9, and hypnes ( - ).
+          Enter the name of the activation key. Must start with a letter and end with a letter or number. Valid characters include lowercase letters from a to z, numbers from 0 to 9, and hyphens ( - ).
         </div>
       </div>
     </div>
@@ -307,6 +307,41 @@ exports[`Create Activation Key Form renders correctly when data is loaded 1`] = 
           id="undefined-helper"
         >
           Select the required usage from the list. The list only contains usages available to the activation key.
+        </div>
+      </div>
+    </div>
+    <div
+      class="pf-c-form__group pf-m-action"
+    >
+      <div
+        class="pf-c-form__group-control"
+      >
+        <div
+          class="pf-c-form__actions"
+        >
+          <button
+            aria-disabled="true"
+            class="pf-c-button pf-m-primary pf-m-disabled"
+            data-ouia-component-id="OUIA-Generated-Button-primary-1"
+            data-ouia-component-type="PF4/Button"
+            data-ouia-safe="true"
+            disabled=""
+            id="create-activation-key-button"
+            type="submit"
+          >
+            Save
+          </button>
+          <button
+            aria-disabled="false"
+            class="pf-c-button pf-m-link"
+            data-ouia-component-id="OUIA-Generated-Button-link-1"
+            data-ouia-component-type="PF4/Button"
+            data-ouia-safe="true"
+            id="cancel-create-activation-key-button"
+            type="button"
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>

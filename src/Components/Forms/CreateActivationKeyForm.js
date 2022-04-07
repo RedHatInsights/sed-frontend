@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import {
+  ActionGroup,
+  Button,
   Form,
   FormGroup,
   Popover,
@@ -24,7 +26,7 @@ const CreateActivationKeyForm = (props) => {
   const [serviceLevel, setServiceLevel] = useState('');
   const [usage, setUsage] = useState('');
   const [validated, setValidated] = useState('default');
-  const nameRegex = '^[a-zA-Z ][a-zA-Z0-9-]*$';
+  const nameRegex = '^[a-z][a-z0-9-]*$';
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -44,6 +46,10 @@ const CreateActivationKeyForm = (props) => {
       setValidated('success');
       setName(value);
     }
+  };
+
+  const createButtonDisabled = () => {
+    return validated === 'error' || name.length === 0 || !name.match(nameRegex);
   };
 
   if (isSuccess) {
@@ -74,7 +80,7 @@ const CreateActivationKeyForm = (props) => {
       <FormGroup
         label="Name"
         isRequired
-        helperText="Enter the name of the activation key. Must start with a letter and end with a letter or number. Valid characters include lowercase letters from a to z, numbers from 0 to 9, and hypnes ( - )."
+        helperText="Enter the name of the activation key. Must start with a letter and end with a letter or number. Valid characters include lowercase letters from a to z, numbers from 0 to 9, and hyphens ( - )."
       >
         <TextInput
           id="activation-key-name"
@@ -124,8 +130,8 @@ const CreateActivationKeyForm = (props) => {
               bodyContent={
                 <TextContent>
                   <Text component={TextVariants.p}>
-                    Service Level Agreement determines the level of support for
-                    systems registered with this activation key.
+                    Service Level Agreement (SLA) determines the level of
+                    support for systems registered with this activation key.
                   </Text>
                 </TextContent>
               }
@@ -162,6 +168,26 @@ const CreateActivationKeyForm = (props) => {
           helperText="Select the required usage from the list. The list only contains usages available to the activation key."
         />
       )}
+      <ActionGroup>
+        <Button
+          key="create"
+          id="create-activation-key-button"
+          variant="primary"
+          type="submit"
+          isDisabled={createButtonDisabled()}
+        >
+          Save
+        </Button>
+
+        <Button
+          key="cancel"
+          id="cancel-create-activation-key-button"
+          variant="link"
+          onClick={handleModalToggle}
+        >
+          Cancel
+        </Button>
+      </ActionGroup>
     </Form>
   );
 };
