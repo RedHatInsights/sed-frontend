@@ -40,7 +40,7 @@ const ActivationKeys = () => {
           <PageSection variant={PageSectionVariants.light}>
             <ActionGroup>
               <Button variant="primary" onClick={handleModalToggle}>
-                Create Activation Key
+                Create activation key
               </Button>
             </ActionGroup>
             <ActivationKeysTable />

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Button, Modal, ModalVariant } from '@patternfly/react-core';
+import { Modal, ModalVariant } from '@patternfly/react-core';
 import CreateActivationKeyForm from '../Forms/CreateActivationKeyForm';
 import useCreateActivationKey from '../../hooks/useCreateActivationKey';
 import propTypes from 'prop-types';
@@ -14,23 +14,10 @@ const CreateActivationKeyModal = (props) => {
   return (
     <Modal
       variant={ModalVariant.large}
-      title="Create Activation Key"
+      title="Create new activation key"
       description=""
       isOpen={isOpen}
       onClose={handleModalToggle}
-      actions={[
-        <Button
-          key="create"
-          variant="primary"
-          form="create-activation-key-form"
-          type="submit"
-        >
-          Create
-        </Button>,
-        <Button key="cancel" variant="link" onClick={handleModalToggle}>
-          Cancel
-        </Button>,
-      ]}
     >
       {isLoading ? (
         <Loading />
