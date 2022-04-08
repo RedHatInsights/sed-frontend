@@ -1,6 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { withRouter } from 'react-router-dom';
-import { Text, TextContent, TextVariants } from '@patternfly/react-core';
+import {
+  ActionGroup,
+  Button,
+  Text,
+  TextContent,
+  TextVariants,
+  PageSection,
+  PageSectionVariants,
+} from '@patternfly/react-core';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import {
   PageHeader,
@@ -9,10 +17,14 @@ import {
 import ActivationKeysTable from '../ActivationKeysTable';
 import { useQueryClient } from 'react-query';
 import NoAccessView from './no-access';
-
+import CreateActivationKeyModal from '../Modals/CreateActivationKeyModal';
 const ActivationKeys = () => {
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData('user');
+  const [isOpen, setisOpen] = useState(false);
+  const handleModalToggle = () => {
+    setisOpen(!isOpen);
+  };
   const Page = () => {
     return (
       <React.Fragment>
@@ -25,8 +37,19 @@ const ActivationKeys = () => {
           </TextContent>
         </PageHeader>
         <Main>
-          <ActivationKeysTable />
+          <PageSection variant={PageSectionVariants.light}>
+            <ActionGroup>
+              <Button variant="primary" onClick={handleModalToggle}>
+                Create activation key
+              </Button>
+            </ActionGroup>
+            <ActivationKeysTable />
+          </PageSection>
         </Main>
+        <CreateActivationKeyModal
+          isOpen={isOpen}
+          handleModalToggle={handleModalToggle}
+        />
       </React.Fragment>
     );
   };

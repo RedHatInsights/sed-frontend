@@ -34,9 +34,35 @@ exports[`ActivationKeys renders correctly 1`] = `
     class="pf-l-page__main-section pf-c-page__main-section"
     page-type=""
   >
-    <div>
-      Activation Keys Table
-    </div>
+    <section
+      class="pf-c-page__main-section pf-m-light"
+    >
+      <div
+        class="pf-c-form__group pf-m-action"
+      >
+        <div
+          class="pf-c-form__group-control"
+        >
+          <div
+            class="pf-c-form__actions"
+          >
+            <button
+              aria-disabled="false"
+              class="pf-c-button pf-m-primary"
+              data-ouia-component-id="OUIA-Generated-Button-primary-1"
+              data-ouia-component-type="PF4/Button"
+              data-ouia-safe="true"
+              type="button"
+            >
+              Create activation key
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        Activation Keys Table
+      </div>
+    </section>
   </section>
 </div>
 `;
