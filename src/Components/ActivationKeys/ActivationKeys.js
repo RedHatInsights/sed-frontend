@@ -25,6 +25,9 @@ const ActivationKeys = () => {
   const handleModalToggle = () => {
     setisOpen(!isOpen);
   };
+  const canWriteActivaionKeys = () => {
+    return !user.rbacPermissions.canWriteActivationKeys;
+  };
   const Page = () => {
     return (
       <React.Fragment>
@@ -39,7 +42,11 @@ const ActivationKeys = () => {
         <Main>
           <PageSection variant={PageSectionVariants.light}>
             <ActionGroup>
-              <Button variant="primary" onClick={handleModalToggle}>
+              <Button
+                variant="primary"
+                onClick={handleModalToggle}
+                isDisabled={canWriteActivaionKeys()}
+              >
                 Create activation key
               </Button>
             </ActionGroup>

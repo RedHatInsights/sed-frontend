@@ -82,3 +82,71 @@ exports[`ActivationKeys when the user does not have proper permissions redirects
   </div>
 </div>
 `;
+
+exports[`ActivationKeys when the user have only read permissions create activation key button is disabled 1`] = `
+<div>
+  <section
+    class="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
+    widget-type="InsightsPageHeader"
+  >
+    <h1
+      class="pf-c-title pf-m-2xl"
+      data-ouia-component-id="OUIA-Generated-Title-2"
+      data-ouia-component-type="PF4/Title"
+      data-ouia-safe="true"
+      widget-type="InsightsPageHeaderTitle"
+    >
+      Activation Keys
+    </h1>
+    <div
+      class="pf-c-content"
+    >
+      <p
+        class=""
+        data-ouia-component-id="OUIA-Generated-Text-2"
+        data-ouia-component-type="PF4/Text"
+        data-ouia-safe="true"
+        data-pf-content="true"
+      >
+        Organization ID: 
+        123
+      </p>
+    </div>
+  </section>
+  <section
+    class="pf-l-page__main-section pf-c-page__main-section"
+    page-type=""
+  >
+    <section
+      class="pf-c-page__main-section pf-m-light"
+    >
+      <div
+        class="pf-c-form__group pf-m-action"
+      >
+        <div
+          class="pf-c-form__group-control"
+        >
+          <div
+            class="pf-c-form__actions"
+          >
+            <button
+              aria-disabled="true"
+              class="pf-c-button pf-m-primary pf-m-disabled"
+              data-ouia-component-id="OUIA-Generated-Button-primary-2"
+              data-ouia-component-type="PF4/Button"
+              data-ouia-safe="true"
+              disabled=""
+              type="button"
+            >
+              Create activation key
+            </button>
+          </div>
+        </div>
+      </div>
+      <div>
+        Activation Keys Table
+      </div>
+    </section>
+  </section>
+</div>
+`;

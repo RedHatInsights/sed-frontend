@@ -89,6 +89,7 @@ const CreateActivationKeyForm = (props) => {
           type="text"
           validated={validated}
           onChange={validateName}
+          name="name"
         />
       </FormGroup>
       {!isLoading && !error && (
@@ -96,6 +97,8 @@ const CreateActivationKeyForm = (props) => {
           data={data.roles}
           onSelect={setRole}
           label="Role"
+          name="role"
+          placeholderValue="Select role"
           popover={
             <Popover
               bodyContent={
@@ -125,6 +128,8 @@ const CreateActivationKeyForm = (props) => {
           data={data.serviceLevel}
           onSelect={setServiceLevel}
           label="Service Level Agreement (SLA)"
+          name="serviceLevel"
+          placeholderValue="Select a service level agreement"
           popover={
             <Popover
               bodyContent={
@@ -147,6 +152,8 @@ const CreateActivationKeyForm = (props) => {
           data={data.usage}
           onSelect={setUsage}
           label="Usage"
+          name="usage"
+          placeholderValue="Select usage"
           popover={
             <Popover
               bodyContent={
