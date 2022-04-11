@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, screen } from '@testing-library/react';
 import ActivationKeys from '../index';
 import { Provider } from 'react-redux';
 import Authentication from '../../../Components/Authentication';
@@ -8,7 +8,7 @@ import { init } from '../../../store';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import useUser from '../../../hooks/useUser';
 import { get, def } from 'bdd-lazy-var';
-
+import '@testing-library/jest-dom';
 jest.mock('../../../hooks/useUser');
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -66,7 +66,7 @@ describe('ActivationKeys', () => {
   def('isLoading', () => false);
   def('isError', () => false);
   def('rbacPermissions', () => {
-    return { canReadActivationKeys: true };
+    return { canReadActivationKeys: true, canWriteActivationKeys: true };
   });
   beforeEach(() => {
     window.insights = {};
@@ -102,6 +102,19 @@ describe('ActivationKeys', () => {
     it('redirects to not authorized page', async () => {
       const { container } = render(<PageContainer />);
       await waitFor(() => expect(useUser).toHaveBeenCalledTimes(1));
+      expect(container).toMatchSnapshot();
+    });
+  });
+
+  describe('when the user have only read permissions', () => {
+    def('rbacPermissions', () => {
+      return { canReadActivationKeys: true, canWriteActivationKeys: false };
+    });
+
+    it('create activation key button is disabled', async () => {
+      const { container } = render(<PageContainer />);
+      await waitFor(() => expect(useUser).toHaveBeenCalledTimes(1));
+      expect(screen.getByText('Create activation key')).toBeDisabled();
       expect(container).toMatchSnapshot();
     });
   });

@@ -108,6 +108,7 @@ exports[`Create Activation Key Modal renders correctly 1`] = `
                     data-ouia-safe="true"
                     id="activation-key-name"
                     label="Name"
+                    name="name"
                     required=""
                     type="text"
                     value=""

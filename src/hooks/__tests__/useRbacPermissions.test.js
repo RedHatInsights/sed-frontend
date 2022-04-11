@@ -14,7 +14,10 @@ describe('useRbacPermissions', () => {
     },
   ];
 
-  let rbacObject = { canReadActivationKeys: true };
+  let rbacObject = {
+    canReadActivationKeys: true,
+    canWriteActivationKeys: true,
+  };
 
   beforeEach(() => {
     Object.defineProperty(window, 'insights', {
