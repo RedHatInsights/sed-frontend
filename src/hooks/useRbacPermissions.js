@@ -11,6 +11,9 @@ const getUserRbacPermissions = async () => {
       canReadActivationKeys:
         permissions.includes('config-manager:activation_keys:read') ||
         permissions.includes('config-manager:activation_keys:*'),
+      canWriteActivationKeys:
+        permissions.includes('config-manager:activation_keys:write') ||
+        permissions.includes('config-manager:activation_keys:*'),
     };
 
     return rbacPermissions;

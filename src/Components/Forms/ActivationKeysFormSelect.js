@@ -1,41 +1,42 @@
 import React, { useState } from 'react';
 import {
   FormGroup,
-  Select,
-  SelectVariant,
-  SelectOption,
+  FormSelect,
+  FormSelectOption,
 } from '@patternfly/react-core';
 
 import PropTypes from 'prop-types';
 
 const ActivationKeysFormSelect = (props) => {
-  const { label, popover, data, onSelect, helperText } = props;
-  const [isOpen, setOpen] = useState(false);
+  const {
+    label,
+    popover,
+    data,
+    onSelect,
+    helperText,
+    name,
+    placeholderValue,
+  } = props;
   const [selected, setSelected] = useState('');
-  const handleToggle = () => {
-    setOpen(!isOpen);
-  };
   const options = data.map((role) => {
-    return <SelectOption key={role} value={role} label={role} />;
+    return <FormSelectOption key={role} value={role} label={role} />;
   });
-  const valueChange = (_, selection) => {
-    setSelected(selection);
-    setOpen(!isOpen);
-    onSelect(selection);
+  const valueChange = (value) => {
+    setSelected(value);
+    onSelect(value);
   };
 
   return (
     <FormGroup label={label} labelIcon={popover} helperText={helperText}>
-      <Select
-        variant={SelectVariant.single}
-        placeholderText="Select an option"
-        isOpen={isOpen}
-        onSelect={valueChange}
-        onToggle={handleToggle}
-        selections={selected}
+      <FormSelect
+        onChange={valueChange}
+        value={selected}
+        name={name}
+        aria-label={placeholderValue}
       >
+        <FormSelectOption label={placeholderValue} isPlaceholder={true} />
         {options}
-      </Select>
+      </FormSelect>
     </FormGroup>
   );
 };
@@ -46,6 +47,8 @@ ActivationKeysFormSelect.propTypes = {
   helperText: PropTypes.string,
   data: PropTypes.array.isRequired,
   onSelect: PropTypes.func.isRequired,
+  name: PropTypes.string,
+  placeholderValue: PropTypes.string,
 };
 
 export default ActivationKeysFormSelect;
