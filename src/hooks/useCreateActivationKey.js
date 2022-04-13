@@ -1,4 +1,4 @@
-import { useMutation, useQueryClient } from 'react-query';
+import { useMutation } from 'react-query';
 
 const activationKeyMutation = async (data) => {
   const { name, role, serviceLevel, usage } = data;
@@ -25,12 +25,7 @@ const activationKeyMutation = async (data) => {
 };
 
 const useCreateActivationKey = () => {
-  const queryClient = useQueryClient();
-  return useMutation(activationKeyMutation, {
-    onSuccess: () => {
-      queryClient.resetQueries('activation_keys');
-    },
-  });
+  return useMutation(activationKeyMutation);
 };
 
 export { useCreateActivationKey as default };
