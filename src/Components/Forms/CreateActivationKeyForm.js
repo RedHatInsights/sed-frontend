@@ -13,13 +13,12 @@ import {
 import HelpIcon from '@patternfly/react-icons/dist/js/icons/help-icon';
 import useSystemPuproseAttributes from '../../hooks/useSystemPuproseAttributes';
 import ActivationKeysFormSelect from './ActivationKeysFormSelect';
-import { useDispatch } from 'react-redux';
-import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import PropTypes from 'prop-types';
+import useNotifications from '../../hooks/useNotifications';
 
 const CreateActivationKeyForm = (props) => {
   const { handleModalToggle, submitForm, isSuccess, isError } = props;
-  const dispatch = useDispatch();
+  const { addSuccessNotification, addErrorNotification } = useNotifications();
   const { isLoading, error, data } = useSystemPuproseAttributes();
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
@@ -53,25 +52,14 @@ const CreateActivationKeyForm = (props) => {
   };
 
   if (isSuccess) {
-    dispatch(
-      addNotification({
-        variant: 'success',
-        title: ' Activation Key was created successfully',
-        description: '',
-        dismissable: true,
-      })
-    );
+    addSuccessNotification('Activation Key was created successfully', {
+      timeout: false,
+    });
     handleModalToggle();
   } else if (isError) {
-    dispatch(
-      addNotification({
-        variant: 'danger',
-        title: 'An Error Occurred',
-        description: 'Activation Key was not created, please try again',
-        dismissable: true,
-        autoDismiss: false,
-      })
-    );
+    addErrorNotification('Activation Key was not created, please try again', {
+      timeout: 8000,
+    });
     handleModalToggle();
   }
 
