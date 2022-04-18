@@ -5,6 +5,8 @@ import NotificationsPortal from '@redhat-cloud-services/frontend-components-noti
 import { notificationsReducer } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import { RegistryContext } from './store';
 import { useHistory } from 'react-router-dom';
+import NotificationProvider from './contexts/NotificationProvider';
+import Notifications from './Components/Notifications';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -54,7 +56,10 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <NotificationsPortal />
-      <Routes />
+      <NotificationProvider>
+        <Notifications />
+        <Routes />
+      </NotificationProvider>
     </QueryClientProvider>
   );
 };
