@@ -48,7 +48,7 @@ const Services = ({
   const [madeChanges, setMadeChanges] = useState(false);
 
   const { hasAccess, isLoading } = usePermissions(
-    'config-manager',
+    '',
     [
       'config-manager:activation_keys:*',
       'config-manager:state:read',
@@ -57,7 +57,8 @@ const Services = ({
       'inventory:*:read',
       'playbook-dispatcher:run:read',
     ],
-    false
+    false,
+    true
   );
 
   const cancelEditing = () => {
