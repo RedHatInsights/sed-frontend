@@ -137,4 +137,13 @@ describe('ActivationKeys', () => {
       expect(container).toMatchSnapshot();
     });
   });
+
+  describe('show blank state when no activation keys', () => {
+    def('keysData', () => []);
+
+    it('renders blank state', async () => {
+      const { container } = render(<PageContainer />);
+      expect(container).toMatchSnapshot();
+    });
+  });
 });
