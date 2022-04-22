@@ -16,11 +16,11 @@ import {
 import ActivationKeysTable from '../ActivationKeysTable';
 import { useQueryClient } from 'react-query';
 import NoAccessView from './no-access';
-import BlankState from './blank-state';
+import NoActivationKeysFound from '../EmptyState';
 import CreateActivationKeyModal from '../Modals/CreateActivationKeyModal';
 import useActivationKeys from '../../hooks/useActivationKeys';
 import Loading from '../LoadingState/Loading';
-import CreateActivationKeyButton from './createActivationKeyButton';
+import CreateActivationKeyButton from './CreateActivationKeyButton';
 const ActivationKeys = () => {
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData('user');
@@ -33,7 +33,9 @@ const ActivationKeys = () => {
   if (isLoading) {
     pageContent = <Loading />;
   } else if (!isLoading && !error && !data.length) {
-    pageContent = <BlankState handleModalToggle={handleModalToggle} />;
+    pageContent = (
+      <NoActivationKeysFound handleModalToggle={handleModalToggle} />
+    );
   } else if (!isLoading && !error && data.length) {
     pageContent = (
       <>
