@@ -7,9 +7,9 @@ import {
 } from '@patternfly/react-core';
 import PropTypes from 'prop-types';
 import { AddCircleOIcon } from '@patternfly/react-icons';
-import CreateActivationKeyButton from './createActivationKeyButton';
+import CreateActivationKeyButton from '../ActivationKeys/CreateActivationKeyButton';
 
-const BlankState = (props) => {
+const NoActivationKeysFound = (props) => {
   const { handleModalToggle } = props;
   return (
     <>
@@ -29,8 +29,8 @@ const BlankState = (props) => {
   );
 };
 
-BlankState.propTypes = {
+NoActivationKeysFound.propTypes = {
   handleModalToggle: PropTypes.func.isRequired,
 };
 
-export default BlankState;
+export default NoActivationKeysFound;
