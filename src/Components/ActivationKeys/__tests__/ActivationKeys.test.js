@@ -131,10 +131,9 @@ describe('ActivationKeys', () => {
     });
 
     it('create activation key button is disabled', async () => {
-      const { container } = render(<PageContainer />);
+      render(<PageContainer />);
       await waitFor(() => expect(useUser).toHaveBeenCalledTimes(1));
       expect(screen.getByText('Create activation key')).toBeDisabled();
-      expect(container).toMatchSnapshot();
     });
   });
 
@@ -142,8 +141,8 @@ describe('ActivationKeys', () => {
     def('keysData', () => []);
 
     it('renders blank state', async () => {
-      const { container } = render(<PageContainer />);
-      expect(container).toMatchSnapshot();
+      render(<PageContainer />);
+      expect(screen.getByText('No activation keys')).toBeInTheDocument();
     });
   });
 });

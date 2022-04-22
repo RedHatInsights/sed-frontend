@@ -20,7 +20,7 @@ const NoActivationKeysFound = (props) => {
         </Title>
         <EmptyStateBody>
           You currently have no activation keys to display. Activation keys
-          allow you to register a system with system purpuse, role and usage
+          allow you to register a system with system purpose, role and usage
           attached.
         </EmptyStateBody>
         <CreateActivationKeyButton onClick={handleModalToggle} />
