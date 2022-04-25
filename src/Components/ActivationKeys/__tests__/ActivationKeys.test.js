@@ -8,7 +8,9 @@ import { init } from '../../../store';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import useUser from '../../../hooks/useUser';
 import { get, def } from 'bdd-lazy-var';
+import useActivationKeys from '../../../hooks/useActivationKeys';
 import '@testing-library/jest-dom';
+jest.mock('../../../hooks/useActivationKeys');
 jest.mock('../../../hooks/useUser');
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -49,6 +51,7 @@ const mockAuthenticateUser = (isLoading, isError, rbacPermissions) => {
     queryClient.setQueryData('user', user);
   }
 };
+
 // eslint-disable-next-line react/display-name
 jest.mock('../../../Components/ActivationKeysTable', () => () => (
   <div>Activation Keys Table</div>
@@ -68,6 +71,15 @@ describe('ActivationKeys', () => {
   def('rbacPermissions', () => {
     return { canReadActivationKeys: true, canWriteActivationKeys: true };
   });
+  def('keysData', () => [
+    {
+      name: 'A',
+      role: 'B',
+      serviceLevel: 'C',
+      usage: 'D',
+    },
+  ]);
+
   beforeEach(() => {
     window.insights = {};
     jest.resetAllMocks();
@@ -76,6 +88,13 @@ describe('ActivationKeys', () => {
       get('isError'),
       get('rbacPermissions')
     );
+    useActivationKeys.mockReturnValue({
+      isLoading: false,
+      isFetching: false,
+      isError: false,
+      isSuccess: true,
+      data: get('keysData'),
+    });
   });
 
   it('renders correctly', async () => {
@@ -112,10 +131,18 @@ describe('ActivationKeys', () => {
     });
 
     it('create activation key button is disabled', async () => {
-      const { container } = render(<PageContainer />);
+      render(<PageContainer />);
       await waitFor(() => expect(useUser).toHaveBeenCalledTimes(1));
       expect(screen.getByText('Create activation key')).toBeDisabled();
-      expect(container).toMatchSnapshot();
+    });
+  });
+
+  describe('show blank state when no activation keys', () => {
+    def('keysData', () => []);
+
+    it('renders blank state', async () => {
+      render(<PageContainer />);
+      expect(screen.getByText('No activation keys')).toBeInTheDocument();
     });
   });
 });
