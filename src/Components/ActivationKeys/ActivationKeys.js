@@ -21,13 +21,28 @@ import CreateActivationKeyModal from '../Modals/CreateActivationKeyModal';
 import useActivationKeys from '../../hooks/useActivationKeys';
 import Loading from '../LoadingState/Loading';
 import CreateActivationKeyButton from './CreateActivationKeyButton';
+import DeleteActivationKeyConfirmationModal from '../Modals/DeleteActivationKeyConfirmationModal';
 const ActivationKeys = () => {
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData('user');
   const { isLoading, error, data } = useActivationKeys();
   const [isOpen, setisOpen] = useState(false);
+  const [currentKeyName, setCurrentKeyName] = useState('');
+  const [
+    isDeleteActivationKeyModalOpen,
+    setIsDeleteActivationKeyModalOpen,
+  ] = useState(false);
   const handleModalToggle = () => {
     setisOpen(!isOpen);
+  };
+
+  const actions = (activationKeyName) => {
+    return [
+      {
+        title: 'Delete',
+        onClick: () => handleDeleteActivationKeyModalToggle(activationKeyName),
+      },
+    ];
   };
   let pageContent;
   if (isLoading) {
@@ -42,10 +57,15 @@ const ActivationKeys = () => {
         <ActionGroup>
           <CreateActivationKeyButton onClick={handleModalToggle} />
         </ActionGroup>
-        <ActivationKeysTable />
+        <ActivationKeysTable actions={actions} />
       </>
     );
   }
+  const handleDeleteActivationKeyModalToggle = (name) => {
+    setCurrentKeyName(name);
+    setIsDeleteActivationKeyModalOpen(!isDeleteActivationKeyModalOpen);
+  };
+
   const Page = () => {
     return (
       <React.Fragment>
@@ -65,6 +85,11 @@ const ActivationKeys = () => {
         <CreateActivationKeyModal
           isOpen={isOpen}
           handleModalToggle={handleModalToggle}
+        />
+        <DeleteActivationKeyConfirmationModal
+          handleModalToggle={handleDeleteActivationKeyModalToggle}
+          isOpen={isDeleteActivationKeyModalOpen}
+          name={currentKeyName}
         />
       </React.Fragment>
     );

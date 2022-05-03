@@ -6,12 +6,16 @@ import {
   Th,
   Tbody,
   Td,
+  ActionsColumn,
 } from '@patternfly/react-table';
 import useActivationKeys from '../../hooks/useActivationKeys';
 import Loading from '../LoadingState/Loading';
 import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable';
+import propTypes from 'prop-types';
+import { useQueryClient } from 'react-query';
 
-const ActivationKeysTable = () => {
+const ActivationKeysTable = (props) => {
+  const { actions } = props;
   const columnNames = {
     name: 'Key Name',
     role: 'Role',
@@ -19,6 +23,11 @@ const ActivationKeysTable = () => {
     usage: 'Usage',
   };
   const { isLoading, error, data } = useActivationKeys();
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData('user');
+  const isActionsDisabled = () => {
+    return !user.rbacPermissions.canWriteActivationKeys;
+  };
 
   const Results = () => {
     return (
@@ -29,17 +38,29 @@ const ActivationKeysTable = () => {
             <Th>{columnNames.role}</Th>
             <Th>{columnNames.serviceLevel}</Th>
             <Th>{columnNames.usage}</Th>
+            <Td></Td>
           </Tr>
         </Thead>
         <Tbody>
-          {data.map((datum) => (
-            <Tr key={datum.name} ouiaSafe={true}>
-              <Td dataLabel={columnNames.name}>{datum.name}</Td>
-              <Td dataLabel={columnNames.role}>{datum.role}</Td>
-              <Td dataLabel={columnNames.serviceLevel}>{datum.serviceLevel}</Td>
-              <Td dataLabel={columnNames.usage}>{datum.usage}</Td>
-            </Tr>
-          ))}
+          {data.map((datum) => {
+            let rowActions = actions(datum.name);
+            return (
+              <Tr key={datum.name} ouiaSafe={true}>
+                <Td dataLabel={columnNames.name}>{datum.name}</Td>
+                <Td dataLabel={columnNames.role}>{datum.role}</Td>
+                <Td dataLabel={columnNames.serviceLevel}>
+                  {datum.serviceLevel}
+                </Td>
+                <Td dataLabel={columnNames.usage}>{datum.usage}</Td>
+                <Td isActionCell>
+                  <ActionsColumn
+                    items={rowActions}
+                    isDisabled={isActionsDisabled()}
+                  />
+                </Td>
+              </Tr>
+            );
+          })}
         </Tbody>
       </TableComposable>
     );
@@ -52,6 +73,10 @@ const ActivationKeysTable = () => {
   } else {
     return <Unavailable />;
   }
+};
+
+ActivationKeysTable.propTypes = {
+  actions: propTypes.func,
 };
 
 export default ActivationKeysTable;
