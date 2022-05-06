@@ -22,8 +22,10 @@ const DeleteActivationKeyConfirmationModal = (props) => {
 
   const deleteActivationKey = (name) => {
     mutate(name, {
-      onSuccess: (data, name) => {
-        queryClient.resetQueries('activation_keys');
+      onSuccess: (_data, name) => {
+        queryClient.setQueryData('activation_keys', (oldData) =>
+          oldData.filter((entry) => entry.name != name)
+        );
         addSuccessNotification(`Activation Key ${name} deleted`);
         handleModalToggle();
       },
