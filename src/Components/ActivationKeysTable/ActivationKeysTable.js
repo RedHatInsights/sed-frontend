@@ -13,6 +13,7 @@ import Loading from '../LoadingState/Loading';
 import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable';
 import propTypes from 'prop-types';
 import { useQueryClient } from 'react-query';
+import { KebabToggle } from '@patternfly/react-core';
 
 const ActivationKeysTable = (props) => {
   const { actions } = props;
@@ -28,6 +29,16 @@ const ActivationKeysTable = (props) => {
   const isActionsDisabled = () => {
     return !user.rbacPermissions.canWriteActivationKeys;
   };
+
+  const customActionsToggle = (props) => (
+    <KebabToggle
+      onToggle={props.onToggle}
+      isDisabled={props.isDisabled}
+      className={props.isDisabled ? 'pf-m-disabled' : ''}
+    >
+      Actions
+    </KebabToggle>
+  );
 
   const Results = () => {
     return (
@@ -56,6 +67,7 @@ const ActivationKeysTable = (props) => {
                   <ActionsColumn
                     items={rowActions}
                     isDisabled={isActionsDisabled()}
+                    actionsToggle={customActionsToggle}
                   />
                 </Td>
               </Tr>
