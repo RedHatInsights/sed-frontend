@@ -24,6 +24,6 @@ describe('Delete Activation Key Confirmation Modal', () => {
       </Provider>
     );
     expect(screen.getByText(activationKeyName)).toBeInTheDocument();
-    expect(screen.getByText('Delete Activtivation Key?')).toBeInTheDocument();
+    expect(screen.getByText('Delete Activation Key?')).toBeInTheDocument();
   });
 });
