@@ -55,7 +55,7 @@ const DeleteActivationKeyConfirmationModal = (props) => {
       <TextContent>
         <Text component={TextVariants.h2}>
           <ExclamationTriangleIcon size="md" color="#F0AB00" /> Delete
-          Activtivation Key?
+          Activation Key?
         </Text>
       </TextContent>
     </>
