@@ -58,8 +58,30 @@ describe('Create Activation Key Form', () => {
     const nameInput = container.querySelector('#activation-key-name');
     fireEvent.change(nameInput, { target: { value: '!123' } });
     expect(nameInput.getAttribute('aria-invalid')).toBe('true');
-    fireEvent.change(nameInput, { target: { value: 'abc-123' } });
+    fireEvent.change(nameInput, { target: { value: '123Abc#' } });
+    expect(nameInput.getAttribute('aria-invalid')).toBe('true');
+    fireEvent.change(nameInput, { target: { value: '-Abc_123' } });
     expect(nameInput.getAttribute('aria-invalid')).toBe('false');
+  });
+
+  it('validates name length', () => {
+    const props = { ...CreateActivationKeyFormProps };
+    const { container } = render(
+      <Provider store={registry.getStore()}>
+        <QueryClientProvider client={queryClient}>
+          <CreateActivationKeyForm {...props} />
+        </QueryClientProvider>
+      </Provider>
+    );
+    const validLength = Array(257).join('a');
+    const invalidLength = Array(258).join('b');
+    const nameInput = container.querySelector('#activation-key-name');
+    fireEvent.change(nameInput, { target: { value: invalidLength } });
+    expect(nameInput.getAttribute('aria-invalid')).toBe('true');
+    fireEvent.change(nameInput, { target: { value: validLength } });
+    expect(nameInput.getAttribute('aria-invalid')).toBe('false');
+    fireEvent.change(nameInput, { target: { value: '' } });
+    expect(nameInput.getAttribute('aria-invalid')).toBe('true');
   });
 
   it('calls submitForm if form is valid', () => {
