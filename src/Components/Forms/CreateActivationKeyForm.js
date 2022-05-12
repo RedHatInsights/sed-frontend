@@ -25,7 +25,10 @@ const CreateActivationKeyForm = (props) => {
   const [serviceLevel, setServiceLevel] = useState('');
   const [usage, setUsage] = useState('');
   const [validated, setValidated] = useState('default');
-  const nameRegex = '^[a-z][a-z0-9-]*$';
+  const nameRegex = '^[a-zA-Z0-9-_]*$';
+
+  const validationText =
+    'Provide a name to be used when registering the activation key. Your activation key name must be unique, may contain only numbers, letters, underscores, and hyphens, and less than 257 characters.';
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -37,7 +40,7 @@ const CreateActivationKeyForm = (props) => {
   };
 
   const validateName = (value) => {
-    if (value.length === 0) {
+    if (value.length === 0 || value.length > 256) {
       setValidated('error');
     } else if (!value.match(nameRegex)) {
       setValidated('error');
@@ -65,11 +68,7 @@ const CreateActivationKeyForm = (props) => {
 
   return (
     <Form id="create-activation-key-form" onSubmit={handleSubmit}>
-      <FormGroup
-        label="Name"
-        isRequired
-        helperText="Enter the name of the activation key. Must start with a letter and end with a letter or number. Valid characters include lowercase letters from a to z, numbers from 0 to 9, and hyphens ( - )."
-      >
+      <FormGroup label="Name" isRequired helperText={validationText}>
         <TextInput
           id="activation-key-name"
           label="Name"
