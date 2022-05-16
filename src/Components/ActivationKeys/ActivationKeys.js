@@ -7,6 +7,10 @@ import {
   TextVariants,
   PageSection,
   PageSectionVariants,
+  Flex,
+  FlexItem,
+  Split,
+  SplitItem,
 } from '@patternfly/react-core';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import {
@@ -22,6 +26,7 @@ import useActivationKeys from '../../hooks/useActivationKeys';
 import Loading from '../LoadingState/Loading';
 import CreateActivationKeyButton from './CreateActivationKeyButton';
 import DeleteActivationKeyConfirmationModal from '../Modals/DeleteActivationKeyConfirmationModal';
+import ActivationKeysDocsPopover from '../ActivationKeysDocsPopover';
 const ActivationKeys = () => {
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData('user');
@@ -70,7 +75,18 @@ const ActivationKeys = () => {
     return (
       <React.Fragment>
         <PageHeader>
-          <PageHeaderTitle title="Activation Keys" />
+          <Split hasGutter className="page-title">
+            <SplitItem isFilled>
+              <Flex>
+                <FlexItem spacer={{ default: 'spacerSm' }}>
+                  <PageHeaderTitle title="Activation Keys" />
+                </FlexItem>
+                <FlexItem>
+                  <ActivationKeysDocsPopover orgId={user.orgId} />
+                </FlexItem>
+              </Flex>
+            </SplitItem>
+          </Split>
           <TextContent>
             <Text component={TextVariants.p}>
               Organization ID: {user.orgId}
