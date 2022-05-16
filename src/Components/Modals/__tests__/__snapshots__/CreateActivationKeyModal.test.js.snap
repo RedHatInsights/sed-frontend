@@ -118,7 +118,7 @@ exports[`Create Activation Key Modal renders correctly 1`] = `
                     class="pf-c-form__helper-text"
                     id="undefined-helper"
                   >
-                    Provide a name to be used when registering the activation key. Your activation key name must be unique, may contain only numbers, letters, underscores, and hyphens, and less than 257 characters.
+                    Provide a name to be used when registering the activation key. Your activation key name must be unique, may contain only numbers, letters, underscores, and hyphens, and less than 256 characters.
                   </div>
                 </div>
               </div>

@@ -73,8 +73,8 @@ describe('Create Activation Key Form', () => {
         </QueryClientProvider>
       </Provider>
     );
-    const validLength = Array(257).join('a');
-    const invalidLength = Array(258).join('b');
+    const validLength = Array(256).join('a');
+    const invalidLength = Array(257).join('b');
     const nameInput = container.querySelector('#activation-key-name');
     fireEvent.change(nameInput, { target: { value: invalidLength } });
     expect(nameInput.getAttribute('aria-invalid')).toBe('true');
