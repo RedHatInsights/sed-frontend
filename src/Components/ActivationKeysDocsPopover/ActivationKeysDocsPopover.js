@@ -14,7 +14,7 @@ const ActivationKeysDocsPopover = (props) => {
   return (
     <Popover
       headerContent="Activation Keys"
-      position={PopoverPosition.rightEnd}
+      position={PopoverPosition.rightStart}
       bodyContent={
         <TextContent>
           <Text>
@@ -27,7 +27,7 @@ const ActivationKeysDocsPopover = (props) => {
               href={'https://console.redhat.com/insights/subscriptions/rhel'}
             >
               {' '}
-              Subscription Watch
+              Subscription Watch.
             </a>
           </Text>
           <Text>
