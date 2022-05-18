@@ -21,7 +21,7 @@ const getSystemPurposeAttributes = async () => {
 };
 
 const useSystemPurposeAttributes = () => {
-  return useQuery('organization_system_puprose_attributes', () =>
+  return useQuery('organization_system_purpose_attributes', () =>
     getSystemPurposeAttributes()
   );
 };
