@@ -1,6 +1,6 @@
 import React from 'react';
 import CreateActivationKeyForm from '../CreateActivationKeyForm';
-import useSystemPuproseAttributes from '../../../hooks/useSystemPuproseAttributes';
+import useSystemPurposeAttributes from '../../../hooks/useSystemPurposeAttributes';
 import { Provider } from 'react-redux';
 import { init } from '../../../store';
 import { QueryClient, QueryClientProvider } from 'react-query';
@@ -21,10 +21,10 @@ const CreateActivationKeyFormProps = {
 const registry = init();
 const props = { ...CreateActivationKeyFormProps };
 
-jest.mock('../../../hooks/useSystemPuproseAttributes');
+jest.mock('../../../hooks/useSystemPurposeAttributes');
 describe('Create Activation Key Form', () => {
   beforeEach(() => {
-    useSystemPuproseAttributes.mockReturnValue({
+    useSystemPurposeAttributes.mockReturnValue({
       isLoading: false,
       error: false,
       data: {

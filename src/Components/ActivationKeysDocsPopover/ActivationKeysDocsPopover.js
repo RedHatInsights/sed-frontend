@@ -19,7 +19,7 @@ const ActivationKeysDocsPopover = (props) => {
         <TextContent>
           <Text>
             Activation keys assist you in registering systems. Metadata such as
-            role, system puprose, and usage can be automatically attached to
+            role, system purpose, and usage can be automatically attached to
             systems via an activation key, and monitored with
             <a
               target="_blank"

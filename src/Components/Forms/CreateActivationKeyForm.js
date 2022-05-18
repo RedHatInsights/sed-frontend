@@ -11,7 +11,7 @@ import {
   TextVariants,
 } from '@patternfly/react-core';
 import HelpIcon from '@patternfly/react-icons/dist/js/icons/help-icon';
-import useSystemPuproseAttributes from '../../hooks/useSystemPuproseAttributes';
+import useSystemPurposeAttributes from '../../hooks/useSystemPurposeAttributes';
 import ActivationKeysFormSelect from './ActivationKeysFormSelect';
 import PropTypes from 'prop-types';
 import useNotifications from '../../hooks/useNotifications';
@@ -19,7 +19,7 @@ import useNotifications from '../../hooks/useNotifications';
 const CreateActivationKeyForm = (props) => {
   const { handleModalToggle, submitForm, isSuccess, isError } = props;
   const { addSuccessNotification, addErrorNotification } = useNotifications();
-  const { isLoading, error, data } = useSystemPuproseAttributes();
+  const { isLoading, error, data } = useSystemPurposeAttributes();
   const [name, setName] = useState('');
   const [role, setRole] = useState('');
   const [serviceLevel, setServiceLevel] = useState('');
