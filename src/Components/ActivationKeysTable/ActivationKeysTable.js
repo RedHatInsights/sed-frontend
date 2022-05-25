@@ -45,7 +45,7 @@ const ActivationKeysTable = (props) => {
       <TableComposable aria-label="ActivationKeys">
         <Thead>
           <Tr ouiaSafe={true}>
-            <Th>{columnNames.name}</Th>
+            <Th width={40}>{columnNames.name}</Th>
             <Th>{columnNames.role}</Th>
             <Th>{columnNames.serviceLevel}</Th>
             <Th>{columnNames.usage}</Th>
@@ -57,7 +57,9 @@ const ActivationKeysTable = (props) => {
             let rowActions = actions(datum.name);
             return (
               <Tr key={datum.name} ouiaSafe={true}>
-                <Td dataLabel={columnNames.name}>{datum.name}</Td>
+                <Td modifier="breakWord" dataLabel={columnNames.name}>
+                  {datum.name}
+                </Td>
                 <Td dataLabel={columnNames.role}>{datum.role}</Td>
                 <Td dataLabel={columnNames.serviceLevel}>
                   {datum.serviceLevel}
