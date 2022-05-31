@@ -9,6 +9,7 @@ import {
   Toolbar,
   ToolbarItem,
   ToolbarContent,
+  Tooltip,
   FlexItem,
   Flex,
 } from '@patternfly/react-core';
@@ -29,6 +30,17 @@ import {
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 import { permissions } from './permissionsConfig';
+
+const changeSettingsButton = (isLoading, hasAccess, setIsEditing) => (
+  <Button
+    ouiaId="secondary-edit-button"
+    onClick={() => setIsEditing(true)}
+    variant="secondary"
+    isAriaDisabled={isLoading || !hasAccess}
+  >
+    Change settings
+  </Button>
+);
 
 const Services = ({
   defaults,
@@ -109,14 +121,22 @@ const Services = ({
           <ToolbarContent>
             {!isEditing && (
               <ToolbarItem>
-                <Button
-                  ouiaId="secondary-edit-button"
-                  onClick={() => setIsEditing(true)}
-                  variant="secondary"
-                  isDisabled={isLoading || !hasAccess}
-                >
-                  Change settings
-                </Button>
+                {!hasAccess ? (
+                  <Tooltip
+                    content={
+                      <div>
+                        To perform this action, you must be granted the
+                        &quot;System Administrator&quot; role by your
+                        Organization Administrator in your Setting&apos;s User
+                        Access area.
+                      </div>
+                    }
+                  >
+                    {changeSettingsButton(isLoading, hasAccess, setIsEditing)}
+                  </Tooltip>
+                ) : (
+                  changeSettingsButton(isLoading, hasAccess, setIsEditing)
+                )}
               </ToolbarItem>
             )}
             {isEditing && (
