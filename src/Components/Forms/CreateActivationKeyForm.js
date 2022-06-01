@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   ActionGroup,
   Button,
@@ -17,7 +17,8 @@ import PropTypes from 'prop-types';
 import useNotifications from '../../hooks/useNotifications';
 
 const CreateActivationKeyForm = (props) => {
-  const { handleModalToggle, submitForm, isSuccess, isError } = props;
+  const { handleModalToggle, submitForm, isSuccess, isError, activationKey } =
+    props;
   const { addSuccessNotification, addErrorNotification } = useNotifications();
   const { isLoading, error, data } = useSystemPurposeAttributes();
   const [name, setName] = useState('');
@@ -26,13 +27,12 @@ const CreateActivationKeyForm = (props) => {
   const [usage, setUsage] = useState('');
   const [validated, setValidated] = useState('default');
   const nameRegex = '^[a-zA-Z0-9-_]*$';
-
   const validationText =
     'Provide a name to be used when registering the activation key. Your activation key name must be unique, may contain only numbers, letters, underscores, and hyphens, and less than 256 characters.';
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    if (validated === 'success') {
+    if (validated === 'success' || activationKey) {
       submitForm(name, role, serviceLevel, usage);
     } else {
       setValidated('error');
@@ -50,17 +50,41 @@ const CreateActivationKeyForm = (props) => {
     }
   };
 
+  useEffect(() => {
+    if (activationKey) {
+      setRole(activationKey.role);
+      setUsage(activationKey.usage);
+      setServiceLevel(activationKey.serviceLevel);
+    }
+  }, [activationKey]);
+
   const createButtonDisabled = () => {
-    return validated === 'error' || name.length === 0 || !name.match(nameRegex);
+    if (activationKey) {
+      return (
+        activationKey.role === role &&
+        activationKey.serviceLevel === serviceLevel &&
+        activationKey.usage === usage
+      );
+    } else {
+      return (
+        validated === 'error' || name.length === 0 || !name.match(nameRegex)
+      );
+    }
   };
 
   if (isSuccess) {
-    addSuccessNotification('Activation Key was created successfully', {
+    const successMessage = activationKey
+      ? `Activation key ${activationKey.name} updated successfully.`
+      : 'Activation key created successfully.';
+    addSuccessNotification(successMessage, {
       timeout: false,
     });
     handleModalToggle();
   } else if (isError) {
-    addErrorNotification('Activation Key was not created, please try again', {
+    const errorMessage = activationKey
+      ? `Error updating activation key ${activationKey.name}.`
+      : 'Activation Key was not created, please try again.';
+    addErrorNotification(errorMessage, {
       timeout: 8000,
     });
     handleModalToggle();
@@ -68,20 +92,29 @@ const CreateActivationKeyForm = (props) => {
 
   return (
     <Form id="create-activation-key-form" onSubmit={handleSubmit}>
-      <FormGroup label="Name" isRequired helperText={validationText}>
-        <TextInput
-          id="activation-key-name"
-          label="Name"
-          isRequired
-          type="text"
-          validated={validated}
-          onChange={validateName}
-          name="name"
-        />
-      </FormGroup>
+      {!activationKey && (
+        <FormGroup label="Name" isRequired helperText={validationText}>
+          <TextInput
+            id="activation-key-name"
+            label="Name"
+            isRequired
+            type="text"
+            validated={validated}
+            onChange={validateName}
+            name="name"
+          />
+        </FormGroup>
+      )}
+      {activationKey && (
+        <FormGroup label="Name">
+          {' '}
+          <TextContent>{activationKey.name}</TextContent>
+        </FormGroup>
+      )}
       {!isLoading && !error && (
         <ActivationKeysFormSelect
           data={data.roles}
+          value={role}
           onSelect={setRole}
           label="Role"
           name="role"
@@ -113,6 +146,7 @@ const CreateActivationKeyForm = (props) => {
       {!isLoading && !error && (
         <ActivationKeysFormSelect
           data={data.serviceLevel}
+          value={serviceLevel}
           onSelect={setServiceLevel}
           label="Service Level Agreement (SLA)"
           name="serviceLevel"
@@ -137,6 +171,7 @@ const CreateActivationKeyForm = (props) => {
       {!isLoading && !error && (
         <ActivationKeysFormSelect
           data={data.usage}
+          value={usage}
           onSelect={setUsage}
           label="Usage"
           name="usage"
@@ -169,8 +204,9 @@ const CreateActivationKeyForm = (props) => {
           variant="primary"
           type="submit"
           isDisabled={createButtonDisabled()}
+          data-testid="activation-key-submit-button"
         >
-          Save
+          {activationKey ? 'Save changes' : 'Save'}
         </Button>
 
         <Button
@@ -191,6 +227,7 @@ CreateActivationKeyForm.propTypes = {
   submitForm: PropTypes.func.isRequired,
   isSuccess: PropTypes.bool,
   isError: PropTypes.bool,
+  activationKey: PropTypes.object,
 };
 
 export default CreateActivationKeyForm;

@@ -8,8 +8,16 @@ import {
 import PropTypes from 'prop-types';
 
 const ActivationKeysFormSelect = (props) => {
-  const { label, popover, data, onSelect, helperText, name, placeholderValue } =
-    props;
+  const {
+    label,
+    popover,
+    data,
+    onSelect,
+    helperText,
+    name,
+    value,
+    placeholderValue,
+  } = props;
   const [selected, setSelected] = useState('');
   const options = data.map((role) => {
     return <FormSelectOption key={role} value={role} label={role} />;
@@ -23,7 +31,7 @@ const ActivationKeysFormSelect = (props) => {
     <FormGroup label={label} labelIcon={popover} helperText={helperText}>
       <FormSelect
         onChange={valueChange}
-        value={selected}
+        value={selected || value}
         name={name}
         aria-label={placeholderValue}
       >
@@ -42,6 +50,7 @@ ActivationKeysFormSelect.propTypes = {
   onSelect: PropTypes.func.isRequired,
   name: PropTypes.string,
   placeholderValue: PropTypes.string,
+  value: PropTypes.string,
 };
 
 export default ActivationKeysFormSelect;
