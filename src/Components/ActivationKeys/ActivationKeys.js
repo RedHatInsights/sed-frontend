@@ -33,10 +33,8 @@ const ActivationKeys = () => {
   const { isLoading, error, data } = useActivationKeys();
   const [isOpen, setisOpen] = useState(false);
   const [currentKeyName, setCurrentKeyName] = useState('');
-  const [
-    isDeleteActivationKeyModalOpen,
-    setIsDeleteActivationKeyModalOpen,
-  ] = useState(false);
+  const [isDeleteActivationKeyModalOpen, setIsDeleteActivationKeyModalOpen] =
+    useState(false);
   const handleModalToggle = () => {
     setisOpen(!isOpen);
   };

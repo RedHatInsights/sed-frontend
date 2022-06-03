@@ -8,15 +8,8 @@ import {
 import PropTypes from 'prop-types';
 
 const ActivationKeysFormSelect = (props) => {
-  const {
-    label,
-    popover,
-    data,
-    onSelect,
-    helperText,
-    name,
-    placeholderValue,
-  } = props;
+  const { label, popover, data, onSelect, helperText, name, placeholderValue } =
+    props;
   const [selected, setSelected] = useState('');
   const options = data.map((role) => {
     return <FormSelectOption key={role} value={role} label={role} />;
