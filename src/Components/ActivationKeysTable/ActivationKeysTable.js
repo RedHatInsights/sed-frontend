@@ -15,6 +15,16 @@ import propTypes from 'prop-types';
 import { useQueryClient } from 'react-query';
 import { KebabToggle } from '@patternfly/react-core';
 
+const customActionsToggle = (props) => (
+  <KebabToggle
+    onToggle={props.onToggle}
+    isDisabled={props.isDisabled}
+    className={props.isDisabled ? 'pf-m-disabled' : ''}
+  >
+    Actions
+  </KebabToggle>
+);
+
 const ActivationKeysTable = (props) => {
   const { actions } = props;
   const columnNames = {
@@ -29,16 +39,6 @@ const ActivationKeysTable = (props) => {
   const isActionsDisabled = () => {
     return !user.rbacPermissions.canWriteActivationKeys;
   };
-
-  const customActionsToggle = (props) => (
-    <KebabToggle
-      onToggle={props.onToggle}
-      isDisabled={props.isDisabled}
-      className={props.isDisabled ? 'pf-m-disabled' : ''}
-    >
-      Actions
-    </KebabToggle>
-  );
 
   const Results = () => {
     return (
@@ -91,6 +91,11 @@ const ActivationKeysTable = (props) => {
 
 ActivationKeysTable.propTypes = {
   actions: propTypes.func,
+};
+
+customActionsToggle.propTypes = {
+  onToggle: propTypes.func,
+  isDisabled: propTypes.bool,
 };
 
 export default ActivationKeysTable;

@@ -4,6 +4,7 @@ import { useLocation } from 'react-router-dom';
 import useUser from '../../hooks/useUser';
 import Loading from '../LoadingState/Loading';
 import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable';
+import propTypes from 'prop-types';
 const Authentication = ({ children }) => {
   const queryClient = useQueryClient();
   const location = useLocation();
@@ -27,6 +28,10 @@ const Authentication = ({ children }) => {
   } else if (isSuccess === true) {
     return <>{children}</>;
   }
+};
+
+Authentication.propTypes = {
+  children: propTypes.object,
 };
 
 export default Authentication;
