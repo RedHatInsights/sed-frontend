@@ -22,6 +22,7 @@ import { useQueryClient } from 'react-query';
 import NoAccessView from './no-access';
 import NoActivationKeysFound from '../EmptyState';
 import CreateActivationKeyModal from '../Modals/CreateActivationKeyModal';
+import EditActivationKeyModal from '../Modals/EditActivationKeyModal';
 import useActivationKeys from '../../hooks/useActivationKeys';
 import Loading from '../LoadingState/Loading';
 import CreateActivationKeyButton from './CreateActivationKeyButton';
@@ -33,7 +34,10 @@ const ActivationKeys = () => {
   const { isLoading, error, data } = useActivationKeys();
   const [isOpen, setisOpen] = useState(false);
   const [currentKeyName, setCurrentKeyName] = useState('');
+
   const [isDeleteActivationKeyModalOpen, setIsDeleteActivationKeyModalOpen] =
+    useState(false);
+  const [isEditActivationKeyModalOpen, setIsEditActivationKeyModalOpen] =
     useState(false);
   const handleModalToggle = () => {
     setisOpen(!isOpen);
@@ -41,6 +45,10 @@ const ActivationKeys = () => {
 
   const actions = (activationKeyName) => {
     return [
+      {
+        title: 'Edit',
+        onClick: () => handleEditActivationKeyModalToggle(activationKeyName),
+      },
       {
         title: 'Delete',
         onClick: () => handleDeleteActivationKeyModalToggle(activationKeyName),
@@ -64,9 +72,15 @@ const ActivationKeys = () => {
       </>
     );
   }
+
   const handleDeleteActivationKeyModalToggle = (name) => {
     setCurrentKeyName(name);
     setIsDeleteActivationKeyModalOpen(!isDeleteActivationKeyModalOpen);
+  };
+
+  const handleEditActivationKeyModalToggle = (name) => {
+    setCurrentKeyName(name);
+    setIsEditActivationKeyModalOpen(!isEditActivationKeyModalOpen);
   };
 
   const Page = () => {
@@ -99,6 +113,11 @@ const ActivationKeys = () => {
         <CreateActivationKeyModal
           isOpen={isOpen}
           handleModalToggle={handleModalToggle}
+        />
+        <EditActivationKeyModal
+          isOpen={isEditActivationKeyModalOpen}
+          handleModalToggle={handleEditActivationKeyModalToggle}
+          activationKeyName={currentKeyName}
         />
         <DeleteActivationKeyConfirmationModal
           handleModalToggle={handleDeleteActivationKeyModalToggle}

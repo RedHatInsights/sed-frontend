@@ -4,8 +4,8 @@ import useSystemPurposeAttributes from '../../../hooks/useSystemPurposeAttribute
 import { Provider } from 'react-redux';
 import { init } from '../../../store';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { fireEvent, render } from '@testing-library/react';
-
+import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 const queryClient = new QueryClient();
 
 const handleModalToggle = jest.fn();
@@ -84,21 +84,26 @@ describe('Create Activation Key Form', () => {
     expect(nameInput.getAttribute('aria-invalid')).toBe('true');
   });
 
-  it('calls submitForm if form is valid', () => {
-    const props = { ...CreateActivationKeyFormProps };
-
-    const { container } = render(
+  it('disables submit button when editing if no changes were made', () => {
+    const activationKey = {
+      name: 'test',
+      usage: 'test',
+      serviceLevel: 'test',
+      role: 'test',
+    };
+    const props = {
+      ...CreateActivationKeyFormProps,
+      activationKey: activationKey,
+    };
+    render(
       <Provider store={registry.getStore()}>
         <QueryClientProvider client={queryClient}>
           <CreateActivationKeyForm {...props} />
         </QueryClientProvider>
       </Provider>
     );
-    const form = container.querySelector('#create-activation-key-form');
-    const nameInput = container.querySelector('#activation-key-name');
-    fireEvent.change(nameInput, { target: { value: 'abc-123' } });
-    fireEvent.submit(form);
-    expect(submitForm).toHaveBeenCalled();
+    const submitButton = screen.getByTestId('activation-key-submit-button');
+    expect(submitButton).toBeDisabled();
   });
 
   it('calls submitForm if form is valid', () => {
