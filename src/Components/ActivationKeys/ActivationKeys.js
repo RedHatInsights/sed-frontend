@@ -46,12 +46,12 @@ const ActivationKeys = () => {
   const actions = (activationKeyName) => {
     return [
       {
-        title: 'Delete',
-        onClick: () => handleDeleteActivationKeyModalToggle(activationKeyName),
-      },
-      {
         title: 'Edit',
         onClick: () => handleEditActivationKeyModalToggle(activationKeyName),
+      },
+      {
+        title: 'Delete',
+        onClick: () => handleDeleteActivationKeyModalToggle(activationKeyName),
       },
     ];
   };
