@@ -73,13 +73,18 @@ const ActivationKeys = () => {
     );
   }
 
+  const setKeyName = (modalOpen, name) => {
+    let currentName = modalOpen ? '' : name;
+    setCurrentKeyName(currentName);
+  };
+
   const handleDeleteActivationKeyModalToggle = (name) => {
-    setCurrentKeyName(name);
+    setKeyName(isDeleteActivationKeyModalOpen, name);
     setIsDeleteActivationKeyModalOpen(!isDeleteActivationKeyModalOpen);
   };
 
   const handleEditActivationKeyModalToggle = (name) => {
-    setCurrentKeyName(name);
+    setKeyName(isEditActivationKeyModalOpen, name);
     setIsEditActivationKeyModalOpen(!isEditActivationKeyModalOpen);
   };
 
