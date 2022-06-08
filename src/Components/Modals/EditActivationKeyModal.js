@@ -10,7 +10,7 @@ import { useQueryClient } from 'react-query';
 const EditActivationKeyModal = (props) => {
   const { activationKeyName } = props;
   const queryClient = useQueryClient();
-  const [created, setCreated] = React.useState(false);
+  const [updated, setUpdated] = React.useState(false);
   const [error, setError] = React.useState(false);
   const { handleModalToggle, isOpen } = props;
   const { mutate, isLoading } = useUpdateActivationKey();
@@ -25,12 +25,13 @@ const EditActivationKeyModal = (props) => {
       {
         onSuccess: () => {
           setError(false);
-          setCreated(true);
+          setUpdated(true);
           queryClient.invalidateQueries('activation_keys');
+          queryClient.resetQueries(`activation_key_${activationKeyName}`);
         },
         onError: () => {
           setError(true);
-          setCreated(false);
+          setUpdated(false);
         },
       }
     );
@@ -50,7 +51,7 @@ const EditActivationKeyModal = (props) => {
           activationKey={activationKey}
           handleModalToggle={handleModalToggle}
           submitForm={submitForm}
-          isSuccess={created}
+          isSuccess={updated}
           isError={error}
         />
       )}
