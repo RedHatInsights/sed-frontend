@@ -1,5 +1,5 @@
 import React from 'react';
-import CreateActivationKeyForm from '../CreateActivationKeyForm';
+import ActivationKeyForm from '../ActivationKeyForm';
 import useSystemPurposeAttributes from '../../../hooks/useSystemPurposeAttributes';
 import { Provider } from 'react-redux';
 import { init } from '../../../store';
@@ -11,7 +11,7 @@ const queryClient = new QueryClient();
 const handleModalToggle = jest.fn();
 const submitForm = jest.fn();
 
-const CreateActivationKeyFormProps = {
+const ActivationKeyFormProps = {
   handleModalToggle,
   submitForm: submitForm,
   isSuccess: null,
@@ -19,10 +19,10 @@ const CreateActivationKeyFormProps = {
 };
 
 const registry = init();
-const props = { ...CreateActivationKeyFormProps };
+const props = { ...ActivationKeyFormProps };
 
 jest.mock('../../../hooks/useSystemPurposeAttributes');
-describe('Create Activation Key Form', () => {
+describe('Activation Key Form', () => {
   beforeEach(() => {
     useSystemPurposeAttributes.mockReturnValue({
       isLoading: false,
@@ -39,7 +39,7 @@ describe('Create Activation Key Form', () => {
     const { container } = render(
       <Provider store={registry.getStore()}>
         <QueryClientProvider client={queryClient}>
-          <CreateActivationKeyForm {...props} />
+          <ActivationKeyForm {...props} />
         </QueryClientProvider>
       </Provider>
     );
@@ -47,11 +47,11 @@ describe('Create Activation Key Form', () => {
   });
 
   it('validates name field', () => {
-    const props = { ...CreateActivationKeyFormProps };
+    const props = { ...ActivationKeyFormProps };
     const { container } = render(
       <Provider store={registry.getStore()}>
         <QueryClientProvider client={queryClient}>
-          <CreateActivationKeyForm {...props} />
+          <ActivationKeyForm {...props} />
         </QueryClientProvider>
       </Provider>
     );
@@ -65,11 +65,11 @@ describe('Create Activation Key Form', () => {
   });
 
   it('validates name length', () => {
-    const props = { ...CreateActivationKeyFormProps };
+    const props = { ...ActivationKeyFormProps };
     const { container } = render(
       <Provider store={registry.getStore()}>
         <QueryClientProvider client={queryClient}>
-          <CreateActivationKeyForm {...props} />
+          <ActivationKeyForm {...props} />
         </QueryClientProvider>
       </Provider>
     );
@@ -92,13 +92,13 @@ describe('Create Activation Key Form', () => {
       role: 'test',
     };
     const props = {
-      ...CreateActivationKeyFormProps,
+      ...ActivationKeyFormProps,
       activationKey: activationKey,
     };
     render(
       <Provider store={registry.getStore()}>
         <QueryClientProvider client={queryClient}>
-          <CreateActivationKeyForm {...props} />
+          <ActivationKeyForm {...props} />
         </QueryClientProvider>
       </Provider>
     );
@@ -107,16 +107,16 @@ describe('Create Activation Key Form', () => {
   });
 
   it('calls submitForm if form is valid', () => {
-    const props = { ...CreateActivationKeyFormProps };
+    const props = { ...ActivationKeyFormProps };
 
     const { container } = render(
       <Provider store={registry.getStore()}>
         <QueryClientProvider client={queryClient}>
-          <CreateActivationKeyForm {...props} />
+          <ActivationKeyForm {...props} />
         </QueryClientProvider>
       </Provider>
     );
-    const form = container.querySelector('#create-activation-key-form');
+    const form = container.querySelector('#activation-key-form');
     const nameInput = container.querySelector('#activation-key-name');
     fireEvent.change(nameInput, { target: { value: 'abc-123' } });
     fireEvent.submit(form);
@@ -124,12 +124,12 @@ describe('Create Activation Key Form', () => {
   });
 
   it('closes the create activation key modal on success', async () => {
-    const props = { ...CreateActivationKeyFormProps, isSuccess: true };
+    const props = { ...ActivationKeyFormProps, isSuccess: true };
 
     render(
       <Provider store={registry.getStore()}>
         <QueryClientProvider client={queryClient}>
-          <CreateActivationKeyForm {...props} />
+          <ActivationKeyForm {...props} />
         </QueryClientProvider>
       </Provider>
     );

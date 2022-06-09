@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Modal, ModalVariant } from '@patternfly/react-core';
-import CreateActivationKeyForm from '../Forms/CreateActivationKeyForm';
+import ActivationKeyForm from '../Forms/ActivationKeyForm';
 import useUpdateActivationKey from '../../hooks/useUpdateActivationKey';
 import useActivationKey from '../../hooks/useActivationKey';
 import propTypes from 'prop-types';
@@ -47,7 +47,7 @@ const EditActivationKeyModal = (props) => {
       {(isLoading || isKeyLoading) && !keyError ? (
         <Loading />
       ) : (
-        <CreateActivationKeyForm
+        <ActivationKeyForm
           activationKey={activationKey}
           handleModalToggle={handleModalToggle}
           submitForm={submitForm}
