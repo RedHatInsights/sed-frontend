@@ -16,7 +16,7 @@ import ActivationKeysFormSelect from './ActivationKeysFormSelect';
 import PropTypes from 'prop-types';
 import useNotifications from '../../hooks/useNotifications';
 
-const CreateActivationKeyForm = (props) => {
+const ActivationKeyForm = (props) => {
   const { handleModalToggle, submitForm, isSuccess, isError, activationKey } =
     props;
   const { addSuccessNotification, addErrorNotification } = useNotifications();
@@ -91,7 +91,7 @@ const CreateActivationKeyForm = (props) => {
   }
 
   return (
-    <Form id="create-activation-key-form" onSubmit={handleSubmit}>
+    <Form id="activation-key-form" onSubmit={handleSubmit}>
       {!activationKey && (
         <FormGroup label="Name" isRequired helperText={validationText}>
           <TextInput
@@ -200,7 +200,7 @@ const CreateActivationKeyForm = (props) => {
       <ActionGroup>
         <Button
           key="create"
-          id="create-activation-key-button"
+          id="submit-activation-key-button"
           variant="primary"
           type="submit"
           isDisabled={createButtonDisabled()}
@@ -211,7 +211,7 @@ const CreateActivationKeyForm = (props) => {
 
         <Button
           key="cancel"
-          id="cancel-create-activation-key-button"
+          id="cancel-activation-key-button"
           variant="link"
           onClick={handleModalToggle}
         >
@@ -222,12 +222,12 @@ const CreateActivationKeyForm = (props) => {
   );
 };
 
-CreateActivationKeyForm.propTypes = {
+ActivationKeyForm.propTypes = {
   handleModalToggle: PropTypes.func.isRequired,
   submitForm: PropTypes.func.isRequired,
   isSuccess: PropTypes.bool,
   isError: PropTypes.bool,
-  activationKey: PropTypes.object,
+  activationKey: PropTypes.object || PropTypes.bool,
 };
 
-export default CreateActivationKeyForm;
+export default ActivationKeyForm;
