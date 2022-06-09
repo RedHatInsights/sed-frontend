@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Modal, ModalVariant } from '@patternfly/react-core';
-import CreateActivationKeyForm from '../Forms/CreateActivationKeyForm';
+import ActivationKeyForm from '../Forms/ActivationKeyForm';
 import useCreateActivationKey from '../../hooks/useCreateActivationKey';
 import propTypes from 'prop-types';
 import Loading from '../LoadingState/Loading';
@@ -39,7 +39,7 @@ const CreateActivationKeyModal = (props) => {
       {isLoading ? (
         <Loading />
       ) : (
-        <CreateActivationKeyForm
+        <ActivationKeyForm
           handleModalToggle={handleModalToggle}
           submitForm={submitForm}
           isSuccess={created}
