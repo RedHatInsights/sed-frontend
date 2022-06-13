@@ -268,7 +268,7 @@ exports[`Activation Key Form renders correctly when data is loaded 1`] = `
             id="submit-activation-key-button"
             type="submit"
           >
-            Save
+            Create
           </button>
           <button
             aria-disabled="false"
