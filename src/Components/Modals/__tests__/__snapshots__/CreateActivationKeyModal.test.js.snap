@@ -142,7 +142,7 @@ exports[`Create Activation Key Modal renders correctly 1`] = `
                       id="submit-activation-key-button"
                       type="submit"
                     >
-                      Save
+                      Create
                     </button>
                     <button
                       aria-disabled="false"
