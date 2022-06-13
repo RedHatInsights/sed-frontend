@@ -19,8 +19,6 @@ const Authentication = ({ children }) => {
     queryClient.invalidateQueries('user');
   }, [location.pathname]);
 
-  isSuccess && window.insights?.chrome?.hideGlobalFilter();
-
   if (isError === true) {
     return <Unavailable />;
   } else if (isLoading === true || isFetching === true) {
