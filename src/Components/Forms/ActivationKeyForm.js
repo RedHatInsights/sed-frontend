@@ -206,7 +206,7 @@ const ActivationKeyForm = (props) => {
           isDisabled={createButtonDisabled()}
           data-testid="activation-key-submit-button"
         >
-          {activationKey ? 'Save changes' : 'Save'}
+          {activationKey ? 'Save changes' : 'Create'}
         </Button>
 
         <Button
