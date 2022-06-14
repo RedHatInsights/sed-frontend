@@ -12,6 +12,10 @@ const Authentication = ({ children }) => {
   const { isLoading, isFetching, isSuccess, isError } = useUser();
 
   useEffect(() => {
+    isSuccess && window.insights?.chrome?.hideGlobalFilter();
+  }, [isSuccess]);
+
+  useEffect(() => {
     /**
      * On every rerender, based on URL change (location.pathname),
      * reset the user's status to loading before authenticating again.
