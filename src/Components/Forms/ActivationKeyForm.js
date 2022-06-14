@@ -119,6 +119,7 @@ const ActivationKeyForm = (props) => {
           label="Role"
           name="role"
           placeholderValue="Select role"
+          disableDefaultValues={activationKey ? true : false}
           popover={
             <Popover
               bodyContent={
@@ -151,6 +152,7 @@ const ActivationKeyForm = (props) => {
           label="Service Level Agreement (SLA)"
           name="serviceLevel"
           placeholderValue="Select a service level agreement"
+          disableDefaultValues={activationKey ? true : false}
           popover={
             <Popover
               bodyContent={
@@ -176,6 +178,7 @@ const ActivationKeyForm = (props) => {
           label="Usage"
           name="usage"
           placeholderValue="Select usage"
+          disableDefaultValues={activationKey ? true : false}
           popover={
             <Popover
               bodyContent={
