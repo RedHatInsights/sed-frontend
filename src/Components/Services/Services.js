@@ -55,6 +55,7 @@ const Services = ({
       isDisabled: false,
     },
     useOpenSCAP: { value: defaults.useOpenSCAP, isDisabled: false },
+    hasInsights: { value: defaults.hasInsights, isDisabled: false },
   };
   const [formState, setFormState] = useState(initState);
   const [madeChanges, setMadeChanges] = useState(false);
@@ -81,11 +82,14 @@ const Services = ({
   useEffect(() => {
     setMadeChanges(
       formState.useOpenSCAP.value !== defaults.useOpenSCAP ||
-        formState.enableCloudConnector.value != defaults.enableCloudConnector
+        formState.enableCloudConnector.value !==
+          defaults.enableCloudConnector ||
+        formState.hasInsights.value !== defaults.hasInsights
     );
     onChange({
       useOpenSCAP: formState.useOpenSCAP.value,
       enableCloudConnector: formState.enableCloudConnector.value,
+      hasInsights: formState.hasInsights.value,
     });
   }, [formState]);
 
