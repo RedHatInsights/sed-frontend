@@ -64,11 +64,11 @@ const SamplePage = () => {
   const activeStateLoaded = useSelector(
     ({ activeStateReducer }) => activeStateReducer?.loaded
   );
-  const { useOpenSCAP, enableCloudConnector, hasInsights } = useSelector(
+  const { useOpenSCAP, enableCloudConnector, apply_state } = useSelector(
     ({ activeStateReducer }) => ({
       useOpenSCAP: activeStateReducer?.values?.useOpenSCAP,
       enableCloudConnector: activeStateReducer?.values?.enableCloudConnector,
-      hasInsights: activeStateReducer?.values?.hasInsights,
+      apply_state: activeStateReducer?.values?.apply_state,
     }),
     shallowEqual
   );
@@ -164,7 +164,7 @@ const SamplePage = () => {
               defaults={{
                 useOpenSCAP,
                 enableCloudConnector,
-                hasInsights,
+                apply_state,
               }}
               onChange={(data) => {
                 dataRef.current = data;

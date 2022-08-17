@@ -55,6 +55,7 @@ describe('currStateReducer', () => {
           state: {
             insights: 'enabled',
           },
+          apply_state: true,
         },
       })
     ).toMatchObject({
@@ -63,6 +64,7 @@ describe('currStateReducer', () => {
         useOpenSCAP: false,
         enableCloudConnector: false,
         hasInsights: true,
+        apply_state: true,
       },
     });
   });

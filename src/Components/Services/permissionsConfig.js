@@ -12,14 +12,14 @@ export const permissions = [
     ],
   },
   {
-    id: 'hasInsights',
+    id: 'apply_state',
     name: 'Allow remote host configuration to manage the configuration of Red Hat services',
     description:
       'Based on changes users make in this settings area, the remote host configuration tool can push Ansible Playbooks to connected systems to update their configutaions. This includes turning these configurations on and off, based on selections.',
     links: [
       {
         name: 'View configuration manager playbooks',
-        link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2022/html/assessing_and_monitoring_rhel_resource_optimization_with_insights_for_red_hat_enterprise_linux/index',
+        link: 'https://github.com/RedHatInsights/config-manager/tree/master/playbooks',
       },
     ],
   },

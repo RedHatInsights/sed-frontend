@@ -23,6 +23,7 @@ describe('actions', () => {
 
   test('saveCurrState', async () => {
     mock.onPost('/api/config-manager/v1/states').reply(200, {});
+    mock.onPost('/api/config-manager/v1/manage').reply(200, {});
     const action = saveCurrState({});
     await action.payload;
     expect(action.type).toBe('SET_CURR_STATE');
