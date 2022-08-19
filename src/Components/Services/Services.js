@@ -55,7 +55,7 @@ const Services = ({
       isDisabled: false,
     },
     useOpenSCAP: { value: defaults.useOpenSCAP, isDisabled: false },
-    hasInsights: { value: defaults.hasInsights, isDisabled: false },
+    apply_state: { value: defaults.apply_state, isDisabled: false },
   };
   const [formState, setFormState] = useState(initState);
   const [madeChanges, setMadeChanges] = useState(false);
@@ -84,12 +84,12 @@ const Services = ({
       formState.useOpenSCAP.value !== defaults.useOpenSCAP ||
         formState.enableCloudConnector.value !==
           defaults.enableCloudConnector ||
-        formState.hasInsights.value !== defaults.hasInsights
+        formState.apply_state.value !== defaults.apply_state
     );
     onChange({
       useOpenSCAP: formState.useOpenSCAP.value,
       enableCloudConnector: formState.enableCloudConnector.value,
-      hasInsights: formState.hasInsights.value,
+      apply_state: formState.apply_state.value,
     });
   }, [formState]);
 
@@ -272,7 +272,7 @@ Services.propTypes = {
   setMadeChanges: propTypes.func.isRequired,
   defaults: propTypes.shape({
     useOpenSCAP: propTypes.bool,
-    hasInsights: propTypes.bool,
+    apply_state: propTypes.bool,
     enableCloudConnector: propTypes.bool,
   }),
   onChange: propTypes.func.isRequired,
@@ -285,7 +285,7 @@ Services.propTypes = {
 Services.defaultProps = {
   defaults: {
     useOpenSCAP: false,
-    hasInsights: false,
+    apply_state: false,
     enableCloudConnector: false,
   },
 };

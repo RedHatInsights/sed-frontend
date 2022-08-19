@@ -11,17 +11,25 @@ export const configApi = new DefaultApi(
   instance
 );
 
+const updateManager = (apply_state) => {
+  return instance.post(`${CONNECTOR_API_BASE}/manage`, apply_state, {
+    headers: {
+      'Content-Type': 'application/json',
+    },
+  });
+};
+
 export const updateCurrState = ({
   useOpenSCAP,
   enableCloudConnector,
-  hasInsights,
+  apply_state,
 }) => {
-  return configApi.updateStates({
-    compliance_openscap: useOpenSCAP ? 'enabled' : 'disabled',
-    insights:
-      useOpenSCAP || enableCloudConnector || hasInsights
-        ? 'enabled'
-        : 'disabled',
-    remediations: enableCloudConnector ? 'enabled' : 'disabled',
-  });
+  return Promise.all([
+    configApi.updateStates({
+      compliance_openscap: useOpenSCAP ? 'enabled' : 'disabled',
+      insights: 'enabled',
+      remediations: enableCloudConnector ? 'enabled' : 'disabled',
+    }),
+    updateManager(apply_state),
+  ]);
 };
