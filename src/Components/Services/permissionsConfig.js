@@ -7,7 +7,7 @@ export const permissions = [
     links: [
       {
         name: 'About Cloud Connector',
-        link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2022/html-single/red_hat_connector_configuration_guide/index',
+        link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2022/html/remote_host_configuration_and_management/index',
       },
     ],
   },
