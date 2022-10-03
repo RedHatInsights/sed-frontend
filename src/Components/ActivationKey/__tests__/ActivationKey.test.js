@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, waitFor } from '@testing-library/react';
+import { render, waitFor, screen } from '@testing-library/react';
 import ActivationKey from '../index';
 import { Provider } from 'react-redux';
 import Authentication from '../../../Components/Authentication';
@@ -10,6 +10,7 @@ import useUser from '../../../hooks/useUser';
 import { get, def } from 'bdd-lazy-var';
 import useActivationKey from '../../../hooks/useActivationKey';
 import '@testing-library/jest-dom';
+import useFeatureFlag from '../../../hooks/useFeatureFlag';
 jest.mock('../../../hooks/useActivationKey');
 jest.mock('../../../hooks/useUser');
 jest.mock('../../../hooks/useFeatureFlag');
@@ -47,7 +48,7 @@ const mockAuthenticateUser = (isLoading, isError, rbacPermissions) => {
     isError: isError,
     data: user,
   });
-
+  useFeatureFlag.mockReturnValue(true);
   if (isError === false) {
     queryClient.setQueryData('user', user);
   }
@@ -107,9 +108,11 @@ describe('ActivationKey', () => {
   });
 
   it('renders correctly', async () => {
-    const { container } = render(<PageContainer />);
+    render(<PageContainer />);
     await waitFor(() => expect(useUser).toHaveBeenCalledTimes(1));
-    expect(container).toMatchSnapshot();
+    expect(screen.getByText('System Purpose')).toBeInTheDocument();
+    expect(screen.getByText('Workload')).toBeInTheDocument();
+    expect(screen.getByText('Additional repositories')).toBeInTheDocument();
   });
 
   describe('when the user call fails', () => {
@@ -128,9 +131,9 @@ describe('ActivationKey', () => {
     });
 
     it('redirects to not authorized page', async () => {
-      const { container } = render(<PageContainer />);
+      render(<PageContainer />);
       await waitFor(() => expect(useUser).toHaveBeenCalledTimes(1));
-      expect(container).toMatchSnapshot();
+      expect(screen.getByText('Not Authorized')).toBeInTheDocument();
     });
   });
 });

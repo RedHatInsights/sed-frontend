@@ -1,25 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`ActivationKey renders correctly 1`] = `
-<div>
-  <div>
-    Not Authorized
-  </div>
-</div>
-`;
-
 exports[`ActivationKey when the user call fails renders an error message when user call fails 1`] = `
 <div>
   <div>
     Unavailable
-  </div>
-</div>
-`;
-
-exports[`ActivationKey when the user does not have proper permissions redirects to not authorized page 1`] = `
-<div>
-  <div>
-    Not Authorized
   </div>
 </div>
 `;

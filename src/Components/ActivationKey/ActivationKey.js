@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter, useParams } from 'react-router-dom';
 import pckg from '../../../package.json';
 import Breadcrumbs from '../shared/breadcrumbs';
-import AdditionalRepositoriesTable from '../AdditionalRepositoriesTable';
 const { routes: paths } = pckg;
 import {
   Text,
@@ -10,10 +9,6 @@ import {
   TextVariants,
   Grid,
   GridItem,
-  Card,
-  CardHeader,
-  CardTitle,
-  CardBody,
   Gallery,
   GalleryItem,
 } from '@patternfly/react-core';
@@ -22,6 +17,7 @@ import {
   PageHeader,
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
+import AdditionalRepositoriesCard from './AdditionalRepositoriesCard';
 import useActivationKey from '../../hooks/useActivationKey';
 import Loading from '../LoadingState/Loading';
 import useFeatureFlag from '../../hooks/useFeatureFlag';
@@ -35,7 +31,7 @@ const ActivationKey = () => {
   const user = queryClient.getQueryData('user');
   const { id } = useParams();
   const keyDetailsIsEnabled = useFeatureFlag(
-    'sed-frontend.activationKeyDetailsPage'
+    'sed-frontend.activationKeysDetailsPage'
   );
   const breadcrumbs = [
     { title: 'Activation Keys', to: paths.activationKeys },
@@ -80,25 +76,7 @@ const ActivationKey = () => {
                 </Gallery>
               </GridItem>
               <GridItem span={12}>
-                <Card>
-                  <CardHeader>
-                    <CardTitle>Additional repositories</CardTitle>
-                  </CardHeader>
-                  <CardBody>
-                    <TextContent>
-                      <Text component={TextVariants.p}>
-                        The core repositories for your operating system version,
-                        for example BaseOS and AppStream, are always enabled and
-                        do not need to be explicitly added to the activation
-                        key.
-                      </Text>
-                    </TextContent>
-
-                    <AdditionalRepositoriesTable
-                      repositories={activationKey.additionalRepositories}
-                    />
-                  </CardBody>
-                </Card>
+                <AdditionalRepositoriesCard activationKey={activationKey} />
               </GridItem>
             </Grid>
           </Main>
