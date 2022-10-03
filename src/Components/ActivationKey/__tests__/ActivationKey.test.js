@@ -12,6 +12,7 @@ import useActivationKey from '../../../hooks/useActivationKey';
 import '@testing-library/jest-dom';
 jest.mock('../../../hooks/useActivationKey');
 jest.mock('../../../hooks/useUser');
+jest.mock('../../../hooks/useFeatureFlag');
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useLocation: () => ({
@@ -57,7 +58,13 @@ jest.mock('../../../Components/AdditionalRepositoriesTable', () => () => (
   <div>Additional Repositories Table</div>
 ));
 // eslint-disable-next-line react/display-name
-jest.mock('../../ActivationKeys/no-access', () => () => <div>Not Authorized</div>);
+jest.mock('../../../Components/shared/breadcrumbs', () => () => (
+  <div>Breadcrumbs</div>
+));
+// eslint-disable-next-line react/display-name
+jest.mock('../../ActivationKeys/no-access', () => () => (
+  <div>Not Authorized</div>
+));
 
 jest.mock(
   '@redhat-cloud-services/frontend-components/Unavailable',

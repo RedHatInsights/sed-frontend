@@ -6,7 +6,7 @@ import { Breadcrumb, BreadcrumbItem } from '@patternfly/react-core';
 const Breadcrumbs = (breadcrumbs) => {
   return breadcrumbs ? (
     <Breadcrumb>
-      {Object.values(breadcrumbs).map((item, index) =>
+      {Object.values(breadcrumbs).map((item) =>
         item.title ? (
           <BreadcrumbItem key={item.title} isActive={item.isActive}>
             {(item.to && (
