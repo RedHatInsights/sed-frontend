@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { withRouter, useParams } from 'react-router-dom';
 import pckg from '../../../package.json';
 import Breadcrumbs from '../shared/breadcrumbs';
