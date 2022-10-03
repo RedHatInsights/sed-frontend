@@ -42,7 +42,7 @@ const ActivationKeysTable = (props) => {
     return !user.rbacPermissions.canWriteActivationKeys;
   };
   const { url } = useRouteMatch();
- 
+
   const keyDetailsIsEnabled = useFeatureFlag(
     'sed-frontend.activationKeysDetailsPage'
   );
