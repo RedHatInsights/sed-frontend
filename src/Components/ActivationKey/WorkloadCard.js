@@ -16,7 +16,7 @@ const WorkloadCard = (props) => {
   const { activationKey } = props;
   const notDefinedText = 'Not defined';
   return (
-    <Card style={{ 'min-height': '100%' }}>
+    <Card style={{ minHeight: '100%' }}>
       <CardHeader>
         <CardTitle>Workload</CardTitle>
       </CardHeader>
