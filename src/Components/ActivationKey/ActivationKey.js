@@ -20,7 +20,6 @@ import {
 import AdditionalRepositoriesCard from './AdditionalRepositoriesCard';
 import useActivationKey from '../../hooks/useActivationKey';
 import Loading from '../LoadingState/Loading';
-import useFeatureFlag from '../../hooks/useFeatureFlag';
 import SystemPurposeCard from './SystemPurposeCard';
 import WorkloadCard from './WorkloadCard';
 import NoAccessView from '../ActivationKeys/no-access';
@@ -30,9 +29,6 @@ const ActivationKey = () => {
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData('user');
   const { id } = useParams();
-  const keyDetailsIsEnabled = useFeatureFlag(
-    'sed-frontend.activationKeysDetailsPage'
-  );
   const breadcrumbs = [
     { title: 'Activation Keys', to: paths.activationKeys },
     { title: id, isActive: true },
@@ -85,7 +81,7 @@ const ActivationKey = () => {
     );
   };
 
-  if (user.rbacPermissions.canReadActivationKeys && keyDetailsIsEnabled) {
+  if (user.rbacPermissions.canReadActivationKeys) {
     return <Page />;
   } else {
     return <NoAccessView />;
