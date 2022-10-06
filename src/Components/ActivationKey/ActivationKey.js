@@ -2,7 +2,6 @@ import React from 'react';
 import { withRouter, useParams } from 'react-router-dom';
 import pckg from '../../../package.json';
 import Breadcrumbs from '../shared/breadcrumbs';
-const { routes: paths } = pckg;
 import {
   Text,
   TextContent,
@@ -29,6 +28,7 @@ const ActivationKey = () => {
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData('user');
   const { id } = useParams();
+  const { routes: paths } = pckg;
   const breadcrumbs = [
     { title: 'Activation Keys', to: paths.activationKeys },
     { title: id, isActive: true },
