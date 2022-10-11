@@ -27,7 +27,7 @@ const DeleteActivationKeyConfirmationModal = (props) => {
           oldData.filter((entry) => entry.name != name)
         );
         addSuccessNotification(`Activation Key ${name} deleted`);
-        handleModalToggle();
+        handleModalToggle(true);
       },
       onError: () => {
         addErrorNotification('Something went wrong. Please try again');
