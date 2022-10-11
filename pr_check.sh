@@ -4,7 +4,7 @@
 # Export vars for helper scripts to use
 # --------------------------------------------
 # name of app-sre "application" folder this component lives in; needs to match for quay
-export COMPONENT="host-inventory"
+export COMPONENT="sed-frontend"
 # IMAGE should match the quay repo set by app.yaml in app-interface
 export IMAGE="quay.io/cloudservices/sed-frontend"
 export WORKSPACE=${WORKSPACE:-$APP_ROOT} # if running in jenkins, use the build's workspace
@@ -13,12 +13,6 @@ export APP_ROOT=$(pwd)
 export NODE_BUILD_VERSION=16
 COMMON_BUILDER=https://raw.githubusercontent.com/RedHatInsights/insights-frontend-builder-common/master
 
-# --------------------------------------------
-# Options that must be configured by app owner
-# --------------------------------------------
-IQE_PLUGINS="sed-frontend"
-IQE_MARKER_EXPRESSION="smoke"
-IQE_FILTER_EXPRESSION=""
 
 set -exv
 # source is preferred to | bash -s in this case to avoid a subshell
