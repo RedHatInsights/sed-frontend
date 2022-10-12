@@ -18,7 +18,7 @@
     "start:beta": "NODE_ENV=development BETA=true webpack serve --config config/dev.webpack.config.js",
     "start:proxy": "PROXY=true npm run start",
     "start:proxy:beta": "BETA=true npm run start:proxy",
-    "test": "jest --verbose",
+    "test": "TZ=UTC jest --verbose --no-cache",
     "verify": "npm-run-all build lint test"
   },
   "jest": {
