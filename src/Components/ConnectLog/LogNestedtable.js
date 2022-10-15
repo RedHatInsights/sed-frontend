@@ -17,9 +17,8 @@ const columns = [
 ];
 
 const rowMapper = {
-  useOpenSCAP: 'Use OpenSCAP for Compliance policies',
-  enableCloudConnector:
-    'Enable Cloud Connector to fix issues directly from Insights',
+  compliance: 'Use OpenSCAP for Compliance policies',
+  remediations: 'Enable Cloud Connector to fix issues directly from Insights',
 };
 
 const LogNestedTable = ({ services, isInsights }) => {
@@ -58,8 +57,8 @@ const LogNestedTable = ({ services, isInsights }) => {
 
 LogNestedTable.propTypes = {
   services: PropTypes.shape({
-    useOpenSCAP: PropTypes.bool,
-    enableCloudConnector: PropTypes.bool,
+    compliance: PropTypes.bool,
+    remediations: PropTypes.bool,
   }).isRequired,
   isInsights: PropTypes.bool.isRequired,
 };

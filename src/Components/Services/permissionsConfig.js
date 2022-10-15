@@ -1,6 +1,6 @@
 export const permissions = [
   {
-    id: 'enableCloudConnector',
+    id: 'remediations',
     name: 'Allow Insights users to use “Remediations” to send Ansible Playbooks to fix issues on your systems',
     description:
       'Users can create Ansible Playbooks using the “Remediate” function in Insights and then execute these playbooks on systems in inventory. Playbooks are sent to systems to fix issues using the Cloud Connector technology.',
@@ -12,7 +12,7 @@ export const permissions = [
     ],
   },
   {
-    id: 'apply_state',
+    id: 'active',
     name: 'Allow remote host configuration to manage the configuration of Red Hat services',
     description:
       'Based on changes users make in this settings area, the remote host configuration tool can push Ansible Playbooks to connected systems to update their configurations. This includes turning these configurations on and off, based on selections.',
@@ -24,7 +24,7 @@ export const permissions = [
     ],
   },
   {
-    id: 'useOpenSCAP',
+    id: 'compliance',
     secondary: true,
     name: 'Service: Use OpenSCAP for Compliance policies',
     additionalInfo: 'Requires Insights; Configuration management',

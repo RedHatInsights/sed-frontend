@@ -39,46 +39,61 @@ const columns = [
 
 const rowsMapper = (results, opened) =>
   flatMap(
-    results.map(({ account, created_at: createdAt, id, state }, key) => [
-      {
-        id,
-        isOpen: opened.includes(id),
-        cells: [
-          <Fragment key="date">
-            <DateFormat date={new Date(createdAt)} extraTitle="Created at: " />
-          </Fragment>,
-          account,
-          <Fragment key={`download file-${id}`}>
-            <Button
-              variant="link"
-              isInline
-              onClick={() => {
-                (async () => {
-                  const data = await configApi.getPlaybookById(id);
-                  downloadFile(data);
-                })();
-              }}
-            >
-              Download
-            </Button>
-          </Fragment>,
-        ],
-      },
-      {
-        parent: key * 2,
-        cells: [
-          <Fragment key="nested-table">
-            <LogNestedTable
-              services={{
-                useOpenSCAP: state.compliance_openscap,
-                enableCloudConnector: state.remediations,
-              }}
-              isInsights={state.insights}
-            />
-          </Fragment>,
-        ],
-      },
-    ])
+    results.map(
+      (
+        {
+          account_id,
+          created_at: createdAt,
+          id,
+          compliance,
+          remediations,
+          insights,
+        },
+        key
+      ) => [
+        {
+          id,
+          isOpen: opened.includes(id),
+          cells: [
+            <Fragment key="date">
+              <DateFormat
+                date={new Date(createdAt)}
+                extraTitle="Created at: "
+              />
+            </Fragment>,
+            account_id,
+            <Fragment key={`download file-${id}`}>
+              <Button
+                variant="link"
+                isInline
+                onClick={() => {
+                  (async () => {
+                    const data = await configApi.getPlaybookById(id);
+                    downloadFile(data);
+                  })();
+                }}
+              >
+                Download
+              </Button>
+            </Fragment>,
+          ],
+        },
+        {
+          parent: key * 2,
+          cells: [
+            <Fragment key="nested-table">
+              <LogNestedTable
+                services={{
+                  compliance,
+                  remediations,
+                }}
+                isInsights={insights}
+              />
+            </Fragment>,
+          ],
+        },
+      ]
+    )
   );
 
 const LogsTable = () => {

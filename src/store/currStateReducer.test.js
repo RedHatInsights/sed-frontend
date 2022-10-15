@@ -36,13 +36,18 @@ describe('currStateReducer', () => {
     expect(
       reducer(undefined, {
         type: `${GET_CURR_STATE}_FULFILLED`,
+        payload: {
+          compliance: false,
+          remediations: false,
+          insights: false,
+        },
       })
     ).toMatchObject({
       loaded: true,
       values: {
-        useOpenSCAP: false,
-        enableCloudConnector: false,
-        hasInsights: false,
+        compliance: false,
+        remediations: false,
+        insights: false,
       },
     });
   });
@@ -52,19 +57,19 @@ describe('currStateReducer', () => {
       reducer(undefined, {
         type: `${GET_CURR_STATE}_FULFILLED`,
         payload: {
-          state: {
-            insights: 'enabled',
-          },
-          apply_state: true,
+          compliance: false,
+          remediations: false,
+          insights: true,
+          active: true,
         },
       })
     ).toMatchObject({
       loaded: true,
       values: {
-        useOpenSCAP: false,
-        enableCloudConnector: false,
-        hasInsights: true,
-        apply_state: true,
+        compliance: false,
+        remediations: false,
+        insights: true,
+        active: true,
       },
     });
   });
