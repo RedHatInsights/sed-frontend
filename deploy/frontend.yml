@@ -9,7 +9,7 @@ objects:
       name: sed-frontend
     spec:
       envName: ${ENV_NAME}
-      title: "Configuration Manager"
+      title: "Manage configuration"
       deploymentRepo: https://github.com/RedHatInsights/sed-frontend
       API:
         versions:
@@ -20,7 +20,7 @@ objects:
       image: ${IMAGE}:${IMAGE_TAG}
       navItems:
         - appId: "connector"
-          title: "Configuration Manager"
+          title: "Manage configuration"
           href: "/settings/connector"
           product: "Red Hat Insights"
       module:
