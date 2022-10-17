@@ -41,7 +41,6 @@ const SystemPurposeCard = (props) => {
               Usage
             </TextListItem>
             <TextListItem component={TextListItemVariants.dd}>
-              {activationKey.usage}
               {activationKey && activationKey.usage
                 ? activationKey.usage
                 : notDefinedText}
