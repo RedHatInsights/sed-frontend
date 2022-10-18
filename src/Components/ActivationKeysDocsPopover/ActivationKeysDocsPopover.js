@@ -20,13 +20,12 @@ const ActivationKeysDocsPopover = (props) => {
           <Text>
             Activation keys assist you in registering systems. Metadata such as
             role, system purpose, and usage can be automatically attached to
-            systems via an activation key, and monitored with
+            systems via an activation key, and monitored with &nbsp;
             <a
               target="_blank"
               rel="noopener noreferrer"
               href={'https://console.redhat.com/insights/subscriptions/rhel'}
             >
-              {' '}
               Subscription Watch.
             </a>
           </Text>
