@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Template
 metadata:
-  name: sed-frontend
+  name: connector
 objects:
   - apiVersion: cloud.redhat.com/v1alpha1
     kind: Frontend
