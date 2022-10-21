@@ -7,6 +7,7 @@ import {
   CardHeader,
   CardTitle,
   CardBody,
+  Title,
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import AdditionalRepositoriesTable from '../AdditionalRepositoriesTable';
@@ -16,7 +17,9 @@ const AdditionalRepositoriesCard = (props) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Additional repositories</CardTitle>
+        <CardTitle>
+          <Title headingLevel="h2"> Additional repositories</Title>
+        </CardTitle>
       </CardHeader>
       <CardBody>
         <TextContent>

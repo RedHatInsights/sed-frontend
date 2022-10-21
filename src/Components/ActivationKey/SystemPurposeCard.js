@@ -9,6 +9,7 @@ import {
   TextListVariants,
   TextListItem,
   TextListItemVariants,
+  Title,
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 
@@ -18,7 +19,9 @@ const SystemPurposeCard = (props) => {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>System Purpose</CardTitle>
+        <CardTitle>
+          <Title headingLevel="h2">System Purpose</Title>
+        </CardTitle>
       </CardHeader>
       <CardBody>
         <TextContent>
