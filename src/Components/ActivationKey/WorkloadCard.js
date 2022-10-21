@@ -9,6 +9,7 @@ import {
   TextListVariants,
   TextListItem,
   TextListItemVariants,
+  Title,
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 
@@ -18,7 +19,9 @@ const WorkloadCard = (props) => {
   return (
     <Card style={{ minHeight: '100%' }}>
       <CardHeader>
-        <CardTitle>Workload</CardTitle>
+        <CardTitle>
+          <Title headingLevel="h2">Workload</Title>
+        </CardTitle>
       </CardHeader>
       <CardBody>
         <TextContent>
