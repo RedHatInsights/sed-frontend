@@ -9,9 +9,7 @@ const SystemsTable = () => {
     <InventoryTable
       variant="compact"
       showTags
-      tableProps={{
-        canSelectAll: false,
-      }}
+      hasCheckbox={false}
       getEntities={async (_i, config) => {
         config.filter = {
           system_profile: {
