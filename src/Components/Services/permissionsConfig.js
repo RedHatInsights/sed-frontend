@@ -7,7 +7,7 @@ export const permissions = [
     links: [
       {
         name: 'About Cloud Connector',
-        link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2022/html-single/red_hat_connector_configuration_guide/index',
+        link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2022/html/remote_host_configuration_and_management/index',
       },
     ],
   },
@@ -15,7 +15,7 @@ export const permissions = [
     id: 'apply_state',
     name: 'Allow remote host configuration to manage the configuration of Red Hat services',
     description:
-      'Based on changes users make in this settings area, the remote host configuration tool can push Ansible Playbooks to connected systems to update their configutaions. This includes turning these configurations on and off, based on selections.',
+      'Based on changes users make in this settings area, the remote host configuration tool can push Ansible Playbooks to connected systems to update their configurations. This includes turning these configurations on and off, based on selections.',
     links: [
       {
         name: 'View configuration manager playbooks',
