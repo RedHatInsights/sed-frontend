@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: Template
+metadata:
+  name: connector
+objects:
+  - apiVersion: cloud.redhat.com/v1alpha1
+    kind: Frontend
+    metadata:
+      name: sed-frontend
+    spec:
+      envName: ${ENV_NAME}
+      title: "Manage configuration"
+      deploymentRepo: https://github.com/RedHatInsights/sed-frontend
+      API:
+        versions:
+          - v1
+      frontend:
+        paths:
+          - /settings/connector
+      image: ${IMAGE}:${IMAGE_TAG}
+      navItems:
+        - appId: "connector"
+          title: "Manage configuration"
+          href: "/settings/connector"
+          product: "Red Hat Insights"
+      module:
+        manifestLocation: "/settings/connector/fed-mods.json"
+        modules:
+          - id: "connector"
+            module: "./RootApp"
+            routes:
+              - pathname: /settings/connector
+parameters:
+  - name: ENV_NAME
+    required: true
+  - name: IMAGE_TAG
+    required: true
+  - name: IMAGE
+    value: quay.io/cloudservices/sed-frontend

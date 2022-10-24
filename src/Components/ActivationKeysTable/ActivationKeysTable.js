@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link, useRouteMatch } from 'react-router-dom';
 import {
   TableComposable,
   Thead,
@@ -14,6 +15,7 @@ import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable'
 import propTypes from 'prop-types';
 import { useQueryClient } from 'react-query';
 import { KebabToggle } from '@patternfly/react-core';
+import useFeatureFlag from '../../hooks/useFeatureFlag';
 
 const customActionsToggle = (props) => (
   <KebabToggle
@@ -39,7 +41,11 @@ const ActivationKeysTable = (props) => {
   const isActionsDisabled = () => {
     return !user.rbacPermissions.canWriteActivationKeys;
   };
+  const { url } = useRouteMatch();
 
+  const keyDetailsIsEnabled = useFeatureFlag(
+    'sed-frontend.activationKeysDetailsPage'
+  );
   const Results = () => {
     return (
       <TableComposable aria-label="ActivationKeys">
@@ -58,7 +64,11 @@ const ActivationKeysTable = (props) => {
             return (
               <Tr key={datum.name} ouiaSafe={true}>
                 <Td modifier="breakWord" dataLabel={columnNames.name}>
-                  {datum.name}
+                  {keyDetailsIsEnabled ? (
+                    <Link to={`${url}/${datum.name}`}> {datum.name}</Link>
+                  ) : (
+                    datum.name
+                  )}
                 </Td>
                 <Td dataLabel={columnNames.role}>{datum.role}</Td>
                 <Td dataLabel={columnNames.serviceLevel}>
