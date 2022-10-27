@@ -26,8 +26,8 @@ const DeleteActivationKeyConfirmationModal = (props) => {
         queryClient.setQueryData('activation_keys', (oldData) =>
           oldData.filter((entry) => entry.name != name)
         );
-        addSuccessNotification(`Activation Key ${name} deleted`);
-        handleModalToggle();
+        addSuccessNotification(`Activation key ${name} deleted`);
+        handleModalToggle(true);
       },
       onError: () => {
         addErrorNotification('Something went wrong. Please try again');
@@ -55,7 +55,7 @@ const DeleteActivationKeyConfirmationModal = (props) => {
       <TextContent>
         <Text component={TextVariants.h2}>
           <ExclamationTriangleIcon size="md" color="#F0AB00" /> Delete
-          Activation Key?
+          activation key?
         </Text>
       </TextContent>
     </>
