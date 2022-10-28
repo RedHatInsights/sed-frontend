@@ -6,9 +6,16 @@ import useActivationKey from '../../hooks/useActivationKey';
 import propTypes from 'prop-types';
 import Loading from '../LoadingState/Loading';
 import { useQueryClient } from 'react-query';
+import SystemPurposeForm from '../Forms/SystemPurposeForm';
 
 const EditActivationKeyModal = (props) => {
-  const { activationKeyName } = props;
+  const {
+    activationKeyName,
+    title,
+    description,
+    systemPurposeOnly,
+    modalSize,
+  } = props;
   const queryClient = useQueryClient();
   const [updated, setUpdated] = React.useState(false);
   const [error, setError] = React.useState(false);
@@ -19,7 +26,12 @@ const EditActivationKeyModal = (props) => {
     error: keyError,
     data: activationKey,
   } = useActivationKey(activationKeyName);
-  const submitForm = (name, role, serviceLevel, usage) => {
+  const modalSizes = {
+    small: ModalVariant.small,
+    large: ModalVariant.large,
+  };
+  const submitForm = (formData) => {
+    const { role, serviceLevel, usage } = formData;
     mutate(
       { activationKeyName, role, serviceLevel, usage },
       {
@@ -36,25 +48,35 @@ const EditActivationKeyModal = (props) => {
       }
     );
   };
+
+  const FormWrapper = () => {
+    return systemPurposeOnly ? (
+      <SystemPurposeForm
+        activationKey={activationKey}
+        handleModalToggle={handleModalToggle}
+        submitForm={submitForm}
+        isSuccess={updated}
+        isError={error}
+      />
+    ) : (
+      <ActivationKeyForm
+        activationKey={activationKey}
+        handleModalToggle={handleModalToggle}
+        submitForm={submitForm}
+        isSuccess={updated}
+        isError={error}
+      />
+    );
+  };
   return (
     <Modal
-      variant={ModalVariant.large}
-      title="Edit activation key"
-      description=""
+      variant={modalSizes[modalSize]}
+      title={title}
+      description={description}
       isOpen={isOpen}
       onClose={handleModalToggle}
     >
-      {(isLoading || isKeyLoading) && !keyError ? (
-        <Loading />
-      ) : (
-        <ActivationKeyForm
-          activationKey={activationKey}
-          handleModalToggle={handleModalToggle}
-          submitForm={submitForm}
-          isSuccess={updated}
-          isError={error}
-        />
-      )}
+      {(isLoading || isKeyLoading) && !keyError ? <Loading /> : <FormWrapper />}
     </Modal>
   );
 };
@@ -63,6 +85,10 @@ EditActivationKeyModal.propTypes = {
   handleModalToggle: propTypes.func.isRequired,
   isOpen: propTypes.bool.isRequired,
   activationKeyName: propTypes.string,
+  systemPurposeOnly: propTypes.bool,
+  description: propTypes.string,
+  title: propTypes.string,
+  modalSize: propTypes.string,
 };
 
 export default EditActivationKeyModal;

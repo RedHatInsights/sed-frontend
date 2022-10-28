@@ -26,6 +26,7 @@ import WorkloadCard from './WorkloadCard';
 import NoAccessView from '../ActivationKeys/no-access';
 import DeleteButton from './DeleteButton';
 import DeleteActivationKeyConfirmationModal from '../Modals/DeleteActivationKeyConfirmationModal';
+import EditActivationKeyModal from '../Modals/EditActivationKeyModal';
 import NoAccessPopover from '../NoAccessPopover';
 import { useQueryClient } from 'react-query';
 
@@ -48,14 +49,17 @@ const ActivationKey = () => {
     'View and edit details and repositories for this activation key.';
   const [isDeleteActivationKeyModalOpen, setIsDeleteActivationKeyModalOpen] =
     useState(false);
-
+  const [isEditActivationKeyModalOpen, setIsEditActivationKeyModalOpen] =
+    useState(false);
   const handleDeleteActivationKeyModalToggle = (keyDeleted) => {
     setIsDeleteActivationKeyModalOpen(!isDeleteActivationKeyModalOpen);
     if (keyDeleted === true) {
       history.push('/activation-keys');
     }
   };
-
+  const handleEditActivationKeyModalToggle = () => {
+    setIsEditActivationKeyModalOpen(!isEditActivationKeyModalOpen);
+  };
   const ButtonWrapper = () => {
     return (
       <DeleteButton
@@ -63,6 +67,9 @@ const ActivationKey = () => {
       ></DeleteButton>
     );
   };
+
+  const editModalDescription =
+    'System purpose values are used by the subscriptions service to help filter and identify hosts. Setting values for these attributes is optional, but doing so ensures that subscriptions reporting accurately reflects the system. Only those values available to your account are shown.';
 
   const Page = () => {
     return (
@@ -99,7 +106,10 @@ const ActivationKey = () => {
                     }}
                   >
                     <GalleryItem>
-                      <SystemPurposeCard activationKey={activationKey} />
+                      <SystemPurposeCard
+                        activationKey={activationKey}
+                        actionHandler={handleEditActivationKeyModalToggle}
+                      />
                     </GalleryItem>
                     <GalleryItem>
                       <WorkloadCard activationKey={activationKey} />
@@ -115,6 +125,15 @@ const ActivationKey = () => {
               handleModalToggle={handleDeleteActivationKeyModalToggle}
               isOpen={isDeleteActivationKeyModalOpen}
               name={id}
+            />
+            <EditActivationKeyModal
+              title="Edit system purpose"
+              description={editModalDescription}
+              isOpen={isEditActivationKeyModalOpen}
+              handleModalToggle={handleEditActivationKeyModalToggle}
+              activationKeyName={id}
+              systemPurposeOnly={true}
+              modalSize="small"
             />
           </React.Fragment>
         )}

@@ -49,7 +49,7 @@ const ActivationKeysFormSelect = (props) => {
 
 ActivationKeysFormSelect.propTypes = {
   label: PropTypes.string.isRequired,
-  popover: PropTypes.element.isRequired,
+  popover: PropTypes.element,
   helperText: PropTypes.string,
   data: PropTypes.array.isRequired,
   onSelect: PropTypes.func.isRequired,

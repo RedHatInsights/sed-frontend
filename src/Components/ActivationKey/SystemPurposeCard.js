@@ -11,12 +11,14 @@ import {
   TextListItem,
   TextListItemVariants,
   Title,
+  CardActions,
 } from '@patternfly/react-core';
+import EditButton from './EditButton';
 import propTypes from 'prop-types';
 import ActivationKeysDocsPopover from '../ActivationKeysDocsPopover';
 
 const SystemPurposeCard = (props) => {
-  const { activationKey } = props;
+  const { activationKey, actionHandler } = props;
   const notDefinedText = 'Not defined';
   const docsPopoverContent = (
     <TextContent>
@@ -75,6 +77,7 @@ const SystemPurposeCard = (props) => {
 
 SystemPurposeCard.propTypes = {
   activationKey: propTypes.object,
+  actionHandler: propTypes.func,
 };
 
 export default SystemPurposeCard;
