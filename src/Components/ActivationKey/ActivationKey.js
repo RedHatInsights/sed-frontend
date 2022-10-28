@@ -1,5 +1,5 @@
-import React from 'react';
-import { withRouter, useParams } from 'react-router-dom';
+import React, { useState } from 'react';
+import { withRouter, useParams, useHistory } from 'react-router-dom';
 import pckg from '../../../package.json';
 import Breadcrumbs from '../shared/breadcrumbs';
 import {
@@ -10,6 +10,8 @@ import {
   GridItem,
   Gallery,
   GalleryItem,
+  Level,
+  LevelItem,
 } from '@patternfly/react-core';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import {
@@ -22,9 +24,13 @@ import Loading from '../LoadingState/Loading';
 import SystemPurposeCard from './SystemPurposeCard';
 import WorkloadCard from './WorkloadCard';
 import NoAccessView from '../ActivationKeys/no-access';
+import DeleteButton from './DeleteButton';
+import DeleteActivationKeyConfirmationModal from '../Modals/DeleteActivationKeyConfirmationModal';
+import NoAccessPopover from '../NoAccessPopover';
 import { useQueryClient } from 'react-query';
 
 const ActivationKey = () => {
+  const history = useHistory();
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData('user');
   const { id } = useParams();
@@ -40,42 +46,77 @@ const ActivationKey = () => {
   } = useActivationKey(id);
   const description =
     'View and edit details and repositories for this activation key.';
+  const [isDeleteActivationKeyModalOpen, setIsDeleteActivationKeyModalOpen] =
+    useState(false);
+
+  const handleDeleteActivationKeyModalToggle = (keyDeleted) => {
+    setIsDeleteActivationKeyModalOpen(!isDeleteActivationKeyModalOpen);
+    if (keyDeleted === true) {
+      history.push('/activation-keys');
+    }
+  };
+
+  const ButtonWrapper = () => {
+    return (
+      <DeleteButton
+        onClick={handleDeleteActivationKeyModalToggle}
+      ></DeleteButton>
+    );
+  };
 
   const Page = () => {
     return (
       <React.Fragment>
         <PageHeader>
-          <Breadcrumbs {...breadcrumbs} />
-          <PageHeaderTitle title={id} />
-          <TextContent>
-            <Text component={TextVariants.p}>{description}</Text>
-          </TextContent>
+          <Level>
+            <LevelItem>
+              <Breadcrumbs {...breadcrumbs} />
+              <PageHeaderTitle title={id} />
+              <TextContent>
+                <Text component={TextVariants.p}>{description}</Text>
+              </TextContent>
+            </LevelItem>
+            <LevelItem>
+              {user.rbacPermissions.canWriteActivationKeys ? (
+                <ButtonWrapper />
+              ) : (
+                <NoAccessPopover content={ButtonWrapper} />
+              )}
+            </LevelItem>
+          </Level>
         </PageHeader>
         {isKeyLoading && !keyError ? (
           <Loading />
         ) : (
-          <Main>
-            <Grid hasGutter>
-              <GridItem span={12}>
-                <Gallery
-                  hasGutter
-                  minWidths={{
-                    default: '40%',
-                  }}
-                >
-                  <GalleryItem>
-                    <SystemPurposeCard activationKey={activationKey} />
-                  </GalleryItem>
-                  <GalleryItem>
-                    <WorkloadCard activationKey={activationKey} />
-                  </GalleryItem>
-                </Gallery>
-              </GridItem>
-              <GridItem span={12}>
-                <AdditionalRepositoriesCard activationKey={activationKey} />
-              </GridItem>
-            </Grid>
-          </Main>
+          <React.Fragment>
+            <Main>
+              <Grid hasGutter>
+                <GridItem span={12}>
+                  <Gallery
+                    hasGutter
+                    minWidths={{
+                      default: '40%',
+                    }}
+                  >
+                    <GalleryItem>
+                      <SystemPurposeCard activationKey={activationKey} />
+                    </GalleryItem>
+                    <GalleryItem>
+                      <WorkloadCard activationKey={activationKey} />
+                    </GalleryItem>
+                  </Gallery>
+                </GridItem>
+                <GridItem span={12}>
+                  <AdditionalRepositoriesCard activationKey={activationKey} />
+                </GridItem>
+              </Grid>
+            </Main>
+            <DeleteActivationKeyConfirmationModal
+              handleModalToggle={handleDeleteActivationKeyModalToggle}
+              isOpen={isDeleteActivationKeyModalOpen}
+              name={id}
+            />
+          </React.Fragment>
         )}
       </React.Fragment>
     );
