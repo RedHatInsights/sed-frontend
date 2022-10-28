@@ -15,8 +15,9 @@ const ActivationKeysDocsPopover = (props) => {
     <Popover
       headerContent="Activation Keys"
       position={PopoverPosition.rightStart}
+      className="connector pf-u-color-100"
       bodyContent={
-        <TextContent>
+        <TextContent className="pf-u-font-size-sm">
           <Text>
             Activation keys assist you in registering systems. Metadata such as
             role, system purpose, and usage can be automatically attached to
