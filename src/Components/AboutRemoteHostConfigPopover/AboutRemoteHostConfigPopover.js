@@ -1,22 +1,26 @@
 import React from 'react';
-import { Button, Popover, Text, TextContent } from '@patternfly/react-core';
+import {
+  Button,
+  Popover,
+  PopoverPosition,
+  Text,
+  TextContent,
+} from '@patternfly/react-core';
 import {
   OutlinedQuestionCircleIcon,
   ExternalLinkAltIcon,
 } from '@patternfly/react-icons';
-
-import './AboutRemoteHostConfigPopover.scss';
 
 import { RegisterWithActivationKey } from '../FormGroups';
 
 const ConnectSystemsModal = () => {
   return (
     <Popover
-      maxWidth="200px"
       headerContent="About Remote Host Configuration Manager"
-      className="connector"
+      className="connector pf-u-color-100"
+      position={PopoverPosition.rightStart}
       bodyContent={
-        <TextContent>
+        <TextContent className="pf-u-font-size-sm">
           <Text>
             Remote host configuration (rhc) allows you to register with Red Hat
             Subscription Management (RHSM), connect to Red Hat Insights, and
@@ -39,7 +43,7 @@ const ConnectSystemsModal = () => {
             </Text>
             .
           </Text>
-          <div className="pf-c-form inc-c-connector__connect-systems-modal-form">
+          <div className="pf-c-form pf-u-pb-lg">
             <RegisterWithActivationKey />
           </div>
           <a
