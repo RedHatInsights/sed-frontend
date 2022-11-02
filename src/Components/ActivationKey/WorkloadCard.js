@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   TextContent,
+  Text,
   Card,
   CardHeader,
   CardTitle,
@@ -12,15 +13,32 @@ import {
   Title,
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
+import ActivationKeysDocsPopover from '../ActivationKeysDocsPopover';
 
 const WorkloadCard = (props) => {
   const { activationKey } = props;
   const notDefinedText = 'Not defined';
+  const docsPopoverContent = (
+    <TextContent>
+      <Text>
+        A release version enables you to configure your system to use a specific
+        minor release of Red Hat Enterprise Linux. Setting a release version is
+        useful if you are using an extended release of software, such as
+        Extended Update Support. Most users will not set a release version.
+      </Text>
+    </TextContent>
+  );
   return (
     <Card style={{ minHeight: '100%' }}>
       <CardHeader>
         <CardTitle>
-          <Title headingLevel="h2">Workload</Title>
+          <Title headingLevel="h2">
+            Workload{' '}
+            <ActivationKeysDocsPopover
+              popoverContent={docsPopoverContent}
+              position="top"
+            />
+          </Title>
         </CardTitle>
       </CardHeader>
       <CardBody>
