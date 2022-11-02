@@ -145,9 +145,11 @@ const ActivationKeys = () => {
           handleModalToggle={handleModalToggle}
         />
         <EditActivationKeyModal
+          title="Edit activation key"
           isOpen={isEditActivationKeyModalOpen}
           handleModalToggle={handleEditActivationKeyModalToggle}
           activationKeyName={currentKeyName}
+          modalSize="large"
         />
         <DeleteActivationKeyConfirmationModal
           handleModalToggle={handleDeleteActivationKeyModalToggle}

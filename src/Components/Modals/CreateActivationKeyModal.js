@@ -12,7 +12,8 @@ const CreateActivationKeyModal = (props) => {
   const [error, setError] = React.useState(false);
   const { handleModalToggle, isOpen } = props;
   const { mutate, isLoading } = useCreateActivationKey();
-  const submitForm = (name, role, serviceLevel, usage) => {
+  const submitForm = (formData) => {
+    const { name, role, serviceLevel, usage } = formData;
     mutate(
       { name, role, serviceLevel, usage },
       {

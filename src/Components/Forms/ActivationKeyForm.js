@@ -33,7 +33,12 @@ const ActivationKeyForm = (props) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     if (validated === 'success' || activationKey) {
-      submitForm(name, role, serviceLevel, usage);
+      submitForm({
+        name: name,
+        role: role,
+        serviceLevel: serviceLevel,
+        usage: usage,
+      });
     } else {
       setValidated('error');
     }
