@@ -6,21 +6,39 @@ import {
   CardTitle,
   CardBody,
   TextList,
+  Text,
   TextListVariants,
   TextListItem,
   TextListItemVariants,
   Title,
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
+import ActivationKeysDocsPopover from '../ActivationKeysDocsPopover';
 
 const SystemPurposeCard = (props) => {
   const { activationKey } = props;
   const notDefinedText = 'Not defined';
+  const docsPopoverContent = (
+    <TextContent>
+      <Text>
+        System purpose values are used by the subscriptions service to help
+        filter and identify hosts. Setting values for these attributes is
+        optional, but doing so ensures that subscriptions reporting accurately
+        reflects the system.
+      </Text>
+    </TextContent>
+  );
   return (
     <Card>
       <CardHeader>
         <CardTitle>
-          <Title headingLevel="h2">System Purpose</Title>
+          <Title headingLevel="h2">
+            System Purpose{' '}
+            <ActivationKeysDocsPopover
+              popoverContent={docsPopoverContent}
+              position="top"
+            />{' '}
+          </Title>
         </CardTitle>
       </CardHeader>
       <CardBody>

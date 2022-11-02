@@ -43,6 +43,27 @@ const ActivationKeys = () => {
     setisOpen(!isOpen);
   };
 
+  const popoverContent = (
+    <TextContent className="pf-u-font-size-sm">
+      <Text>
+        Activation keys assist you in registering systems. Metadata such as
+        role, system purpose, and usage can be automatically attached to systems
+        via an activation key, and monitored with &nbsp;
+        <a
+          target="_blank"
+          rel="noopener noreferrer"
+          href={'https://console.redhat.com/insights/subscriptions/rhel'}
+        >
+          Subscription Watch.
+        </a>
+      </Text>
+      <Text>
+        To register with an activation key, you will need your organization ID:{' '}
+        <b>{user.orgId}</b>
+      </Text>
+    </TextContent>
+  );
+
   const actions = (activationKeyName) => {
     return [
       {
@@ -99,7 +120,11 @@ const ActivationKeys = () => {
                   <PageHeaderTitle title="Activation Keys" />
                 </FlexItem>
                 <FlexItem>
-                  <ActivationKeysDocsPopover orgId={user.orgId} />
+                  <ActivationKeysDocsPopover
+                    popoverContent={popoverContent}
+                    title="Activation Keys"
+                    position="right"
+                  />
                 </FlexItem>
               </Flex>
             </SplitItem>
