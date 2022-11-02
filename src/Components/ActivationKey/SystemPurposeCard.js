@@ -16,18 +16,10 @@ import {
 import EditButton from './EditButton';
 import propTypes from 'prop-types';
 import ActivationKeysDocsPopover from '../ActivationKeysDocsPopover';
-import NoAccessPopover from '../NoAccessPopover';
-import { useQueryClient } from 'react-query';
 
 const SystemPurposeCard = (props) => {
   const { activationKey, actionHandler } = props;
   const notDefinedText = 'Not defined';
-  const queryClient = useQueryClient();
-  const user = queryClient.getQueryData('user');
-
-  const ButtonWrapper = () => {
-    return <EditButton onClick={actionHandler} />;
-  };
   const docsPopoverContent = (
     <TextContent>
       <Text>
