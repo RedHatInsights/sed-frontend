@@ -41,9 +41,7 @@ const SystemPurposeForm = (props) => {
   };
 
   if (isSuccess) {
-    const successMessage = activationKey
-      ? `Activation key ${activationKey.name} updated successfully.`
-      : 'Activation key created successfully.';
+    const successMessage = `Changes saved for activation key "${activationKey.name}"`;
     addSuccessNotification(successMessage, {
       timeout: false,
     });
