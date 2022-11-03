@@ -19,17 +19,23 @@ objects:
           - /settings/connector
       image: ${IMAGE}:${IMAGE_TAG}
       navItems:
-        - appId: "connector"
-          title: "Manage configuration"
-          href: "/settings/connector"
-          product: "Red Hat Insights"
+        - title: Remote Host Configuration
+          expandable: true
+          routes:
+            - appId: connector
+              title: Manage configuration
+              href: /settings/connector
+            - appId: connector
+              title: Activation Keys
+              href: /settings/connector/activation-keys
       module:
-        manifestLocation: "/settings/connector/fed-mods.json"
+        manifestLocation: /apps/connector/fed-mods.json
         modules:
-          - id: "connector"
-            module: "./RootApp"
+          - id: connector
+            module: ./RootApp
             routes:
               - pathname: /settings/connector
+        moduleID: connector
 parameters:
   - name: ENV_NAME
     required: true
