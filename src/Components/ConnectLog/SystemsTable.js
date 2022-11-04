@@ -1,30 +1,28 @@
-import React, { useContext, useRef } from 'react';
+import React from 'react';
 import { InventoryTable } from '@redhat-cloud-services/frontend-components/Inventory';
-import { RegistryContext } from '../../store';
+import { register } from '../../store';
 
 const SystemsTable = () => {
-  const getEntitiesRef = useRef(() => undefined);
-  const { getRegistry } = useContext(RegistryContext);
   return (
     <InventoryTable
       variant="compact"
       showTags
       hasCheckbox={false}
-      getEntities={async (_i, config) => {
+      columns={(defaultColumns) => defaultColumns}
+      getEntities={async (_i, config, tags, defaultGetEntities) => {
         config.filter = {
           system_profile: {
             rhc_client_id: 'not_nil',
           },
         };
-        const data = await getEntitiesRef.current(undefined, config, true);
+        const data = await defaultGetEntities(undefined, config, tags);
         return data;
       }}
       onRowClick={(_e, id) =>
         (window.location.href = `./insights/inventory/${id}`)
       }
-      onLoad={({ mergeWithEntities, api }) => {
-        getEntitiesRef.current = api?.getEntities;
-        getRegistry()?.register?.({
+      onLoad={({ mergeWithEntities }) => {
+        register?.({
           ...mergeWithEntities(),
         });
       }}
