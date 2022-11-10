@@ -10,6 +10,7 @@ objects:
     spec:
       envName: ${ENV_NAME}
       title: "Manage configuration"
+      routePrefix: settings
       deploymentRepo: https://github.com/RedHatInsights/sed-frontend
       API:
         versions:
