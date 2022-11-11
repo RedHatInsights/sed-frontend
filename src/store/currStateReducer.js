@@ -14,10 +14,10 @@ const currStateFulfilled = (state, { payload }) => ({
   ...state,
   loaded: true,
   values: {
-    useOpenSCAP: payload?.state?.compliance_openscap === 'enabled',
-    enableCloudConnector: payload?.state?.remediations === 'enabled',
-    hasInsights: payload?.state?.insights === 'enabled',
-    apply_state: payload?.apply_state,
+    compliance: payload?.compliance,
+    remediations: payload?.remediations,
+    insights: payload?.insights,
+    active: payload?.active,
   },
 });
 

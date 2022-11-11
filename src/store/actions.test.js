@@ -15,15 +15,20 @@ describe('actions', () => {
   });
 
   test('fetchCurrState', async () => {
-    mock.onGet('/api/config-manager/v1/states/current').reply(200, {});
+    mock.onGet('/api/config-manager/v2/profiles/current').reply(200, {
+      payload: {
+        compliance: false,
+        insights: true,
+        remediations: false,
+      },
+    });
     const action = fetchCurrState();
     await action.payload;
     expect(action.type).toBe('GET_CURR_STATE');
   });
 
   test('saveCurrState', async () => {
-    mock.onPost('/api/config-manager/v1/states').reply(200, {});
-    mock.onPost('/api/config-manager/v1/manage').reply(200, {});
+    mock.onPost('/api/config-manager/v2/profiles').reply(200, {});
     const action = saveCurrState({});
     await action.payload;
     expect(action.type).toBe('SET_CURR_STATE');
@@ -32,7 +37,7 @@ describe('actions', () => {
   describe('fetchLog', () => {
     test('no pagination', async () => {
       mock
-        .onGet('/api/config-manager/v1/states?limit=50&offset=0')
+        .onGet('/api/config-manager/v2/profiles?limit=50&offset=0')
         .reply(200, {});
       const action = fetchLog();
       await action.payload;
@@ -41,7 +46,7 @@ describe('actions', () => {
 
     test('just page', async () => {
       mock
-        .onGet('/api/config-manager/v1/states?limit=50&offset=50')
+        .onGet('/api/config-manager/v2/profiles?limit=50&offset=50')
         .reply(200, {});
       const action = fetchLog({ page: 2 });
       await action.payload;
@@ -50,7 +55,7 @@ describe('actions', () => {
 
     test('just per page', async () => {
       mock
-        .onGet('/api/config-manager/v1/states?limit=22&offset=0')
+        .onGet('/api/config-manager/v2/profiles?limit=22&offset=0')
         .reply(200, {});
       const action = fetchLog({ perPage: 22 });
       await action.payload;
@@ -59,7 +64,7 @@ describe('actions', () => {
 
     test('full pagination', async () => {
       mock
-        .onGet('/api/config-manager/v1/states?limit=22&offset=44')
+        .onGet('/api/config-manager/v2/profiles?limit=22&offset=44')
         .reply(200, {});
       const action = fetchLog({ perPage: 22, page: 3 });
       await action.payload;

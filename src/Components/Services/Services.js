@@ -50,12 +50,12 @@ const Services = ({
   setIsEditing,
 }) => {
   const initState = {
-    enableCloudConnector: {
-      value: defaults.enableCloudConnector,
+    remediations: {
+      value: defaults.remediations,
       isDisabled: false,
     },
-    useOpenSCAP: { value: defaults.useOpenSCAP, isDisabled: false },
-    apply_state: { value: defaults.apply_state, isDisabled: false },
+    compliance: { value: defaults.compliance, isDisabled: false },
+    active: { value: defaults.active, isDisabled: false },
   };
   const [formState, setFormState] = useState(initState);
   const [madeChanges, setMadeChanges] = useState(false);
@@ -81,15 +81,14 @@ const Services = ({
 
   useEffect(() => {
     setMadeChanges(
-      formState.useOpenSCAP.value !== defaults.useOpenSCAP ||
-        formState.enableCloudConnector.value !==
-          defaults.enableCloudConnector ||
-        formState.apply_state.value !== defaults.apply_state
+      formState.compliance.value !== defaults.compliance ||
+        formState.remediations.value !== defaults.remediations ||
+        formState.active.value !== defaults.active
     );
     onChange({
-      useOpenSCAP: formState.useOpenSCAP.value,
-      enableCloudConnector: formState.enableCloudConnector.value,
-      apply_state: formState.apply_state.value,
+      compliance: formState.compliance.value,
+      remediations: formState.remediations.value,
+      active: formState.active.value,
     });
   }, [formState]);
 
@@ -271,9 +270,9 @@ const Services = ({
 Services.propTypes = {
   setMadeChanges: propTypes.func.isRequired,
   defaults: propTypes.shape({
-    useOpenSCAP: propTypes.bool,
-    apply_state: propTypes.bool,
-    enableCloudConnector: propTypes.bool,
+    compliance: propTypes.bool,
+    active: propTypes.bool,
+    remediations: propTypes.bool,
   }),
   onChange: propTypes.func.isRequired,
   madeChanges: propTypes.bool,
@@ -284,9 +283,9 @@ Services.propTypes = {
 
 Services.defaultProps = {
   defaults: {
-    useOpenSCAP: false,
-    apply_state: false,
-    enableCloudConnector: false,
+    compliance: false,
+    active: false,
+    remediations: false,
   },
 };
 

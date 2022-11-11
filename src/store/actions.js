@@ -8,7 +8,7 @@ import {
 
 export const fetchCurrState = () => ({
   type: GET_CURR_STATE,
-  payload: configApi.getCurrentState(),
+  payload: configApi.getProfile('current'),
 });
 
 export const saveCurrState = (data) => ({
@@ -18,7 +18,7 @@ export const saveCurrState = (data) => ({
 
 export const fetchLog = ({ perPage = 50, page = 1 } = {}) => ({
   type: GET_LOG,
-  payload: configApi.getStates(perPage, (page - 1) * perPage),
+  payload: configApi.getProfiles(perPage, (page - 1) * perPage),
 });
 
 export const fetchConnectedHosts = () => ({

@@ -64,11 +64,11 @@ const SamplePage = () => {
   const activeStateLoaded = useSelector(
     ({ activeStateReducer }) => activeStateReducer?.loaded
   );
-  const { useOpenSCAP, enableCloudConnector, apply_state } = useSelector(
+  const { compliance, remediations, active } = useSelector(
     ({ activeStateReducer }) => ({
-      useOpenSCAP: activeStateReducer?.values?.useOpenSCAP,
-      enableCloudConnector: activeStateReducer?.values?.enableCloudConnector,
-      apply_state: activeStateReducer?.values?.apply_state,
+      compliance: activeStateReducer?.values?.compliance,
+      remediations: activeStateReducer?.values?.remediations,
+      active: activeStateReducer?.values?.active,
     }),
     shallowEqual
   );
@@ -154,7 +154,7 @@ const SamplePage = () => {
       <Page>
         <div className="dashboard__content">
           {activeStateLoaded ||
-          (useOpenSCAP !== undefined && enableCloudConnector !== undefined) ? (
+          (compliance !== undefined && remediations !== undefined) ? (
             <Services
               madeChanges={madeChanges}
               setConfirmChangesOpen={setConfirmChangesOpen}
@@ -162,9 +162,9 @@ const SamplePage = () => {
               setIsEditing={setIsEditing}
               isEditing={isEditing}
               defaults={{
-                useOpenSCAP,
-                enableCloudConnector,
-                apply_state,
+                compliance,
+                remediations,
+                active,
               }}
               onChange={(data) => {
                 dataRef.current = data;

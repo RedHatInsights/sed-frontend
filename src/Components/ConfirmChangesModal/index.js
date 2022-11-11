@@ -55,9 +55,9 @@ const ConfirmChangesModal = ({
         onClick={() => {
           (async () => {
             const playbook = await configApi.getPlaybookPreview({
-              compliance_openscap: data.useOpenSCAP ? 'enabled' : 'disabled',
-              insights: data.hasInsights ? 'enabled' : 'disabled',
-              remediations: data.enableCloudConnector ? 'enabled' : 'disabled',
+              compliance: data.compliance,
+              insights: data.insights,
+              remediations: data.remediations,
             });
             downloadFile(playbook);
           })();
@@ -76,9 +76,9 @@ ConfirmChangesModal.propTypes = {
   handleCancel: PropTypes.func.isRequired,
   systemsCount: PropTypes.number.isRequired,
   data: PropTypes.shape({
-    useOpenSCAP: PropTypes.bool,
-    enableCloudConnector: PropTypes.bool,
-    hasInsights: PropTypes.bool,
+    compliance: PropTypes.bool,
+    remediations: PropTypes.bool,
+    insights: PropTypes.bool,
   }),
 };
 
