@@ -68,7 +68,7 @@ const rowsMapper = (results, opened) =>
                 isInline
                 onClick={() => {
                   (async () => {
-                    const data = await configApi.getPlaybookById(id);
+                    const data = await configApi.getPlaybook(id);
                     downloadFile(data);
                   })();
                 }}
