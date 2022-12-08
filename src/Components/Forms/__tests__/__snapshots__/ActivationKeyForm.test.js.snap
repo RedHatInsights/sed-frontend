@@ -100,15 +100,15 @@ exports[`Activation Key Form renders correctly when data is loaded 1`] = `
         >
           <option
             class=""
-            value=""
-          >
-            Select role
-          </option>
-          <option
-            class=""
             value="role"
           >
             role
+          </option>
+          <option
+            class=""
+            value=""
+          >
+            Select role
           </option>
         </select>
         <div
@@ -164,15 +164,15 @@ exports[`Activation Key Form renders correctly when data is loaded 1`] = `
         >
           <option
             class=""
-            value=""
-          >
-            Select a service level agreement
-          </option>
-          <option
-            class=""
             value="serviceLevel"
           >
             serviceLevel
+          </option>
+          <option
+            class=""
+            value=""
+          >
+            Select a service level agreement
           </option>
         </select>
         <div
@@ -228,15 +228,15 @@ exports[`Activation Key Form renders correctly when data is loaded 1`] = `
         >
           <option
             class=""
-            value=""
-          >
-            Select usage
-          </option>
-          <option
-            class=""
             value="usage"
           >
             usage
+          </option>
+          <option
+            class=""
+            value=""
+          >
+            Select usage
           </option>
         </select>
         <div
