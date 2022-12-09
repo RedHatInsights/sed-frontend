@@ -1,0 +1,15 @@
+version: 2
+updates:
+- package-ecosystem: npm
+  directory: "/"
+  schedule:
+    interval: weekly
+    time: "12:00"
+    timezone: EST
+  open-pull-requests-limit: 10
+  reviewers:
+  - "@RedHatInsights/team-interact"
+  allow:
+  - dependency-name: "@redhat-cloud-services/frontend*"
+  - dependency-name: "@patternfly/*"
+    dependency-type: direct
