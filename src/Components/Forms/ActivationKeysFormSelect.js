@@ -36,12 +36,12 @@ const ActivationKeysFormSelect = (props) => {
         name={name}
         aria-label={placeholderValue}
       >
+        {options}
         <FormSelectOption
           label={placeholderValue}
           isPlaceholder={true}
           isDisabled={disableDefaultValues}
         />
-        {options}
       </FormSelect>
     </FormGroup>
   );

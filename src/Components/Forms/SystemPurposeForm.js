@@ -66,7 +66,7 @@ const SystemPurposeForm = (props) => {
           label="Role"
           name="role"
           placeholderValue={placeholderValue}
-          disableDefaultValues={true}
+          disableDefaultValues={false}
         />
       )}
       {!isLoading && !error && (
@@ -77,7 +77,7 @@ const SystemPurposeForm = (props) => {
           label="Service Level Agreement (SLA)"
           name="serviceLevel"
           placeholderValue={placeholderValue}
-          disableDefaultValues={true}
+          disableDefaultValues={false}
         />
       )}
       {!isLoading && !error && (
@@ -88,7 +88,7 @@ const SystemPurposeForm = (props) => {
           label="Usage"
           name="usage"
           placeholderValue={placeholderValue}
-          disableDefaultValues={true}
+          disableDefaultValues={false}
         />
       )}
       <ActionGroup>
