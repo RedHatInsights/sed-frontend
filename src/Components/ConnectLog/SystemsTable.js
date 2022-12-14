@@ -10,11 +10,15 @@ const SystemsTable = () => {
       hasCheckbox={false}
       columns={(defaultColumns) => defaultColumns}
       getEntities={async (_i, config, tags, defaultGetEntities) => {
+        const { rhcdFilter = [] } = config?.filters || {};
+
+        //overrides the rhcd from Inventory module if that filter does not exist
         config.filter = {
           system_profile: {
-            rhc_client_id: 'not_nil',
+            rhc_client_id: rhcdFilter.length !== 0 ? rhcdFilter : 'not_nil',
           },
         };
+
         const data = await defaultGetEntities(undefined, config, tags);
         return data;
       }}
