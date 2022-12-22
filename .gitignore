@@ -18,3 +18,12 @@ yarn-error.log*
 
 .DS_Store
 coverage
+
+# cypress
+cypress/downloads
+cypress/screenshots
+cypress/videos
+
+codecov*
+.nyc_output/
+reports/

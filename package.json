@@ -19,7 +19,10 @@
     "start:proxy": "PROXY=true npm run start",
     "start:proxy:beta": "BETA=true npm run start:proxy",
     "test": "TZ=UTC jest --verbose --no-cache",
-    "verify": "npm-run-all build lint test"
+    "verify": "npm-run-all build lint test",
+    "test:ct": "BABEL_ENV=componentTest cypress run --component",
+    "test:openct": "cypress open --component",
+    "coverage": "bash coverage.sh"
   },
   "jest": {
     "collectCoverage": true,
@@ -27,7 +30,7 @@
       "src/**/*.js",
       "!src/**/stories/*"
     ],
-    "coverageDirectory": "./coverage/",
+    "coverageDirectory": "./codecov-jest/",
     "moduleNameMapper": {
       "\\.(css|scss)$": "identity-obj-proxy"
     },
@@ -70,6 +73,9 @@
     "@babel/preset-env": "7.12.13",
     "@babel/preset-flow": "7.12.13",
     "@babel/preset-react": "7.12.13",
+    "@cypress/code-coverage": "^3.10.0",
+    "@cypress/react": "^7.0.2",
+    "@patternfly/patternfly": "^4.222.4",
     "@redhat-cloud-services/eslint-config-redhat-cloud-services": "^1.0.0",
     "@redhat-cloud-services/frontend-components-config": "^4.6.9",
     "@testing-library/jest-dom": "^5.16.4",
@@ -80,14 +86,17 @@
     "babel-core": "7.0.0-bridge.0",
     "babel-jest": "=26.6.3",
     "babel-plugin-dual-import": "1.2.1",
+    "babel-plugin-istanbul": "^6.1.1",
     "babel-plugin-lodash": "3.3.4",
     "babel-plugin-transform-imports": "^2.0.0",
     "bdd-lazy-var": "^2.6.1",
     "cross-fetch": "^3.0.6",
     "css-loader": "5.0.1",
+    "cypress": "^10.11.0",
     "enzyme": "3.11.0",
     "enzyme-to-json": "3.6.1",
     "eslint": "8.9.0",
+    "eslint-plugin-cypress": "^2.12.1",
     "identity-obj-proxy": "3.0.0",
     "jest": "=26.6.3",
     "jest-fetch-mock": "^3.0.3",
@@ -109,5 +118,14 @@
     "logModal": "/log",
     "activationKeys": "/activation-keys",
     "activationKey": "/activation-keys/:id"
+  },
+  "nyc": {
+    "report-dir": "codecov-cypress",
+    "include": [
+      "src/**/*"
+    ],
+    "exclude": [
+      "src/**/*.test.js"
+    ]
   }
 }
