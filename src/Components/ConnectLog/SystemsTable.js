@@ -10,17 +10,18 @@ const SystemsTable = () => {
       hasCheckbox={false}
       columns={(defaultColumns) => defaultColumns}
       getEntities={async (_i, config, tags, defaultGetEntities) => {
-        config.filter = {
-          system_profile: {
-            rhc_client_id: 'not_nil',
-          },
-        };
-        const data = await defaultGetEntities(undefined, config, tags);
-        return data;
+        return await defaultGetEntities(undefined, config, tags);
       }}
       onRowClick={(_e, id) =>
         (window.location.href = `./insights/inventory/${id}`)
       }
+      customFilters={{
+        filters: [
+          {
+            rhcdFilter: ['not_nil'],
+          },
+        ],
+      }}
       onLoad={({ mergeWithEntities }) => {
         register?.({
           ...mergeWithEntities(),

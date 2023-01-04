@@ -15,6 +15,7 @@ const webpackProxy = {
     ? ['/beta/settings/connector']
     : ['/settings/connector'],
   // routes: {
+  //   '/apps/inventory': { host: 'http://stage.foo.redhat.com:8002' },
   //   '/beta/config': {
   //     host: 'http://localhost:8889',
   //   },
