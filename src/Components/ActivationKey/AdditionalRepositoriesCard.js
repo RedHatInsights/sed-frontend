@@ -1,9 +1,11 @@
 import React from 'react';
+import { useState } from 'react';
 import {
   Text,
   TextContent,
   TextVariants,
   Card,
+  CardActions,
   CardHeader,
   CardTitle,
   CardBody,
@@ -11,9 +13,35 @@ import {
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import AdditionalRepositoriesTable from '../AdditionalRepositoriesTable';
+import EditAdditionalRepositoriesButton from '../ActivationKey/EditAdditionalRepositoriesButton';
+import useAvailableRepositories from '../../hooks/useAvailableRepositories';
+import EditAdditionalRepositoriesModal from '../Modals/EditAdditionalRepositoriesModal';
 
 const AdditionalRepositoriesCard = (props) => {
   const { activationKey } = props;
+  const { data: availableRepositories } = useAvailableRepositories(
+    activationKey.name
+  );
+
+  const [
+    isEditAdditionalRepositoriesModalOpen,
+    setisEditAdditionalRepositoriesModalOpen,
+  ] = useState(false);
+
+  const handleEditAdditionalRepositoriesToggle = () => {
+    setisEditAdditionalRepositoriesModalOpen(
+      !isEditAdditionalRepositoriesModalOpen
+    );
+  };
+
+  const ButtonWrapper = () => {
+    return (
+      <EditAdditionalRepositoriesButton
+        onClick={handleEditAdditionalRepositoriesToggle}
+      />
+    );
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -28,9 +56,19 @@ const AdditionalRepositoriesCard = (props) => {
             BaseOS and AppStream, are always enabled and do not need to be
             explicitly added to the activation key.
           </Text>
+          <CardActions>
+            <ButtonWrapper />
+          </CardActions>
+          <EditAdditionalRepositoriesModal
+            title="Additional Repositories"
+            isOpen={isEditAdditionalRepositoriesModalOpen}
+            handleModalToggle={handleEditAdditionalRepositoriesToggle}
+            modalSize="large"
+            repositories={availableRepositories}
+          />
         </TextContent>
         <AdditionalRepositoriesTable
-          repositories={activationKey.additionalRepositories}
+          repositories={activationKey.availableRepositories}
         />
       </CardBody>
     </Card>
