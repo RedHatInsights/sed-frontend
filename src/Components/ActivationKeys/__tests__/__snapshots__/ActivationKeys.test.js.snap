@@ -75,7 +75,6 @@ exports[`ActivationKeys renders correctly 1`] = `
   </section>
   <section
     class="pf-l-page__main-section pf-c-page__main-section"
-    page-type=""
   >
     <section
       class="pf-c-page__main-section pf-m-light"
