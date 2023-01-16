@@ -44,7 +44,6 @@ const EditAdditionalRepositoriesTable = (props) => {
     repositoryLabel: 'Label',
   };
 
-  /* Filter options rationale*/
   const [searchValue, setSearchValue] = React.useState('');
   const onSearchChange = (value) => {
     setSearchValue(value);
@@ -63,7 +62,6 @@ const EditAdditionalRepositoriesTable = (props) => {
     return filteredData?.length;
   };
 
-  /* Toolbar Function Rationale */
   const [page, setPage] = React.useState(1);
   const [perPage, setPerPage] = React.useState(10);
   const [activeAttributeMenu, setActiveAttributeMenu] = React.useState('Name');
@@ -171,7 +169,6 @@ const EditAdditionalRepositoriesTable = (props) => {
       }}
     />
   );
-  /*Pagination*/
 
   const getPage = (repo) => {
     const first = (page - 1) * perPage;
@@ -200,8 +197,6 @@ const EditAdditionalRepositoriesTable = (props) => {
       isCompact
     />
   );
-
-  /*Table sorting Filter by asc- desc*/
 
   const getSortableRowValues = (repo) => {
     const { repositoryName, repositoryLabel } = repo;
@@ -238,7 +233,6 @@ const EditAdditionalRepositoriesTable = (props) => {
   const searchedRepos = filterReposBySearch(sortedRepositories, searchValue);
   const paginatedRepos = getPage(searchedRepos);
 
-  /* Table Items Selection Check Boxes Rationale */
   const isRepoSelectable = (repo) => repo.repositoryName !== 'a';
 
   const setRepoSelected = (repo, isSelecting = true) =>
@@ -292,8 +286,6 @@ const EditAdditionalRepositoriesTable = (props) => {
       document.removeEventListener('keyup', onKeyUp);
     };
   }, []);
-
-  /* Toolbar for Repos Table with Filter/ Search */
 
   const editAdditionalReposToolbar = (
     <Toolbar
