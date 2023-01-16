@@ -49,26 +49,19 @@ const EditAdditionalRepositoriesTable = (props) => {
   const onSearchChange = (value) => {
     setSearchValue(value);
   };
-  const onFilter = (repo) => {
-    let searchValueInput;
-    try {
-      searchValueInput = new RegExp(searchValue, 'i');
-    } catch (err) {
-      searchValueInput = new RegExp(
-        searchValue.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'),
-        'i'
-      );
-    }
-    const matchesSearchValue =
-      repo.repositoryName.search(searchValueInput) >= 0;
-    const matchesLabelValue =
-      repo.repositoryLabel.search(searchValueInput) >= 0;
-    return (
-      (searchValue === '' || matchesSearchValue) &&
-      (searchValue === '' || matchesLabelValue)
-    );
+
+  const filterReposBySearch = (repositories, searchValue) => {
+    return repositories?.filter((entry) => {
+      const searchTerm = searchValue.toLowerCase().trim();
+      const repoName = (entry.repositoryName || '').toLowerCase();
+      const repoLabel = (entry.repositoryLabel || '').toLowerCase();
+      return repoName.includes(searchTerm) || repoLabel.includes(searchTerm);
+    });
   };
-  const filteredRepos = repositories?.filter(onFilter);
+  const countRepos = (repositories, searchValue) => {
+    const filteredData = filterReposBySearch(repositories, searchValue);
+    return filteredData?.length;
+  };
 
   /* Toolbar Function Rationale */
   const [page, setPage] = React.useState(1);
@@ -81,21 +74,17 @@ const EditAdditionalRepositoriesTable = (props) => {
   const [recentSelectedRowIndex, setRecentSelectedRowIndex] =
     React.useState(null);
   const [shifting, setShifting] = React.useState(false);
-  const getSortableRowValues = (repo) => {
-    const { repositoryName, repositoryLabel } = repo;
-    return [repositoryName, repositoryLabel];
-  };
   const attributeToggleRef = React.useRef(null);
   const attributeMenuRef = React.useRef(null);
   const attributeContainerRef = React.useRef(null);
   const placeholderValue = `Filter By ${activeAttributeMenu}`;
-  const onSetPage = (_event, newPage) => {
-    setPage(newPage);
-  };
-  const onPerPageSelect = (_event, newPerPage, newPage) => {
-    setPerPage(newPerPage);
-    setPage(newPage);
-  };
+  // const onSetPage = (_event, newPage) => {
+  //   setPage(newPage);
+  // };
+  // const onPerPageSelect = (_event, newPerPage, newPage) => {
+  //   setPerPage(newPerPage);
+  //   setPage(newPage);
+  // };
   const handleAttribueMenuKeys = (event) => {
     if (!isAttributeMenuOpen) {
       return;
@@ -197,40 +186,36 @@ const EditAdditionalRepositoriesTable = (props) => {
     return repo?.slice(first, last);
   };
 
-  const paginatedRepos = getPage(repositories);
-  const pagination = (variant = PaginationVariant.bottom) => (
+  const handleSetPage = (_event, page) => {
+    setPage(page);
+  };
+
+  const handlePerPageSelect = (_event, perPage) => {
+    setPerPage(perPage);
+    setPage(1);
+  };
+
+  const pagination = (variant = PaginationVariant.top) => (
     <Pagination
       perPageComponent="button"
-      itemCount={repositories?.length}
+      itemCount={countRepos(repositories, searchValue)}
       perPage={perPage}
       page={page}
-      onSetPage={onSetPage}
-      onPerPageSelect={onPerPageSelect}
-      isCompact
+      onSetPage={handleSetPage}
+      onPerPageSelect={handlePerPageSelect}
       variant={variant}
+      isCompact
     />
   );
 
   /*Table sorting Filter by asc- desc*/
 
-  let sortedRepositories = repositories && filteredRepos && paginatedRepos;
-  if (activeSortIndex !== null) {
-    sortedRepositories = repositories.sort((a, b) => {
-      const aValue = getSortableRowValues(a)[activeSortIndex];
-      const bValue = getSortableRowValues(b)[activeSortIndex];
-      if (typeof aValue === 'number') {
-        if (activeSortDirection === 'asc') {
-          return aValue - bValue;
-        }
-        return bValue - aValue;
-      } else {
-        if (activeSortDirection === 'asc') {
-          return aValue.localeCompare(bValue);
-        }
-        return bValue.localeCompare(aValue);
-      }
-    });
-  }
+  // let sortedRepositories = repositories;
+  const getSortableRowValues = (repo) => {
+    const { repositoryName, repositoryLabel } = repo;
+    return [repositoryName, repositoryLabel];
+  };
+
   const getSortParams = (columnIndex) => ({
     sortBy: {
       index: activeSortIndex,
@@ -243,6 +228,23 @@ const EditAdditionalRepositoriesTable = (props) => {
     },
     columnIndex,
   });
+  const sortRepos = (repositories, sortIndex) => {
+    const sortedRepos = repositories?.sort((a, b) => {
+      const aValue = getSortableRowValues(a)[sortIndex] || '';
+      const bValue = getSortableRowValues(b)[sortIndex] || '';
+      let result = 0;
+      if (aValue < bValue) {
+        result = -1;
+      } else if (aValue > bValue) {
+        result = 1;
+      }
+      return activeSortDirection == 'asc' ? result : -1 * result;
+    });
+    return sortedRepos;
+  };
+  const sortedRepositories = sortRepos(repositories, activeSortIndex);
+  const searchedRepos = filterReposBySearch(sortedRepositories, searchValue);
+  const paginatedRepos = getPage(searchedRepos);
 
   /* Table Items Selection Check Boxes Rationale */
   const isRepoSelectable = (repo) => repo.repositoryName !== 'a';
@@ -322,15 +324,7 @@ const EditAdditionalRepositoriesTable = (props) => {
           </ToolbarFilter>
         </ToolbarGroup>
         <ToolbarItem variant="pagination" align={{ default: 'alignRight' }}>
-          <Pagination
-            perPageComponent="button"
-            itemCount={repositories?.length}
-            perPage={perPage}
-            page={page}
-            onSetPage={onSetPage}
-            onPerPageSelect={onPerPageSelect}
-            isCompact
-          />
+          {pagination()}
         </ToolbarItem>
       </ToolbarContent>
     </Toolbar>
@@ -379,11 +373,8 @@ const EditAdditionalRepositoriesTable = (props) => {
             </Tr>
           </Thead>
           <Tbody>
-            {sortedRepositories?.map((repositories, rowIndex) => (
-              <Tr
-                key={(repositories?.repositoryName, rowIndex)}
-                ouiaSafe={true}
-              >
+            {paginatedRepos.map((repositories, rowIndex) => (
+              <Tr key={(repositories, rowIndex)} ouiaSafe={true}>
                 <Td
                   select={{
                     rowIndex,
@@ -401,7 +392,7 @@ const EditAdditionalRepositoriesTable = (props) => {
                 </Td>
               </Tr>
             ))}
-            {sortedRepositories?.length === 0 && (
+            {paginatedRepos.length == 0 && (
               <Tr>
                 <Td colSpan={8}>
                   <Bullseye>{emptyState}</Bullseye>
