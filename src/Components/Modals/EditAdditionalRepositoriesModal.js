@@ -24,7 +24,6 @@ const EditAdditionalRepositoriesModal = (props) => {
             key="Save changes"
             variant="primary"
             onClick={handleModalToggle}
-            isDisabled
           >
             Save Changes
           </Button>,
