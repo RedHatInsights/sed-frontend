@@ -78,13 +78,6 @@ const EditAdditionalRepositoriesTable = (props) => {
   const attributeMenuRef = React.useRef(null);
   const attributeContainerRef = React.useRef(null);
   const placeholderValue = `Filter By ${activeAttributeMenu}`;
-  // const onSetPage = (_event, newPage) => {
-  //   setPage(newPage);
-  // };
-  // const onPerPageSelect = (_event, newPerPage, newPage) => {
-  //   setPerPage(newPerPage);
-  //   setPage(newPage);
-  // };
   const handleAttribueMenuKeys = (event) => {
     if (!isAttributeMenuOpen) {
       return;
@@ -210,7 +203,6 @@ const EditAdditionalRepositoriesTable = (props) => {
 
   /*Table sorting Filter by asc- desc*/
 
-  // let sortedRepositories = repositories;
   const getSortableRowValues = (repo) => {
     const { repositoryName, repositoryLabel } = repo;
     return [repositoryName, repositoryLabel];
@@ -300,6 +292,7 @@ const EditAdditionalRepositoriesTable = (props) => {
       document.removeEventListener('keyup', onKeyUp);
     };
   }, []);
+
   /* Toolbar for Repos Table with Filter/ Search */
 
   const editAdditionalReposToolbar = (
@@ -369,7 +362,6 @@ const EditAdditionalRepositoriesTable = (props) => {
                 {columnNames.repositoryName}
               </Th>
               <Th sort={getSortParams(1)}>{columnNames.repositoryLabel}</Th>
-              {/* <Td></Td> */}
             </Tr>
           </Thead>
           <Tbody>
