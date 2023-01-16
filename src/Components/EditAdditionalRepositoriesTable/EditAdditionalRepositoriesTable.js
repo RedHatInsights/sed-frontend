@@ -33,10 +33,11 @@ import {
 } from '@patternfly/react-core';
 import { SearchIcon } from '@patternfly/react-icons';
 import { FilterIcon } from '@patternfly/react-icons';
-import NoAdditionalRepositories from '../AdditionalRepositoriesTable/NoAdditionalRepositories';
+import Loading from '../LoadingState/Loading';
+import Unavailable from '../AdditionalRepositoriesTable/NoAdditionalRepositories';
 
 const EditAdditionalRepositoriesTable = (props) => {
-  const { repositories } = props;
+  const { repositories, isLoading, error } = props;
 
   const columnNames = {
     repositoryName: 'Name',
@@ -412,13 +413,17 @@ const EditAdditionalRepositoriesTable = (props) => {
         {pagination(PaginationVariant.bottom)}
       </React.Fragment>
     );
+  } else if (isLoading && !error) {
+    return <Loading />;
   } else {
-    return <NoAdditionalRepositories />;
+    return <Unavailable />;
   }
 };
 
 EditAdditionalRepositoriesTable.propTypes = {
   repositories: propTypes.array,
+  isLoading: propTypes.boolean,
+  error: propTypes.boolean,
 };
 
 export default EditAdditionalRepositoriesTable;
