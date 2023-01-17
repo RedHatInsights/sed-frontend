@@ -315,8 +315,6 @@ const EditAdditionalRepositoriesTable = (props) => {
     </Toolbar>
   );
 
-  /* Empty State filter search return rationale*/
-
   const emptyState = (
     <EmptyState>
       <EmptyStateIcon icon={SearchIcon} />
