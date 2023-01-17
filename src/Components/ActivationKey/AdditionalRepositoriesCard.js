@@ -18,7 +18,7 @@ import EditAdditionalRepositoriesButton from '../ActivationKey/EditAdditionalRep
 import EditAdditionalRepositoriesModal from '../Modals/EditAdditionalRepositoriesModal';
 
 const AdditionalRepositoriesCard = (props) => {
-  const { activationKey } = props;
+  const { activationKey, isLoading, error } = props;
   const { data: availableRepositories } = useAvailableRepositories(
     activationKey.name
   );
@@ -65,6 +65,8 @@ const AdditionalRepositoriesCard = (props) => {
             handleModalToggle={handleEditAdditionalRepositoriesToggle}
             modalSize="large"
             repositories={availableRepositories}
+            isLoading={isLoading}
+            error={error}
           />
         </TextContent>
         <AdditionalRepositoriesTable
@@ -77,6 +79,8 @@ const AdditionalRepositoriesCard = (props) => {
 
 AdditionalRepositoriesCard.propTypes = {
   activationKey: propTypes.object,
+  isLoading: propTypes.func,
+  error: propTypes.func,
 };
 
 export default AdditionalRepositoriesCard;

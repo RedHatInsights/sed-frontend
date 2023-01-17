@@ -397,8 +397,9 @@ const EditAdditionalRepositoriesTable = (props) => {
 
 EditAdditionalRepositoriesTable.propTypes = {
   repositories: propTypes.array,
-  isLoading: propTypes.boolean,
-  error: propTypes.boolean,
+  activationKey: propTypes.object,
+  isLoading: propTypes.func,
+  error: propTypes.func,
 };
 
 export default EditAdditionalRepositoriesTable;

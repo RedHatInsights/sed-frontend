@@ -4,7 +4,7 @@ import { Modal, ModalVariant, Button } from '@patternfly/react-core';
 import EditAdditionalRepositoriesTable from '../EditAdditionalRepositoriesTable/EditAdditionalRepositoriesTable';
 
 const EditAdditionalRepositoriesModal = (props) => {
-  const { handleModalToggle, isOpen, repositories } = props;
+  const { handleModalToggle, isOpen, repositories, isLoading, error } = props;
 
   const editAdditionalRepositoriesDescription =
     'The core repositories for your operating system version, for example BaseOS and AppStream, are always enabled and do not need to be explicitly added to the activation key.';
@@ -32,7 +32,11 @@ const EditAdditionalRepositoriesModal = (props) => {
           </Button>,
         ]}
       >
-        <EditAdditionalRepositoriesTable repositories={repositories} />
+        <EditAdditionalRepositoriesTable
+          repositories={repositories}
+          isLoading={isLoading}
+          error={error}
+        />
       </Modal>
     </React.Fragment>
   );
@@ -43,6 +47,8 @@ EditAdditionalRepositoriesModal.propTypes = {
   isOpen: propTypes.bool.isRequired,
   modalSize: propTypes.string,
   repositories: propTypes.array,
+  isLoading: propTypes.func,
+  error: propTypes.func,
 };
 
 export default EditAdditionalRepositoriesModal;
