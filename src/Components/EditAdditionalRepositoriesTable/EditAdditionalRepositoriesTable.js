@@ -34,7 +34,7 @@ import {
 import { SearchIcon } from '@patternfly/react-icons';
 import { FilterIcon } from '@patternfly/react-icons';
 import Loading from '../LoadingState/Loading';
-import Unavailable from '../AdditionalRepositoriesTable/NoAdditionalRepositories';
+import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable';
 
 const EditAdditionalRepositoriesTable = (props) => {
   const { repositories, isLoading, error } = props;
@@ -339,7 +339,7 @@ const EditAdditionalRepositoriesTable = (props) => {
     </EmptyState>
   );
 
-  if (repositories && repositories.length > 0) {
+  const EditReposTable = () => {
     return (
       <React.Fragment>
         {editAdditionalReposToolbar}
@@ -357,7 +357,7 @@ const EditAdditionalRepositoriesTable = (props) => {
             </Tr>
           </Thead>
           <Tbody>
-            {paginatedRepos.map((repositories, rowIndex) => (
+            {paginatedRepos?.map((repositories, rowIndex) => (
               <Tr key={(repositories, rowIndex)} ouiaSafe={true}>
                 <Td
                   select={{
@@ -376,7 +376,7 @@ const EditAdditionalRepositoriesTable = (props) => {
                 </Td>
               </Tr>
             ))}
-            {paginatedRepos.length == 0 && (
+            {paginatedRepos?.length == 0 && (
               <Tr>
                 <Td colSpan={8}>
                   <Bullseye>{emptyState}</Bullseye>
@@ -388,8 +388,11 @@ const EditAdditionalRepositoriesTable = (props) => {
         {pagination(PaginationVariant.bottom)}
       </React.Fragment>
     );
-  } else if (isLoading && !error) {
+  };
+  if (isLoading && !error) {
     return <Loading />;
+  } else if (!isLoading && !error) {
+    return <EditReposTable />;
   } else {
     return <Unavailable />;
   }
