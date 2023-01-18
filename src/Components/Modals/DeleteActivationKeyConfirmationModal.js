@@ -91,7 +91,7 @@ const DeleteActivationKeyConfirmationModal = (props) => {
 DeleteActivationKeyConfirmationModal.propTypes = {
   isOpen: propTypes.bool.isRequired,
   handleModalToggle: propTypes.func.isRequired,
-  name: propTypes.string.isRequired,
+  name: propTypes.string,
 };
 
 export default DeleteActivationKeyConfirmationModal;
