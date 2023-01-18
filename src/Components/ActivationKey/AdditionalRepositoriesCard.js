@@ -6,7 +6,6 @@ import {
   TextContent,
   TextVariants,
   Card,
-  CardActions,
   CardHeader,
   CardTitle,
   CardBody,
@@ -56,9 +55,7 @@ const AdditionalRepositoriesCard = (props) => {
             BaseOS and AppStream, are always enabled and do not need to be
             explicitly added to the activation key.
           </Text>
-          <CardActions>
-            <ButtonWrapper />
-          </CardActions>
+          <ButtonWrapper />
           <EditAdditionalRepositoriesModal
             title="Additional Repositories"
             isOpen={isEditAdditionalRepositoriesModalOpen}

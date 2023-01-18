@@ -12,7 +12,12 @@ const EditAdditionalRepositoriesButton = (props) => {
   };
   return (
     <React.Fragment>
-      <Button onClick={onClick} isDisabled={isDisabled()} variant="secondary">
+      <Button
+        onClick={onClick}
+        isDisabled={isDisabled()}
+        variant="secondary"
+        style={{ margin: 15, marginLeft: 0 }}
+      >
         Edit additional repositories
       </Button>
     </React.Fragment>
