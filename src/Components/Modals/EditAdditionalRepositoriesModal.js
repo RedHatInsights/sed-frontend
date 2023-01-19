@@ -22,7 +22,7 @@ const EditAdditionalRepositoriesModal = (props) => {
             variant="primary"
             onClick={handleModalToggle}
           >
-            Save Changes
+            Save changes
           </Button>,
           <Button key="cancel" variant="link" onClick={handleModalToggle}>
             Cancel

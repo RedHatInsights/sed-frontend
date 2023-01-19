@@ -10,8 +10,6 @@ import {
 } from '@patternfly/react-table';
 import {
   SearchInput,
-  Toolbar,
-  ToolbarContent,
   ToolbarItem,
   Menu,
   MenuContent,
@@ -28,13 +26,13 @@ import {
   Button,
   Bullseye,
   ToolbarGroup,
-  ToolbarFilter,
   PaginationVariant,
 } from '@patternfly/react-core';
 import { SearchIcon } from '@patternfly/react-icons';
 import { FilterIcon } from '@patternfly/react-icons';
 import Loading from '../LoadingState/Loading';
 import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable';
+import { PrimaryToolbar } from '@redhat-cloud-services/frontend-components/PrimaryToolbar';
 
 const EditAdditionalRepositoriesTable = (props) => {
   const { repositories, isLoading, error } = props;
@@ -288,31 +286,29 @@ const EditAdditionalRepositoriesTable = (props) => {
   }, []);
 
   const editAdditionalReposToolbar = (
-    <Toolbar
+    <PrimaryToolbar
       id="search-input-filter-toolbar"
       clearAllFilters={() => {
         setSearchValue('');
       }}
     >
-      <ToolbarContent>
-        <ToolbarGroup variant="filter-group">
-          <ToolbarItem>{attributeDropdown}</ToolbarItem>
-          <ToolbarFilter
-            chips={searchValue !== '' ? [searchValue] : []}
-            deleteChip={() => setSearchValue('')}
-            deleteChipGroup={() => setSearchValue('')}
-            categoryName="Name"
-            showToolbarItem={activeAttributeMenu === 'Name' || 'Label'}
-            variant="search-filter"
-          >
-            {toolbarSearchInput}
-          </ToolbarFilter>
-        </ToolbarGroup>
-        <ToolbarItem variant="pagination" align={{ default: 'alignRight' }}>
-          {pagination()}
+      <ToolbarGroup variant="filter-group">
+        <ToolbarItem>{attributeDropdown}</ToolbarItem>
+        <ToolbarItem
+          chips={searchValue !== '' ? [searchValue] : []}
+          deleteChip={() => setSearchValue('')}
+          deleteChipGroup={() => setSearchValue('')}
+          categoryName="Name"
+          showToolbarItem={activeAttributeMenu === 'Name' || 'Label'}
+          variant="search-filter"
+        >
+          {toolbarSearchInput}
         </ToolbarItem>
-      </ToolbarContent>
-    </Toolbar>
+      </ToolbarGroup>
+      <ToolbarItem variant="pagination" align={{ default: 'alignRight' }}>
+        {pagination()}
+      </ToolbarItem>
+    </PrimaryToolbar>
   );
 
   const emptyState = (
@@ -390,7 +386,7 @@ const EditAdditionalRepositoriesTable = (props) => {
   if (isLoading && !error) {
     return <Loading />;
   } else if (!isLoading && !error) {
-    return <EditReposTable />;
+    return EditReposTable();
   } else {
     return <Unavailable />;
   }
