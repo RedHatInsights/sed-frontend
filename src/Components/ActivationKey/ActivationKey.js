@@ -45,6 +45,7 @@ const ActivationKey = () => {
     error: keyError,
     data: activationKey,
   } = useActivationKey(id);
+
   const description =
     'View and edit details and repositories for this activation key.';
   const [isDeleteActivationKeyModalOpen, setIsDeleteActivationKeyModalOpen] =
@@ -57,9 +58,11 @@ const ActivationKey = () => {
       history.push('/activation-keys');
     }
   };
+
   const handleEditActivationKeyModalToggle = () => {
     setIsEditActivationKeyModalOpen(!isEditActivationKeyModalOpen);
   };
+
   const ButtonWrapper = () => {
     return (
       <DeleteButton
@@ -117,7 +120,10 @@ const ActivationKey = () => {
                   </Gallery>
                 </GridItem>
                 <GridItem span={12}>
-                  <AdditionalRepositoriesCard activationKey={activationKey} />
+                  <AdditionalRepositoriesCard
+                    activationKey={activationKey}
+                    actionHandler={handleEditActivationKeyModalToggle}
+                  />
                 </GridItem>
               </Grid>
             </Main>
