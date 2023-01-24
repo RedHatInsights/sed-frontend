@@ -16,7 +16,8 @@ const AdditionalRepositoriesTable = (props) => {
     repositoryLabel: 'Label',
     repositoryName: 'Name',
   };
-  if (repositories.length > 0) {
+
+  if (repositories && repositories.length > 0) {
     return (
       <TableComposable aria-label="ActivationKeys">
         <Thead>

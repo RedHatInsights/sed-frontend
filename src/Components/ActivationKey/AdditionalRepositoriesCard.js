@@ -1,4 +1,6 @@
 import React from 'react';
+import { useState } from 'react';
+import propTypes from 'prop-types';
 import {
   Text,
   TextContent,
@@ -9,11 +11,36 @@ import {
   CardBody,
   Title,
 } from '@patternfly/react-core';
-import propTypes from 'prop-types';
 import AdditionalRepositoriesTable from '../AdditionalRepositoriesTable';
+import useAvailableRepositories from '../../hooks/useAvailableRepositories';
+import EditAdditionalRepositoriesButton from '../ActivationKey/EditAdditionalRepositoriesButton';
+import EditAdditionalRepositoriesModal from '../Modals/EditAdditionalRepositoriesModal';
 
 const AdditionalRepositoriesCard = (props) => {
-  const { activationKey } = props;
+  const { activationKey, isLoading, error } = props;
+  const { data: availableRepositories } = useAvailableRepositories(
+    activationKey.name
+  );
+
+  const [
+    isEditAdditionalRepositoriesModalOpen,
+    setisEditAdditionalRepositoriesModalOpen,
+  ] = useState(false);
+
+  const handleEditAdditionalRepositoriesToggle = () => {
+    setisEditAdditionalRepositoriesModalOpen(
+      !isEditAdditionalRepositoriesModalOpen
+    );
+  };
+
+  const ButtonWrapper = () => {
+    return (
+      <EditAdditionalRepositoriesButton
+        onClick={handleEditAdditionalRepositoriesToggle}
+      />
+    );
+  };
+
   return (
     <Card>
       <CardHeader>
@@ -28,9 +55,19 @@ const AdditionalRepositoriesCard = (props) => {
             BaseOS and AppStream, are always enabled and do not need to be
             explicitly added to the activation key.
           </Text>
+          <ButtonWrapper />
+          <EditAdditionalRepositoriesModal
+            title="Additional Repositories"
+            isOpen={isEditAdditionalRepositoriesModalOpen}
+            handleModalToggle={handleEditAdditionalRepositoriesToggle}
+            modalSize="large"
+            repositories={availableRepositories}
+            isLoading={isLoading}
+            error={error}
+          />
         </TextContent>
         <AdditionalRepositoriesTable
-          repositories={activationKey.additionalRepositories}
+          repositories={activationKey.availableRepositories}
         />
       </CardBody>
     </Card>
@@ -39,6 +76,8 @@ const AdditionalRepositoriesCard = (props) => {
 
 AdditionalRepositoriesCard.propTypes = {
   activationKey: propTypes.object,
+  isLoading: propTypes.func,
+  error: propTypes.func,
 };
 
 export default AdditionalRepositoriesCard;

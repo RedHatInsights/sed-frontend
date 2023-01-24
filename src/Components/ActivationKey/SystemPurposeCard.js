@@ -28,6 +28,7 @@ const SystemPurposeCard = (props) => {
   const ButtonWrapper = () => {
     return <EditButton onClick={actionHandler} />;
   };
+
   const docsPopoverContent = (
     <TextContent>
       <Text>
