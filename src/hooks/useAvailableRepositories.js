@@ -8,6 +8,7 @@ const fetchAdditionalRepositories = async (keyName) => {
 
   const response = await fetch(
     `/api/rhsm/v2/activation_keys/${keyName}/available_repositories?default=Disabled`,
+
     {
       headers: { Authorization: `Bearer ${token}` },
     }
