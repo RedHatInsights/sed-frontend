@@ -5,6 +5,8 @@ import useCreateActivationKey from '../../hooks/useCreateActivationKey';
 import propTypes from 'prop-types';
 import Loading from '../LoadingState/Loading';
 import { useQueryClient } from 'react-query';
+import useFeatureFlag from '../../hooks/useFeatureFlag';
+import CreateActivationKeyWizard from './CreateActivationKeyWizard';
 
 const CreateActivationKeyModal = (props) => {
   const queryClient = useQueryClient();
@@ -12,6 +14,9 @@ const CreateActivationKeyModal = (props) => {
   const [error, setError] = React.useState(false);
   const { handleModalToggle, isOpen } = props;
   const { mutate, isLoading } = useCreateActivationKey();
+  const showNewWizard = useFeatureFlag(
+    'sed-frontend.activationKeysDetailsPage'
+  );
   const submitForm = (formData) => {
     const { name, role, serviceLevel, usage } = formData;
     mutate(
@@ -29,7 +34,10 @@ const CreateActivationKeyModal = (props) => {
       }
     );
   };
-  return (
+  const CreateActivationKeyWizardModal = () => (
+    <CreateActivationKeyWizard onClose={handleModalToggle} isOpen={isOpen} />
+  );
+  const LegacyModel = () => (
     <Modal
       variant={ModalVariant.large}
       title="Create new activation key"
@@ -49,6 +57,7 @@ const CreateActivationKeyModal = (props) => {
       )}
     </Modal>
   );
+  return showNewWizard ? <CreateActivationKeyWizardModal /> : <LegacyModel />;
 };
 
 CreateActivationKeyModal.propTypes = {
