@@ -39,7 +39,11 @@ const SetNamePage = ({ name, setName }) => {
       <Text component={TextVariants.p} className="pf-u-mb-xl">
         This name cannot be modified after the activation key is created.
       </Text>
-      <Form>
+      <Form
+        onSubmit={(e) => {
+          e.preventDefault();
+        }}
+      >
         <FormGroup
           label="Name"
           isRequired
