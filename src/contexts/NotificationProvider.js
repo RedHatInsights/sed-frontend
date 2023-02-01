@@ -19,6 +19,7 @@ const NotificationProvider = ({ children }) => {
       message: message,
       key: notificationKey,
       timeout: options?.hasTimeout ?? true,
+      description: options?.description,
     };
 
     if (options && options.alertLinkText && options.alertLinkHref) {

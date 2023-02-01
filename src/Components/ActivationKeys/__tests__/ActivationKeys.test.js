@@ -10,8 +10,10 @@ import useUser from '../../../hooks/useUser';
 import { get, def } from 'bdd-lazy-var';
 import useActivationKeys from '../../../hooks/useActivationKeys';
 import '@testing-library/jest-dom';
+import useFeatureFlag from '../../../hooks/useFeatureFlag';
 jest.mock('../../../hooks/useActivationKeys');
 jest.mock('../../../hooks/useUser');
+jest.mock('../../../hooks/useFeatureFlag');
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useLocation: () => ({
@@ -64,6 +66,8 @@ jest.mock(
   // eslint-disable-next-line react/display-name
   () => () => <div>Unavailable</div>
 );
+
+useFeatureFlag.mockReturnValue(true);
 
 describe('ActivationKeys', () => {
   def('isLoading', () => false);
