@@ -25,6 +25,8 @@ import {
   EmptyStatePrimary,
   Button,
   Bullseye,
+  ToggleGroup,
+  ToggleGroupItem,
   ToolbarGroup,
   PaginationVariant,
 } from '@patternfly/react-core';
@@ -69,6 +71,9 @@ const EditAdditionalRepositoriesTable = (props) => {
   const [selectedRepoNames, setSelectedRepoNames] = React.useState([]);
   const [recentSelectedRowIndex, setRecentSelectedRowIndex] =
     React.useState(null);
+  const [selectedRowsCount, setSelectedRowsCount] = React.useState(0);
+  const [showTableData, setShowTableData] = React.useState(false);
+  const [allSelectTableToggle, setAllSelectTableToggle] = React.useState('all');
   const [shifting, setShifting] = React.useState(false);
   const attributeToggleRef = React.useRef(null);
   const attributeMenuRef = React.useRef(null);
@@ -166,6 +171,35 @@ const EditAdditionalRepositoriesTable = (props) => {
         width: '400px',
       }}
     />
+  );
+
+
+  const onAllToggleEvent = (_event,_isSelected) => {
+    const id = event.currentTarget.id;
+    setShowTableData(id);
+    setAllSelectTableToggle(id);
+  }
+  const onToggleEventChange =(_event,_isSelected) => {
+    const id = event.currentTarget.id;
+    setShowTableData(!id);  
+    setAllSelectTableToggle(id);
+  }
+
+const handleRowSelection = (isSelected) => {
+  if(isSelected) {
+    setSelectedRowsCount(selectedRowsCount + 1);
+   } else {
+      setSelectedRowsCount(Math.max(selectedRowsCount - 1, 0));
+   }
+  };
+  
+  const allAndSelectedToggleGroup = (
+    <React.Fragment>
+    <ToggleGroup aria-label="All and Selected Toggle Group">
+    <ToggleGroupItem text="All" buttonId="all" isSelected={allSelectTableToggle === 'all'} onChange={onAllToggleEvent} />
+  <ToggleGroupItem text="Selected" buttonId="selected" isSelected={allSelectTableToggle === 'selected'} onChange={onToggleEventChange} isDisabled={selectedRowsCount === 0} />
+  </ToggleGroup>
+  </React.Fragment>
   );
 
   const getPage = (repo) => {
@@ -304,6 +338,7 @@ const EditAdditionalRepositoriesTable = (props) => {
         >
           {toolbarSearchInput}
         </ToolbarItem>
+        <ToolbarItem style={{ paddingLeft: 10}} >{allAndSelectedToggleGroup}</ToolbarItem>
       </ToolbarGroup>
       <ToolbarItem variant="pagination" align={{ default: 'alignRight' }}>
         {pagination()}
@@ -339,7 +374,7 @@ const EditAdditionalRepositoriesTable = (props) => {
         {editAdditionalReposToolbar}
         <TableComposable
           aria-label="Additional Repositories Selectable Table"
-          variant="compact"
+          variant="compact" {...allSelectTableToggle !== 'all' || 'selected'} 
         >
           <Thead>
             <Tr ouiaSafe={true}>
@@ -351,9 +386,11 @@ const EditAdditionalRepositoriesTable = (props) => {
             </Tr>
           </Thead>
           <Tbody>
-            {paginatedRepos?.map((repositories, rowIndex) => (
+            {paginatedRepos?.map((repositories, rowIndex) => {
+              if(!showTableData || isRepoSelected(repositories)) {
+              return (
               <Tr key={(repositories, rowIndex)} ouiaSafe={true}>
-                <Td
+              <Td
                   select={{
                     rowIndex,
                     onSelect: (_event, isSelecting) =>
@@ -361,6 +398,7 @@ const EditAdditionalRepositoriesTable = (props) => {
                     isSelected: isRepoSelected(repositories),
                     disable: !isRepoSelectable(repositories),
                   }}
+                  onChange={(e) =>{handleRowSelection(e.target.checked)}}
                 />
                 <Td dataLabel={columnNames.repositoryName}>
                   {repositories.repositoryName}
@@ -369,7 +407,10 @@ const EditAdditionalRepositoriesTable = (props) => {
                   {repositories.repositoryLabel}
                 </Td>
               </Tr>
-            ))}
+                );
+              }
+              return null
+            })}
             {paginatedRepos?.length == 0 && (
               <Tr>
                 <Td colSpan={8}>

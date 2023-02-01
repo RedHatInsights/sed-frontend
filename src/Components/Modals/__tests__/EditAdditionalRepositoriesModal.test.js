@@ -22,10 +22,10 @@ describe('Edit Additional Repositories Modal', () => {
       </Provider>
     );
     expect(
-      screen.getByText('Edit additional repositories')
+      screen.getByText('Add repositories')
     ).toBeInTheDocument();
     expect(
-      screen.getByText('Edit additional repositories')
+      screen.getByText('Add repositories')
     ).toBeInTheDocument();
   });
 });

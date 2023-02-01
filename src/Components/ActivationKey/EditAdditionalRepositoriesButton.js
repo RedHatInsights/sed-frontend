@@ -18,7 +18,7 @@ const EditAdditionalRepositoriesButton = (props) => {
         variant="secondary"
         style={{ margin: 15, marginLeft: 0 }}
       >
-        Edit additional repositories
+       Add repositories
       </Button>
     </React.Fragment>
   );
