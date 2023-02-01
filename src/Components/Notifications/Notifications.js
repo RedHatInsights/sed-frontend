@@ -31,7 +31,9 @@ const Notifications = () => {
               }}
             />
           }
-        />
+        >
+          {notification.description && <p>{notification.description}</p>}
+        </Alert>
       ))}
     </AlertGroup>
   );
