@@ -173,33 +173,43 @@ const EditAdditionalRepositoriesTable = (props) => {
     />
   );
 
-
-  const onAllToggleEvent = (_event,_isSelected) => {
+  const onAllToggleEvent = () => {
     const id = event.currentTarget.id;
     setShowTableData(id);
     setAllSelectTableToggle(id);
-  }
-  const onToggleEventChange =(_event,_isSelected) => {
-    const id = event.currentTarget.id;
-    setShowTableData(!id);  
-    setAllSelectTableToggle(id);
-  }
-
-const handleRowSelection = (isSelected) => {
-  if(isSelected) {
-    setSelectedRowsCount(selectedRowsCount + 1);
-   } else {
-      setSelectedRowsCount(Math.max(selectedRowsCount - 1, 0));
-   }
   };
-  
+  const onToggleEventChange = () => {
+    const id = event.currentTarget.id;
+    setShowTableData(!id);
+    setAllSelectTableToggle(id);
+  };
+
+  const handleRowSelection = (isSelected) => {
+    if (isSelected) {
+      setSelectedRowsCount(selectedRowsCount + 1);
+    } else {
+      setSelectedRowsCount(Math.max(selectedRowsCount - 1, 0));
+    }
+  };
+
   const allAndSelectedToggleGroup = (
     <React.Fragment>
-    <ToggleGroup aria-label="All and Selected Toggle Group">
-    <ToggleGroupItem text="All" buttonId="all" isSelected={allSelectTableToggle === 'all'} onChange={onAllToggleEvent} />
-  <ToggleGroupItem text="Selected" buttonId="selected" isSelected={allSelectTableToggle === 'selected'} onChange={onToggleEventChange} isDisabled={selectedRowsCount === 0} />
-  </ToggleGroup>
-  </React.Fragment>
+      <ToggleGroup aria-label="All and Selected Toggle Group">
+        <ToggleGroupItem
+          text="All"
+          buttonId="all"
+          isSelected={allSelectTableToggle === 'all'}
+          onChange={onAllToggleEvent}
+        />
+        <ToggleGroupItem
+          text="Selected"
+          buttonId="selected"
+          isSelected={allSelectTableToggle === 'selected'}
+          onChange={onToggleEventChange}
+          isDisabled={selectedRowsCount === 0}
+        />
+      </ToggleGroup>
+    </React.Fragment>
   );
 
   const getPage = (repo) => {
@@ -338,7 +348,9 @@ const handleRowSelection = (isSelected) => {
         >
           {toolbarSearchInput}
         </ToolbarItem>
-        <ToolbarItem style={{ paddingLeft: 10}} >{allAndSelectedToggleGroup}</ToolbarItem>
+        <ToolbarItem style={{ paddingLeft: 10 }}>
+          {allAndSelectedToggleGroup}
+        </ToolbarItem>
       </ToolbarGroup>
       <ToolbarItem variant="pagination" align={{ default: 'alignRight' }}>
         {pagination()}
@@ -374,7 +386,8 @@ const handleRowSelection = (isSelected) => {
         {editAdditionalReposToolbar}
         <TableComposable
           aria-label="Additional Repositories Selectable Table"
-          variant="compact" {...allSelectTableToggle !== 'all' || 'selected'} 
+          variant="compact"
+          {...(allSelectTableToggle !== 'all' || 'selected')}
         >
           <Thead>
             <Tr ouiaSafe={true}>
@@ -387,29 +400,31 @@ const handleRowSelection = (isSelected) => {
           </Thead>
           <Tbody>
             {paginatedRepos?.map((repositories, rowIndex) => {
-              if(!showTableData || isRepoSelected(repositories)) {
-              return (
-              <Tr key={(repositories, rowIndex)} ouiaSafe={true}>
-              <Td
-                  select={{
-                    rowIndex,
-                    onSelect: (_event, isSelecting) =>
-                      onSelectRepo(repositories, rowIndex, isSelecting),
-                    isSelected: isRepoSelected(repositories),
-                    disable: !isRepoSelectable(repositories),
-                  }}
-                  onChange={(e) =>{handleRowSelection(e.target.checked)}}
-                />
-                <Td dataLabel={columnNames.repositoryName}>
-                  {repositories.repositoryName}
-                </Td>
-                <Td dataLabel={columnNames.repositoryLabel}>
-                  {repositories.repositoryLabel}
-                </Td>
-              </Tr>
+              if (!showTableData || isRepoSelected(repositories)) {
+                return (
+                  <Tr key={(repositories, rowIndex)} ouiaSafe={true}>
+                    <Td
+                      select={{
+                        rowIndex,
+                        onSelect: (_event, isSelecting) =>
+                          onSelectRepo(repositories, rowIndex, isSelecting),
+                        isSelected: isRepoSelected(repositories),
+                        disable: !isRepoSelectable(repositories),
+                      }}
+                      onChange={(e) => {
+                        handleRowSelection(e.target.checked);
+                      }}
+                    />
+                    <Td dataLabel={columnNames.repositoryName}>
+                      {repositories.repositoryName}
+                    </Td>
+                    <Td dataLabel={columnNames.repositoryLabel}>
+                      {repositories.repositoryLabel}
+                    </Td>
+                  </Tr>
                 );
               }
-              return null
+              return null;
             })}
             {paginatedRepos?.length == 0 && (
               <Tr>
