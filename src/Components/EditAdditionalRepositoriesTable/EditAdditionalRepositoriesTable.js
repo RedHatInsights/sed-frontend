@@ -71,7 +71,6 @@ const EditAdditionalRepositoriesTable = (props) => {
   const [selectedRepoNames, setSelectedRepoNames] = React.useState([]);
   const [recentSelectedRowIndex, setRecentSelectedRowIndex] =
     React.useState(null);
-  const [selectedRowsCount, setSelectedRowsCount] = React.useState(0);
   const [showTableData, setShowTableData] = React.useState(false);
   const [allSelectTableToggle, setAllSelectTableToggle] = React.useState('all');
   const [shifting, setShifting] = React.useState(false);
@@ -184,11 +183,13 @@ const EditAdditionalRepositoriesTable = (props) => {
     setAllSelectTableToggle(id);
   };
 
-  const handleRowSelection = (isSelected) => {
-    if (isSelected) {
-      setSelectedRowsCount(selectedRowsCount + 1);
+  const handleRowSelection = (rowIndex) => {
+    if (selectedRepoNames.includes(repositories[rowIndex].name)) {
+      setSelectedRepoNames(
+        selectedRepoNames.filter((name) => name !== repositories[rowIndex].name)
+      );
     } else {
-      setSelectedRowsCount(Math.max(selectedRowsCount - 1, 0));
+      setSelectedRepoNames([...selectedRepoNames, repositories[rowIndex].name]);
     }
   };
 
@@ -206,7 +207,7 @@ const EditAdditionalRepositoriesTable = (props) => {
           buttonId="selected"
           isSelected={allSelectTableToggle === 'selected'}
           onChange={onToggleEventChange}
-          isDisabled={selectedRowsCount === 0}
+          isDisabled={selectedRepoNames.length == 0}
         />
       </ToggleGroup>
     </React.Fragment>
@@ -227,18 +228,19 @@ const EditAdditionalRepositoriesTable = (props) => {
     setPage(1);
   };
 
-  const pagination = (variant = PaginationVariant.top) => (
-    <Pagination
-      perPageComponent="button"
-      itemCount={countRepos(repositories, searchValue)}
-      perPage={perPage}
-      page={page}
-      onSetPage={handleSetPage}
-      onPerPageSelect={handlePerPageSelect}
-      variant={variant}
-      isCompact
-    />
-  );
+  const pagination = (variant = PaginationVariant.top) =>
+    !showTableData && (
+      <Pagination
+        perPageComponent="button"
+        itemCount={countRepos(repositories, searchValue)}
+        perPage={perPage}
+        page={page}
+        onSetPage={handleSetPage}
+        onPerPageSelect={handlePerPageSelect}
+        variant={variant}
+        isCompact
+      />
+    );
 
   const getSortableRowValues = (repo) => {
     const { repositoryName, repositoryLabel } = repo;
@@ -399,9 +401,8 @@ const EditAdditionalRepositoriesTable = (props) => {
             </Tr>
           </Thead>
           <Tbody>
-            {paginatedRepos?.map((repositories, rowIndex) => {
-              if (!showTableData || isRepoSelected(repositories)) {
-                return (
+            {!showTableData
+              ? paginatedRepos?.map((repositories, rowIndex) => (
                   <Tr key={(repositories, rowIndex)} ouiaSafe={true}>
                     <Td
                       select={{
@@ -411,8 +412,8 @@ const EditAdditionalRepositoriesTable = (props) => {
                         isSelected: isRepoSelected(repositories),
                         disable: !isRepoSelectable(repositories),
                       }}
-                      onChange={(e) => {
-                        handleRowSelection(e.target.checked);
+                      onChange={() => {
+                        handleRowSelection(event.target.checked, rowIndex);
                       }}
                     />
                     <Td dataLabel={columnNames.repositoryName}>
@@ -422,10 +423,32 @@ const EditAdditionalRepositoriesTable = (props) => {
                       {repositories.repositoryLabel}
                     </Td>
                   </Tr>
-                );
-              }
-              return null;
-            })}
+                ))
+              : repositories?.map(
+                  (repositories, rowIndex) =>
+                    (!showTableData || isRepoSelected(repositories)) && (
+                      <Tr key={(repositories, rowIndex)} ouiaSafe={true}>
+                        <Td
+                          select={{
+                            rowIndex,
+                            onSelect: (_event, isSelecting) =>
+                              onSelectRepo(repositories, rowIndex, isSelecting),
+                            isSelected: isRepoSelected(repositories),
+                            disable: !isRepoSelectable(repositories),
+                          }}
+                          onChange={() => {
+                            handleRowSelection(event.target.checked, rowIndex);
+                          }}
+                        />
+                        <Td dataLabel={columnNames.repositoryName}>
+                          {repositories.repositoryName}
+                        </Td>
+                        <Td dataLabel={columnNames.repositoryLabel}>
+                          {repositories.repositoryLabel}
+                        </Td>
+                      </Tr>
+                    )
+                )}
             {paginatedRepos?.length == 0 && (
               <Tr>
                 <Td colSpan={8}>
