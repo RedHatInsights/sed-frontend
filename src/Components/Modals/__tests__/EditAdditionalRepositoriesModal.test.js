@@ -21,11 +21,7 @@ describe('Edit Additional Repositories Modal', () => {
         </QueryClientProvider>
       </Provider>
     );
-    expect(
-      screen.getByText('Edit additional repositories')
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('Edit additional repositories')
-    ).toBeInTheDocument();
+    expect(screen.getByText('Add repositories')).toBeInTheDocument();
+    expect(screen.getByText('Add repositories')).toBeInTheDocument();
   });
 });
