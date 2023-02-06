@@ -9,6 +9,7 @@ import {
   TableComposable,
 } from '@patternfly/react-table';
 import {
+  ActionGroup,
   SearchInput,
   ToolbarItem,
   Menu,
@@ -37,11 +38,19 @@ import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable'
 import { PrimaryToolbar } from '@redhat-cloud-services/frontend-components/PrimaryToolbar';
 
 const EditAdditionalRepositoriesTable = (props) => {
-  const { repositories, isLoading, error } = props;
+  const { handleModalToggle, repositories, setAdditionalRepos, submitForm, isLoading, error } =
+    props;
 
   const columnNames = {
     repositoryName: 'Name',
     repositoryLabel: 'Label',
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    submitForm({
+      repositoryLabel: repositoryLabel,
+    });
   };
 
   const [searchValue, setSearchValue] = React.useState('');
@@ -68,7 +77,7 @@ const EditAdditionalRepositoriesTable = (props) => {
   const [isAttributeMenuOpen, setIsAttributeMenuOpen] = React.useState(false);
   const [activeSortIndex, setActiveSortIndex] = React.useState(null);
   const [activeSortDirection, setActiveSortDirection] = React.useState(null);
-  const [selectedRepoNames, setSelectedRepoNames] = React.useState([]);
+  const [selectedRepoLabel, setSelectedRepoLabel] = React.useState([]);
   const [recentSelectedRowIndex, setRecentSelectedRowIndex] =
     React.useState(null);
   const [showTableData, setShowTableData] = React.useState(false);
@@ -184,12 +193,12 @@ const EditAdditionalRepositoriesTable = (props) => {
   };
 
   const handleRowSelection = (rowIndex) => {
-    if (selectedRepoNames.includes(repositories[rowIndex].name)) {
-      setSelectedRepoNames(
-        selectedRepoNames.filter((name) => name !== repositories[rowIndex].name)
+    if (selectedRepoLabel.includes(repositories[rowIndex].label)) {
+      setSelectedRepoLabel(
+        selectedRepoLabel.filter((label) => label !== repositories[rowIndex].label)
       );
     } else {
-      setSelectedRepoNames([...selectedRepoNames, repositories[rowIndex].name]);
+      setSelectedRepoLabel([...selectedRepoLabel, repositories[rowIndex].label]);
     }
   };
 
@@ -207,7 +216,7 @@ const EditAdditionalRepositoriesTable = (props) => {
           buttonId="selected"
           isSelected={allSelectTableToggle === 'selected'}
           onChange={onToggleEventChange}
-          isDisabled={selectedRepoNames.length == 0}
+          isDisabled={selectedRepoLabel.length == 0}
         />
       </ToggleGroup>
     </React.Fragment>
@@ -231,7 +240,6 @@ const EditAdditionalRepositoriesTable = (props) => {
   const pagination = (variant = PaginationVariant.top) =>
     !showTableData && (
       <Pagination
-        perPageComponent="button"
         itemCount={countRepos(repositories, searchValue)}
         perPage={perPage}
         page={page}
@@ -277,19 +285,31 @@ const EditAdditionalRepositoriesTable = (props) => {
   const searchedRepos = filterReposBySearch(sortedRepositories, searchValue);
   const paginatedRepos = getPage(searchedRepos);
 
-  const isRepoSelectable = (repo) => repo.repositoryName !== 'a';
+  React.useEffect(() => {
+    setAdditionalRepos(selectedRepoLabel)
+  }, [selectedRepoLabel]);
+
+  const isRepoSelectable = (repo) => repo.repositoryLabel !== "a";
 
   const setRepoSelected = (repo, isSelecting = true) =>
-    setSelectedRepoNames((prevSelected) => {
-      const otherSelectedRepoNames = prevSelected.filter(
-        (r) => r !== repo.repositoryName
+    setSelectedRepoLabel((prevSelected) => {
+      const otherSelectedRepoLabel = prevSelected.filter(
+        (r) => r !== repo.repositoryLabel
       );
       return isSelecting && isRepoSelectable(repo)
-        ? [...otherSelectedRepoNames, repo.repositoryName]
-        : otherSelectedRepoNames;
+        ? [...otherSelectedRepoLabel, repo.repositoryLabel]
+        : otherSelectedRepoLabel;
     });
-  const isRepoSelected = (repositories) =>
-    selectedRepoNames.includes(repositories?.repositoryName);
+  const isRepoSelected = (repositories) => 
+    selectedRepoLabel.includes(repositories?.repositoryLabel);
+
+  const saveDisabled = () => {
+    if (selectedRepoLabel.length === 0) {
+      return true;
+    } else {
+      return false;
+    }
+  };
 
   const onSelectRepo = (repositories, rowIndex, isSelecting) => {
     if (shifting && recentSelectedRowIndex !== null) {
@@ -384,7 +404,7 @@ const EditAdditionalRepositoriesTable = (props) => {
 
   const EditReposTable = () => {
     return (
-      <React.Fragment>
+      <React.Fragment onSubmit={handleSubmit}>
         {editAdditionalReposToolbar}
         <TableComposable
           aria-label="Additional Repositories Selectable Table"
@@ -459,9 +479,29 @@ const EditAdditionalRepositoriesTable = (props) => {
           </Tbody>
         </TableComposable>
         {pagination(PaginationVariant.bottom)}
+        {EditChangesButtons}
       </React.Fragment>
     );
   };
+
+  const EditChangesButtons = (
+    <ActionGroup>
+      <Button
+        key="Save changes"
+        variant="primary"
+        onClick={() => {
+          submitForm();
+          handleModalToggle();          
+        }}
+        isDisabled={saveDisabled()}
+      >
+        Save changes
+      </Button>
+      <Button key="cancel" variant="link" onClick={handleModalToggle}>
+        Cancel
+      </Button>
+    </ActionGroup>
+  );
   if (isLoading && !error) {
     return <Loading />;
   } else if (!isLoading && !error) {
@@ -472,6 +512,11 @@ const EditAdditionalRepositoriesTable = (props) => {
 };
 
 EditAdditionalRepositoriesTable.propTypes = {
+  handleModalToggle: propTypes.func.isRequired,
+  submitForm: propTypes.func.isRequired,
+  setAdditionalRepos: propTypes.func.isRequired,
+  isSuccess: propTypes.bool,
+  isError: propTypes.bool,
   repositories: propTypes.array,
   activationKey: propTypes.object,
   isLoading: propTypes.func,

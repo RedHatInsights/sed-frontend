@@ -60,6 +60,7 @@ const AdditionalRepositoriesCard = (props) => {
             title="Additional Repositories"
             isOpen={isEditAdditionalRepositoriesModalOpen}
             handleModalToggle={handleEditAdditionalRepositoriesToggle}
+            keyName={activationKey.name}
             modalSize="large"
             repositories={availableRepositories}
             isLoading={isLoading}
@@ -67,7 +68,7 @@ const AdditionalRepositoriesCard = (props) => {
           />
         </TextContent>
         <AdditionalRepositoriesTable
-          repositories={activationKey.availableRepositories}
+          repositories={activationKey.additionalRepositories}
         />
       </CardBody>
     </Card>
