@@ -15,21 +15,26 @@ describe('useAddAdditionalRepositories', () => {
           auth: {
             getToken: jest.fn(),
           },
-        },  
+        },
       },
     });
   });
   it('adds additional repository to activationKey', async () => {
-    fetch.mockResponseOnce(JSON.stringify({ body: [{ repositoryLabel: 'repository-A' }] }));
+    fetch.mockResponseOnce(
+      JSON.stringify({ body: [{ repositoryLabel: 'repository-A' }] })
+    );
     const keyParams = {
-        additionalRepos: [{ repositoryLabel: 'repository-A' }],
-        keyName: "A"
-    }
-   
-    const { result, waitFor } = renderHook(() => useAddAdditionalRepositories(keyParams.keyName), {
-      wrapper: createQueryWrapper(),
-    });
- 
+      additionalRepos: [{ repositoryLabel: 'repository-A' }],
+      keyName: 'A',
+    };
+
+    const { result, waitFor } = renderHook(
+      () => useAddAdditionalRepositories(keyParams.keyName),
+      {
+        wrapper: createQueryWrapper(),
+      }
+    );
+
     await act(async () => {
       result.current.mutate(keyParams);
     });

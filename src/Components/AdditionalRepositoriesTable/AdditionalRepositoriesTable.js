@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 import {
   TableComposable,
   Thead,
@@ -6,13 +6,10 @@ import {
   Th,
   Tbody,
   Td,
-} from "@patternfly/react-table";
-import {
-  Pagination,
-  PaginationVariant,
-} from "@patternfly/react-core";
-import propTypes from "prop-types";
-import NoAdditionalRepositories from "./NoAdditionalRepositories";
+} from '@patternfly/react-table';
+import { Pagination, PaginationVariant } from '@patternfly/react-core';
+import propTypes from 'prop-types';
+import NoAdditionalRepositories from './NoAdditionalRepositories';
 
 const AdditionalRepositoriesTable = (props) => {
   const { repositories } = props;
@@ -21,8 +18,8 @@ const AdditionalRepositoriesTable = (props) => {
   const [activeSortIndex, setActiveSortIndex] = React.useState(null);
   const [activeSortDirection, setActiveSortDirection] = React.useState(null);
   const columnNames = {
-    repositoryLabel: "Label",
-    repositoryName: "Name",
+    repositoryLabel: 'Label',
+    repositoryName: 'Name',
   };
 
   const getSortableRowValues = (repo) => {
@@ -34,7 +31,7 @@ const AdditionalRepositoriesTable = (props) => {
     sortBy: {
       index: activeSortIndex,
       direction: activeSortDirection,
-      defaultDirection: "asc",
+      defaultDirection: 'asc',
     },
     onSort: (_event, index, direction) => {
       setActiveSortIndex(index);
@@ -45,15 +42,15 @@ const AdditionalRepositoriesTable = (props) => {
 
   const sortRepos = (repositories, sortIndex) => {
     const sortedRepos = repositories?.sort((a, b) => {
-      const aValue = getSortableRowValues(a)[sortIndex] || "";
-      const bValue = getSortableRowValues(b)[sortIndex] || "";
+      const aValue = getSortableRowValues(a)[sortIndex] || '';
+      const bValue = getSortableRowValues(b)[sortIndex] || '';
       let result = 0;
       if (aValue < bValue) {
         result = -1;
       } else if (aValue > bValue) {
         result = 1;
       }
-      return activeSortDirection == "asc" ? result : -1 * result;
+      return activeSortDirection == 'asc' ? result : -1 * result;
     });
     return sortedRepos;
   };
@@ -75,8 +72,8 @@ const AdditionalRepositoriesTable = (props) => {
 
   const countProducts = () => {
     const filtedRepo = sortedRepositories;
-    return filtedRepo?.length
-  }
+    return filtedRepo?.length;
+  };
 
   const paginationTop = () => (
     <Pagination
@@ -90,7 +87,7 @@ const AdditionalRepositoriesTable = (props) => {
     />
   );
 
-  const paginationBottom= () => (
+  const paginationBottom = () => (
     <Pagination
       itemCount={countProducts(repositories)}
       perPage={perPage}
@@ -115,9 +112,9 @@ const AdditionalRepositoriesTable = (props) => {
           </Tr>
         </Thead>
         <Tbody>
-          {paginatedRepos?.map((repository, rowIndex ) => {
+          {paginatedRepos?.map((repository, rowIndex) => {
             return (
-              <Tr key={(rowIndex)} ouiaSafe={true}>
+              <Tr key={rowIndex} ouiaSafe={true}>
                 <Td dataLabel={columnNames.repositoryName}>
                   {repository.repositoryName}
                 </Td>

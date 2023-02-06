@@ -1,7 +1,6 @@
-import { useMutation } from "react-query";
+import { useMutation } from 'react-query';
 
 const additionalRepositoriesMutation = async (data) => {
- 
   const { keyName, additionalRepos } = data;
   if (!keyName) {
     return false;
@@ -10,14 +9,14 @@ const additionalRepositoriesMutation = async (data) => {
   const response = await fetch(
     `/api/rhsm/v2/activation_keys/${keyName}/additional_repositories`,
     {
-      method: "POST",
+      method: 'POST',
       headers: {
         Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify(
         additionalRepos.map((label) => ({
-          repositoryLabel: label
+          repositoryLabel: label,
         }))
       ),
     }

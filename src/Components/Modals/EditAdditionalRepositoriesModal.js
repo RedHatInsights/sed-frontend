@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import { Modal, ModalVariant} from '@patternfly/react-core';
+import { Modal, ModalVariant } from '@patternfly/react-core';
 import EditAdditionalRepositoriesTable from '../EditAdditionalRepositoriesTable/EditAdditionalRepositoriesTable';
 import { useQueryClient } from 'react-query';
-import useAddAdditionalRepositories from '../../hooks/useAddAdditionalRepositories'
+import useAddAdditionalRepositories from '../../hooks/useAddAdditionalRepositories';
 import useNotifications from '../../hooks/useNotifications';
 
 const EditAdditionalRepositoriesModal = (props) => {
@@ -23,14 +23,17 @@ const EditAdditionalRepositoriesModal = (props) => {
         onSuccess: () => {
           setError(false);
           setCreated(true);
-          queryClient.invalidateQueries("activation_keys");
+          queryClient.invalidateQueries('activation_keys');
           queryClient.resetQueries(`activation_key_${keyName}`);
-          queryClient.resetQueries(`activation_key_${keyName}_available_repositories`);
-          addSuccessNotification(`Repositories have been added for "${keyName}"`);
+          queryClient.resetQueries(
+            `activation_key_${keyName}_available_repositories`
+          );
+          addSuccessNotification(`Repositories have been added for '${keyName}'`
+          );
         },
         onError: () => {
-          addErrorNotification("Something went wrong", {
-            description: "Your repositories could not be added. Please try again.",
+          addErrorNotification('Something went wrong', {
+            description: 'Your repositories could not be added. Please try again.',
           });
           setError(true);
           setCreated(false);
@@ -66,6 +69,7 @@ const EditAdditionalRepositoriesModal = (props) => {
 };
 
 EditAdditionalRepositoriesModal.propTypes = {
+  keyName: propTypes.string,
   handleModalToggle: propTypes.func.isRequired,
   isOpen: propTypes.bool.isRequired,
   modalSize: propTypes.string,
