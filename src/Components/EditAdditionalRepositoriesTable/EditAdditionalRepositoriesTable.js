@@ -128,7 +128,7 @@ const EditAdditionalRepositoriesTable = (props) => {
     setTimeout(() => {
       if (attributeMenuRef.current) {
         const firstElement = attributeMenuRef.current.querySelector(
-          "li > button:not(:disabled)"
+          'li > button:not(:disabled)'
         );
         firstElement && firstElement.focus();
       }
