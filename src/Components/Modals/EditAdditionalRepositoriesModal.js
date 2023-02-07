@@ -34,7 +34,8 @@ const EditAdditionalRepositoriesModal = (props) => {
         },
         onError: () => {
           addErrorNotification('Something went wrong', {
-            description: 'Your repositories could not be added. Please try again.',
+            description:
+            'Your repositories could not be added. Please try again.',
           });
           setError(true);
           setCreated(false);
