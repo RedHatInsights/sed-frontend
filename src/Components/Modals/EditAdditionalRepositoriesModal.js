@@ -28,7 +28,8 @@ const EditAdditionalRepositoriesModal = (props) => {
           queryClient.resetQueries(
             `activation_key_${keyName}_available_repositories`
           );
-          addSuccessNotification(`Repositories have been added for '${keyName}'`
+          addSuccessNotification(
+            `Repositories have been added for '${keyName}'`
           );
         },
         onError: () => {

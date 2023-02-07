@@ -1,5 +1,5 @@
-import React from "react";
-import propTypes from "prop-types";
+import React from 'react';
+import propTypes from 'prop-types';
 import {
   Tbody,
   Th,
@@ -7,7 +7,7 @@ import {
   Tr,
   Td,
   TableComposable,
-} from "@patternfly/react-table";
+} from '@patternfly/react-table';
 import {
   ActionGroup,
   SearchInput,
@@ -30,12 +30,12 @@ import {
   ToggleGroupItem,
   ToolbarGroup,
   PaginationVariant,
-} from "@patternfly/react-core";
-import { SearchIcon } from "@patternfly/react-icons";
-import { FilterIcon } from "@patternfly/react-icons";
-import Loading from "../LoadingState/Loading";
-import Unavailable from "@redhat-cloud-services/frontend-components/Unavailable";
-import { PrimaryToolbar } from "@redhat-cloud-services/frontend-components/PrimaryToolbar";
+} from '@patternfly/react-core';
+import { SearchIcon } from '@patternfly/react-icons';
+import { FilterIcon } from '@patternfly/react-icons';
+import Loading from '../LoadingState/Loading';
+import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable';
+import { PrimaryToolbar } from '@redhat-cloud-services/frontend-components/PrimaryToolbar';
 
 const EditAdditionalRepositoriesTable = (props) => {
   const {
@@ -48,8 +48,8 @@ const EditAdditionalRepositoriesTable = (props) => {
   } = props;
 
   const columnNames = {
-    repositoryName: "Name",
-    repositoryLabel: "Label",
+    repositoryName: 'Name',
+    repositoryLabel: 'Label',
   };
 
   const handleSubmit = (event) => {
@@ -59,7 +59,7 @@ const EditAdditionalRepositoriesTable = (props) => {
     });
   };
 
-  const [searchValue, setSearchValue] = React.useState("");
+  const [searchValue, setSearchValue] = React.useState('');
   const onSearchChange = (value) => {
     setSearchValue(value);
   };
@@ -67,8 +67,8 @@ const EditAdditionalRepositoriesTable = (props) => {
   const filterReposBySearch = (repositories, searchValue) => {
     return repositories?.filter((entry) => {
       const searchTerm = searchValue.toLowerCase().trim();
-      const repoName = (entry.repositoryName || "").toLowerCase();
-      const repoLabel = (entry.repositoryLabel || "").toLowerCase();
+      const repoName = (entry.repositoryName || '').toLowerCase();
+      const repoLabel = (entry.repositoryLabel || '').toLowerCase();
       return repoName.includes(searchTerm) || repoLabel.includes(searchTerm);
     });
   };
@@ -79,7 +79,7 @@ const EditAdditionalRepositoriesTable = (props) => {
 
   const [page, setPage] = React.useState(1);
   const [perPage, setPerPage] = React.useState(10);
-  const [activeAttributeMenu, setActiveAttributeMenu] = React.useState("Name");
+  const [activeAttributeMenu, setActiveAttributeMenu] = React.useState('Name');
   const [isAttributeMenuOpen, setIsAttributeMenuOpen] = React.useState(false);
   const [activeSortIndex, setActiveSortIndex] = React.useState(null);
   const [activeSortDirection, setActiveSortDirection] = React.useState(null);
@@ -87,7 +87,7 @@ const EditAdditionalRepositoriesTable = (props) => {
   const [recentSelectedRowIndex, setRecentSelectedRowIndex] =
     React.useState(null);
   const [showTableData, setShowTableData] = React.useState(false);
-  const [allSelectTableToggle, setAllSelectTableToggle] = React.useState("all");
+  const [allSelectTableToggle, setAllSelectTableToggle] = React.useState('all');
   const [shifting, setShifting] = React.useState(false);
   const attributeToggleRef = React.useRef(null);
   const attributeMenuRef = React.useRef(null);
@@ -101,7 +101,7 @@ const EditAdditionalRepositoriesTable = (props) => {
       attributeMenuRef.current?.contains(event.target) ||
       attributeToggleRef.current?.contains(event.target)
     ) {
-      if (event.key === "Escape" || event.key === "Tab") {
+      if (event.key === 'Escape' || event.key === 'Tab') {
         setIsAttributeMenuOpen(!isAttributeMenuOpen);
         attributeToggleRef.current?.focus();
       }
@@ -116,11 +116,11 @@ const EditAdditionalRepositoriesTable = (props) => {
     }
   };
   React.useEffect(() => {
-    window.addEventListener("keydown", handleAttribueMenuKeys);
-    window.addEventListener("click", handleAttributeClickOutside);
+    window.addEventListener('keydown', handleAttribueMenuKeys);
+    window.addEventListener('click', handleAttributeClickOutside);
     return () => {
-      window.removeEventListener("keydown", handleAttribueMenuKeys);
-      window.removeEventListener("click", handleAttributeClickOutside);
+      window.removeEventListener('keydown', handleAttribueMenuKeys);
+      window.removeEventListener('click', handleAttributeClickOutside);
     };
   }, [isAttributeMenuOpen, attributeMenuRef]);
   const onAttributeToggleClick = (ev) => {
@@ -128,7 +128,7 @@ const EditAdditionalRepositoriesTable = (props) => {
     setTimeout(() => {
       if (attributeMenuRef.current) {
         const firstElement = attributeMenuRef.current.querySelector(
-          "li > button:not(:disabled)"
+          'li > button:not(:disabled)'
         );
         firstElement && firstElement.focus();
       }
@@ -156,8 +156,8 @@ const EditAdditionalRepositoriesTable = (props) => {
     >
       <MenuContent>
         <MenuList>
-          <MenuItem itemId="Name">Name</MenuItem>
-          <MenuItem itemId="Label">Label</MenuItem>
+          <MenuItem itemId='Name'>Name</MenuItem>
+          <MenuItem itemId='Label'>Label</MenuItem>
         </MenuList>
       </MenuContent>
     </Menu>
@@ -180,9 +180,9 @@ const EditAdditionalRepositoriesTable = (props) => {
       value={searchValue}
       onChange={onSearchChange}
       isDisabled={repositories?.length == 0}
-      onClear={() => onSearchChange("")}
+      onClear={() => onSearchChange('')}
       style={{
-        width: "400px",
+        width: '400px',
       }}
     />
   );
@@ -215,17 +215,17 @@ const EditAdditionalRepositoriesTable = (props) => {
 
   const allAndSelectedToggleGroup = (
     <React.Fragment>
-      <ToggleGroup aria-label="All and Selected Toggle Group">
+      <ToggleGroup aria-label='All and Selected Toggle Group'>
         <ToggleGroupItem
-          text="All"
-          buttonId="all"
-          isSelected={allSelectTableToggle === "all"}
+          text='All'
+          buttonId='all'
+          isSelected={allSelectTableToggle === 'all'}
           onChange={onAllToggleEvent}
         />
         <ToggleGroupItem
-          text="Selected"
-          buttonId="selected"
-          isSelected={allSelectTableToggle === "selected"}
+          text='Selected'
+          buttonId='selected'
+          isSelected={allSelectTableToggle === 'selected'}
           onChange={onToggleEventChange}
           isDisabled={selectedRepoLabel.length == 0}
         />
@@ -270,7 +270,7 @@ const EditAdditionalRepositoriesTable = (props) => {
     sortBy: {
       index: activeSortIndex,
       direction: activeSortDirection,
-      defaultDirection: "asc",
+      defaultDirection: 'asc',
     },
     onSort: (_event, index, direction) => {
       setActiveSortIndex(index);
@@ -280,15 +280,15 @@ const EditAdditionalRepositoriesTable = (props) => {
   });
   const sortRepos = (repositories, sortIndex) => {
     const sortedRepos = repositories?.sort((a, b) => {
-      const aValue = getSortableRowValues(a)[sortIndex] || "";
-      const bValue = getSortableRowValues(b)[sortIndex] || "";
+      const aValue = getSortableRowValues(a)[sortIndex] || '';
+      const bValue = getSortableRowValues(b)[sortIndex] || '';
       let result = 0;
       if (aValue < bValue) {
         result = -1;
       } else if (aValue > bValue) {
         result = 1;
       }
-      return activeSortDirection == "asc" ? result : -1 * result;
+      return activeSortDirection == 'asc' ? result : -1 * result;
     });
     return sortedRepos;
   };
@@ -300,7 +300,7 @@ const EditAdditionalRepositoriesTable = (props) => {
     setAdditionalRepos(selectedRepoLabel);
   }, [selectedRepoLabel]);
 
-  const isRepoSelectable = (repo) => repo.repositoryLabel !== "a";
+  const isRepoSelectable = (repo) => repo.repositoryLabel !== 'a';
 
   const setRepoSelected = (repo, isSelecting = true) =>
     setSelectedRepoLabel((prevSelected) => {
@@ -345,39 +345,39 @@ const EditAdditionalRepositoriesTable = (props) => {
   };
   React.useEffect(() => {
     const onKeyDown = (e) => {
-      if (e.key === "Shift") {
+      if (e.key === 'Shift') {
         setShifting(true);
       }
     };
     const onKeyUp = (e) => {
-      if (e.key === "Shift") {
+      if (e.key === 'Shift') {
         setShifting(false);
       }
     };
-    document.addEventListener("keydown", onKeyDown);
-    document.addEventListener("keyup", onKeyUp);
+    document.addEventListener('keydown', onKeyDown);
+    document.addEventListener('keyup', onKeyUp);
     return () => {
-      document.removeEventListener("keydown", onKeyDown);
-      document.removeEventListener("keyup", onKeyUp);
+      document.removeEventListener('keydown', onKeyDown);
+      document.removeEventListener('keyup', onKeyUp);
     };
   }, []);
 
   const editAdditionalReposToolbar = (
     <PrimaryToolbar
-      id="search-input-filter-toolbar"
+      id='search-input-filter-toolbar'
       clearAllFilters={() => {
-        setSearchValue("");
+        setSearchValue('');
       }}
     >
-      <ToolbarGroup variant="filter-group">
+      <ToolbarGroup variant='filter-group'>
         <ToolbarItem>{attributeDropdown}</ToolbarItem>
         <ToolbarItem
-          chips={searchValue !== "" ? [searchValue] : []}
-          deleteChip={() => setSearchValue("")}
-          deleteChipGroup={() => setSearchValue("")}
-          categoryName="Name"
-          showToolbarItem={activeAttributeMenu === "Name" || "Label"}
-          variant="search-filter"
+          chips={searchValue !== '' ? [searchValue] : []}
+          deleteChip={() => setSearchValue('')}
+          deleteChipGroup={() => setSearchValue('')}
+          categoryName='Name'
+          showToolbarItem={activeAttributeMenu === 'Name' || 'Label'}
+          variant='search-filter'
         >
           {toolbarSearchInput}
         </ToolbarItem>
@@ -385,7 +385,7 @@ const EditAdditionalRepositoriesTable = (props) => {
           {allAndSelectedToggleGroup}
         </ToolbarItem>
       </ToolbarGroup>
-      <ToolbarItem variant="pagination" align={{ default: "alignRight" }}>
+      <ToolbarItem variant='pagination' align={{ default: 'alignRight' }}>
         {pagination()}
       </ToolbarItem>
     </PrimaryToolbar>
@@ -394,7 +394,7 @@ const EditAdditionalRepositoriesTable = (props) => {
   const emptyState = (
     <EmptyState>
       <EmptyStateIcon icon={SearchIcon} />
-      <Title size="lg" headingLevel="h4">
+      <Title size='lg' headingLevel='h4'>
         No results found
       </Title>
       <EmptyStateBody>
@@ -402,9 +402,9 @@ const EditAdditionalRepositoriesTable = (props) => {
       </EmptyStateBody>
       <EmptyStatePrimary>
         <Button
-          variant="link"
+          variant='link'
           onClick={() => {
-            setSearchValue("");
+            setSearchValue('');
           }}
         >
           Clear all filters
@@ -418,9 +418,9 @@ const EditAdditionalRepositoriesTable = (props) => {
       <React.Fragment onSubmit={handleSubmit}>
         {editAdditionalReposToolbar}
         <TableComposable
-          aria-label="Additional Repositories Selectable Table"
-          variant="compact"
-          {...(allSelectTableToggle !== "all" || "selected")}
+          aria-label='Additional Repositories Selectable Table'
+          variant='compact'
+          {...(allSelectTableToggle !== 'all' || 'selected')}
         >
           <Thead>
             <Tr ouiaSafe={true}>
@@ -498,8 +498,8 @@ const EditAdditionalRepositoriesTable = (props) => {
   const EditChangesButtons = (
     <ActionGroup>
       <Button
-        key="Save changes"
-        variant="primary"
+        key='Save changes'
+        variant='primary'
         onClick={() => {
           submitForm();
           handleModalToggle();
@@ -508,7 +508,7 @@ const EditAdditionalRepositoriesTable = (props) => {
       >
         Save changes
       </Button>
-      <Button key="cancel" variant="link" onClick={handleModalToggle}>
+      <Button key='cancel' variant='link' onClick={handleModalToggle}>
         Cancel
       </Button>
     </ActionGroup>
