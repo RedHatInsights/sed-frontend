@@ -3,7 +3,9 @@ import { useMutation } from 'react-query';
 const additionalRepositoriesMutation = async (data) => {
   const { keyName, additionalRepos } = data;
   if (!keyName) {
-    return false;
+    throw new Error(
+      `Activation Key name must be provided to add additional repositiories.`
+    );
   }
   const token = await window.insights.chrome.auth.getToken();
   const response = await fetch(

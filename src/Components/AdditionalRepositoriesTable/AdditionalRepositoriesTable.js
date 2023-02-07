@@ -75,7 +75,7 @@ const AdditionalRepositoriesTable = (props) => {
     return filtedRepo?.length;
   };
 
-  const paginationTop = () => (
+  const PaginationTop = () => (
     <Pagination
       itemCount={countProducts(repositories)}
       perPage={perPage}
@@ -87,7 +87,7 @@ const AdditionalRepositoriesTable = (props) => {
     />
   );
 
-  const paginationBottom = () => (
+  const PaginationBottom = () => (
     <Pagination
       itemCount={countProducts(repositories)}
       perPage={perPage}
@@ -103,7 +103,7 @@ const AdditionalRepositoriesTable = (props) => {
 
   return (
     <React.Fragment>
-      {paginationTop()}
+      < PaginationTop />
       <TableComposable aria-label="ActivationKeys">
         <Thead>
           <Tr ouiaSafe={true}>
@@ -127,7 +127,7 @@ const AdditionalRepositoriesTable = (props) => {
         </Tbody>
       </TableComposable>
       {repositories.length === 0 && <NoAdditionalRepositories />}
-      {paginationBottom()}
+     < PaginationBottom />
     </React.Fragment>
   );
 };

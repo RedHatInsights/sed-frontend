@@ -314,13 +314,7 @@ const EditAdditionalRepositoriesTable = (props) => {
   const isRepoSelected = (repositories) =>
     selectedRepoLabel.includes(repositories?.repositoryLabel);
 
-  const saveDisabled = () => {
-    if (selectedRepoLabel.length === 0) {
-      return true;
-    } else {
-      return false;
-    }
-  };
+  const isSaveDisabled = selectedRepoLabel.length === 0;
 
   const onSelectRepo = (repositories, rowIndex, isSelecting) => {
     if (shifting && recentSelectedRowIndex !== null) {
@@ -504,7 +498,7 @@ const EditAdditionalRepositoriesTable = (props) => {
           submitForm();
           handleModalToggle();
         }}
-        isDisabled={saveDisabled()}
+        isDisabled={isSaveDisabled}
       >
         Save changes
       </Button>

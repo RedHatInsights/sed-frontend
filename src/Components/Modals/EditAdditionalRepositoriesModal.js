@@ -23,7 +23,6 @@ const EditAdditionalRepositoriesModal = (props) => {
         onSuccess: () => {
           setError(false);
           setCreated(true);
-          queryClient.invalidateQueries('activation_keys');
           queryClient.resetQueries(`activation_key_${keyName}`);
           queryClient.resetQueries(
             `activation_key_${keyName}_available_repositories`

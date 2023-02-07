@@ -71,41 +71,9 @@ describe('when row column headings are clicked', () => {
 });
 
 describe('when using pagination', () => {
-  const repositories = [
-    {
-      repositoryLabel: 'label-a',
-    },
-    {
-      repositoryLabel: 'label-b',
-    },
-    {
-      repositoryLabel: 'label-c',
-    },
-    {
-      repositoryLabel: 'label-d',
-    },
-    {
-      repositoryLabel: 'label-e',
-    },
-    {
-      repositoryLabel: 'label-f',
-    },
-    {
-      repositoryLabel: 'label-g',
-    },
-    {
-      repositoryLabel: 'label-h',
-    },
-    {
-      repositoryLabel: 'label-i',
-    },
-    {
-      repositoryLabel: 'label-j',
-    },
-    {
-      repositoryLabel: 'label-k',
-    },
-  ];
+  const repositories = [...Array(12)].map(id => 
+    ({repositoryLabel: `label-${id}`})
+    );
   it('can change page', () => {
     const Table = () => (
       <QueryClientProvider client={queryClient}>
