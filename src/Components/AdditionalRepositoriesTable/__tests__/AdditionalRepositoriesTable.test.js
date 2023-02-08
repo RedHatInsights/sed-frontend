@@ -71,9 +71,9 @@ describe('when row column headings are clicked', () => {
 });
 
 describe('when using pagination', () => {
-  const repositories = [...Array(12)].map(id => 
-    ({repositoryLabel: `label-${id}`})
-    );
+  const repositories = [...Array(12)].map((id) => ({
+    repositoryLabel: `label-${id}`,
+  }));
   it('can change page', () => {
     const Table = () => (
       <QueryClientProvider client={queryClient}>

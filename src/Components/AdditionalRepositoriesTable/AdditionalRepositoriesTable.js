@@ -103,7 +103,7 @@ const AdditionalRepositoriesTable = (props) => {
 
   return (
     <React.Fragment>
-      < PaginationTop />
+      <PaginationTop />
       <TableComposable aria-label="ActivationKeys">
         <Thead>
           <Tr ouiaSafe={true}>
@@ -127,7 +127,7 @@ const AdditionalRepositoriesTable = (props) => {
         </Tbody>
       </TableComposable>
       {repositories.length === 0 && <NoAdditionalRepositories />}
-     < PaginationBottom />
+      <PaginationBottom />
     </React.Fragment>
   );
 };
