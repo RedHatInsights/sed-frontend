@@ -1634,7 +1634,7 @@ exports[`when using pagination can change page 1`] = `
           class=""
           data-label="Label"
         >
-          label-undefined
+          label-10
         </td>
       </tr>
       <tr
@@ -1651,7 +1651,7 @@ exports[`when using pagination can change page 1`] = `
           class=""
           data-label="Label"
         >
-          label-undefined
+          label-11
         </td>
       </tr>
     </tbody>
@@ -2089,7 +2089,7 @@ exports[`when using pagination can change per page 1`] = `
           class=""
           data-label="Label"
         >
-          label-undefined
+          label-0
         </td>
       </tr>
       <tr
@@ -2106,7 +2106,7 @@ exports[`when using pagination can change per page 1`] = `
           class=""
           data-label="Label"
         >
-          label-undefined
+          label-1
         </td>
       </tr>
       <tr
@@ -2123,7 +2123,7 @@ exports[`when using pagination can change per page 1`] = `
           class=""
           data-label="Label"
         >
-          label-undefined
+          label-2
         </td>
       </tr>
       <tr
@@ -2140,7 +2140,7 @@ exports[`when using pagination can change per page 1`] = `
           class=""
           data-label="Label"
         >
-          label-undefined
+          label-3
         </td>
       </tr>
       <tr
@@ -2157,7 +2157,7 @@ exports[`when using pagination can change per page 1`] = `
           class=""
           data-label="Label"
         >
-          label-undefined
+          label-4
         </td>
       </tr>
       <tr
@@ -2174,7 +2174,7 @@ exports[`when using pagination can change per page 1`] = `
           class=""
           data-label="Label"
         >
-          label-undefined
+          label-5
         </td>
       </tr>
       <tr
@@ -2191,7 +2191,7 @@ exports[`when using pagination can change per page 1`] = `
           class=""
           data-label="Label"
         >
-          label-undefined
+          label-6
         </td>
       </tr>
       <tr
@@ -2208,7 +2208,7 @@ exports[`when using pagination can change per page 1`] = `
           class=""
           data-label="Label"
         >
-          label-undefined
+          label-7
         </td>
       </tr>
       <tr
@@ -2225,7 +2225,7 @@ exports[`when using pagination can change per page 1`] = `
           class=""
           data-label="Label"
         >
-          label-undefined
+          label-8
         </td>
       </tr>
       <tr
@@ -2242,7 +2242,7 @@ exports[`when using pagination can change per page 1`] = `
           class=""
           data-label="Label"
         >
-          label-undefined
+          label-9
         </td>
       </tr>
       <tr
@@ -2259,7 +2259,7 @@ exports[`when using pagination can change per page 1`] = `
           class=""
           data-label="Label"
         >
-          label-undefined
+          label-10
         </td>
       </tr>
       <tr
@@ -2276,7 +2276,7 @@ exports[`when using pagination can change per page 1`] = `
           class=""
           data-label="Label"
         >
-          label-undefined
+          label-11
         </td>
       </tr>
     </tbody>

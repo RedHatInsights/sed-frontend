@@ -71,7 +71,7 @@ describe('when row column headings are clicked', () => {
 });
 
 describe('when using pagination', () => {
-  const repositories = [...Array(12)].map((id) => ({
+  const repositories = [...Array(12).keys()].map((id) => ({
     repositoryLabel: `label-${id}`,
   }));
   it('can change page', () => {
