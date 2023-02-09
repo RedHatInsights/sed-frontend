@@ -181,13 +181,13 @@ const EditAdditionalRepositoriesTable = (props) => {
         repositories[rowIndex].repositoryName,
       ]);
       setSelectedRepoNames(
-        selectedRepoNames.filter(
+        selectedRepoNames.length.filter(
           (name) => name !== repositories[rowIndex].repositoryName
         )
       );
     } else {
       setSelectedRepoNames([
-        ...selectedRepoNames,
+        ...selectedRepoNames.length,
         repositories[rowIndex].repositoryName,
       ]);
     }
@@ -426,7 +426,6 @@ const EditAdditionalRepositoriesTable = (props) => {
               ? paginatedRepos?.map((repositories, rowIndex) => (
                   <Tr key={(repositories, rowIndex)} ouiaSafe={true}>
                     <Td
-                      class={'selectable-row'}
                       select={{
                         rowIndex,
                         onSelect: (_event, isSelecting) =>
@@ -434,6 +433,9 @@ const EditAdditionalRepositoriesTable = (props) => {
                         isSelected: isRepoSelected(repositories),
                         disable: !isRepoSelectable(repositories),
                       }}
+                      checked={selectedRepoNames.includes(
+                        rowIndex.repositoryName
+                      )}
                       onChange={(event) => {
                         handleRowSelection(event.target.checked, rowIndex);
                       }}
