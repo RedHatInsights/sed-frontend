@@ -25,6 +25,8 @@ import {
   EmptyStatePrimary,
   Button,
   Bullseye,
+  ToggleGroup,
+  ToggleGroupItem,
   ToolbarGroup,
   PaginationVariant,
 } from '@patternfly/react-core';
@@ -69,6 +71,8 @@ const EditAdditionalRepositoriesTable = (props) => {
   const [selectedRepoNames, setSelectedRepoNames] = React.useState([]);
   const [recentSelectedRowIndex, setRecentSelectedRowIndex] =
     React.useState(null);
+  const [showTableData, setShowTableData] = React.useState(false);
+  const [allSelectTableToggle, setAllSelectTableToggle] = React.useState('All');
   const [shifting, setShifting] = React.useState(false);
   const attributeToggleRef = React.useRef(null);
   const attributeMenuRef = React.useRef(null);
@@ -168,6 +172,60 @@ const EditAdditionalRepositoriesTable = (props) => {
     />
   );
 
+  const [deselectedRepoNames, setDeselectedRepoNames] = React.useState([]);
+
+  const handleRowSelection = (selected, rowIndex) => {
+    if (selectedRepoNames.includes(repositories[rowIndex].repositoryName)) {
+      setDeselectedRepoNames([
+        ...deselectedRepoNames,
+        repositories[rowIndex].repositoryName,
+      ]);
+      setSelectedRepoNames(
+        selectedRepoNames.length.filter(
+          (name) => name !== repositories[rowIndex].repositoryName
+        )
+      );
+    } else {
+      setSelectedRepoNames([
+        ...selectedRepoNames.length,
+        repositories[rowIndex].repositoryName,
+      ]);
+    }
+  };
+
+  const onAllToggleEvent = () => {
+    setAllSelectTableToggle('All');
+    setShowTableData(false);
+    setDeselectedRepoNames([]);
+  };
+  const onToggleEventChange = () => {
+    setAllSelectTableToggle('Selected');
+    setShowTableData(true);
+    setDeselectedRepoNames([]);
+  };
+
+  const filteredRepos = filterReposBySearch(repositories, searchValue);
+
+  const allAndSelectedToggleGroup = (
+    <React.Fragment>
+      <ToggleGroup aria-label="Toggle Group">
+        <ToggleGroupItem
+          text="All"
+          buttonId="all"
+          isSelected={allSelectTableToggle === 'All'}
+          onChange={onAllToggleEvent}
+        />
+        <ToggleGroupItem
+          text="Selected"
+          buttonId="selected"
+          isSelected={allSelectTableToggle === 'Selected'}
+          onChange={onToggleEventChange}
+          isDisabled={selectedRepoNames.length == 0}
+        />
+      </ToggleGroup>
+    </React.Fragment>
+  );
+
   const getPage = (repo) => {
     const first = (page - 1) * perPage;
     const last = first + perPage;
@@ -183,18 +241,19 @@ const EditAdditionalRepositoriesTable = (props) => {
     setPage(1);
   };
 
-  const pagination = (variant = PaginationVariant.top) => (
-    <Pagination
-      perPageComponent="button"
-      itemCount={countRepos(repositories, searchValue)}
-      perPage={perPage}
-      page={page}
-      onSetPage={handleSetPage}
-      onPerPageSelect={handlePerPageSelect}
-      variant={variant}
-      isCompact
-    />
-  );
+  const pagination = (variant = PaginationVariant.top) =>
+    !showTableData && (
+      <Pagination
+        perPageComponent="button"
+        itemCount={countRepos(repositories, searchValue)}
+        perPage={perPage}
+        page={page}
+        onSetPage={handleSetPage}
+        onPerPageSelect={handlePerPageSelect}
+        variant={variant}
+        isCompact
+      />
+    );
 
   const getSortableRowValues = (repo) => {
     const { repositoryName, repositoryLabel } = repo;
@@ -227,7 +286,11 @@ const EditAdditionalRepositoriesTable = (props) => {
     });
     return sortedRepos;
   };
-  const sortedRepositories = sortRepos(repositories, activeSortIndex);
+  const sortedRepositories = sortRepos(
+    repositories,
+    activeSortIndex,
+    activeSortDirection
+  );
   const searchedRepos = filterReposBySearch(sortedRepositories, searchValue);
   const paginatedRepos = getPage(searchedRepos);
 
@@ -242,8 +305,12 @@ const EditAdditionalRepositoriesTable = (props) => {
         ? [...otherSelectedRepoNames, repo.repositoryName]
         : otherSelectedRepoNames;
     });
+
   const isRepoSelected = (repositories) =>
-    selectedRepoNames.includes(repositories?.repositoryName);
+    selectedRepoNames?.includes(repositories?.repositoryName);
+
+  const isRepoDeselected = (repositories) =>
+    deselectedRepoNames?.includes(repositories?.repositoryName);
 
   const onSelectRepo = (repositories, rowIndex, isSelecting) => {
     if (shifting && recentSelectedRowIndex !== null) {
@@ -304,7 +371,11 @@ const EditAdditionalRepositoriesTable = (props) => {
         >
           {toolbarSearchInput}
         </ToolbarItem>
+        <ToolbarItem style={{ paddingLeft: 10 }}>
+          {allAndSelectedToggleGroup}
+        </ToolbarItem>
       </ToolbarGroup>
+
       <ToolbarItem variant="pagination" align={{ default: 'alignRight' }}>
         {pagination()}
       </ToolbarItem>
@@ -351,25 +422,59 @@ const EditAdditionalRepositoriesTable = (props) => {
             </Tr>
           </Thead>
           <Tbody>
-            {paginatedRepos?.map((repositories, rowIndex) => (
-              <Tr key={(repositories, rowIndex)} ouiaSafe={true}>
-                <Td
-                  select={{
-                    rowIndex,
-                    onSelect: (_event, isSelecting) =>
-                      onSelectRepo(repositories, rowIndex, isSelecting),
-                    isSelected: isRepoSelected(repositories),
-                    disable: !isRepoSelectable(repositories),
-                  }}
-                />
-                <Td dataLabel={columnNames.repositoryName}>
-                  {repositories.repositoryName}
-                </Td>
-                <Td dataLabel={columnNames.repositoryLabel}>
-                  {repositories.repositoryLabel}
-                </Td>
-              </Tr>
-            ))}
+            {!showTableData
+              ? paginatedRepos?.map((repositories, rowIndex) => (
+                  <Tr key={(repositories, rowIndex)} ouiaSafe={true}>
+                    <Td
+                      select={{
+                        rowIndex,
+                        onSelect: (_event, isSelecting) =>
+                          onSelectRepo(repositories, rowIndex, isSelecting),
+                        isSelected: isRepoSelected(repositories),
+                        disable: !isRepoSelectable(repositories),
+                      }}
+                      checked={selectedRepoNames.includes(
+                        rowIndex.repositoryName
+                      )}
+                      onChange={(event) => {
+                        handleRowSelection(event.target.checked, rowIndex);
+                      }}
+                    />
+                    <Td dataLabel={columnNames.repositoryName}>
+                      {repositories.repositoryName}
+                    </Td>
+                    <Td dataLabel={columnNames.repositoryLabel}>
+                      {repositories.repositoryLabel}
+                    </Td>
+                  </Tr>
+                ))
+              : filteredRepos?.map(
+                  (repositories, rowIndex) =>
+                    (!showTableData ||
+                      isRepoSelected(repositories) ||
+                      isRepoDeselected(repositories)) && (
+                      <Tr key={(repositories, rowIndex)} ouiaSafe={true}>
+                        <Td
+                          select={{
+                            rowIndex,
+                            onSelect: (_event, isSelecting) =>
+                              onSelectRepo(repositories, rowIndex, isSelecting),
+                            isSelected: isRepoSelected(repositories),
+                            disable: !isRepoSelectable(repositories),
+                          }}
+                          onChange={(event) => {
+                            handleRowSelection(event.target.checked, rowIndex);
+                          }}
+                        />
+                        <Td dataLabel={columnNames.repositoryName}>
+                          {repositories.repositoryName}
+                        </Td>
+                        <Td dataLabel={columnNames.repositoryLabel}>
+                          {repositories.repositoryLabel}
+                        </Td>
+                      </Tr>
+                    )
+                )}
             {paginatedRepos?.length == 0 && (
               <Tr>
                 <Td colSpan={8}>
