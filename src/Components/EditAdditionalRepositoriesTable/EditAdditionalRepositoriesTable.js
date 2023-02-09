@@ -87,7 +87,7 @@ const EditAdditionalRepositoriesTable = (props) => {
   const [recentSelectedRowIndex, setRecentSelectedRowIndex] =
     React.useState(null);
   const [showTableData, setShowTableData] = React.useState(false);
-  const [allSelectTableToggle, setAllSelectTableToggle] = React.useState('all');
+  const [allSelectTableToggle, setAllSelectTableToggle] = React.useState('All');
   const [shifting, setShifting] = React.useState(false);
   const attributeToggleRef = React.useRef(null);
   const attributeMenuRef = React.useRef(null);
@@ -187,45 +187,53 @@ const EditAdditionalRepositoriesTable = (props) => {
     />
   );
 
-  const onAllToggleEvent = () => {
-    const id = event.currentTarget.id;
-    setShowTableData(id);
-    setAllSelectTableToggle(id);
-  };
-  const onToggleEventChange = () => {
-    const id = event.currentTarget.id;
-    setShowTableData(!id);
-    setAllSelectTableToggle(id);
-  };
+  const [deselectedRepoLabel, setDeselectedRepoLabels] = React.useState([]);
 
-  const handleRowSelection = (rowIndex) => {
-    if (selectedRepoLabel.includes(repositories[rowIndex].label)) {
+  const handleRowSelection = (selected, rowIndex) => {
+    if (selectedRepoLabel.includes(repositories[rowIndex].repositoryLabel)) {
+      setDeselectedRepoLabels([
+        ...deselectedRepoLabel,
+        repositories[rowIndex].repositoryLabel,
+      ]);
       setSelectedRepoLabel(
-        selectedRepoLabel.filter(
-          (label) => label !== repositories[rowIndex].label
+        selectedRepoLabel.length.filter(
+          (name) => name !== repositories[rowIndex].repositoryLabel
         )
       );
     } else {
       setSelectedRepoLabel([
-        ...selectedRepoLabel,
-        repositories[rowIndex].label,
+        ...selectedRepoLabel.length,
+        repositories[rowIndex].repositoryLabel,
       ]);
     }
   };
 
+  const onAllToggleEvent = () => {
+    setAllSelectTableToggle('All');
+    setShowTableData(false);
+    setDeselectedRepoLabels([]);
+  };
+  const onToggleEventChange = () => {
+    setAllSelectTableToggle('Selected');
+    setShowTableData(true);
+    setDeselectedRepoLabels([]);
+  };
+
+  const filteredRepos = filterReposBySearch(repositories, searchValue);
+
   const allAndSelectedToggleGroup = (
     <React.Fragment>
-      <ToggleGroup aria-label="All and Selected Toggle Group">
+      <ToggleGroup aria-label="Toggle Group">
         <ToggleGroupItem
           text="All"
           buttonId="all"
-          isSelected={allSelectTableToggle === 'all'}
+          isSelected={allSelectTableToggle === 'All'}
           onChange={onAllToggleEvent}
         />
         <ToggleGroupItem
           text="Selected"
           buttonId="selected"
-          isSelected={allSelectTableToggle === 'selected'}
+          isSelected={allSelectTableToggle === 'Selected'}
           onChange={onToggleEventChange}
           isDisabled={selectedRepoLabel.length == 0}
         />
@@ -292,7 +300,11 @@ const EditAdditionalRepositoriesTable = (props) => {
     });
     return sortedRepos;
   };
-  const sortedRepositories = sortRepos(repositories, activeSortIndex);
+  const sortedRepositories = sortRepos(
+    repositories,
+    activeSortIndex,
+    activeSortDirection
+  );
   const searchedRepos = filterReposBySearch(sortedRepositories, searchValue);
   const paginatedRepos = getPage(searchedRepos);
 
@@ -311,10 +323,12 @@ const EditAdditionalRepositoriesTable = (props) => {
         ? [...otherSelectedRepoLabel, repo.repositoryLabel]
         : otherSelectedRepoLabel;
     });
-  const isRepoSelected = (repositories) =>
-    selectedRepoLabel.includes(repositories?.repositoryLabel);
 
-  const isSaveDisabled = selectedRepoLabel.length === 0;
+  const isRepoSelected = (repositories) =>
+    selectedRepoLabel?.includes(repositories?.repositoryLabel);
+
+  const isRepoDeselected = (repositories) =>
+    deselectedRepoLabel?.includes(repositories?.repositoryLabel);
 
   const onSelectRepo = (repositories, rowIndex, isSelecting) => {
     if (shifting && recentSelectedRowIndex !== null) {
@@ -356,6 +370,8 @@ const EditAdditionalRepositoriesTable = (props) => {
     };
   }, []);
 
+  const isSaveDisabled = selectedRepoLabel.length === 0;
+
   const editAdditionalReposToolbar = (
     <PrimaryToolbar
       id="search-input-filter-toolbar"
@@ -379,6 +395,7 @@ const EditAdditionalRepositoriesTable = (props) => {
           {allAndSelectedToggleGroup}
         </ToolbarItem>
       </ToolbarGroup>
+
       <ToolbarItem variant="pagination" align={{ default: 'alignRight' }}>
         {pagination()}
       </ToolbarItem>
@@ -414,7 +431,6 @@ const EditAdditionalRepositoriesTable = (props) => {
         <TableComposable
           aria-label="Additional Repositories Selectable Table"
           variant="compact"
-          {...(allSelectTableToggle !== 'all' || 'selected')}
         >
           <Thead>
             <Tr ouiaSafe={true}>
@@ -437,7 +453,10 @@ const EditAdditionalRepositoriesTable = (props) => {
                         isSelected: isRepoSelected(repositories),
                         disable: !isRepoSelectable(repositories),
                       }}
-                      onChange={() => {
+                      checked={selectedRepoLabel.includes(
+                        rowIndex.repositoryLabel
+                      )}
+                      onChange={(event) => {
                         handleRowSelection(event.target.checked, rowIndex);
                       }}
                     />
@@ -449,9 +468,11 @@ const EditAdditionalRepositoriesTable = (props) => {
                     </Td>
                   </Tr>
                 ))
-              : repositories?.map(
+              : filteredRepos?.map(
                   (repositories, rowIndex) =>
-                    (!showTableData || isRepoSelected(repositories)) && (
+                    (!showTableData ||
+                      isRepoSelected(repositories) ||
+                      isRepoDeselected(repositories)) && (
                       <Tr key={(repositories, rowIndex)} ouiaSafe={true}>
                         <Td
                           select={{
@@ -461,7 +482,7 @@ const EditAdditionalRepositoriesTable = (props) => {
                             isSelected: isRepoSelected(repositories),
                             disable: !isRepoSelectable(repositories),
                           }}
-                          onChange={() => {
+                          onChange={(event) => {
                             handleRowSelection(event.target.checked, rowIndex);
                           }}
                         />
