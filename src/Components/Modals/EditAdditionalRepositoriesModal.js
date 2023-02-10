@@ -12,7 +12,7 @@ const EditAdditionalRepositoriesModal = (props) => {
     <React.Fragment>
       <Modal
         variant={ModalVariant.large}
-        title="Edit additional repositories"
+        title="Add repositories"
         description={editAdditionalRepositoriesDescription}
         isOpen={isOpen}
         onClose={handleModalToggle}
