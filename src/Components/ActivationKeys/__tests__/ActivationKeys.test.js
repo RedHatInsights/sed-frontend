@@ -20,6 +20,11 @@ jest.mock('react-router-dom', () => ({
     pathname: '/',
   }),
 }));
+jest.mock(
+  '@redhat-cloud-services/frontend-components/useChrome',
+  // eslint-disable-next-line react/display-name
+  () => jest.fn()
+);
 
 const queryClient = new QueryClient();
 
@@ -85,7 +90,6 @@ describe('ActivationKeys', () => {
   ]);
 
   beforeEach(() => {
-    window.insights = {};
     jest.resetAllMocks();
     mockAuthenticateUser(
       get('isLoading'),

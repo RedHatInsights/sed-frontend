@@ -72,6 +72,12 @@ jest.mock(
   // eslint-disable-next-line react/display-name
   () => () => <div>Unavailable</div>
 );
+jest.mock(
+  '@redhat-cloud-services/frontend-components/useChrome',
+  // eslint-disable-next-line react/display-name
+  () => jest.fn()
+);
+
 
 describe('ActivationKey', () => {
   def('isLoading', () => false);
@@ -91,7 +97,6 @@ describe('ActivationKey', () => {
   });
 
   beforeEach(() => {
-    window.insights = {};
     jest.resetAllMocks();
     mockAuthenticateUser(
       get('isLoading'),

@@ -15,6 +15,11 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useRouteMatch: () => ({ url: '/' }),
 }));
+jest.mock(
+  '@redhat-cloud-services/frontend-components/useChrome',
+  // eslint-disable-next-line react/display-name
+  () => jest.fn()
+);
 
 const queryClient = new QueryClient();
 

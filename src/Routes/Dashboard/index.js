@@ -16,6 +16,7 @@ import {
   PageHeader,
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import React, {
   lazy,
   Suspense,
@@ -60,6 +61,7 @@ const SamplePage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const dataRef = useRef();
   const dispatch = useDispatch();
+  const chrome = useChrome();
 
   const activeStateLoaded = useSelector(
     ({ activeStateReducer }) => activeStateReducer?.loaded
@@ -91,7 +93,7 @@ const SamplePage = () => {
   }, [getRegistry]);
 
   useEffect(() => {
-    insights?.chrome?.appAction?.('cloud-connector-dashboard');
+    chrome.appAction('cloud-connector-dashboard');
   }, []);
 
   return (

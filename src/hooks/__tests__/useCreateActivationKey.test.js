@@ -5,20 +5,14 @@ import useCreateActivationKey from '../useCreateActivationKey';
 import TestRenderer from 'react-test-renderer';
 
 enableFetchMocks();
+jest.mock(
+  '@redhat-cloud-services/frontend-components/useChrome',
+  // eslint-disable-next-line react/display-name
+  () => jest.fn()
+);
 
 describe('useActivationKeys', () => {
   const { act } = TestRenderer;
-  beforeEach(() => {
-    Object.defineProperty(window, 'insights', {
-      value: {
-        chrome: {
-          auth: {
-            getToken: jest.fn(),
-          },
-        },
-      },
-    });
-  });
   it('creates activation key', async () => {
     fetch.mockResponseOnce(JSON.stringify({ body: { id: 'id' } }));
     const keyParams = {

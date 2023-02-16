@@ -14,7 +14,7 @@ const Authentication = ({ children }) => {
 
   const chrome = useChrome();
   useEffect(() => {
-    isSuccess && chrome.hideGlobalFilter();
+    isSuccess && chrome?.hideGlobalFilter();
   }, [isSuccess]);
 
   useEffect(() => {

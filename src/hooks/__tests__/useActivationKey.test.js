@@ -4,19 +4,13 @@ import { createQueryWrapper } from '../../utils/testHelpers';
 import useActivationKey from '../useActivationKey';
 
 enableFetchMocks();
+jest.mock(
+  '@redhat-cloud-services/frontend-components/useChrome',
+  // eslint-disable-next-line react/display-name
+  () => jest.fn()
+);
 
 describe('useActivationKey', () => {
-  beforeEach(() => {
-    Object.defineProperty(window, 'insights', {
-      value: {
-        chrome: {
-          auth: {
-            getToken: jest.fn(),
-          },
-        },
-      },
-    });
-  });
   it('returns activation key details from the API', async () => {
     const keyData = [
       {

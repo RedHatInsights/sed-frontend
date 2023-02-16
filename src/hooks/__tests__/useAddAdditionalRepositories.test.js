@@ -5,6 +5,11 @@ import useAddAdditionalRepositories from '../useAddAdditionalRepositories';
 import TestRenderer from 'react-test-renderer';
 
 enableFetchMocks();
+jest.mock(
+  '@redhat-cloud-services/frontend-components/useChrome',
+  // eslint-disable-next-line react/display-name
+  () => jest.fn()
+);
 
 describe('useAddAdditionalRepositories', () => {
   const { act } = TestRenderer;
