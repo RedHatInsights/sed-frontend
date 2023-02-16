@@ -1,10 +1,12 @@
 import { useQuery } from 'react-query';
+import { useChrome } from '@redhat-cloud-services/frontend-components/useChrome';
 
 const fetchAdditionalRepositories = async (keyName) => {
   if (!keyName) {
     return false;
   }
-  const token = await window.insights.chrome.auth.getToken();
+  const chrome = useChrome();
+  const token = await chrome.auth.getToken();
 
   const response = await fetch(
     `/api/rhsm/v2/activation_keys/${keyName}/available_repositories?default=Disabled`,

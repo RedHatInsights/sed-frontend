@@ -5,14 +5,16 @@ import useUser from '../../hooks/useUser';
 import Loading from '../LoadingState/Loading';
 import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable';
 import propTypes from 'prop-types';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 const Authentication = ({ children }) => {
   const queryClient = useQueryClient();
   const location = useLocation();
 
   const { isLoading, isFetching, isSuccess, isError } = useUser();
 
+  const chrome = useChrome();
   useEffect(() => {
-    isSuccess && window.insights?.chrome?.hideGlobalFilter();
+    isSuccess && chrome.hideGlobalFilter();
   }, [isSuccess]);
 
   useEffect(() => {

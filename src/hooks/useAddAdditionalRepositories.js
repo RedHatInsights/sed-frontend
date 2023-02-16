@@ -1,13 +1,16 @@
 import { useMutation } from 'react-query';
+import { useChrome } from '@redhat-cloud-services/frontend-components/useChrome';
 
 const additionalRepositoriesMutation = async (data) => {
   const { keyName, additionalRepos } = data;
+  const chrome = useChrome();
+
   if (!keyName) {
     throw new Error(
       `Activation Key name must be provided to add additional repositiories.`
     );
   }
-  const token = await window.insights.chrome.auth.getToken();
+  const token = await chrome.auth.getToken();
   const response = await fetch(
     `/api/rhsm/v2/activation_keys/${keyName}/additional_repositories`,
     {

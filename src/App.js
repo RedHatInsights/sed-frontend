@@ -7,6 +7,7 @@ import { RegistryContext } from './store';
 import { useHistory } from 'react-router-dom';
 import NotificationProvider from './contexts/NotificationProvider';
 import Notifications from './Components/Notifications';
+import { useChrome } from '@redhat-cloud-services/frontend-components/useChrome';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -23,26 +24,26 @@ const queryClient = new QueryClient({
 const App = () => {
   const { getRegistry } = useContext(RegistryContext);
   const history = useHistory();
+  const chrome = useChrome();
   useEffect(() => {
     getRegistry().register({ notifications: notificationsReducer });
   }, [getRegistry]);
 
+  // console.log(chrome.getUserPermissions('config-manager'), ' perms 2 here')
   const appNavClick = useMemo(
     () => ({
       settings(redirect) {
-        insights?.chrome?.appNavClick({ id: 'settings', redirect });
+        chrome?.appNavClick({ id: 'settings', redirect });
       },
       activationKeys(redirect) {
-        insights?.chrome?.appNavClick({ id: 'activationKeys', redirect });
+        chrome?.appNavClick({ id: 'activationKeys', redirect });
       },
     }),
     []
   );
 
   useEffect(() => {
-    insights.chrome.init();
-    insights.chrome.identifyApp('connector');
-    const unregister = insights.chrome.on('APP_NAVIGATION', (event) => {
+    const unregister = chrome.on('APP_NAVIGATION', (event) => {
       if (event.domEvent) {
         history.push(`/${event.navId}`);
         appNavClick[event.navId] !== undefined
