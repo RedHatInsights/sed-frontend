@@ -204,6 +204,7 @@ const EditAdditionalRepositoriesTable = (props) => {
       setSelectedRepoLabel([
         ...selectedRepoLabel.length,
         repositories[rowIndex].repositoryLabel,
+
       ]);
     }
   };
@@ -236,6 +237,7 @@ const EditAdditionalRepositoriesTable = (props) => {
           isSelected={allSelectTableToggle === 'Selected'}
           onChange={onToggleEventChange}
           isDisabled={selectedRepoLabel.length == 0}
+
         />
       </ToggleGroup>
     </React.Fragment>
