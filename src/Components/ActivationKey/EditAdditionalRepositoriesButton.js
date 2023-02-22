@@ -1,31 +1,23 @@
 import React from 'react';
-import { useQueryClient } from 'react-query';
-import { Button } from '@patternfly/react-core';
 import PropTypes from 'prop-types';
+import { WriteOnlyButton } from '../WriteOnlyButton';
 
-const EditAdditionalRepositoriesButton = (props) => {
-  const { onClick } = props;
-  const queryClient = useQueryClient();
-  const user = queryClient.getQueryData('user');
-  const isDisabled = () => {
-    return !user.rbacPermissions.canWriteActivationKeys;
-  };
+const AddAdditionalRepositoriesButton = ({ onClick }) => {
   return (
     <React.Fragment>
-      <Button
+      <WriteOnlyButton
         onClick={onClick}
-        isDisabled={isDisabled()}
         variant="secondary"
         style={{ margin: 15, marginLeft: 0 }}
       >
         Add repositories
-      </Button>
+      </WriteOnlyButton>
     </React.Fragment>
   );
 };
 
-EditAdditionalRepositoriesButton.propTypes = {
+AddAdditionalRepositoriesButton.propTypes = {
   onClick: PropTypes.func.isRequired,
 };
 
-export default EditAdditionalRepositoriesButton;
+export default AddAdditionalRepositoriesButton;

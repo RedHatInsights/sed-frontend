@@ -1,20 +1,11 @@
 import React from 'react';
-import { useQueryClient } from 'react-query';
-import { Button } from '@patternfly/react-core';
 import PropTypes from 'prop-types';
+import { WriteOnlyButton } from '../WriteOnlyButton';
 
-const DeleteButton = (props) => {
-  const queryClient = useQueryClient();
-  const user = queryClient.getQueryData('user');
-  const isDisabled = () => {
-    return !user.rbacPermissions.canWriteActivationKeys;
-  };
-  const { onClick } = props;
+const DeleteButton = ({ onClick }) => {
   return (
     <React.Fragment>
-      <Button onClick={onClick} isDisabled={isDisabled()} variant="secondary">
-        Delete
-      </Button>
+      <WriteOnlyButton onClick={onClick} variant="secondary">Delete</WriteOnlyButton>
     </React.Fragment>
   );
 };

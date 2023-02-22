@@ -13,7 +13,7 @@ import {
 } from '@patternfly/react-core';
 import AdditionalRepositoriesTable from '../AdditionalRepositoriesTable';
 import useAvailableRepositories from '../../hooks/useAvailableRepositories';
-import EditAdditionalRepositoriesButton from '../ActivationKey/EditAdditionalRepositoriesButton';
+import AddAdditionalRepositoriesButton from '../ActivationKey/EditAdditionalRepositoriesButton';
 import EditAdditionalRepositoriesModal from '../Modals/EditAdditionalRepositoriesModal';
 
 const AdditionalRepositoriesCard = (props) => {
@@ -35,7 +35,7 @@ const AdditionalRepositoriesCard = (props) => {
 
   const ButtonWrapper = () => {
     return (
-      <EditAdditionalRepositoriesButton
+      <AddAdditionalRepositoriesButton
         onClick={handleEditAdditionalRepositoriesToggle}
       />
     );
