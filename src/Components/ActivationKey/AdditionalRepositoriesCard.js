@@ -13,7 +13,7 @@ import {
 } from '@patternfly/react-core';
 import AdditionalRepositoriesTable from '../AdditionalRepositoriesTable';
 import useAvailableRepositories from '../../hooks/useAvailableRepositories';
-import AddAdditionalRepositoriesButton from '../ActivationKey/EditAdditionalRepositoriesButton';
+import AddAdditionalRepositoriesButton from '../ActivationKey/AddAdditionalRepositoriesButton';
 import EditAdditionalRepositoriesModal from '../Modals/EditAdditionalRepositoriesModal';
 
 const AdditionalRepositoriesCard = (props) => {
