@@ -1,19 +1,12 @@
 import React from 'react';
-import { Button } from '@patternfly/react-core';
-import { useQueryClient } from 'react-query';
 import PropTypes from 'prop-types';
+import { WriteOnlyButton } from '../WriteOnlyButton';
 
-const CreateActivationKeyButton = (props) => {
-  const { onClick } = props;
-  const queryClient = useQueryClient();
-  const user = queryClient.getQueryData('user');
-  const isDisabled = () => {
-    return !user.rbacPermissions.canWriteActivationKeys;
-  };
+const CreateActivationKeyButton = ({ onClick }) => {
   return (
-    <Button variant="primary" onClick={onClick} isDisabled={isDisabled()}>
+    <WriteOnlyButton variant="primary" onClick={onClick}>
       Create activation key
-    </Button>
+    </WriteOnlyButton>
   );
 };
 
