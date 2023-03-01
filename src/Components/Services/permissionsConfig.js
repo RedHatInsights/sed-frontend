@@ -7,7 +7,7 @@ export const permissions = [
     links: [
       {
         name: 'About Cloud Connector',
-        link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2022/html/remote_host_configuration_and_management/index',
+        link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/remote_host_configuration_and_management/index',
       },
     ],
   },
@@ -33,7 +33,7 @@ export const permissions = [
     links: [
       {
         name: 'About Insights for RHEL Compliance',
-        link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2022/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index',
+        link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/assessing_and_monitoring_security_policy_compliance_of_rhel_systems/index',
       },
       {
         name: 'View configuration playbook',
