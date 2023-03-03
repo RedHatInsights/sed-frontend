@@ -24,7 +24,9 @@ describe('useAddAdditionalRepositories', () => {
       JSON.stringify({ body: [{ repositoryLabel: 'repository-A' }] })
     );
     const keyParams = {
-      additionalRepos: [{ repositoryLabel: 'repository-A' }],
+      selectedRepositories: [
+        { repositoryLabel: 'repository-A', repositoryName: 'repository A' },
+      ],
       keyName: 'A',
     };
 
