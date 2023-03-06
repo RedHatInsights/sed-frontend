@@ -14,7 +14,7 @@ import AddAdditionalRepositoriesTable from '../AddAdditionalRepositoriesTable';
 const AddAdditionalRepositoriesModal = (props) => {
   const {
     keyName,
-    handleModalToggle,
+    handleModalToggle: parentHandleModalToggle,
     isOpen,
     repositories,
     isLoading: additionalRepositoriesAreLoading,
@@ -24,6 +24,11 @@ const AddAdditionalRepositoriesModal = (props) => {
   const queryClient = useQueryClient();
 
   const [selectedRepositories, setSelectedRepositories] = useState([]);
+
+  const handleModalToggle = () => {
+    setSelectedRepositories([]);
+    parentHandleModalToggle();
+  };
 
   const { addSuccessNotification, addErrorNotification } = useNotifications();
 
