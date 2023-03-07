@@ -15,7 +15,6 @@ import AdditionalRepositoriesTable from '../AdditionalRepositoriesTable';
 import useAvailableRepositories from '../../hooks/useAvailableRepositories';
 import AddAdditionalRepositoriesButton from '../ActivationKey/AddAdditionalRepositoriesButton';
 import AddAdditionalRepositoriesModal from '../Modals/AddAdditionalRepositoriesModal';
-import EditAdditionalRepositoriesModal from '../Modals/EditAdditionalRepositoriesModal';
 
 const AdditionalRepositoriesCard = (props) => {
   const { activationKey } = props;
