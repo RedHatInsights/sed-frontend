@@ -1,7 +1,12 @@
 import { useMutation } from 'react-query';
 
 const additionalRepositoriesMutation = async (data) => {
-  const { keyName, additionalRepos } = data;
+  const { keyName, selectedRepositories } = data;
+
+  const additionalRepositoryLabels = selectedRepositories.map(
+    (repository) => repository.repositoryLabel
+  );
+
   if (!keyName) {
     throw new Error(
       `Activation Key name must be provided to add additional repositiories.`
@@ -17,12 +22,17 @@ const additionalRepositoriesMutation = async (data) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(
-        additionalRepos.map((label) => ({
+        additionalRepositoryLabels.map((label) => ({
           repositoryLabel: label,
         }))
       ),
     }
   );
+
+  if (Math.floor(response.status / 100) !== 2) {
+    throw new Error();
+  }
+
   return response.json();
 };
 
