@@ -142,7 +142,7 @@ const SamplePage = () => {
               target="_blank"
               rel="noopener noreferrer"
               href={
-                'https://access.redhat.com/documentation/en-us/red_hat_insights/2022/html/remote_host_configuration_and_management/index'
+                'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/remote_host_configuration_and_management/index'
               }
             >
               Connecting with Red Hat

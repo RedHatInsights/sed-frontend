@@ -1,28 +1,44 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import { Modal, ModalVariant } from '@patternfly/react-core';
-import EditAdditionalRepositoriesTable from '../EditAdditionalRepositoriesTable/EditAdditionalRepositoriesTable';
+import {
+  Modal,
+  ModalVariant,
+  ActionGroup,
+  Button,
+} from '@patternfly/react-core';
 import { useQueryClient } from 'react-query';
 import useAddAdditionalRepositories from '../../hooks/useAddAdditionalRepositories';
 import useNotifications from '../../hooks/useNotifications';
+import AddAdditionalRepositoriesTable from '../AddAdditionalRepositoriesTable';
 
-const EditAdditionalRepositoriesModal = (props) => {
-  const { keyName, handleModalToggle, isOpen, repositories } = props;
+const AddAdditionalRepositoriesModal = (props) => {
+  const {
+    keyName,
+    handleModalToggle: parentHandleModalToggle,
+    isOpen,
+    repositories,
+    isLoading: additionalRepositoriesAreLoading,
+    error: additionalRepositoriesError,
+  } = props;
+
   const queryClient = useQueryClient();
 
-  const [additionalRepos, setAdditionalRepos] = useState([]);
+  const [selectedRepositories, setSelectedRepositories] = useState([]);
 
-  const [created, setCreated] = React.useState(false);
-  const [error, setError] = React.useState(false);
+  const handleModalToggle = () => {
+    setSelectedRepositories([]);
+    parentHandleModalToggle();
+  };
+
   const { addSuccessNotification, addErrorNotification } = useNotifications();
-  const { mutate, isLoading } = useAddAdditionalRepositories();
+
+  const { mutate } = useAddAdditionalRepositories();
+
   const submitForm = () => {
     mutate(
-      { additionalRepos, keyName },
+      { selectedRepositories, keyName },
       {
         onSuccess: () => {
-          setError(false);
-          setCreated(true);
           queryClient.resetQueries(`activation_key_${keyName}`);
           queryClient.resetQueries(
             `activation_key_${keyName}_available_repositories`
@@ -36,14 +52,32 @@ const EditAdditionalRepositoriesModal = (props) => {
             description:
               'Your repositories could not be added. Please try again.',
           });
-          setError(true);
-          setCreated(false);
         },
       }
     );
   };
+
   const editAdditionalRepositoriesDescription =
     'The core repositories for your operating system version, for example BaseOS and AppStream, are always enabled and do not need to be explicitly added to the activation key.';
+
+  const editChangesButtons = (
+    <ActionGroup>
+      <Button
+        key="Save changes"
+        variant="primary"
+        onClick={() => {
+          submitForm();
+          handleModalToggle();
+        }}
+        isDisabled={selectedRepositories.length === 0}
+      >
+        Save changes
+      </Button>
+      <Button key="cancel" variant="link" onClick={handleModalToggle}>
+        Cancel
+      </Button>
+    </ActionGroup>
+  );
 
   return (
     <React.Fragment>
@@ -53,30 +87,27 @@ const EditAdditionalRepositoriesModal = (props) => {
         description={editAdditionalRepositoriesDescription}
         isOpen={isOpen}
         onClose={handleModalToggle}
+        footer={editChangesButtons}
       >
-        <EditAdditionalRepositoriesTable
+        <AddAdditionalRepositoriesTable
           repositories={repositories}
-          handleModalToggle={handleModalToggle}
-          setAdditionalRepos={setAdditionalRepos}
-          submitForm={submitForm}
-          isSuccess={created}
-          isError={error}
-          isLoading={isLoading}
-          error={error}
+          isLoading={additionalRepositoriesAreLoading}
+          error={additionalRepositoriesError}
+          selectedRepositories={selectedRepositories}
+          setSelectedRepositories={setSelectedRepositories}
         />
       </Modal>
     </React.Fragment>
   );
 };
 
-EditAdditionalRepositoriesModal.propTypes = {
+AddAdditionalRepositoriesModal.propTypes = {
   keyName: propTypes.string,
   handleModalToggle: propTypes.func.isRequired,
   isOpen: propTypes.bool.isRequired,
-  modalSize: propTypes.string,
   repositories: propTypes.array,
   isLoading: propTypes.func,
   error: propTypes.func,
 };
 
-export default EditAdditionalRepositoriesModal;
+export default AddAdditionalRepositoriesModal;
