@@ -14,13 +14,15 @@ import {
 import AdditionalRepositoriesTable from '../AdditionalRepositoriesTable';
 import useAvailableRepositories from '../../hooks/useAvailableRepositories';
 import AddAdditionalRepositoriesButton from '../ActivationKey/AddAdditionalRepositoriesButton';
-import EditAdditionalRepositoriesModal from '../Modals/EditAdditionalRepositoriesModal';
+import AddAdditionalRepositoriesModal from '../Modals/AddAdditionalRepositoriesModal';
 
 const AdditionalRepositoriesCard = (props) => {
-  const { activationKey, isLoading, error } = props;
-  const { data: availableRepositories } = useAvailableRepositories(
-    activationKey.name
-  );
+  const { activationKey } = props;
+  const {
+    data: availableRepositories,
+    isLoading,
+    error,
+  } = useAvailableRepositories(activationKey.name);
 
   const [
     isEditAdditionalRepositoriesModalOpen,
@@ -56,12 +58,10 @@ const AdditionalRepositoriesCard = (props) => {
             explicitly added to the activation key.
           </Text>
           <ButtonWrapper />
-          <EditAdditionalRepositoriesModal
-            title="Additional Repositories"
+          <AddAdditionalRepositoriesModal
             isOpen={isEditAdditionalRepositoriesModalOpen}
             handleModalToggle={handleEditAdditionalRepositoriesToggle}
             keyName={activationKey.name}
-            modalSize="large"
             repositories={availableRepositories}
             isLoading={isLoading}
             error={error}
