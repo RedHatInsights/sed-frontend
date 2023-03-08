@@ -13,16 +13,18 @@ import {
 } from '@patternfly/react-core';
 import AdditionalRepositoriesTable from '../AdditionalRepositoriesTable';
 import useAvailableRepositories from '../../hooks/useAvailableRepositories';
-import EditAdditionalRepositoriesButton from '../ActivationKey/EditAdditionalRepositoriesButton';
-import EditAdditionalRepositoriesModal from '../Modals/EditAdditionalRepositoriesModal';
 import Loading from '../LoadingState/Loading';
 import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable';
+import AddAdditionalRepositoriesButton from '../ActivationKey/AddAdditionalRepositoriesButton';
+import AddAdditionalRepositoriesModal from '../Modals/AddAdditionalRepositoriesModal';
 
 const AdditionalRepositoriesCard = (props) => {
-  const { activationKey, isLoading, error } = props;
-  const { data: availableRepositories } = useAvailableRepositories(
-    activationKey.name
-  );
+  const { activationKey } = props;
+  const {
+    data: availableRepositories,
+    isLoading,
+    error,
+  } = useAvailableRepositories(activationKey.name);
 
   const [
     isEditAdditionalRepositoriesModalOpen,
