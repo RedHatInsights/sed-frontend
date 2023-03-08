@@ -126,7 +126,7 @@ const AdditionalRepositoriesTable = (props) => {
           })}
         </Tbody>
       </TableComposable>
-      {repositories.length === 0 && <NoAdditionalRepositories />}
+      {repositories?.length === 0 && <NoAdditionalRepositories />}
       <PaginationBottom />
     </React.Fragment>
   );
