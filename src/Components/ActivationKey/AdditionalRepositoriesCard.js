@@ -41,7 +41,7 @@ const AdditionalRepositoriesCard = (props) => {
       <Card>
         <CardHeader>
           <CardTitle>
-            <Title headingLevel="h2"> Additional repositories</Title>
+            <Title headingLevel="h2"> Additional repositories </Title>
           </CardTitle>
         </CardHeader>
         <CardBody>
@@ -51,10 +51,10 @@ const AdditionalRepositoriesCard = (props) => {
               example BaseOS and AppStream, are always enabled and do not need
               to be explicitly added to the activation key.
             </Text>
-            <EditAdditionalRepositoriesButton
+            <AddAdditionalRepositoriesButton
               onClick={handleEditAdditionalRepositoriesToggle}
             />
-            <EditAdditionalRepositoriesModal
+            <AddAdditionalRepositoriesModal
               title="Additional Repositories"
               isOpen={isEditAdditionalRepositoriesModalOpen}
               handleModalToggle={handleEditAdditionalRepositoriesToggle}
