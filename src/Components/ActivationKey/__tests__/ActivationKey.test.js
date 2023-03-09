@@ -108,9 +108,11 @@ describe('ActivationKey', () => {
   });
 
   it('renders correctly', async () => {
-    const { container } = render(<PageContainer />);
+    render(<PageContainer />);
     await waitFor(() => expect(useUser).toHaveBeenCalledTimes(1));
-    expect(container).toMatchSnapshot();
+    expect(screen.getByText('System Purpose')).toBeInTheDocument();
+    expect(screen.getByText('Workload')).toBeInTheDocument();
+    expect(screen.getByText('Additional repositories')).toBeInTheDocument();
   });
 
   describe('when the user call fails', () => {
