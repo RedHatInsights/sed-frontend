@@ -61,7 +61,7 @@ const AdditionalRepositoriesCard = (props) => {
           />
         </TextContent>
         <AdditionalRepositoriesTable
-          repositories={activationKey.availableRepositories}
+          repositories={activationKey.additionalRepositories}
         />
       </CardBody>
     </Card>
