@@ -55,6 +55,7 @@ const AdditionalRepositoriesCard = (props) => {
           <AddAdditionalRepositoriesModal
             isOpen={isEditAdditionalRepositoriesModalOpen}
             handleModalToggle={handleEditAdditionalRepositoriesToggle}
+            keyName={activationKey.name}
             repositories={availableRepositories}
             isLoading={isLoading}
             error={error}
