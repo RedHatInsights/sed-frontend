@@ -35,7 +35,7 @@ const AdditionalRepositoriesCard = (props) => {
     );
   };
 
-return (
+  return (
     <Card>
       <CardHeader>
         <CardTitle>
