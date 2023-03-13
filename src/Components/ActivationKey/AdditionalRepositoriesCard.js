@@ -35,19 +35,11 @@ const AdditionalRepositoriesCard = (props) => {
     );
   };
 
-  const ButtonWrapper = () => {
-    return (
-      <AddAdditionalRepositoriesButton
-        onClick={handleEditAdditionalRepositoriesToggle}
-      />
-    );
-  };
-
   return (
     <Card>
       <CardHeader>
         <CardTitle>
-          <Title headingLevel="h2"> Additional repositories</Title>
+          <Title headingLevel="h2"> Additional repositories </Title>
         </CardTitle>
       </CardHeader>
       <CardBody>
@@ -57,7 +49,9 @@ const AdditionalRepositoriesCard = (props) => {
             BaseOS and AppStream, are always enabled and do not need to be
             explicitly added to the activation key.
           </Text>
-          <ButtonWrapper />
+          <AddAdditionalRepositoriesButton
+            onClick={handleEditAdditionalRepositoriesToggle}
+          />
           <AddAdditionalRepositoriesModal
             isOpen={isEditAdditionalRepositoriesModalOpen}
             handleModalToggle={handleEditAdditionalRepositoriesToggle}
