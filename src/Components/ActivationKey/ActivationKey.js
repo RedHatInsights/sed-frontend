@@ -63,14 +63,6 @@ const ActivationKey = () => {
     setIsEditActivationKeyModalOpen(!isEditActivationKeyModalOpen);
   };
 
-  const ButtonWrapper = () => {
-    return (
-      <DeleteButton
-        onClick={handleDeleteActivationKeyModalToggle}
-      ></DeleteButton>
-    );
-  };
-
   const editModalDescription =
     'System purpose values are used by the subscriptions service to help filter and identify hosts. Setting values for these attributes is optional, but doing so ensures that subscriptions reporting accurately reflects the system. Only those values available to your account are shown.';
 
@@ -88,9 +80,9 @@ const ActivationKey = () => {
             </LevelItem>
             <LevelItem>
               {user.rbacPermissions.canWriteActivationKeys ? (
-                <ButtonWrapper />
+                <DeleteButton onClick={handleDeleteActivationKeyModalToggle} />
               ) : (
-                <NoAccessPopover content={ButtonWrapper} />
+                <NoAccessPopover content={DeleteButton} />
               )}
             </LevelItem>
           </Level>
