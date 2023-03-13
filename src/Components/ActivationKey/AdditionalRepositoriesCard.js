@@ -34,7 +34,7 @@ const AdditionalRepositoriesCard = (props) => {
       !isEditAdditionalRepositoriesModalOpen
     );
   };
-
+  
   return (
     <Card>
       <CardHeader>
