@@ -17,7 +17,7 @@ import { useQueryClient } from 'react-query';
 import { KebabToggle } from '@patternfly/react-core';
 import useFeatureFlag from '../../hooks/useFeatureFlag';
 
-const customActionsToggle = (props) => (
+const CustomActionsToggle = (props) => (
   <KebabToggle
     onToggle={props.onToggle}
     isDisabled={props.isDisabled}
@@ -79,7 +79,7 @@ const ActivationKeysTable = (props) => {
                   <ActionsColumn
                     items={rowActions}
                     isDisabled={isActionsDisabled()}
-                    actionsToggle={customActionsToggle}
+                    actionsToggle={CustomActionsToggle}
                   />
                 </Td>
               </Tr>
@@ -103,7 +103,7 @@ ActivationKeysTable.propTypes = {
   actions: propTypes.func,
 };
 
-customActionsToggle.propTypes = {
+CustomActionsToggle.propTypes = {
   onToggle: propTypes.func,
   isDisabled: propTypes.bool,
 };
