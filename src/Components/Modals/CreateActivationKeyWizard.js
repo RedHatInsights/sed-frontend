@@ -1,266 +1,17 @@
 import React, { useState } from 'react';
-import {
-  Title,
-  Text,
-  TextInput,
-  TextVariants,
-  Wizard,
-  FormGroup,
-  FormSelectOption,
-  FormSelect,
-  Radio,
-  Modal,
-  ModalVariant,
-  Button,
-  Form,
-} from '@patternfly/react-core';
-import {
-  DescriptionList,
-  DescriptionListTerm,
-  DescriptionListGroup,
-  DescriptionListDescription,
-} from '@patternfly/react-core';
+import { Wizard, Modal, ModalVariant, Button } from '@patternfly/react-core';
+
 import PropTypes from 'prop-types';
 import useCreateActivationKey from '../../hooks/useCreateActivationKey';
 import useSystemPurposeAttributes from '../../hooks/useSystemPurposeAttributes';
 import useNotifications from '../../hooks/useNotifications';
 import { useQueryClient } from 'react-query';
-import Loading from '../LoadingState/Loading';
-
-const SetNamePage = ({ name, setName }) => {
-  const helperText =
-    'Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens.';
-
-  return (
-    <>
-      <Title headingLevel="h2" className="pf-u-mb-sm">
-        Name key
-      </Title>
-      <Text component={TextVariants.p} className="pf-u-mb-xl">
-        This name cannot be modified after the activation key is created.
-      </Text>
-      <Form
-        onSubmit={(e) => {
-          e.preventDefault();
-        }}
-      >
-        <FormGroup
-          label="Name"
-          isRequired
-          helperText={helperText}
-          fieldId="activation-key-name"
-        >
-          <TextInput
-            id="activation-key-name"
-            isRequired
-            type="text"
-            value={name}
-            onChange={setName}
-          />
-        </FormGroup>
-      </Form>
-    </>
-  );
-};
-
-SetNamePage.propTypes = {
-  name: PropTypes.string.isRequired,
-  setName: PropTypes.func.isRequired,
-};
-
-const SetWorkloadPage = ({ workloadOptions, workload, setWorkload }) => {
-  return (
-    <>
-      <Title headingLevel="h2" className="pf-u-mb-sm">
-        Select Workload
-      </Title>
-      <Text component={TextVariants.p} className="pf-u-mb-xl">
-        Choose a workload option to associate an appropriate selection of
-        repositories to the activation key. Repositories can be edited on the
-        activation key detail page.{' '}
-      </Text>
-      {workloadOptions.map((wl) => {
-        return (
-          <Radio
-            label={wl}
-            onChange={() => setWorkload(wl)}
-            isChecked={wl == workload}
-            className="pf-u-mb-md"
-            name={wl}
-            id={wl}
-            isDisabled={wl == 'Extended support'}
-            key={wl}
-          />
-        );
-      })}
-    </>
-  );
-};
-
-SetWorkloadPage.propTypes = {
-  workloadOptions: PropTypes.arrayOf(PropTypes.string).isRequired,
-  workload: PropTypes.string.isRequired,
-  setWorkload: PropTypes.func.isRequired,
-};
-
-const SetSystemPurposePage = ({
-  role,
-  setRole,
-  sla,
-  setSla,
-  usage,
-  setUsage,
-  data,
-  isLoading,
-  isError,
-}) => {
-  const Options = ({ options }) => (
-    <>
-      {options.map((option) => (
-        <FormSelectOption key={option} value={option} label={option} />
-      ))}
-    </>
-  );
-  Options.propTypes = {
-    options: PropTypes.array.isRequired,
-  };
-  const Placeholder = () => (
-    <FormSelectOption label="Not defined" isPlaceholder />
-  );
-  return isLoading ? (
-    <Loading />
-  ) : (
-    !isError && (
-      <>
-        <Title headingLevel="h2" className="pf-u-mb-sm">
-          Select system purpose
-        </Title>
-        <Text component={TextVariants.p} className="pf-u-mb-xl">
-          System purpose values are used by the subscriptions service to help
-          filter and identify hosts. Setting values for these attributes is an
-          optional step, but doing so ensures that subscriptions reporting
-          accurately reflects the system. Only those values available to your
-          account are shown.
-        </Text>
-        <Form>
-          <FormGroup
-            label="Role"
-            className="pf-u-mb-sm"
-            fieldId="activation-key-role"
-          >
-            <FormSelect
-              onChange={setRole}
-              value={role}
-              id="activation-key-role"
-            >
-              <Options options={data.roles} />
-              <Placeholder />
-            </FormSelect>
-          </FormGroup>
-          <FormGroup
-            label="Service level agreement (SLA)"
-            className="pf-u-mb-sm"
-            fieldId="activation-key-sla"
-          >
-            <FormSelect onChange={setSla} value={sla} id="activation-key-sla">
-              <Options options={data.serviceLevel} />
-              <Placeholder />
-            </FormSelect>
-          </FormGroup>
-          <FormGroup
-            label="Usage"
-            className="pf-u-mb-sm"
-            fieldId="activation-key-usage"
-          >
-            <FormSelect
-              onChange={setUsage}
-              value={usage}
-              id="activation-key-usage"
-            >
-              <Options options={data.usage} />
-              <Placeholder />
-            </FormSelect>
-          </FormGroup>
-        </Form>
-      </>
-    )
-  );
-};
-
-SetSystemPurposePage.propTypes = {
-  role: PropTypes.string.isRequired,
-  setRole: PropTypes.func.isRequired,
-  sla: PropTypes.string.isRequired,
-  setSla: PropTypes.func.isRequired,
-  usage: PropTypes.string.isRequired,
-  setUsage: PropTypes.func.isRequired,
-  data: PropTypes.object.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired,
-};
-
-const ReviewPage = ({ name, workload, role, sla, usage, isLoading }) => {
-  return isLoading ? (
-    <Loading />
-  ) : (
-    <>
-      <Title headingLevel="h2" className="pf-u-mb-sm">
-        Review
-      </Title>
-      <Text component={TextVariants.p} className="pf-u-mb-xl">
-        Review the following information and click <b>Create</b> to create the
-        activation key.
-      </Text>
-      <DescriptionList
-        isHorizontal
-        horizontalTermWidthModifier={{
-          default: '21ch',
-        }}
-      >
-        <DescriptionListGroup>
-          <DescriptionListTerm>Name</DescriptionListTerm>
-          <DescriptionListDescription>{name}</DescriptionListDescription>
-        </DescriptionListGroup>
-        <DescriptionListGroup>
-          <DescriptionListTerm>Workload</DescriptionListTerm>
-          <DescriptionListDescription>{workload}</DescriptionListDescription>
-        </DescriptionListGroup>
-        <DescriptionListGroup>
-          <DescriptionListTerm>Role</DescriptionListTerm>
-          <DescriptionListDescription>
-            {role || 'Not defined'}
-          </DescriptionListDescription>
-        </DescriptionListGroup>
-        <DescriptionListGroup>
-          <DescriptionListTerm>
-            Service level agreement (SLA)
-          </DescriptionListTerm>
-          <DescriptionListDescription>
-            {sla || 'Not defined'}
-          </DescriptionListDescription>
-        </DescriptionListGroup>
-        <DescriptionListGroup>
-          <DescriptionListTerm>Usage</DescriptionListTerm>
-          <DescriptionListDescription>
-            {usage || 'Not defined'}
-          </DescriptionListDescription>
-        </DescriptionListGroup>
-      </DescriptionList>
-    </>
-  );
-};
-
-ReviewPage.propTypes = {
-  name: PropTypes.string.isRequired,
-  workload: PropTypes.string.isRequired,
-  role: PropTypes.string.isRequired,
-  sla: PropTypes.string.isRequired,
-  usage: PropTypes.string.isRequired,
-  isLoading: PropTypes.bool.isRequired,
-};
+import ReviewPage from '../Pages/ReviewPage';
+import SetNamePage from '../Pages/SetNamePage';
+import SetWorkloadPage from '../Pages/SetWorkLoadPage';
+import SetSystemPurposePage from '../Pages/SetSystemPurposePage';
 
 const workloadOptions = ['Latest release', 'Extended support'];
-
 const confirmCloseTitle = 'Exit activation key creation?';
 const confirmCloseBody = <p>All inputs will be discarded.</p>;
 const ConfirmCloseFooter = ({ onClose, returnToWizard }) => (
@@ -273,11 +24,6 @@ const ConfirmCloseFooter = ({ onClose, returnToWizard }) => (
     </Button>
   </>
 );
-
-ConfirmCloseFooter.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  returnToWizard: PropTypes.func.isRequired,
-};
 
 const CreateActivationKeyWizard = ({ onClose, isOpen }) => {
   const queryClient = useQueryClient();
@@ -417,6 +163,11 @@ const CreateActivationKeyWizard = ({ onClose, isOpen }) => {
       {isConfirmClose && confirmCloseBody}
     </Modal>
   );
+};
+
+ConfirmCloseFooter.propTypes = {
+  onClose: PropTypes.func.isRequired,
+  returnToWizard: PropTypes.func.isRequired,
 };
 
 CreateActivationKeyWizard.propTypes = {
