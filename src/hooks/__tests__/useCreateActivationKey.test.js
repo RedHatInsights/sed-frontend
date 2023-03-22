@@ -8,17 +8,6 @@ enableFetchMocks();
 
 describe('useActivationKeys', () => {
   const { act } = TestRenderer;
-  beforeEach(() => {
-    Object.defineProperty(window, 'insights', {
-      value: {
-        chrome: {
-          auth: {
-            getToken: jest.fn(),
-          },
-        },
-      },
-    });
-  });
   it('creates activation key', async () => {
     fetch.mockResponseOnce(JSON.stringify({ body: { id: 'id' } }));
     const keyParams = {

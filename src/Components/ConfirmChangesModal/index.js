@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { configApi } from '../../api';
+import { useConfigApi } from '../../api';
 import { Button, Modal, Text, TextContent } from '@patternfly/react-core';
 import { pluralize, downloadFile } from '../../utils/helpers';
 
@@ -11,6 +11,8 @@ const ConfirmChangesModal = ({
   systemsCount,
   data,
 }) => {
+  const configApi = useConfigApi();
+
   return (
     <Modal
       variant="small"

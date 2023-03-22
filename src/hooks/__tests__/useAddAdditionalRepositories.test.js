@@ -8,17 +8,7 @@ enableFetchMocks();
 
 describe('useAddAdditionalRepositories', () => {
   const { act } = TestRenderer;
-  beforeEach(() => {
-    Object.defineProperty(window, 'insights', {
-      value: {
-        chrome: {
-          auth: {
-            getToken: jest.fn(),
-          },
-        },
-      },
-    });
-  });
+
   it('adds additional repository to activationKey', async () => {
     fetch.mockResponseOnce(
       JSON.stringify({ body: [{ repositoryLabel: 'repository-A' }] })

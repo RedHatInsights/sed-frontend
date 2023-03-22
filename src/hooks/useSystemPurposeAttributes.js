@@ -1,12 +1,11 @@
 import { useQuery } from 'react-query';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
-const fetchSystemPurposeAttributes = async () => {
-  const token = await window.insights.chrome.auth.getToken();
-
+const fetchSystemPurposeAttributes = (token) => async () => {
   const response = await fetch(
     '/api/rhsm/v2/organization?include=system_purpose_attributes',
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${await token}` },
     }
   );
 
@@ -15,14 +14,17 @@ const fetchSystemPurposeAttributes = async () => {
   return responseData.body;
 };
 
-const getSystemPurposeAttributes = async () => {
-  const data = await fetchSystemPurposeAttributes();
+const getSystemPurposeAttributes = (token) => async () => {
+  const data = await fetchSystemPurposeAttributes(token)();
   return data.systemPurposeAttributes;
 };
 
 const useSystemPurposeAttributes = () => {
-  return useQuery('organization_system_purpose_attributes', () =>
-    getSystemPurposeAttributes()
+  const chrome = useChrome();
+
+  return useQuery(
+    'organization_system_purpose_attributes',
+    getSystemPurposeAttributes(chrome?.auth?.getToken())
   );
 };
 
