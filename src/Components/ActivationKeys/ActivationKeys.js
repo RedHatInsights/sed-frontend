@@ -121,7 +121,7 @@ const ActivationKeys = () => {
         <Main>
           <PageSection variant={PageSectionVariants.light}>
             {isLoading && <Loading />}
-            {!isLoading && !error && data.length && (
+            {!isLoading && !error && data.length > 0 && (
               <>
                 <ActionGroup>
                   <CreateActivationKeyButton onClick={handleModalToggle} />
