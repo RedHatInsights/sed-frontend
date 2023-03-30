@@ -49,7 +49,6 @@ const AddAdditionalRepositoriesTable = (props) => {
   const [perPage, setPerPage] = useState(10);
   const [activeSortIndex, setActiveSortIndex] = useState(0);
   const [activeSortDirection, setActiveSortDirection] = useState('asc');
-
   const friendlyNameMap = {
     repositoryName: 'Name',
     repositoryLabel: 'Label',
@@ -161,8 +160,11 @@ const AddAdditionalRepositoriesTable = (props) => {
         setFilter={setFilter}
         filterBy={filterBy}
         setFilterBy={setFilterBy}
+        dropdownSelectisDisabled={isSubmitting}
         selectedOnlyToggleIsDisabled={
-          !onlyShowSelectedRepositories && selectedRepositories.length === 0
+          (!onlyShowSelectedRepositories &&
+            selectedRepositories.length === 0) ||
+          isSubmitting
         }
         searchIsDisabled={repositories.length === 0 || isSubmitting}
         pagination={pagination}
@@ -204,7 +206,6 @@ const AddAdditionalRepositoriesTable = (props) => {
                       );
                     }
                   },
-                  isDisabled: isSubmitting,
                 }}
               />
               <Td>{repository.repositoryName}</Td>
