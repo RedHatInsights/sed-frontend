@@ -28,6 +28,7 @@ const AddAdditionalRepositoriesTable = (props) => {
     isLoading,
     selectedRepositories,
     setSelectedRepositories,
+    isSubmitting,
   } = props;
 
   if (isLoading) {
@@ -133,6 +134,7 @@ const AddAdditionalRepositoriesTable = (props) => {
         setPage(newPage);
       }}
       isCompact
+      isDisabled={isSubmitting}
     />
   );
 
@@ -162,10 +164,11 @@ const AddAdditionalRepositoriesTable = (props) => {
         selectedOnlyToggleIsDisabled={
           !onlyShowSelectedRepositories && selectedRepositories.length === 0
         }
-        searchIsDisabled={repositories.length === 0}
+        searchIsDisabled={repositories.length === 0 || isSubmitting}
         pagination={pagination}
         onlyShowSelectedRepositories={onlyShowSelectedRepositories}
         setOnlyShowSelectedRepositories={setOnlyShowSelectedRepositories}
+        isSubmitting={isSubmitting}
       />
       <TableComposable variant="compact">
         <Thead>
@@ -183,6 +186,9 @@ const AddAdditionalRepositoriesTable = (props) => {
                   rowIndex,
                   isSelected: selectedRepositories.includes(repository),
                   onSelect: (_, isSelecting) => {
+                    if (isSubmitting) {
+                      return;
+                    }
                     if (isSelecting) {
                       setSelectedRepositories([
                         ...selectedRepositories,
@@ -198,6 +204,7 @@ const AddAdditionalRepositoriesTable = (props) => {
                       );
                     }
                   },
+                  isDisabled: isSubmitting,
                 }}
               />
               <Td>{repository.repositoryName}</Td>
@@ -224,6 +231,7 @@ AddAdditionalRepositoriesTable.propTypes = {
   error: propTypes.bool.isRequired,
   selectedRepositories: propTypes.array.isRequired,
   setSelectedRepositories: propTypes.func.isRequired,
+  isSubmitting: propTypes.bool,
 };
 
 export default AddAdditionalRepositoriesTable;

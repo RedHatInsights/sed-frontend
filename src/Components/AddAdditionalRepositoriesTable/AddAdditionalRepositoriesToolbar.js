@@ -24,6 +24,7 @@ const AddAdditionalRepositoriesToolbar = ({
   pagination,
   onlyShowSelectedRepositories,
   setOnlyShowSelectedRepositories,
+  isSubmitting,
 }) => {
   const [isSelectFilterByExpanded, setIsSelectFilterByExpanded] =
     useState(false);
@@ -44,6 +45,7 @@ const AddAdditionalRepositoriesToolbar = ({
                 setFilterBy(value);
                 setIsSelectFilterByExpanded(false);
               }}
+              isDisabled={isSubmitting}
             >
               <SelectOption value="repositoryName">
                 {friendlyNameMap.repositoryName}
@@ -58,7 +60,7 @@ const AddAdditionalRepositoriesToolbar = ({
               placeholder={`Filter by ${friendlyNameMap[filterBy]}`}
               value={filter}
               onChange={setFilter}
-              isDisabled={searchIsDisabled}
+              isDisabled={searchIsDisabled || isSubmitting}
               onClear={() => setFilter('')}
               style={{ width: '400px' }}
             />
@@ -82,7 +84,7 @@ const AddAdditionalRepositoriesToolbar = ({
                     setOnlyShowSelectedRepositories(true);
                   }
                 }}
-                isDisabled={selectedOnlyToggleIsDisabled}
+                isDisabled={selectedOnlyToggleIsDisabled || isSubmitting}
               />
             </ToggleGroup>
           </ToolbarItem>
@@ -106,6 +108,7 @@ AddAdditionalRepositoriesToolbar.propTypes = {
   pagination: propTypes.object.isRequired,
   onlyShowSelectedRepositories: propTypes.bool.isRequired,
   setOnlyShowSelectedRepositories: propTypes.func.isRequired,
+  isSubmitting: propTypes.bool,
 };
 
 export default AddAdditionalRepositoriesToolbar;
