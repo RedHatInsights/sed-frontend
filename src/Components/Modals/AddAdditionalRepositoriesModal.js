@@ -104,12 +104,7 @@ const AddAdditionalRepositoriesModal = (props) => {
   );
 };
 
-const SubmitButton = ({
-  selectedRepositories,
-  submitForm,
-  isSubmitting,
-  isLoading: additionalRepositoriesAreLoading,
-}) => {
+const SubmitButton = ({ selectedRepositories, submitForm, isSubmitting }) => {
   const [buttonState, setButtonState] = useState('notClicked');
   const handleClick = () => {
     setButtonState('clicked');
@@ -121,7 +116,7 @@ const SubmitButton = ({
       <Button
         variant="primary"
         onClick={handleClick}
-        isLoading={additionalRepositoriesAreLoading}
+        isLoading={buttonState === 'clicked'}
         isDisabled={isSubmitting || selectedRepositories.length === 0}
         spinnerAriaValueText="Saving Changes..."
       >
@@ -137,7 +132,6 @@ SubmitButton.propTypes = {
   selectedRepositories: propTypes.array,
   submitForm: propTypes.func,
   isSubmitting: propTypes.bool,
-  isLoading: propTypes.bool,
 };
 
 AddAdditionalRepositoriesModal.propTypes = {
