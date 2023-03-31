@@ -64,9 +64,7 @@ const AddAdditionalRepositoriesModal = (props) => {
         keyName={keyName}
         submitForm={submitForm}
         isSubmitting={isSubmitting}
-      >
-        Save Changes
-      </SubmitButton>
+      ></SubmitButton>
       <Button
         key="cancel"
         variant="link"
@@ -105,9 +103,7 @@ const AddAdditionalRepositoriesModal = (props) => {
 };
 
 const SubmitButton = ({ selectedRepositories, submitForm, isSubmitting }) => {
-  const [buttonState, setButtonState] = useState('notClicked');
   const handleClick = () => {
-    setButtonState('clicked');
     submitForm();
   };
 
@@ -116,12 +112,12 @@ const SubmitButton = ({ selectedRepositories, submitForm, isSubmitting }) => {
       <Button
         variant="primary"
         onClick={handleClick}
-        isLoading={buttonState === 'clicked'}
+        isLoading={isSubmitting}
         isDisabled={isSubmitting || selectedRepositories.length === 0}
-        spinnerAriaValueText="Saving Changes..."
+        spinnerAriaValueText="Savng Changes..."
       >
-        {buttonState === 'notClicked' && 'Save Changes'}
-        {buttonState === 'clicked' && 'Saving Changes'}
+        {!isSubmitting && 'Save Changes'}
+        {isSubmitting && 'Saving Changes'}
       </Button>
     </ActionGroup>
   );
