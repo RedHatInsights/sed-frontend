@@ -106,7 +106,6 @@ const SubmitButton = ({ selectedRepositories, submitForm, isSubmitting }) => {
   const handleClick = () => {
     submitForm();
   };
-
   return (
     <ActionGroup>
       <Button
