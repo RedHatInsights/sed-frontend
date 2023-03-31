@@ -29,6 +29,9 @@ const AddAdditionalRepositoriesModal = (props) => {
     setSelectedRepositories([]);
     parentHandleModalToggle();
   };
+  const handleClick = () => {
+    submitForm();
+  };
   const submitForm = () => {
     setIsSubmitting(true);
     mutate(
@@ -59,12 +62,15 @@ const AddAdditionalRepositoriesModal = (props) => {
     'The core repositories for your operating system version, for example BaseOS and AppStream, are always enabled and do not need to be explicitly added to the activation key.';
   const editChangesButtons = (
     <ActionGroup>
-      <SubmitButton
-        selectedRepositories={selectedRepositories}
-        keyName={keyName}
-        submitForm={submitForm}
-        isSubmitting={isSubmitting}
-      ></SubmitButton>
+      <Button
+        variant="primary"
+        onClick={handleClick}
+        isLoading={isSubmitting}
+        isDisabled={isSubmitting || selectedRepositories.length === 0}
+        spinnerAriaValueText="Saving Changes..."
+      >
+        {isSubmitting ? 'Saving Changes' : 'Save Changes'}
+      </Button>
       <Button
         key="cancel"
         variant="link"
@@ -100,33 +106,6 @@ const AddAdditionalRepositoriesModal = (props) => {
       </Modal>
     </React.Fragment>
   );
-};
-
-const SubmitButton = ({ selectedRepositories, submitForm, isSubmitting }) => {
-  const handleClick = () => {
-    submitForm();
-  };
-  return (
-    <ActionGroup>
-      <Button
-        variant="primary"
-        onClick={handleClick}
-        isLoading={isSubmitting}
-        isDisabled={isSubmitting || selectedRepositories.length === 0}
-        spinnerAriaValueText="Savng Changes..."
-      >
-        {!isSubmitting && 'Save Changes'}
-        {isSubmitting && 'Saving Changes'}
-      </Button>
-    </ActionGroup>
-  );
-};
-
-SubmitButton.propTypes = {
-  keyName: propTypes.string,
-  selectedRepositories: propTypes.array,
-  submitForm: propTypes.func,
-  isSubmitting: propTypes.bool,
 };
 
 AddAdditionalRepositoriesModal.propTypes = {
