@@ -170,7 +170,6 @@ const AddAdditionalRepositoriesTable = (props) => {
         pagination={pagination}
         onlyShowSelectedRepositories={onlyShowSelectedRepositories}
         setOnlyShowSelectedRepositories={setOnlyShowSelectedRepositories}
-        isSubmitting={isSubmitting}
       />
       <TableComposable variant="compact">
         <Thead>
