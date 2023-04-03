@@ -23,17 +23,13 @@ const AddAdditionalRepositoriesModal = (props) => {
   const queryClient = useQueryClient();
   const [selectedRepositories, setSelectedRepositories] = useState([]);
   const { addSuccessNotification, addErrorNotification } = useNotifications();
-  const { mutate } = useAddAdditionalRepositories();
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { mutate, isLoading: isSubmitting } = useAddAdditionalRepositories();
   const handleModalToggle = () => {
     setSelectedRepositories([]);
     parentHandleModalToggle();
   };
-  const handleClick = () => {
-    submitForm();
-  };
+
   const submitForm = () => {
-    setIsSubmitting(true);
     mutate(
       { selectedRepositories, keyName },
       {
@@ -45,14 +41,12 @@ const AddAdditionalRepositoriesModal = (props) => {
           addSuccessNotification(
             `Repositories have been added for '${keyName}'`
           );
-          setIsSubmitting(false);
         },
         onError: () => {
           addErrorNotification('Something went wrong', {
             description:
               'Your repositories could not be added. Please try again.',
           });
-          setIsSubmitting(false);
         },
       }
     );
@@ -64,7 +58,7 @@ const AddAdditionalRepositoriesModal = (props) => {
     <ActionGroup>
       <Button
         variant="primary"
-        onClick={handleClick}
+        onClick={submitForm}
         isLoading={isSubmitting}
         isDisabled={isSubmitting || selectedRepositories.length === 0}
         spinnerAriaValueText="Saving Changes..."
