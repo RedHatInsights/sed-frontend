@@ -21,6 +21,7 @@ const AddAdditionalRepositoriesToolbar = ({
   setFilterBy,
   selectedOnlyToggleIsDisabled,
   searchIsDisabled,
+  dropdownSelectisDisabled,
   pagination,
   onlyShowSelectedRepositories,
   setOnlyShowSelectedRepositories,
@@ -44,6 +45,7 @@ const AddAdditionalRepositoriesToolbar = ({
                 setFilterBy(value);
                 setIsSelectFilterByExpanded(false);
               }}
+              isDisabled={dropdownSelectisDisabled}
             >
               <SelectOption value="repositoryName">
                 {friendlyNameMap.repositoryName}
@@ -106,6 +108,7 @@ AddAdditionalRepositoriesToolbar.propTypes = {
   pagination: propTypes.object.isRequired,
   onlyShowSelectedRepositories: propTypes.bool.isRequired,
   setOnlyShowSelectedRepositories: propTypes.func.isRequired,
+  dropdownSelectisDisabled: propTypes.bool.isRequired,
 };
 
 export default AddAdditionalRepositoriesToolbar;
