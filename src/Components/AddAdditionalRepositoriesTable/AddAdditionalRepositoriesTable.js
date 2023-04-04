@@ -167,6 +167,10 @@ const AddAdditionalRepositoriesTable = (props) => {
           isSubmitting
         }
         searchIsDisabled={repositories.length === 0 || isSubmitting}
+        selectedOnlyToggleIsDisabled={
+          !onlyShowSelectedRepositories && selectedRepositories.length === 0
+        }
+        searchIsDisabled={repositories.length === 0}
         pagination={pagination}
         onlyShowSelectedRepositories={onlyShowSelectedRepositories}
         setOnlyShowSelectedRepositories={setOnlyShowSelectedRepositories}

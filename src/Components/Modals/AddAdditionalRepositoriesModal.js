@@ -54,6 +54,7 @@ const AddAdditionalRepositoriesModal = (props) => {
 
   const editAdditionalRepositoriesDescription =
     'The core repositories for your operating system version, for example BaseOS and AppStream, are always enabled and do not need to be explicitly added to the activation key.';
+
   const editChangesButtons = (
     <ActionGroup>
       <Button
