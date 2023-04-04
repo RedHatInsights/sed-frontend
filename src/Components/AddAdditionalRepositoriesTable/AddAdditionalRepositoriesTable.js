@@ -190,6 +190,7 @@ const AddAdditionalRepositoriesTable = (props) => {
                     if (isSubmitting) {
                       return;
                     }
+
                     if (isSelecting) {
                       setSelectedRepositories([
                         ...selectedRepositories,

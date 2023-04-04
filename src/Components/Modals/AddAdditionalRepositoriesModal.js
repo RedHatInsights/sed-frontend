@@ -28,7 +28,6 @@ const AddAdditionalRepositoriesModal = (props) => {
     setSelectedRepositories([]);
     parentHandleModalToggle();
   };
-
   const submitForm = () => {
     mutate(
       { selectedRepositories, keyName },
