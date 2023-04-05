@@ -75,10 +75,8 @@ const AddAdditionalRepositoriesModal = (props) => {
       </Button>
     </ActionGroup>
   );
-
   const onClose =
     isSubmitting || additionalRepositoriesError ? null : handleModalToggle;
-
   return (
     <React.Fragment>
       <Modal
