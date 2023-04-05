@@ -20,20 +20,14 @@ const AddAdditionalRepositoriesModal = (props) => {
     isLoading: additionalRepositoriesAreLoading,
     error: additionalRepositoriesError,
   } = props;
-
   const queryClient = useQueryClient();
-
   const [selectedRepositories, setSelectedRepositories] = useState([]);
-
+  const { addSuccessNotification, addErrorNotification } = useNotifications();
+  const { mutate, isLoading: isSubmitting } = useAddAdditionalRepositories();
   const handleModalToggle = () => {
     setSelectedRepositories([]);
     parentHandleModalToggle();
   };
-
-  const { addSuccessNotification, addErrorNotification } = useNotifications();
-
-  const { mutate } = useAddAdditionalRepositories();
-
   const submitForm = () => {
     mutate(
       { selectedRepositories, keyName },
@@ -63,22 +57,26 @@ const AddAdditionalRepositoriesModal = (props) => {
   const editChangesButtons = (
     <ActionGroup>
       <Button
-        key="Save changes"
         variant="primary"
-        onClick={() => {
-          submitForm();
-          handleModalToggle();
-        }}
-        isDisabled={selectedRepositories.length === 0}
+        onClick={submitForm}
+        isLoading={isSubmitting}
+        isDisabled={isSubmitting || selectedRepositories.length === 0}
+        spinnerAriaValueText="Saving Changes..."
       >
-        Save changes
+        {isSubmitting ? 'Saving Changes' : 'Save Changes'}
       </Button>
-      <Button key="cancel" variant="link" onClick={handleModalToggle}>
+      <Button
+        key="cancel"
+        variant="link"
+        onClick={handleModalToggle}
+        isDisabled={isSubmitting}
+      >
         Cancel
       </Button>
     </ActionGroup>
   );
-
+  const onClose =
+    isSubmitting || additionalRepositoriesError ? null : handleModalToggle;
   return (
     <React.Fragment>
       <Modal
@@ -86,7 +84,7 @@ const AddAdditionalRepositoriesModal = (props) => {
         title="Add repositories"
         description={editAdditionalRepositoriesDescription}
         isOpen={isOpen}
-        onClose={handleModalToggle}
+        onClose={onClose}
         footer={editChangesButtons}
       >
         <AddAdditionalRepositoriesTable
@@ -95,6 +93,7 @@ const AddAdditionalRepositoriesModal = (props) => {
           error={additionalRepositoriesError}
           selectedRepositories={selectedRepositories}
           setSelectedRepositories={setSelectedRepositories}
+          isSubmitting={isSubmitting}
         />
       </Modal>
     </React.Fragment>
@@ -106,8 +105,9 @@ AddAdditionalRepositoriesModal.propTypes = {
   handleModalToggle: propTypes.func.isRequired,
   isOpen: propTypes.bool.isRequired,
   repositories: propTypes.array,
-  isLoading: propTypes.func,
-  error: propTypes.func,
+  isLoading: propTypes.bool,
+  error: propTypes.bool,
+  buttonState: propTypes.bool,
 };
 
 export default AddAdditionalRepositoriesModal;

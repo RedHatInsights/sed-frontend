@@ -28,6 +28,7 @@ const AddAdditionalRepositoriesTable = (props) => {
     isLoading,
     selectedRepositories,
     setSelectedRepositories,
+    isSubmitting,
   } = props;
 
   if (isLoading) {
@@ -48,7 +49,6 @@ const AddAdditionalRepositoriesTable = (props) => {
   const [perPage, setPerPage] = useState(10);
   const [activeSortIndex, setActiveSortIndex] = useState(0);
   const [activeSortDirection, setActiveSortDirection] = useState('asc');
-
   const friendlyNameMap = {
     repositoryName: 'Name',
     repositoryLabel: 'Label',
@@ -133,6 +133,7 @@ const AddAdditionalRepositoriesTable = (props) => {
         setPage(newPage);
       }}
       isCompact
+      isDisabled={isSubmitting}
     />
   );
 
@@ -159,10 +160,13 @@ const AddAdditionalRepositoriesTable = (props) => {
         setFilter={setFilter}
         filterBy={filterBy}
         setFilterBy={setFilterBy}
+        dropdownSelectisDisabled={isSubmitting}
         selectedOnlyToggleIsDisabled={
-          !onlyShowSelectedRepositories && selectedRepositories.length === 0
+          (!onlyShowSelectedRepositories &&
+            selectedRepositories.length === 0) ||
+          isSubmitting
         }
-        searchIsDisabled={repositories.length === 0}
+        searchIsDisabled={repositories.length === 0 || isSubmitting}
         pagination={pagination}
         onlyShowSelectedRepositories={onlyShowSelectedRepositories}
         setOnlyShowSelectedRepositories={setOnlyShowSelectedRepositories}
@@ -183,6 +187,9 @@ const AddAdditionalRepositoriesTable = (props) => {
                   rowIndex,
                   isSelected: selectedRepositories.includes(repository),
                   onSelect: (_, isSelecting) => {
+                    if (isSubmitting) {
+                      return;
+                    }
                     if (isSelecting) {
                       setSelectedRepositories([
                         ...selectedRepositories,
@@ -224,6 +231,7 @@ AddAdditionalRepositoriesTable.propTypes = {
   error: propTypes.bool.isRequired,
   selectedRepositories: propTypes.array.isRequired,
   setSelectedRepositories: propTypes.func.isRequired,
+  isSubmitting: propTypes.bool,
 };
 
 export default AddAdditionalRepositoriesTable;
