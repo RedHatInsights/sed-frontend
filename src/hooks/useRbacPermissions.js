@@ -1,9 +1,8 @@
 import { useQuery } from 'react-query';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
-const getUserRbacPermissions = async () => {
-  return Promise.resolve(
-    window.insights.chrome.getUserPermissions('config-manager')
-  ).then((rawRbacPermissions) => {
+const getUserRbacPermissions = (permissions) => {
+  return permissions.then((rawRbacPermissions) => {
     const permissions = rawRbacPermissions.map(
       (rawPermission) => rawPermission.permission
     );
@@ -21,7 +20,12 @@ const getUserRbacPermissions = async () => {
 };
 
 const useRbacPermissions = () => {
-  return useQuery('rbac_permissions', () => getUserRbacPermissions());
+  const chrome = useChrome();
+  const permissions = chrome.getUserPermissions('config-manager');
+
+  return useQuery('rbac_permissions', () =>
+    getUserRbacPermissions(permissions)
+  );
 };
 
-export { getUserRbacPermissions, useRbacPermissions as default };
+export { getUserRbacPermissions, useRbacPermissions };
