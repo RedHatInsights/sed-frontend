@@ -1,22 +1,25 @@
 import { useQuery } from 'react-query';
-import { getUserRbacPermissions } from '../hooks/useRbacPermissions';
-import { authenticateUser } from '../utils/platformServices';
+import { useRbacPermissions } from './useRbacPermissions';
+import { useAuthenticateUser } from '../utils/platformServices';
 
-const getUser = () => {
-  return Promise.all([authenticateUser(), getUserRbacPermissions()]).then(
-    ([userStatus, rbacPermissions]) => {
-      const user = {
-        accountNumber: userStatus.identity.account_number,
-        orgId: userStatus?.identity?.internal?.org_id,
-        rbacPermissions: rbacPermissions,
-      };
-      return user;
+const useUser = () => {
+  const rbacPermissions = useRbacPermissions();
+  const authenticateUser = useAuthenticateUser();
+
+  return useQuery(
+    'user',
+    () =>
+      Promise.all([authenticateUser, rbacPermissions]).then(
+        ([userStatus, rbacPermissions]) => ({
+          accountNumber: userStatus?.data.identity?.account_number,
+          orgId: userStatus?.data.identity?.internal?.org_id,
+          rbacPermissions: rbacPermissions?.data,
+        })
+      ),
+    {
+      enabled: rbacPermissions.isSuccess,
     }
   );
 };
 
-const useUser = () => {
-  return useQuery('user', () => getUser());
-};
-
-export { getUser, useUser as default };
+export default useUser;

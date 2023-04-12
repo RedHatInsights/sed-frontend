@@ -91,7 +91,6 @@ describe('ActivationKey', () => {
   });
 
   beforeEach(() => {
-    window.insights = {};
     jest.resetAllMocks();
     mockAuthenticateUser(
       get('isLoading'),

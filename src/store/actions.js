@@ -1,4 +1,4 @@
-import { configApi, updateCurrState, getConnectedHosts } from '../api';
+import { useConfigApi, useInventoryApi } from '../api';
 import {
   GET_CURR_STATE,
   GET_LOG,
@@ -6,22 +6,43 @@ import {
   GET_CONNECTED_HOSTS,
 } from './actionTypes';
 
-export const fetchCurrState = () => ({
+const fetchCurrState = (api) => () => ({
   type: GET_CURR_STATE,
-  payload: configApi.getProfile('current'),
+  payload: api.getProfile('current'),
 });
 
-export const saveCurrState = (data) => ({
-  type: SET_CURR_STATE,
-  payload: updateCurrState(data),
-});
+const saveCurrState =
+  (api) =>
+  ({ compliance, remediations, active }) => ({
+    type: SET_CURR_STATE,
+    payload: api.createProfile({
+      compliance,
+      insights: true,
+      remediations,
+      active,
+    }),
+  });
 
-export const fetchLog = ({ perPage = 50, page = 1 } = {}) => ({
-  type: GET_LOG,
-  payload: configApi.getProfiles(perPage, (page - 1) * perPage),
-});
+const fetchLog =
+  (api) =>
+  ({ perPage = 50, page = 1 } = {}) => ({
+    type: GET_LOG,
+    payload: api.getProfiles(perPage, (page - 1) * perPage),
+  });
 
-export const fetchConnectedHosts = () => ({
+const fetchConnectedHosts = (api) => () => ({
   type: GET_CONNECTED_HOSTS,
-  payload: getConnectedHosts(),
+  payload: api.getConnectedHosts(),
 });
+
+export const useActions = () => {
+  const api = useConfigApi();
+  const inventoryApi = useInventoryApi();
+
+  return {
+    fetchConnectedHosts: fetchConnectedHosts(inventoryApi),
+    fetchLog: fetchLog(api),
+    saveCurrState: saveCurrState(api),
+    fetchCurrState: fetchCurrState(api),
+  };
+};
