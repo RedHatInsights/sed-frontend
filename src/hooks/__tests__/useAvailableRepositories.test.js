@@ -6,17 +6,6 @@ import useAvailableRepositories from '../useAvailableRepositories';
 enableFetchMocks();
 
 describe('useAvailableRepositories', () => {
-  beforeEach(() => {
-    Object.defineProperty(window, 'insights', {
-      value: {
-        chrome: {
-          auth: {
-            getToken: jest.fn(),
-          },
-        },
-      },
-    });
-  });
   it('returns available repositories from the API', async () => {
     const keyName = [
       {

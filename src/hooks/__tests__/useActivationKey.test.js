@@ -6,17 +6,6 @@ import useActivationKey from '../useActivationKey';
 enableFetchMocks();
 
 describe('useActivationKey', () => {
-  beforeEach(() => {
-    Object.defineProperty(window, 'insights', {
-      value: {
-        chrome: {
-          auth: {
-            getToken: jest.fn(),
-          },
-        },
-      },
-    });
-  });
   it('returns activation key details from the API', async () => {
     const keyData = [
       {

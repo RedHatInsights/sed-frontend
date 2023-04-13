@@ -1,6 +1,7 @@
 import { useMutation } from 'react-query';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
-const additionalRepositoriesMutation = async (data) => {
+const additionalRepositoriesMutation = (token) => async (data) => {
   const { keyName, selectedRepositories } = data;
 
   const additionalRepositoryLabels = selectedRepositories.map(
@@ -12,13 +13,12 @@ const additionalRepositoriesMutation = async (data) => {
       `Activation Key name must be provided to add additional repositiories.`
     );
   }
-  const token = await window.insights.chrome.auth.getToken();
   const response = await fetch(
     `/api/rhsm/v2/activation_keys/${keyName}/additional_repositories`,
     {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer ${await token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(
@@ -37,7 +37,9 @@ const additionalRepositoriesMutation = async (data) => {
 };
 
 const useAddAdditionalRepositories = () => {
-  return useMutation(additionalRepositoriesMutation);
+  const chrome = useChrome();
+
+  return useMutation(additionalRepositoriesMutation(chrome?.auth?.getToken()));
 };
 
 export { useAddAdditionalRepositories as default };
