@@ -13,14 +13,16 @@ import {
 } from '@patternfly/react-core';
 import AdditionalRepositoriesTable from '../AdditionalRepositoriesTable';
 import useAvailableRepositories from '../../hooks/useAvailableRepositories';
-import EditAdditionalRepositoriesButton from '../ActivationKey/EditAdditionalRepositoriesButton';
-import EditAdditionalRepositoriesModal from '../Modals/EditAdditionalRepositoriesModal';
+import AddAdditionalRepositoriesButton from '../ActivationKey/AddAdditionalRepositoriesButton';
+import AddAdditionalRepositoriesModal from '../Modals/AddAdditionalRepositoriesModal';
 
 const AdditionalRepositoriesCard = (props) => {
-  const { activationKey, isLoading, error } = props;
-  const { data: availableRepositories } = useAvailableRepositories(
-    activationKey.name
-  );
+  const { activationKey } = props;
+  const {
+    data: availableRepositories,
+    isLoading,
+    error,
+  } = useAvailableRepositories(activationKey.name);
 
   const [
     isEditAdditionalRepositoriesModalOpen,
@@ -33,19 +35,11 @@ const AdditionalRepositoriesCard = (props) => {
     );
   };
 
-  const ButtonWrapper = () => {
-    return (
-      <EditAdditionalRepositoriesButton
-        onClick={handleEditAdditionalRepositoriesToggle}
-      />
-    );
-  };
-
   return (
     <Card>
       <CardHeader>
         <CardTitle>
-          <Title headingLevel="h2"> Additional repositories</Title>
+          <Title headingLevel="h2"> Additional repositories </Title>
         </CardTitle>
       </CardHeader>
       <CardBody>
@@ -55,19 +49,20 @@ const AdditionalRepositoriesCard = (props) => {
             BaseOS and AppStream, are always enabled and do not need to be
             explicitly added to the activation key.
           </Text>
-          <ButtonWrapper />
-          <EditAdditionalRepositoriesModal
-            title="Additional Repositories"
+          <AddAdditionalRepositoriesButton
+            onClick={handleEditAdditionalRepositoriesToggle}
+          />
+          <AddAdditionalRepositoriesModal
             isOpen={isEditAdditionalRepositoriesModalOpen}
             handleModalToggle={handleEditAdditionalRepositoriesToggle}
-            modalSize="large"
+            keyName={activationKey.name}
             repositories={availableRepositories}
             isLoading={isLoading}
             error={error}
           />
         </TextContent>
         <AdditionalRepositoriesTable
-          repositories={activationKey.availableRepositories}
+          repositories={activationKey.additionalRepositories}
         />
       </CardBody>
     </Card>

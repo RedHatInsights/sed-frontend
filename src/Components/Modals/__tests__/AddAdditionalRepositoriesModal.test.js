@@ -4,28 +4,25 @@ import { init } from '../../../store';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import EditAdditionalRepositoriesModal from '../EditAdditionalRepositoriesModal';
+import AddAdditionalRepositoriesModal from '../AddAdditionalRepositoriesModal';
 const queryClient = new QueryClient();
 const registry = init();
 
-describe('Edit Additional Repositories Modal', () => {
+describe('Add Additional Repositories Modal', () => {
   it('renders correctly', () => {
     const props = {
       handleModalToggle: jest.fn(),
       isOpen: true,
+      repositories: [],
     };
     render(
       <Provider store={registry.getStore()}>
         <QueryClientProvider client={queryClient}>
-          <EditAdditionalRepositoriesModal {...props} />
+          <AddAdditionalRepositoriesModal {...props} />
         </QueryClientProvider>
       </Provider>
     );
-    expect(
-      screen.getByText('Edit additional repositories')
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText('Edit additional repositories')
-    ).toBeInTheDocument();
+    expect(screen.getByText('Add repositories')).toBeInTheDocument();
+    expect(screen.getByText('Add repositories')).toBeInTheDocument();
   });
 });

@@ -76,23 +76,6 @@ const ActivationKeys = () => {
       },
     ];
   };
-  let pageContent;
-  if (isLoading) {
-    pageContent = <Loading />;
-  } else if (!isLoading && !error && !data.length) {
-    pageContent = (
-      <NoActivationKeysFound handleModalToggle={handleModalToggle} />
-    );
-  } else if (!isLoading && !error && data.length) {
-    pageContent = (
-      <>
-        <ActionGroup>
-          <CreateActivationKeyButton onClick={handleModalToggle} />
-        </ActionGroup>
-        <ActivationKeysTable actions={actions} />
-      </>
-    );
-  }
 
   const setKeyName = (modalOpen, name) => {
     let currentName = modalOpen ? '' : name;
@@ -137,7 +120,18 @@ const ActivationKeys = () => {
         </PageHeader>
         <Main>
           <PageSection variant={PageSectionVariants.light}>
-            {pageContent}
+            {isLoading && <Loading />}
+            {!isLoading && !error && data.length > 0 && (
+              <>
+                <ActionGroup>
+                  <CreateActivationKeyButton onClick={handleModalToggle} />
+                </ActionGroup>
+                <ActivationKeysTable actions={actions} />
+              </>
+            )}
+            {!isLoading && !error && !data.length && (
+              <NoActivationKeysFound handleModalToggle={handleModalToggle} />
+            )}
           </PageSection>
         </Main>
         <CreateActivationKeyModal

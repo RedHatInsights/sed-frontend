@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const fetchAdditionalRepositories = async (
   keyName,
@@ -8,12 +9,11 @@ const fetchAdditionalRepositories = async (
   if (!keyName) {
     return false;
   }
-  const token = await window.insights.chrome.auth.getToken();
 
   const response = await fetch(
     `/api/rhsm/v2/activation_keys/${keyName}/available_repositories?default=Disabled&offset=${offset}`,
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${await token}` },
     }
   );
 
@@ -38,8 +38,10 @@ const getAvailableRepositories = async (keyName) => {
 };
 
 const useAvailableRepositories = (keyName) => {
+  const chrome = useChrome();
+
   return useQuery(`activation_key_${keyName}_available_repositories`, () =>
-    getAvailableRepositories(keyName)
+    getAvailableRepositories(chrome?.auth?.getToken())(keyName)
   );
 };
 

@@ -30,11 +30,7 @@ import pckg from '../../../package.json';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
 import Services from '../../Components/Services/Services';
 import { RegistryContext } from '../../store';
-import {
-  fetchConnectedHosts,
-  fetchCurrState,
-  saveCurrState,
-} from '../../store/actions';
+import { useActions } from '../../store/actions';
 import connectedSystemsReducer from '../../store/connectedSystems';
 import activeStateReducer from '../../store/currStateReducer';
 import logReducer from '../../store/logReducer';
@@ -60,6 +56,7 @@ const SamplePage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const dataRef = useRef();
   const dispatch = useDispatch();
+  const { fetchConnectedHosts, fetchCurrState, saveCurrState } = useActions();
 
   const activeStateLoaded = useSelector(
     ({ activeStateReducer }) => activeStateReducer?.loaded
@@ -142,7 +139,7 @@ const SamplePage = () => {
               target="_blank"
               rel="noopener noreferrer"
               href={
-                'https://access.redhat.com/documentation/en-us/red_hat_insights/2022/html/remote_host_configuration_and_management/index'
+                'https://access.redhat.com/documentation/en-us/red_hat_insights/2023/html/remote_host_configuration_and_management/index'
               }
             >
               Connecting with Red Hat
