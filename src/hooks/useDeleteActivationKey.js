@@ -1,10 +1,11 @@
 import { useMutation } from 'react-query';
-const deleteActivationKeyMutation = async (name) => {
-  const token = await window.insights.chrome.auth.getToken();
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
+
+const deleteActivationKeyMutation = (token) => async (name) => {
   const response = await fetch(`/api/rhsm/v2/activation_keys/${name}`, {
     method: 'DELETE',
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${await token}`,
       'Content-Type': 'application/json',
     },
   });
@@ -16,7 +17,9 @@ const deleteActivationKeyMutation = async (name) => {
 };
 
 const useDeleteActivationKey = () => {
-  return useMutation(deleteActivationKeyMutation);
+  const chrome = useChrome();
+
+  return useMutation(deleteActivationKeyMutation(chrome?.auth?.getToken()));
 };
 
 export { useDeleteActivationKey as default };
