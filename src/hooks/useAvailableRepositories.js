@@ -9,8 +9,8 @@ const fetchAdditionalRepositories = async (
   if (!keyName) {
     return false;
   }
-
-const token = await window.insights.chrome.auth.getToken();
+  
+  const token = await window.insights.chrome.auth.getToken();
 
   const response = await fetch(
     `/api/rhsm/v2/activation_keys/${keyName}/available_repositories?default=Disabled&offset=${offset}`,
