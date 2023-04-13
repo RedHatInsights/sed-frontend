@@ -30,11 +30,7 @@ import pckg from '../../../package.json';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
 import Services from '../../Components/Services/Services';
 import { RegistryContext } from '../../store';
-import {
-  fetchConnectedHosts,
-  fetchCurrState,
-  saveCurrState,
-} from '../../store/actions';
+import { useActions } from '../../store/actions';
 import connectedSystemsReducer from '../../store/connectedSystems';
 import activeStateReducer from '../../store/currStateReducer';
 import logReducer from '../../store/logReducer';
@@ -60,6 +56,7 @@ const SamplePage = () => {
   const [isEditing, setIsEditing] = useState(false);
   const dataRef = useRef();
   const dispatch = useDispatch();
+  const { fetchConnectedHosts, fetchCurrState, saveCurrState } = useActions();
 
   const activeStateLoaded = useSelector(
     ({ activeStateReducer }) => activeStateReducer?.loaded

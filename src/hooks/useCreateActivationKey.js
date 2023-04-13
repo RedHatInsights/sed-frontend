@@ -1,12 +1,12 @@
 import { useMutation } from 'react-query';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
-const activationKeyMutation = async (data) => {
+const activationKeyMutation = (token) => async (data) => {
   const { name, role, serviceLevel, usage } = data;
-  const token = await window.insights.chrome.auth.getToken();
   const response = await fetch('/api/rhsm/v2/activation_keys', {
     method: 'POST',
     headers: {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${await token}`,
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
@@ -25,7 +25,9 @@ const activationKeyMutation = async (data) => {
 };
 
 const useCreateActivationKey = () => {
-  return useMutation(activationKeyMutation);
+  const chrome = useChrome();
+
+  return useMutation(activationKeyMutation(chrome?.auth?.getToken()));
 };
 
 export { useCreateActivationKey as default };

@@ -14,7 +14,7 @@ const fetchAdditionalRepositories = async (
   const response = await fetch(
     `/api/rhsm/v2/activation_keys/${keyName}/available_repositories?default=Disabled&offset=${offset}`,
     {
-      headers: { Authorization: `Bearer ${token}` },
+      headers: { Authorization: `Bearer ${await token}` },
     }
   );
 
@@ -40,7 +40,7 @@ const getAvailableRepositories = async (keyName) => {
 
 const useAvailableRepositories = (keyName) => {
   return useQuery(`activation_key_${keyName}_available_repositories`, () =>
-    getAvailableRepositories(keyName)
+    getAvailableRepositories(chrome?.auth?.getToken())(keyName)
   );
 };
 
