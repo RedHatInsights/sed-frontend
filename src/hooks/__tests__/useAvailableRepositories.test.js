@@ -38,5 +38,6 @@ describe('useAvailableRepositories', () => {
 
     expect(result.isLoading).toBe(false);
     expect(result.error).toEqual(new Error('Fetch failed'));
+
   });
 });

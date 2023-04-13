@@ -15,7 +15,6 @@ import {
   Button,
 } from '@patternfly/react-core';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux';
-import { fetchLog } from '../../store/actions';
 import { DateFormat } from '@redhat-cloud-services/frontend-components/DateFormat';
 import { SkeletonTable } from '@redhat-cloud-services/frontend-components/SkeletonTable';
 import { TableToolbar } from '@redhat-cloud-services/frontend-components/TableToolbar';
@@ -23,7 +22,8 @@ import { PrimaryToolbar } from '@redhat-cloud-services/frontend-components/Prima
 import flatMap from 'lodash/flatMap';
 import LogNestedTable from './LogNestedtable';
 import { downloadFile } from '../../utils/helpers';
-import { configApi } from '../../api';
+import { useActions } from '../../store/actions';
+import { useConfigApi } from '../../api';
 
 const columns = [
   {
@@ -37,7 +37,7 @@ const columns = [
   },
 ];
 
-const rowsMapper = (results, opened) =>
+const rowsMapper = (results, opened, onClick) =>
   flatMap(
     results.map(
       (
@@ -63,16 +63,7 @@ const rowsMapper = (results, opened) =>
             </Fragment>,
             account_id,
             <Fragment key={`download file-${id}`}>
-              <Button
-                variant="link"
-                isInline
-                onClick={() => {
-                  (async () => {
-                    const data = await configApi.getPlaybook(id);
-                    downloadFile(data);
-                  })();
-                }}
-              >
+              <Button variant="link" isInline onClick={() => onClick(id)}>
                 Download
               </Button>
             </Fragment>,
@@ -99,6 +90,9 @@ const rowsMapper = (results, opened) =>
 const LogsTable = () => {
   const [opened, setOpened] = useState([]);
   const dispatch = useDispatch();
+  const { fetchLog } = useActions();
+  const configApi = useConfigApi();
+
   const logLoaded = useSelector(
     ({ logReducer }) => logReducer?.loaded || false
   );
@@ -132,6 +126,13 @@ const LogsTable = () => {
     [dispatch]
   );
 
+  const onClick = (id) => {
+    (async () => {
+      const data = await configApi.getPlaybook(id);
+      downloadFile(data);
+    })();
+  };
+
   return (
     <Fragment>
       <PrimaryToolbar
@@ -151,7 +152,7 @@ const LogsTable = () => {
         <Table
           aria-label="Logs table"
           variant={TableVariant.compact}
-          rows={rowsMapper(rows, opened)}
+          rows={rowsMapper(rows, opened, onClick)}
           cells={columns}
           onCollapse={onCollapse}
         >

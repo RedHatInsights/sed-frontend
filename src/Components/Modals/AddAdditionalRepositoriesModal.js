@@ -54,7 +54,6 @@ const AddAdditionalRepositoriesModal = (props) => {
 
   const editAdditionalRepositoriesDescription =
     'The core repositories for your operating system version, for example BaseOS and AppStream, are always enabled and do not need to be explicitly added to the activation key.';
-
   const editChangesButtons = (
     <ActionGroup>
       <Button
@@ -76,8 +75,10 @@ const AddAdditionalRepositoriesModal = (props) => {
       </Button>
     </ActionGroup>
   );
+
   const onClose =
     isSubmitting || additionalRepositoriesError ? null : handleModalToggle;
+
   return (
     <React.Fragment>
       <Modal

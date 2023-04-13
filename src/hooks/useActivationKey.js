@@ -1,13 +1,13 @@
 import { useQuery } from 'react-query';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
-const fetchActivationKeyData = async (keyName) => {
+const fetchActivationKeyData = (token) => async (keyName) => {
   if (!keyName) {
     return false;
   }
-  const token = await window.insights.chrome.auth.getToken();
 
   const response = await fetch(`/api/rhsm/v2/activation_keys/${keyName}`, {
-    headers: { Authorization: `Bearer ${token}` },
+    headers: { Authorization: `Bearer ${await token}` },
   });
 
   const activationKeysData = await response.json();
@@ -15,13 +15,17 @@ const fetchActivationKeyData = async (keyName) => {
   return activationKeysData.body;
 };
 
-const getActivationKey = async (keyName) => {
-  const keysData = await fetchActivationKeyData(keyName);
+const getActivationKey = (token) => async (keyName) => {
+  const keysData = await fetchActivationKeyData(token)(keyName);
   return keysData;
 };
 
 const useActivationKey = (keyName) => {
-  return useQuery(`activation_key_${keyName}`, () => getActivationKey(keyName));
+  const chrome = useChrome();
+
+  return useQuery(`activation_key_${keyName}`, () =>
+    getActivationKey(chrome?.auth?.getToken())(keyName)
+  );
 };
 
 export { useActivationKey as default };
