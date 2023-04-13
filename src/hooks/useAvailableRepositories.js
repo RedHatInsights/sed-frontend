@@ -8,6 +8,7 @@ const fetchAdditionalRepositories = async (
   if (!keyName) {
     return false;
   }
+
   const token = await window.insights.chrome.auth.getToken();
 
   const response = await fetch(
