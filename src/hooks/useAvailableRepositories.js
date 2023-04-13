@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const fetchAdditionalRepositories = async (
   keyName,
@@ -39,6 +40,7 @@ const getAvailableRepositories = async (keyName) => {
 };
 
 const useAvailableRepositories = (keyName) => {
+  const chrome = useChrome();
   return useQuery(`activation_key_${keyName}_available_repositories`, () =>
     getAvailableRepositories(chrome?.auth?.getToken())(keyName)
   );
