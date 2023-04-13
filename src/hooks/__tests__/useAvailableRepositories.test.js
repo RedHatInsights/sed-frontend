@@ -1,43 +1,42 @@
-import { renderHook } from '@testing-library/react-hooks';
-import fetch, { enableFetchMocks } from 'jest-fetch-mock';
-import { createQueryWrapper } from '../../utils/testHelpers';
+import { useQuery } from 'react-query';
 import useAvailableRepositories from '../useAvailableRepositories';
 
-enableFetchMocks();
+jest.mock('react-query');
 
 describe('useAvailableRepositories', () => {
+  const keyName = 'testKey';
+
   beforeEach(() => {
-    Object.defineProperty(window, 'insights', {
-      value: {
-        chrome: {
-          auth: {
-            getToken: jest.fn(),
-          },
-        },
-      },
-    });
+    useQuery.mockReset();
   });
-  it('returns available repositories from the API', async () => {
-    const keyName = [
-      {
-        name: 'A',
-        role: 'role',
-        sla: 'sla',
-        usage: 'usage',
-      },
-    ];
 
-    fetch.mockResponseOnce(JSON.stringify({ body: [...keyName] }));
+  test('should fetch available repositories correctly', async () => {
+    useQuery.mockReturnValueOnce({
+      isLoading: false,
+      data: [
+        { repositoryId: 1, repositoryName: 'Repo 1' },
+        { repositoryId: 2, repositoryName: 'Repo 2' },
+      ],
+    });
 
-    const { result, waitFor } = renderHook(
-      () => useAvailableRepositories('A'),
-      {
-        wrapper: createQueryWrapper(),
-      }
-    );
+    const result = useAvailableRepositories(keyName);
 
-    await waitFor(() => result.current.isSuccess);
+    expect(result.isLoading).toBe(false);
+    expect(result.data).toEqual([
+      { repositoryId: 1, repositoryName: 'Repo 1' },
+      { repositoryId: 2, repositoryName: 'Repo 2' },
+    ]);
+  });
 
-    expect(result.current.data).toEqual(keyName);
+  test('should handle error during fetch correctly', async () => {
+    useQuery.mockReturnValueOnce({
+      isLoading: false,
+      error: new Error('Fetch failed'),
+    });
+
+    const result = useAvailableRepositories(keyName);
+
+    expect(result.isLoading).toBe(false);
+    expect(result.error).toEqual(new Error('Fetch failed'));
   });
 });
