@@ -2,7 +2,6 @@ import { useQuery } from 'react-query';
 import useAvailableRepositories from '../useAvailableRepositories';
 
 jest.mock('react-query');
-
 describe('useAvailableRepositories', () => {
   const keyName = 'testKey';
 
