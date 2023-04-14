@@ -11,6 +11,9 @@ import { get, def } from 'bdd-lazy-var';
 import useActivationKey from '../../../hooks/useActivationKey';
 import '@testing-library/jest-dom';
 import useFeatureFlag from '../../../hooks/useFeatureFlag';
+import useAvailableRepositories from '../../../hooks/useAvailableRepositories';
+
+jest.mock('../../../hooks/useAvailableRepositories');
 jest.mock('../../../hooks/useActivationKey');
 jest.mock('../../../hooks/useUser');
 jest.mock('../../../hooks/useFeatureFlag');
@@ -107,9 +110,23 @@ describe('ActivationKey', () => {
   });
 
   it('renders correctly', async () => {
-    render(<PageContainer />);
-    await waitFor(() => expect(useUser).toHaveBeenCalledTimes(1));
-    expect(screen.getByText('System Purpose')).toBeInTheDocument();
+    useAvailableRepositories.mockReturnValue({
+      isLoading: false,
+      isFetching: false,
+      isError: false,
+      isSuccess: true,
+      data: [], // Mock the data that the hook returns
+    });
+
+    render(
+      <QueryClientProvider client={queryClient}>
+        <PageContainer />
+      </QueryClientProvider>
+    );
+
+    await waitFor(() =>
+      expect(screen.getByText('System Purpose')).toBeInTheDocument()
+    );
     expect(screen.getByText('Workload')).toBeInTheDocument();
     expect(screen.getByText('Additional repositories')).toBeInTheDocument();
   });
