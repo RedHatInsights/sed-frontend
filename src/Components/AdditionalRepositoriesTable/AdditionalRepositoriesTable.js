@@ -23,8 +23,8 @@ const AdditionalRepositoriesTable = (props) => {
   };
 
   const getSortableRowValues = (repo) => {
-    const { repositoryLabel } = repo;
-    return [repositoryLabel];
+    const { repositoryName, repositoryLabel } = repo;
+    return [repositoryName, repositoryLabel];
   };
 
   const getSortParams = (columnIndex) => ({
@@ -107,8 +107,10 @@ const AdditionalRepositoriesTable = (props) => {
       <TableComposable aria-label="ActivationKeys">
         <Thead>
           <Tr ouiaSafe={true}>
-            <Th width={40}>{columnNames.repositoryName}</Th>
-            <Th sort={getSortParams(0)}>{columnNames.repositoryLabel}</Th>
+            <Th sort={getSortParams(0)} width={40}>
+              {columnNames.repositoryName}
+            </Th>
+            <Th sort={getSortParams(1)}>{columnNames.repositoryLabel}</Th>
           </Tr>
         </Thead>
         <Tbody>
