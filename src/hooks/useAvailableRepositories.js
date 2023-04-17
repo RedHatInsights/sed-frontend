@@ -25,7 +25,7 @@ const fetchAdditionalRepositories = async (
   const repositoriesData = await response.json();
   const repositories = repositoriesData.body;
 
-  if (repositories.length === 0 || repositories.length < 100) {
+  if (repositories.length === 0 && repositories.length < 100) {
     return allRepositories.concat(repositories);
   } else {
     const nextOffset = offset + repositories.length;
