@@ -1,4 +1,5 @@
 import { useQuery } from 'react-query';
+
 import useAvailableRepositories from '../useAvailableRepositories';
 
 jest.mock('react-query');
@@ -8,23 +9,23 @@ describe('useAvailableRepositories', () => {
   beforeEach(() => {
     useQuery.mockReset();
   });
+  describe('useAvailableRepositories', () => {
+    test('should fetch available repositories correctly', async () => {
+      const repositories = [];
+      for (let i = 1; i <= 105; i++) {
+        repositories.push({ repositoryId: i, repositoryName: `Repo ${i}` });
+      }
 
-  test('should fetch available repositories correctly', async () => {
-    useQuery.mockReturnValueOnce({
-      isLoading: false,
-      data: [
-        { repositoryId: 1, repositoryName: 'Repo 1' },
-        { repositoryId: 2, repositoryName: 'Repo 2' },
-      ],
+      useQuery.mockReturnValueOnce({
+        isLoading: false,
+        data: repositories,
+      });
+
+      const result = useAvailableRepositories(keyName);
+
+      expect(result.isLoading).toBe(false);
+      expect(result.data).toEqual(repositories);
     });
-
-    const result = useAvailableRepositories(keyName);
-
-    expect(result.isLoading).toBe(false);
-    expect(result.data).toEqual([
-      { repositoryId: 1, repositoryName: 'Repo 1' },
-      { repositoryId: 2, repositoryName: 'Repo 2' },
-    ]);
   });
 
   test('should handle error during fetch correctly', async () => {

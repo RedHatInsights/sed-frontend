@@ -2,15 +2,14 @@ import { useQuery } from 'react-query';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const fetchAdditionalRepositories = async (
+  token,
   keyName,
-  offset,
+  offset = 0,
   allRepositories = []
 ) => {
   if (!keyName) {
     return false;
   }
-
-  const token = await window.insights.chrome.auth.getToken();
 
   const response = await fetch(
     `/api/rhsm/v2/activation_keys/${keyName}/available_repositories?default=Disabled&offset=${offset}`,
@@ -18,6 +17,10 @@ const fetchAdditionalRepositories = async (
       headers: { Authorization: `Bearer ${await token}` },
     }
   );
+
+  if (!response.ok) {
+    throw new Error('Failed to fetch repositories');
+  }
 
   const repositoriesData = await response.json();
   const repositories = repositoriesData.body;
@@ -27,6 +30,7 @@ const fetchAdditionalRepositories = async (
   } else {
     const nextOffset = offset + repositories.length;
     return fetchAdditionalRepositories(
+      token,
       keyName,
       nextOffset,
       allRepositories.concat(repositories)
@@ -34,16 +38,12 @@ const fetchAdditionalRepositories = async (
   }
 };
 
-const getAvailableRepositories = async (keyName) => {
-  const repositories = await fetchAdditionalRepositories(keyName, 0);
-  return repositories;
-};
-
 const useAvailableRepositories = (keyName) => {
   const chrome = useChrome();
+  const token = chrome?.auth?.getToken();
 
   return useQuery(`activation_key_${keyName}_available_repositories`, () =>
-    getAvailableRepositories(chrome?.auth?.getToken())(keyName)
+    fetchAdditionalRepositories(token, keyName)
   );
 };
 
