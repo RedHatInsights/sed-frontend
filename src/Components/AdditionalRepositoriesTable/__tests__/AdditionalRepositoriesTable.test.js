@@ -42,6 +42,34 @@ describe('when row column headings are clicked', () => {
       repositoryLabel: 'label-c',
     },
   ];
+
+  it('can sort by name', () => {
+    const Table = () => (
+      <QueryClientProvider client={queryClient}>
+        <AdditionalRepositoriesTable repositories={repositories} />
+      </QueryClientProvider>
+    );
+
+    const { container } = render(<Table />);
+    fireEvent.click(screen.getByText('Name'));
+
+    expect(container).toMatchSnapshot();
+  });
+
+  it('can sort by name, reversed', () => {
+    const Table = () => (
+      <QueryClientProvider client={queryClient}>
+        <AdditionalRepositoriesTable repositories={repositories} />
+      </QueryClientProvider>
+    );
+
+    const { container } = render(<Table />);
+    fireEvent.click(screen.getByText('Name'));
+    fireEvent.click(screen.getByText('Name'));
+
+    expect(container).toMatchSnapshot();
+  });
+
   it('can sort by label', () => {
     const Table = () => (
       <QueryClientProvider client={queryClient}>
