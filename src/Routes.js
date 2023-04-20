@@ -1,5 +1,6 @@
 import React, { Suspense, lazy } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { Route, Routes } from 'react-router-dom';
 import { Bullseye, Spinner } from '@patternfly/react-core';
 import pckg from '../package.json';
 import Authentication from './Components/Authentication/Authentication';
@@ -13,28 +14,58 @@ const Dashboard = lazy(() =>
 
 const ActivationKeys = lazy(() => import('./Components/ActivationKeys'));
 
-export const Routes = () => {
+const SuspenseWrapped = ({ children }) => (
+  <Suspense
+    fallback={
+      <Bullseye>
+        <Spinner />
+      </Bullseye>
+    }
+  >
+    {children}
+  </Suspense>
+);
+
+const AppRoutes = () => {
   const keyDetailsIsEnabled = useFeatureFlag(
     'sed-frontend.activationKeysDetailsPage'
   );
   return (
-    <Suspense
-      fallback={
-        <Bullseye>
-          <Spinner />
-        </Bullseye>
-      }
-    >
-      <Authentication>
-        <Switch>
-          {keyDetailsIsEnabled && (
-            <Route path={paths.activationKey} component={ActivationKey} />
-          )}
-          <Route path={paths.activationKeys} component={ActivationKeys} />
-
-          <Route path={paths.connector} component={Dashboard} />
-        </Switch>
-      </Authentication>
-    </Suspense>
+    <Authentication>
+      <Routes>
+        {keyDetailsIsEnabled && (
+          <Route
+            path={paths.activationKey}
+            element={
+              <SuspenseWrapped>
+                <ActivationKey />
+              </SuspenseWrapped>
+            }
+          />
+        )}
+        <Route
+          path={paths.activationKeys}
+          element={
+            <SuspenseWrapped>
+              <ActivationKeys />
+            </SuspenseWrapped>
+          }
+        />
+        <Route
+          path={paths.connector}
+          element={
+            <SuspenseWrapped>
+              <Dashboard />
+            </SuspenseWrapped>
+          }
+        />
+      </Routes>
+    </Authentication>
   );
 };
+
+SuspenseWrapped.propTypes = {
+  children: PropTypes.element.isRequired,
+};
+
+export default AppRoutes;

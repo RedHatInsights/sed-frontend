@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link, useRouteMatch } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import {
   TableComposable,
   Thead,
@@ -42,7 +42,7 @@ const ActivationKeysTable = (props) => {
   const isActionsDisabled = () => {
     return !user.rbacPermissions.canWriteActivationKeys;
   };
-  const { url } = useRouteMatch();
+  const location = useLocation();
 
   const keyDetailsIsEnabled = useFeatureFlag(
     'sed-frontend.activationKeysDetailsPage'
@@ -66,7 +66,10 @@ const ActivationKeysTable = (props) => {
               <Tr key={datum.name} ouiaSafe={true}>
                 <Td modifier="breakWord" dataLabel={columnNames.name}>
                   {keyDetailsIsEnabled ? (
-                    <Link to={`${url}/${datum.name}`}> {datum.name}</Link>
+                    <Link to={`${location.pathname}/${datum.name}`}>
+                      {' '}
+                      {datum.name}
+                    </Link>
                   ) : (
                     datum.name
                   )}

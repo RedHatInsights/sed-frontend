@@ -59,7 +59,7 @@
     "react-dom": "17.0.1",
     "react-query": "^3.21.0",
     "react-redux": "7.2.6",
-    "react-router-dom": "5.2.0",
+    "react-router-dom": "^6.6.1",
     "redux": "4.1.2",
     "redux-logger": "3.0.6",
     "redux-promise-middleware": "6.1.2",
@@ -113,9 +113,9 @@
     "appname": "connector"
   },
   "routes": {
-    "connector": "/",
+    "connector": "/*",
     "connectSystemsModal": "/connect-systems",
-    "logModal": "/log",
+    "logModal": "log",
     "activationKeys": "/activation-keys",
     "activationKey": "/activation-keys/:id"
   },

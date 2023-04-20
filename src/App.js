@@ -1,10 +1,10 @@
 import React, { useEffect, useContext, useMemo } from 'react';
-import { Routes } from './Routes';
+import AppRoutes from './Routes';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
 import { notificationsReducer } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import { RegistryContext } from './store';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import NotificationProvider from './contexts/NotificationProvider';
 import Notifications from './Components/Notifications';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
@@ -24,7 +24,7 @@ const queryClient = new QueryClient({
 const App = () => {
   const chrome = useChrome();
   const { getRegistry } = useContext(RegistryContext);
-  const history = useHistory();
+  const navigate = useNavigate();
   useEffect(() => {
     getRegistry().register({ notifications: notificationsReducer });
   }, [getRegistry]);
@@ -45,7 +45,7 @@ const App = () => {
     chrome.identifyApp('connector');
     const unregister = chrome.on('APP_NAVIGATION', (event) => {
       if (event.domEvent) {
-        history.push(`/${event.navId}`);
+        navigate(`/${event.navId}`);
         appNavClick[event.navId] !== undefined
           ? appNavClick[event.navId](true)
           : appNavClick.settings(true);
@@ -59,7 +59,7 @@ const App = () => {
       <NotificationsPortal />
       <NotificationProvider>
         <Notifications />
-        <Routes />
+        <AppRoutes />
       </NotificationProvider>
     </QueryClientProvider>
   );

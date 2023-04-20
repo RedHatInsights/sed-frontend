@@ -25,8 +25,8 @@ import React, {
   useState,
 } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
-import { Route, useHistory } from 'react-router-dom';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
+import { useLocation, useNavigate } from 'react-router-dom';
 import pckg from '../../../package.json';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
 import Services from '../../Components/Services/Services';
@@ -52,13 +52,14 @@ const ConnectLog = lazy(() =>
 const SamplePage = () => {
   const { updateDocumentTitle } = useChrome();
   updateDocumentTitle?.('Manage Configuration - Remote Host Configuration');
-  const history = useHistory();
+  const navigate = useNavigate();
   const { getRegistry } = useContext(RegistryContext);
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
   const [madeChanges, setMadeChanges] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const dataRef = useRef();
   const dispatch = useDispatch();
+  const location = useLocation();
   const { fetchConnectedHosts, fetchCurrState, saveCurrState } = useActions();
 
   const activeStateLoaded = useSelector(
@@ -94,23 +95,22 @@ const SamplePage = () => {
     insights?.chrome?.appAction?.('cloud-connector-dashboard');
   }, []);
 
+  const isLogsModalOpen = location.pathname.split('/').pop() === paths.logModal;
+
   return (
     <React.Fragment>
-      <Route
-        exact
-        path={paths.logModal}
-        render={() => (
-          <Suspense
-            fallback={
-              <Bullseye>
-                <Spinner />
-              </Bullseye>
-            }
-          >
-            <ConnectLog />
-          </Suspense>
-        )}
-      />
+      {isLogsModalOpen && (
+        <Suspense
+          fallback={
+            <Bullseye>
+              <Spinner />
+            </Bullseye>
+          }
+        >
+          <ConnectLog />
+        </Suspense>
+      )}
+
       <PageHeader className="page-header">
         <Split hasGutter className="page-title">
           <SplitItem isFilled>
@@ -124,7 +124,10 @@ const SamplePage = () => {
             </Flex>
           </SplitItem>
           <SplitItem>
-            <Button onClick={() => history.push(paths.logModal)} variant="link">
+            <Button
+              onClick={() => navigate(`./${paths.logModal}`)}
+              variant="link"
+            >
               View log
             </Button>
           </SplitItem>

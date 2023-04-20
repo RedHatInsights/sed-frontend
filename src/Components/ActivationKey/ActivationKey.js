@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { withRouter, useParams, useHistory } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import pckg from '../../../package.json';
 import Breadcrumbs from '../shared/breadcrumbs';
 import {
@@ -33,7 +33,7 @@ import { EditReleaseVersionModal } from '../Modals/EditReleaseVersionModal';
 import useReleaseVersions from '../../hooks/useReleaseVersions';
 
 const ActivationKey = () => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData('user');
   const { id } = useParams();
@@ -61,7 +61,7 @@ const ActivationKey = () => {
   const handleDeleteActivationKeyModalToggle = (keyDeleted) => {
     setIsDeleteActivationKeyModalOpen(!isDeleteActivationKeyModalOpen);
     if (keyDeleted === true) {
-      history.push('/activation-keys');
+      navigate('../activation-keys');
     }
   };
 
@@ -162,4 +162,4 @@ const ActivationKey = () => {
   );
 };
 
-export default withRouter(ActivationKey);
+export default ActivationKey;

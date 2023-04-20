@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { withRouter } from 'react-router-dom';
 import {
   ActionGroup,
   Text,
@@ -160,4 +159,4 @@ const ActivationKeys = () => {
   }
 };
 
-export default withRouter(ActivationKeys);
+export default ActivationKeys;
