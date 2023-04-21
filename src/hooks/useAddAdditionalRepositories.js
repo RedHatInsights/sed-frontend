@@ -13,7 +13,6 @@ const additionalRepositoriesMutation = (token) => async (data) => {
       `Activation Key name must be provided to add additional repositiories.`
     );
   }
-
   const response = await fetch(
     `/api/rhsm/v2/activation_keys/${keyName}/additional_repositories`,
     {

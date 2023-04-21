@@ -8,7 +8,6 @@ enableFetchMocks();
 
 describe('useAddAdditionalRepositories', () => {
   const { act } = TestRenderer;
-
   it('adds additional repository to activationKey', async () => {
     fetch.mockResponseOnce(
       JSON.stringify({ body: [{ repositoryLabel: 'repository-A' }] })
