@@ -26,6 +26,7 @@ import React, {
 } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { Route, useHistory } from 'react-router-dom';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import pckg from '../../../package.json';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
 import Services from '../../Components/Services/Services';
@@ -49,6 +50,8 @@ const ConnectLog = lazy(() =>
 );
 
 const SamplePage = () => {
+  const { updateDocumentTitle } = useChrome();
+  updateDocumentTitle?.('Manage Configuration - Remote Host Configuration');
   const history = useHistory();
   const { getRegistry } = useContext(RegistryContext);
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
