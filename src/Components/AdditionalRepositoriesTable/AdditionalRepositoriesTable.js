@@ -9,7 +9,9 @@ import {
 } from '@patternfly/react-table';
 import { Pagination, PaginationVariant } from '@patternfly/react-core';
 import propTypes from 'prop-types';
+import RemoveAdditionalRepositoriesButton from './RemoveAdditionalRepositoriesButton';
 import NoAdditionalRepositories from './NoAdditionalRepositories';
+import DeleteAdditionalRepositoriesModal from '../Modals/DeleteAdditionalRepositoriesModal';
 
 const AdditionalRepositoriesTable = (props) => {
   const { repositories } = props;
@@ -101,6 +103,17 @@ const AdditionalRepositoriesTable = (props) => {
   const sortedRepositories = sortRepos(repositories, activeSortIndex);
   const paginatedRepos = getPage(sortedRepositories);
 
+  const [
+    isDeleteAdditionalRepositoriesModalOpen,
+    setisDeleteAdditionalRepositoriesModalOpen,
+  ] = React.useState(false);
+
+  const handleDeleteAdditionalRepositoriesToggle = () => {
+    setisDeleteAdditionalRepositoriesModalOpen(
+      !isDeleteAdditionalRepositoriesModalOpen
+    );
+  };
+
   return (
     <React.Fragment>
       <PaginationTop />
@@ -122,6 +135,15 @@ const AdditionalRepositoriesTable = (props) => {
                 </Td>
                 <Td dataLabel={columnNames.repositoryLabel}>
                   {repository.repositoryLabel}
+                </Td>
+                <Td>
+                  <RemoveAdditionalRepositoriesButton
+                    onClick={handleDeleteAdditionalRepositoriesToggle}
+                  />
+                  <DeleteAdditionalRepositoriesModal
+                    isOpen={isDeleteAdditionalRepositoriesModalOpen}
+                    handleModalToggle={handleDeleteAdditionalRepositoriesToggle}
+                  />
                 </Td>
               </Tr>
             );
