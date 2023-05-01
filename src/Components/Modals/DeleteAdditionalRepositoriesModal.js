@@ -23,7 +23,7 @@ const DeleteAdditionalRepositoriesModal = (props) => {
   const deleteAdditionalRepositories = (name) => {
     mutate(name, {
       onSuccess: (_data, name) => {
-        queryClient.setQueryData('additional_repositories', (oldData) =>
+        queryClient.setQueryData('activation_key_${keyName}', (oldData) =>
           oldData.filter((entry) => entry.name != name)
         );
         addSuccessNotification(`Additional repository ${name} deleted`);
@@ -55,7 +55,7 @@ const DeleteAdditionalRepositoriesModal = (props) => {
       <TextContent>
         <Text component={TextVariants.h2}>
           <ExclamationTriangleIcon size="md" color="#F0AB00" />
-          Remove repository?
+          {''} Remove repository?
         </Text>
       </TextContent>
     </>
@@ -91,7 +91,7 @@ const DeleteAdditionalRepositoriesModal = (props) => {
 DeleteAdditionalRepositoriesModal.propTypes = {
   isOpen: propTypes.bool.isRequired,
   handleModalToggle: propTypes.func.isRequired,
-  name: propTypes.string.Required,
+  name: propTypes.string.isRequired,
 };
 
 export default DeleteAdditionalRepositoriesModal;

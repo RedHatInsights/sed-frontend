@@ -107,11 +107,14 @@ const AdditionalRepositoriesTable = (props) => {
     isDeleteAdditionalRepositoriesModalOpen,
     setisDeleteAdditionalRepositoriesModalOpen,
   ] = React.useState(false);
+  const [repositoryNameToDelete, setRepositoryNameToDelete] =
+    React.useState('');
 
-  const handleDeleteAdditionalRepositoriesToggle = () => {
+  const handleDeleteAdditionalRepositoriesToggle = (repositoryName) => {
     setisDeleteAdditionalRepositoriesModalOpen(
       !isDeleteAdditionalRepositoriesModalOpen
     );
+    setRepositoryNameToDelete(repositoryName);
   };
 
   return (
@@ -138,11 +141,17 @@ const AdditionalRepositoriesTable = (props) => {
                 </Td>
                 <Td>
                   <RemoveAdditionalRepositoriesButton
-                    onClick={handleDeleteAdditionalRepositoriesToggle}
+                    name={repository.repositoryName}
+                    onClick={() =>
+                      handleDeleteAdditionalRepositoriesToggle(
+                        repository.repositoryName
+                      )
+                    }
                   />
                   <DeleteAdditionalRepositoriesModal
                     isOpen={isDeleteAdditionalRepositoriesModalOpen}
                     handleModalToggle={handleDeleteAdditionalRepositoriesToggle}
+                    name={repositoryNameToDelete}
                   />
                 </Td>
               </Tr>
