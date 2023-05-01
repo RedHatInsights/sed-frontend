@@ -1,4 +1,4 @@
-import { Button } from '@patternfly/react-core';
+import { Button, Tooltip } from '@patternfly/react-core';
 import React from 'react';
 import { useQueryClient } from 'react-query';
 import PropTypes from 'prop-types';
@@ -13,6 +13,11 @@ const WriteOnlyButton = (props) => {
   return (
     <Button isDisabled={isDisabled} {...buttonProps}>
       {children}
+      {isDisabled && (
+        <Tooltip content={<div>Your tooltip content goes here</div>}>
+          <span></span>
+        </Tooltip>
+      )}
     </Button>
   );
 };

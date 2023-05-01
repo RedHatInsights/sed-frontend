@@ -22,7 +22,7 @@ const DeleteAdditionalRepositoriesModal = (props) => {
 
   const deleteAdditionalRepositories = (name) => {
     mutate(name, {
-      onSuccess: (_data, name) => {
+      onSuccess: (name) => {
         queryClient.setQueryData('activation_key_${keyName}', (oldData) =>
           oldData.filter((entry) => entry.name != name)
         );
@@ -34,18 +34,23 @@ const DeleteAdditionalRepositoriesModal = (props) => {
         handleModalToggle();
       },
     });
-    mutate;
   };
   const actions = [
     <Button
       key="confirm"
       variant="danger"
       onClick={() => deleteAdditionalRepositories(name)}
+      isDisabled={isLoading}
       data-testid="delete-additional-repositories-confirmation-modal-confirm-button"
     >
-      Remove Repository
+      {isLoading ? 'Removing repository' : 'Remove repository'}
     </Button>,
-    <Button key="cancel" variant="link" onClick={handleModalToggle}>
+    <Button
+      key="cancel"
+      variant="link"
+      onClick={handleModalToggle}
+      isDisabled={isLoading}
+    >
       Cancel
     </Button>,
   ];
@@ -82,6 +87,7 @@ const DeleteAdditionalRepositoriesModal = (props) => {
       onClose={handleModalToggle}
       variant={ModalVariant.small}
       actions={actions}
+      isDisabled={isLoading}
     >
       {content()}
     </Modal>
