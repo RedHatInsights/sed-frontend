@@ -15,31 +15,67 @@ import useDeleteAdditionalRepositories from '../../hooks/useDeleteAdditionalRepo
 import Loading from '../LoadingState/Loading';
 
 const DeleteAdditionalRepositoriesModal = (props) => {
-  const { isOpen, handleModalToggle, name } = props;
+  const {
+    isOpen,
+    handleModalToggle,
+    name,
+    repositoryNameToDelete,
+    repositoryLabelToDelete,
+    handleRemoveRepository,
+  } = props;
   const { addSuccessNotification, addErrorNotification } = useNotifications();
   const { mutate, isLoading } = useDeleteAdditionalRepositories();
   const queryClient = useQueryClient();
 
-  const deleteAdditionalRepositories = (name) => {
-    mutate(name, {
-      onSuccess: (name) => {
-        queryClient.setQueryData('activation_key_${keyName}', (oldData) =>
-          oldData.filter((entry) => entry.name != name)
-        );
-        addSuccessNotification(`Additional repository ${name} deleted`);
-        handleModalToggle(true);
+  const deleteAdditionalRepositories = (
+    name,
+    repositoryNameToDelete,
+    repositoryLabelToDelete
+  ) => {
+    console.log(name, repositoryNameToDelete, repositoryLabelToDelete);
+    const payload = [
+      {
+        repositoryLabel: repositoryLabelToDelete,
+        repositoryName: repositoryNameToDelete,
       },
-      onError: () => {
-        addErrorNotification('Something went wrong. Please try again');
-        handleModalToggle();
-      },
-    });
+    ];
+    console.log('Request Payload:', payload);
+
+    mutate(
+      { name, payload },
+      {
+        onSuccess: (data, queryName) => {
+          const updatedData = data?.filter(
+            (entry) => entry.repositoryName !== repositoryNameToDelete
+          );
+          queryClient.setQueryData(queryName, updatedData);
+          addSuccessNotification(
+            `Additional repository ${repositoryNameToDelete} deleted`
+          );
+          handleRemoveRepository(
+            repositoryNameToDelete,
+            repositoryLabelToDelete
+          );
+          handleModalToggle(true);
+        },
+        onError: () => {
+          addErrorNotification('Something went wrong. Please try again');
+          handleModalToggle();
+        },
+      }
+    );
   };
   const actions = [
     <Button
       key="confirm"
       variant="danger"
-      onClick={() => deleteAdditionalRepositories(name)}
+      onClick={() =>
+        deleteAdditionalRepositories(
+          name,
+          repositoryNameToDelete,
+          repositoryLabelToDelete
+        )
+      }
       isDisabled={isLoading}
       data-testid="delete-additional-repositories-confirmation-modal-confirm-button"
     >
@@ -72,8 +108,8 @@ const DeleteAdditionalRepositoriesModal = (props) => {
       return (
         <TextContent>
           <Text component={TextVariants.p}>
-            <b>{name}</b> will no longer be enabled when registering with this
-            activation key.
+            <b>{repositoryNameToDelete}</b> will no longer be enabled when with
+            this activation key.
           </Text>
         </TextContent>
       );
@@ -97,6 +133,9 @@ const DeleteAdditionalRepositoriesModal = (props) => {
 DeleteAdditionalRepositoriesModal.propTypes = {
   isOpen: propTypes.bool.isRequired,
   handleModalToggle: propTypes.func.isRequired,
+  handleRemoveRepository: propTypes.func.isRequired,
+  repositoryNameToDelete: propTypes.string.isRequired,
+  repositoryLabelToDelete: propTypes.string.isRequired,
   name: propTypes.string.isRequired,
 };
 
