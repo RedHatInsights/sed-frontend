@@ -12,6 +12,8 @@ import propTypes from 'prop-types';
 import RemoveAdditionalRepositoriesButton from './RemoveAdditionalRepositoriesButton';
 import NoAdditionalRepositories from './NoAdditionalRepositories';
 import DeleteAdditionalRepositoriesModal from '../Modals/DeleteAdditionalRepositoriesModal';
+import NoAccessPopover from '../NoAccessPopover';
+import { useQueryClient } from 'react-query';
 
 const AdditionalRepositoriesTable = (props) => {
   const { repositories, name } = props;
@@ -19,33 +21,18 @@ const AdditionalRepositoriesTable = (props) => {
   const [perPage, setPerPage] = React.useState(10);
   const [activeSortIndex, setActiveSortIndex] = React.useState(null);
   const [activeSortDirection, setActiveSortDirection] = React.useState(null);
-  const [repositoryDeleted, setRepositoryDeleted] = React.useState(false);
-  const [newRepositories, setNewRepositories] = React.useState([]);
   const [repositoryNameToDelete, setRepositoryNameToDelete] =
     React.useState('');
   const [repositoryLabelToDelete, setRepositoryLabelToDelete] =
     React.useState('');
+  const [deletedRepositories, setDeletedRepositories] = React.useState([]);
   const columnNames = {
     repositoryLabel: 'Label',
     repositoryName: 'Name',
   };
 
-  const handleRemoveRepository = (repositoryName) => {
-    const updatedRepositories = newRepositories.filter(
-      (repository) => repository.repositoryName !== repositoryName
-    );
-    setNewRepositories(updatedRepositories);
-  };
-
-  React.useEffect(() => {
-    if (repositoryDeleted) {
-      const updatedRepositories = newRepositories.filter(
-        (repository) => repository.repositoryName !== repositoryNameToDelete
-      );
-      setNewRepositories(updatedRepositories);
-      setRepositoryDeleted(false);
-    }
-  }, [repositoryDeleted, newRepositories, repositoryNameToDelete]);
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData('user');
 
   const getSortableRowValues = (repo) => {
     const { repositoryName, repositoryLabel } = repo;
@@ -65,8 +52,8 @@ const AdditionalRepositoriesTable = (props) => {
     columnIndex,
   });
 
-  const sortRepos = (repositories, sortIndex) => {
-    const sortedRepos = repositories?.sort((a, b) => {
+  const sortRepos = (filteredRepositories, sortIndex) => {
+    const sortedRepos = filteredRepositories?.sort((a, b) => {
       const aValue = getSortableRowValues(a)[sortIndex] || '';
       const bValue = getSortableRowValues(b)[sortIndex] || '';
       let result = 0;
@@ -102,7 +89,7 @@ const AdditionalRepositoriesTable = (props) => {
 
   const PaginationTop = () => (
     <Pagination
-      itemCount={countProducts(repositories)}
+      itemCount={countProducts(filteredRepositories)}
       perPage={perPage}
       page={page}
       onSetPage={handleSetPage}
@@ -114,7 +101,7 @@ const AdditionalRepositoriesTable = (props) => {
 
   const PaginationBottom = () => (
     <Pagination
-      itemCount={countProducts(repositories)}
+      itemCount={countProducts(filteredRepositories)}
       perPage={perPage}
       page={page}
       onSetPage={handleSetPage}
@@ -123,7 +110,14 @@ const AdditionalRepositoriesTable = (props) => {
     />
   );
 
-  const sortedRepositories = sortRepos(repositories, activeSortIndex);
+  const filteredRepositories = repositories.filter((repository) => {
+    return !deletedRepositories.some(
+      (deletedRepository) =>
+        deletedRepository.repositoryName === repository.repositoryName
+    );
+  });
+
+  const sortedRepositories = sortRepos(filteredRepositories, activeSortIndex);
   const paginatedRepos = getPage(sortedRepositories);
 
   const [
@@ -140,7 +134,6 @@ const AdditionalRepositoriesTable = (props) => {
     );
     setRepositoryNameToDelete(repositoryName);
     setRepositoryLabelToDelete(repositoryLabel);
-    handleRemoveRepository(repositoryName);
   };
 
   return (
@@ -166,14 +159,20 @@ const AdditionalRepositoriesTable = (props) => {
                   {repository.repositoryLabel}
                 </Td>
                 <Td>
-                  <RemoveAdditionalRepositoriesButton
-                    onClick={() =>
-                      handleDeleteAdditionalRepositoriesToggle(
-                        repository.repositoryName,
-                        repository.repositoryLabel
-                      )
-                    }
-                  />
+                  {user.rbacPermissions.canWriteActivationKeys ? (
+                    <RemoveAdditionalRepositoriesButton
+                      onClick={() =>
+                        handleDeleteAdditionalRepositoriesToggle(
+                          repository.repositoryName,
+                          repository.repositoryLabel
+                        )
+                      }
+                    />
+                  ) : (
+                    <NoAccessPopover
+                      content={RemoveAdditionalRepositoriesButton}
+                    />
+                  )}
                   <DeleteAdditionalRepositoriesModal
                     name={name}
                     isOpen={isDeleteAdditionalRepositoriesModalOpen}
@@ -182,7 +181,7 @@ const AdditionalRepositoriesTable = (props) => {
                     }
                     repositoryNameToDelete={repositoryNameToDelete}
                     repositoryLabelToDelete={repositoryLabelToDelete}
-                    handleRemoveRepository={handleRemoveRepository}
+                    setDeletedRepositories={setDeletedRepositories}
                   />
                 </Td>
               </Tr>

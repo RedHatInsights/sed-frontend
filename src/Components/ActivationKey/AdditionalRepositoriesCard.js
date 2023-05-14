@@ -15,9 +15,13 @@ import AdditionalRepositoriesTable from '../AdditionalRepositoriesTable';
 import useAvailableRepositories from '../../hooks/useAvailableRepositories';
 import AddAdditionalRepositoriesButton from '../ActivationKey/AddAdditionalRepositoriesButton';
 import AddAdditionalRepositoriesModal from '../Modals/AddAdditionalRepositoriesModal';
+import { useQueryClient } from 'react-query';
+import NoAccessPopover from '../NoAccessPopover';
 
 const AdditionalRepositoriesCard = (props) => {
   const { activationKey } = props;
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData('user');
   const {
     data: availableRepositories,
     isLoading,
@@ -49,18 +53,22 @@ const AdditionalRepositoriesCard = (props) => {
             BaseOS and AppStream, are always enabled and do not need to be
             explicitly added to the activation key.
           </Text>
+        </TextContent>
+        {user.rbacPermissions.canWriteActivationKeys ? (
           <AddAdditionalRepositoriesButton
             onClick={handleEditAdditionalRepositoriesToggle}
           />
-          <AddAdditionalRepositoriesModal
-            isOpen={isEditAdditionalRepositoriesModalOpen}
-            handleModalToggle={handleEditAdditionalRepositoriesToggle}
-            keyName={activationKey.name}
-            repositories={availableRepositories}
-            isLoading={isLoading}
-            error={error}
-          />
-        </TextContent>
+        ) : (
+          <NoAccessPopover content={AddAdditionalRepositoriesButton} />
+        )}
+        <AddAdditionalRepositoriesModal
+          isOpen={isEditAdditionalRepositoriesModalOpen}
+          handleModalToggle={handleEditAdditionalRepositoriesToggle}
+          keyName={activationKey.name}
+          repositories={availableRepositories}
+          isLoading={isLoading}
+          error={error}
+        />
         <AdditionalRepositoriesTable
           repositories={activationKey.additionalRepositories}
           name={activationKey.name}
