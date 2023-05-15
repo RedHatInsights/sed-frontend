@@ -66,6 +66,7 @@ const DeleteAdditionalRepositoriesModal = (props) => {
         },
       }
     );
+    mutate;
   };
   const actions = [
     <Button
@@ -108,8 +109,8 @@ const DeleteAdditionalRepositoriesModal = (props) => {
   const content = () => (
     <TextContent>
       <Text component={TextVariants.p}>
-        <b>{repositoryNameToDelete}</b> will no longer be enabled when with this
-        activation key.
+        <b>{repositoryNameToDelete}</b> will no longer be enabled when
+        registering with this activation key.
       </Text>
     </TextContent>
   );

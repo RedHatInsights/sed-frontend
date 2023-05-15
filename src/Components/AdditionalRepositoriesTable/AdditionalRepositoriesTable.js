@@ -173,21 +173,21 @@ const AdditionalRepositoriesTable = (props) => {
                       content={RemoveAdditionalRepositoriesButton}
                     />
                   )}
-                  <DeleteAdditionalRepositoriesModal
-                    name={name}
-                    isOpen={isDeleteAdditionalRepositoriesModalOpen}
-                    handleModalToggle={() =>
-                      setisDeleteAdditionalRepositoriesModalOpen(false)
-                    }
-                    repositoryNameToDelete={repositoryNameToDelete}
-                    repositoryLabelToDelete={repositoryLabelToDelete}
-                    setDeletedRepositories={setDeletedRepositories}
-                  />
                 </Td>
               </Tr>
             );
           })}
         </Tbody>
+        <DeleteAdditionalRepositoriesModal
+          name={name}
+          isOpen={isDeleteAdditionalRepositoriesModalOpen}
+          handleModalToggle={() =>
+            setisDeleteAdditionalRepositoriesModalOpen(false)
+          }
+          repositoryNameToDelete={repositoryNameToDelete}
+          repositoryLabelToDelete={repositoryLabelToDelete}
+          setDeletedRepositories={setDeletedRepositories}
+        />
       </TableComposable>
       {repositories.length === 0 && <NoAdditionalRepositories />}
       <PaginationBottom />
