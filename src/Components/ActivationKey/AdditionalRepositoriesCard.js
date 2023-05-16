@@ -15,13 +15,10 @@ import AdditionalRepositoriesTable from '../AdditionalRepositoriesTable';
 import useAvailableRepositories from '../../hooks/useAvailableRepositories';
 import AddAdditionalRepositoriesButton from '../ActivationKey/AddAdditionalRepositoriesButton';
 import AddAdditionalRepositoriesModal from '../Modals/AddAdditionalRepositoriesModal';
-import { useQueryClient } from 'react-query';
-import NoAccessPopover from '../NoAccessPopover';
 
 const AdditionalRepositoriesCard = (props) => {
   const { activationKey } = props;
-  const queryClient = useQueryClient();
-  const user = queryClient.getQueryData('user');
+
   const {
     data: availableRepositories,
     isLoading,
@@ -54,13 +51,9 @@ const AdditionalRepositoriesCard = (props) => {
             explicitly added to the activation key.
           </Text>
         </TextContent>
-        {user.rbacPermissions.canWriteActivationKeys ? (
-          <AddAdditionalRepositoriesButton
-            onClick={handleEditAdditionalRepositoriesToggle}
-          />
-        ) : (
-          <NoAccessPopover content={AddAdditionalRepositoriesButton} />
-        )}
+        <AddAdditionalRepositoriesButton
+          onClick={handleEditAdditionalRepositoriesToggle}
+        />
         <AddAdditionalRepositoriesModal
           isOpen={isEditAdditionalRepositoriesModalOpen}
           handleModalToggle={handleEditAdditionalRepositoriesToggle}

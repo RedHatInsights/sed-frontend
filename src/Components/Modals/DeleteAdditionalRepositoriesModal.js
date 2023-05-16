@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import {
   Button,
   Modal,
@@ -20,7 +20,6 @@ const DeleteAdditionalRepositoriesModal = (props) => {
     name,
     repositoryNameToDelete,
     repositoryLabelToDelete,
-    setDeletedRepositories,
   } = props;
   const { addSuccessNotification, addErrorNotification } = useNotifications();
   const { mutate, isLoading } = useDeleteAdditionalRepositories();
@@ -31,14 +30,12 @@ const DeleteAdditionalRepositoriesModal = (props) => {
     repositoryNameToDelete,
     repositoryLabelToDelete
   ) => {
-    console.log(name, repositoryNameToDelete, repositoryLabelToDelete);
     const payload = [
       {
         repositoryLabel: repositoryLabelToDelete,
         repositoryName: repositoryNameToDelete,
       },
     ];
-    console.log('Request Payload:', payload);
 
     mutate(
       { name, payload },
@@ -51,14 +48,8 @@ const DeleteAdditionalRepositoriesModal = (props) => {
           addSuccessNotification(
             `Additional repository ${repositoryNameToDelete} deleted`
           );
+          queryClient.invalidateQueries(queryName);
           handleModalToggle(true);
-          setDeletedRepositories((prevState) => [
-            ...prevState,
-            {
-              repositoryName: repositoryNameToDelete,
-              repositoryLabel: repositoryLabelToDelete,
-            },
-          ]);
         },
         onError: () => {
           addErrorNotification('Something went wrong. Please try again');
@@ -66,8 +57,8 @@ const DeleteAdditionalRepositoriesModal = (props) => {
         },
       }
     );
-    mutate;
   };
+
   const actions = [
     <Button
       key="confirm"
@@ -100,19 +91,21 @@ const DeleteAdditionalRepositoriesModal = (props) => {
       <TextContent>
         <Text component={TextVariants.h2}>
           <ExclamationTriangleIcon size="md" color="#F0AB00" />
-          {''} Remove repository?
+          Remove repository?
         </Text>
       </TextContent>
     </>
   );
 
-  const content = () => (
-    <TextContent>
-      <Text component={TextVariants.p}>
-        <b>{repositoryNameToDelete}</b> will no longer be enabled when
-        registering with this activation key.
-      </Text>
-    </TextContent>
+  const content = (
+    <>
+      <TextContent>
+        <Text component={TextVariants.p}>
+          <b>{repositoryNameToDelete}</b> will no longer be enabled when
+          registering with this activation key.
+        </Text>
+      </TextContent>
+    </>
   );
 
   return (
@@ -124,7 +117,7 @@ const DeleteAdditionalRepositoriesModal = (props) => {
       actions={actions}
       isDisabled={isLoading}
     >
-      {content()}
+      {content}
     </Modal>
   );
 };
@@ -135,7 +128,6 @@ DeleteAdditionalRepositoriesModal.propTypes = {
   repositoryNameToDelete: propTypes.string.isRequired,
   repositoryLabelToDelete: propTypes.string.isRequired,
   name: propTypes.string.isRequired,
-  setDeletedRepositories: propTypes.func.isRequired,
 };
 
 export default DeleteAdditionalRepositoriesModal;

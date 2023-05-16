@@ -4,8 +4,6 @@ import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 const deleteAdditionalRepositoriesMutation =
   (token) =>
   async ({ name, payload }) => {
-    console.log('Payload:', payload);
-    console.log('Request Payload:', payload);
     const response = await fetch(
       `/api/rhsm/v2/activation_keys/${name}/additional_repositories`,
       {

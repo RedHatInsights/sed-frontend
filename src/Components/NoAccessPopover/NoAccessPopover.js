@@ -19,5 +19,5 @@ const NoAccessPopover = ({ content: Button }) => {
 export default NoAccessPopover;
 
 NoAccessPopover.propTypes = {
-  content: propTypes.elementType,
+  content: propTypes.elementType.isRequired,
 };
