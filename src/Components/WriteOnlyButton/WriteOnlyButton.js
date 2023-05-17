@@ -1,7 +1,8 @@
-import { Button, Tooltip } from '@patternfly/react-core';
+import { Button } from '@patternfly/react-core';
 import React from 'react';
 import { useQueryClient } from 'react-query';
 import PropTypes from 'prop-types';
+import NoAccessPopover from '../NoAccessPopover';
 
 const WriteOnlyButton = (props) => {
   const { children, ...buttonProps } = props;
@@ -11,14 +12,15 @@ const WriteOnlyButton = (props) => {
   const isDisabled = !user.rbacPermissions.canWriteActivationKeys;
 
   return (
-    <Button isDisabled={isDisabled} {...buttonProps}>
-      {children}
-      {isDisabled && (
-        <Tooltip content={<div>Your tooltip content goes here</div>}>
-          <span></span>
-        </Tooltip>
+    <>
+      {isDisabled ? (
+        <NoAccessPopover
+          content={() => <Button isDisabled>{children}</Button>}
+        />
+      ) : (
+        <Button {...buttonProps}>{children}</Button>
       )}
-    </Button>
+    </>
   );
 };
 
