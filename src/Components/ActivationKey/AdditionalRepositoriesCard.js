@@ -18,6 +18,7 @@ import AddAdditionalRepositoriesModal from '../Modals/AddAdditionalRepositoriesM
 
 const AdditionalRepositoriesCard = (props) => {
   const { activationKey } = props;
+
   const {
     data: availableRepositories,
     isLoading,
@@ -63,6 +64,7 @@ const AdditionalRepositoriesCard = (props) => {
         </TextContent>
         <AdditionalRepositoriesTable
           repositories={activationKey.additionalRepositories}
+          name={activationKey.name}
         />
       </CardBody>
     </Card>
@@ -71,8 +73,8 @@ const AdditionalRepositoriesCard = (props) => {
 
 AdditionalRepositoriesCard.propTypes = {
   activationKey: propTypes.object,
-  isLoading: propTypes.func,
-  error: propTypes.func,
+  isLoading: propTypes.bool,
+  error: propTypes.bool,
 };
 
 export default AdditionalRepositoriesCard;

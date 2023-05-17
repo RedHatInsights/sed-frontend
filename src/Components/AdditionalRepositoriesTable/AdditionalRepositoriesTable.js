@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   TableComposable,
   Thead,
@@ -9,14 +9,22 @@ import {
 } from '@patternfly/react-table';
 import { Pagination, PaginationVariant } from '@patternfly/react-core';
 import propTypes from 'prop-types';
+import RemoveAdditionalRepositoriesButton from './RemoveAdditionalRepositoriesButton';
 import NoAdditionalRepositories from './NoAdditionalRepositories';
+import DeleteAdditionalRepositoriesModal from '../Modals/DeleteAdditionalRepositoriesModal';
 
 const AdditionalRepositoriesTable = (props) => {
-  const { repositories } = props;
-  const [page, setPage] = React.useState(1);
-  const [perPage, setPerPage] = React.useState(10);
-  const [activeSortIndex, setActiveSortIndex] = React.useState(null);
-  const [activeSortDirection, setActiveSortDirection] = React.useState(null);
+  const { repositories, name } = props;
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(10);
+  const [activeSortIndex, setActiveSortIndex] = useState(null);
+  const [activeSortDirection, setActiveSortDirection] = useState(null);
+  const [repositoryNameToDelete, setRepositoryNameToDelete] = useState('');
+  const [repositoryLabelToDelete, setRepositoryLabelToDelete] = useState('');
+  const [
+    isDeleteAdditionalRepositoriesModalOpen,
+    setisDeleteAdditionalRepositoriesModalOpen,
+  ] = useState(false);
   const columnNames = {
     repositoryLabel: 'Label',
     repositoryName: 'Name',
@@ -70,14 +78,9 @@ const AdditionalRepositoriesTable = (props) => {
     setPage(1);
   };
 
-  const countProducts = () => {
-    const filtedRepo = sortedRepositories;
-    return filtedRepo?.length;
-  };
-
   const PaginationTop = () => (
     <Pagination
-      itemCount={countProducts(repositories)}
+      itemCount={sortedRepositories?.length}
       perPage={perPage}
       page={page}
       onSetPage={handleSetPage}
@@ -89,7 +92,7 @@ const AdditionalRepositoriesTable = (props) => {
 
   const PaginationBottom = () => (
     <Pagination
-      itemCount={countProducts(repositories)}
+      itemCount={sortedRepositories?.length}
       perPage={perPage}
       page={page}
       onSetPage={handleSetPage}
@@ -100,6 +103,17 @@ const AdditionalRepositoriesTable = (props) => {
 
   const sortedRepositories = sortRepos(repositories, activeSortIndex);
   const paginatedRepos = getPage(sortedRepositories);
+
+  const handleDeleteAdditionalRepositoriesToggle = (
+    repositoryName,
+    repositoryLabel
+  ) => {
+    setisDeleteAdditionalRepositoriesModalOpen(
+      !isDeleteAdditionalRepositoriesModalOpen
+    );
+    setRepositoryNameToDelete(repositoryName);
+    setRepositoryLabelToDelete(repositoryLabel);
+  };
 
   return (
     <React.Fragment>
@@ -123,10 +137,27 @@ const AdditionalRepositoriesTable = (props) => {
                 <Td dataLabel={columnNames.repositoryLabel}>
                   {repository.repositoryLabel}
                 </Td>
+                <Td>
+                  <RemoveAdditionalRepositoriesButton
+                    onClick={() =>
+                      handleDeleteAdditionalRepositoriesToggle(
+                        repository.repositoryName,
+                        repository.repositoryLabel
+                      )
+                    }
+                  />
+                </Td>
               </Tr>
             );
           })}
         </Tbody>
+        <DeleteAdditionalRepositoriesModal
+          name={name}
+          isOpen={isDeleteAdditionalRepositoriesModalOpen}
+          handleModalToggle={() => handleDeleteAdditionalRepositoriesToggle}
+          repositoryNameToDelete={repositoryNameToDelete}
+          repositoryLabelToDelete={repositoryLabelToDelete}
+        />
       </TableComposable>
       {repositories.length === 0 && <NoAdditionalRepositories />}
       <PaginationBottom />
@@ -135,7 +166,9 @@ const AdditionalRepositoriesTable = (props) => {
 };
 
 AdditionalRepositoriesTable.propTypes = {
-  repositories: propTypes.array,
+  repositories: propTypes.array.isRequired,
+  name: propTypes.string.isRequired,
+  setRepositories: propTypes.func,
 };
 
 export default AdditionalRepositoriesTable;

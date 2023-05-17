@@ -2,13 +2,53 @@ import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { fireEvent, render, screen } from '@testing-library/react';
 import AdditionalRepositoriesTable from '../AdditionalRepositoriesTable';
-
-jest.mock('../../../hooks/useFeatureFlag');
+import useFeatureFlag from '../../../hooks/useFeatureFlag';
+import { get, def } from 'bdd-lazy-var';
 import '@testing-library/jest-dom';
+import useAvailableRepositories from '../../../hooks/useAvailableRepositories';
+jest.mock('../../../hooks/useFeatureFlag');
+jest.mock('../../../hooks/useAvailableRepositories');
+jest.mock('uuid', () => {
+  return { v4: jest.fn(() => '00000000-0000-0000-0000-000000000000') };
+});
+jest.mock('../../../hooks/useUser');
+jest.mock('react-router-dom', () => ({
+  ...jest.requireActual('react-router-dom'),
+  useRouteMatch: () => ({ url: '/' }),
+}));
 
 const queryClient = new QueryClient();
 
 describe('AdditionalRepositoriesTable', () => {
+  def('rbacPermissions', () => {
+    return {
+      rbacPermissions: {
+        canReadActivationKeys: true,
+        canWriteActivationKeys: true,
+      },
+    };
+  });
+  def('loading', () => false);
+  def('error', () => false);
+  def('data', () => [
+    {
+      name: 'A',
+      role: 'B',
+      serviceLevel: 'C',
+      usage: 'D',
+    },
+  ]);
+  beforeEach(() => {
+    jest
+      .spyOn(queryClient, 'getQueryData')
+      .mockReturnValue(get('rbacPermissions'));
+    useAvailableRepositories.mockReturnValue({
+      isLoading: get('loading'),
+      error: get('error'),
+      data: get('data'),
+    });
+    useFeatureFlag.mockReturnValue(false);
+  });
   const repositories = [
     {
       repositoryLabel: 'label-a',
@@ -17,6 +57,23 @@ describe('AdditionalRepositoriesTable', () => {
       repositoryLabel: 'label-b',
     },
   ];
+
+  jest.mock('../../../hooks/useUser', () => ({
+    __esModule: true,
+    default: jest.fn().mockReturnValue({
+      isLoading: false,
+      isFetching: false,
+      isSuccess: true,
+      isError: false,
+      data: {
+        rbacPermissions: {
+          canReadActivationKeys: true,
+          canWriteActivationKeys: true,
+        },
+      },
+    }),
+  }));
+
   it('renders correctly', () => {
     const Table = () => (
       <QueryClientProvider client={queryClient}>
@@ -28,106 +85,106 @@ describe('AdditionalRepositoriesTable', () => {
 
     expect(container).toMatchSnapshot();
   });
-});
 
-describe('when row column headings are clicked', () => {
-  const repositories = [
-    {
-      repositoryLabel: 'label-a',
-    },
-    {
-      repositoryLabel: 'label-b',
-    },
-    {
-      repositoryLabel: 'label-c',
-    },
-  ];
+  describe('when row column headings are clicked', () => {
+    const repositories = [
+      {
+        repositoryLabel: 'label-a',
+      },
+      {
+        repositoryLabel: 'label-b',
+      },
+      {
+        repositoryLabel: 'label-c',
+      },
+    ];
 
-  it('can sort by name', () => {
-    const Table = () => (
-      <QueryClientProvider client={queryClient}>
-        <AdditionalRepositoriesTable repositories={repositories} />
-      </QueryClientProvider>
-    );
+    it('can sort by name', () => {
+      const Table = () => (
+        <QueryClientProvider client={queryClient}>
+          <AdditionalRepositoriesTable repositories={repositories} />
+        </QueryClientProvider>
+      );
 
-    const { container } = render(<Table />);
-    fireEvent.click(screen.getByText('Name'));
+      const { container } = render(<Table />);
+      fireEvent.click(screen.getByText('Name'));
 
-    expect(container).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
+    });
+
+    it('can sort by name, reversed', () => {
+      const Table = () => (
+        <QueryClientProvider client={queryClient}>
+          <AdditionalRepositoriesTable repositories={repositories} />
+        </QueryClientProvider>
+      );
+
+      const { container } = render(<Table />);
+      fireEvent.click(screen.getByText('Name'));
+      fireEvent.click(screen.getByText('Name'));
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('can sort by label', () => {
+      const Table = () => (
+        <QueryClientProvider client={queryClient}>
+          <AdditionalRepositoriesTable repositories={repositories} />
+        </QueryClientProvider>
+      );
+
+      const { container } = render(<Table />);
+      fireEvent.click(screen.getByText('Label'));
+
+      expect(container).toMatchSnapshot();
+    });
+
+    it('can sort by label, reversed', () => {
+      const Table = () => (
+        <QueryClientProvider client={queryClient}>
+          <AdditionalRepositoriesTable repositories={repositories} />
+        </QueryClientProvider>
+      );
+
+      const { container } = render(<Table />);
+      fireEvent.click(screen.getByText('Label'));
+      fireEvent.click(screen.getByText('Label'));
+
+      expect(container).toMatchSnapshot();
+    });
   });
 
-  it('can sort by name, reversed', () => {
-    const Table = () => (
-      <QueryClientProvider client={queryClient}>
-        <AdditionalRepositoriesTable repositories={repositories} />
-      </QueryClientProvider>
-    );
+  describe('when using pagination', () => {
+    const repositories = [...Array(12).keys()].map((id) => ({
+      repositoryLabel: `label-${id}`,
+    }));
+    it('can change page', () => {
+      const Table = () => (
+        <QueryClientProvider client={queryClient}>
+          <AdditionalRepositoriesTable repositories={repositories} />
+        </QueryClientProvider>
+      );
 
-    const { container } = render(<Table />);
-    fireEvent.click(screen.getByText('Name'));
-    fireEvent.click(screen.getByText('Name'));
+      const { container } = render(<Table />);
+      const nextPage = screen.getAllByLabelText('Go to next page')[0];
+      fireEvent.click(nextPage);
 
-    expect(container).toMatchSnapshot();
-  });
+      expect(container).toMatchSnapshot();
+    });
+    it('can change per page', () => {
+      const Table = () => (
+        <QueryClientProvider client={queryClient}>
+          <AdditionalRepositoriesTable repositories={repositories} />
+        </QueryClientProvider>
+      );
 
-  it('can sort by label', () => {
-    const Table = () => (
-      <QueryClientProvider client={queryClient}>
-        <AdditionalRepositoriesTable repositories={repositories} />
-      </QueryClientProvider>
-    );
+      const { container } = render(<Table />);
+      const perPageArrow = screen.getAllByLabelText('Items per page')[0];
+      fireEvent.click(perPageArrow);
+      const perPageAmout = screen.getByText('20 per page');
+      fireEvent.click(perPageAmout);
 
-    const { container } = render(<Table />);
-    fireEvent.click(screen.getByText('Label'));
-
-    expect(container).toMatchSnapshot();
-  });
-
-  it('can sort by label, reversed', () => {
-    const Table = () => (
-      <QueryClientProvider client={queryClient}>
-        <AdditionalRepositoriesTable repositories={repositories} />
-      </QueryClientProvider>
-    );
-
-    const { container } = render(<Table />);
-    fireEvent.click(screen.getByText('Label'));
-    fireEvent.click(screen.getByText('Label'));
-
-    expect(container).toMatchSnapshot();
-  });
-});
-
-describe('when using pagination', () => {
-  const repositories = [...Array(12).keys()].map((id) => ({
-    repositoryLabel: `label-${id}`,
-  }));
-  it('can change page', () => {
-    const Table = () => (
-      <QueryClientProvider client={queryClient}>
-        <AdditionalRepositoriesTable repositories={repositories} />
-      </QueryClientProvider>
-    );
-
-    const { container } = render(<Table />);
-    const nextPage = screen.getAllByLabelText('Go to next page')[0];
-    fireEvent.click(nextPage);
-
-    expect(container).toMatchSnapshot();
-  });
-  it('can change per page', () => {
-    const Table = () => (
-      <QueryClientProvider client={queryClient}>
-        <AdditionalRepositoriesTable repositories={repositories} />
-      </QueryClientProvider>
-    );
-
-    const { container } = render(<Table />);
-    const perPageArrow = screen.getAllByLabelText('Items per page')[0];
-    fireEvent.click(perPageArrow);
-    const perPageAmout = screen.getByText('20 per page');
-    fireEvent.click(perPageAmout);
-
-    expect(container).toMatchSnapshot();
+      expect(container).toMatchSnapshot();
+    });
   });
 });
