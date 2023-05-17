@@ -44,11 +44,10 @@ const DeleteAdditionalRepositoriesModal = (props) => {
           const updatedData = data?.filter(
             (entry) => entry.repositoryName !== repositoryNameToDelete
           );
-          queryClient.setQueryData(queryName, updatedData);
           addSuccessNotification(
             `Additional repository ${repositoryNameToDelete} deleted`
           );
-          queryClient.invalidateQueries(queryName);
+          queryClient.invalidateQueries(queryName, updatedData);
           handleModalToggle(true);
         },
         onError: () => {

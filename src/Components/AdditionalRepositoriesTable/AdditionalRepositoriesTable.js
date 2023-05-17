@@ -58,7 +58,7 @@ const AdditionalRepositoriesTable = (props) => {
       } else if (aValue > bValue) {
         result = 1;
       }
-      return activeSortDirection === 'asc' ? result : -result;
+      return activeSortDirection == 'asc' ? result : -1 * result;
     });
     return sortedRepos;
   };
@@ -78,14 +78,9 @@ const AdditionalRepositoriesTable = (props) => {
     setPage(1);
   };
 
-  const countProducts = () => {
-    const filteredRepo = sortedRepositories;
-    return filteredRepo?.length;
-  };
-
   const PaginationTop = () => (
     <Pagination
-      itemCount={countProducts(repositories)}
+      itemCount={sortedRepositories?.length}
       perPage={perPage}
       page={page}
       onSetPage={handleSetPage}
@@ -97,7 +92,7 @@ const AdditionalRepositoriesTable = (props) => {
 
   const PaginationBottom = () => (
     <Pagination
-      itemCount={countProducts(repositories)}
+      itemCount={sortedRepositories?.length}
       perPage={perPage}
       page={page}
       onSetPage={handleSetPage}
@@ -159,9 +154,7 @@ const AdditionalRepositoriesTable = (props) => {
         <DeleteAdditionalRepositoriesModal
           name={name}
           isOpen={isDeleteAdditionalRepositoriesModalOpen}
-          handleModalToggle={() =>
-            setisDeleteAdditionalRepositoriesModalOpen(false)
-          }
+          handleModalToggle={() => handleDeleteAdditionalRepositoriesToggle}
           repositoryNameToDelete={repositoryNameToDelete}
           repositoryLabelToDelete={repositoryLabelToDelete}
         />

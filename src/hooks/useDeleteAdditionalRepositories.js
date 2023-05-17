@@ -22,6 +22,7 @@ const deleteAdditionalRepositoriesMutation =
       );
     }
   };
+
 const useDeleteAdditionalRepositories = () => {
   const chrome = useChrome();
 
@@ -30,4 +31,4 @@ const useDeleteAdditionalRepositories = () => {
   );
 };
 
-export { useDeleteAdditionalRepositories as default };
+export default useDeleteAdditionalRepositories;

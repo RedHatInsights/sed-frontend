@@ -50,18 +50,18 @@ const AdditionalRepositoriesCard = (props) => {
             BaseOS and AppStream, are always enabled and do not need to be
             explicitly added to the activation key.
           </Text>
+          <AddAdditionalRepositoriesButton
+            onClick={handleEditAdditionalRepositoriesToggle}
+          />
+          <AddAdditionalRepositoriesModal
+            isOpen={isEditAdditionalRepositoriesModalOpen}
+            handleModalToggle={handleEditAdditionalRepositoriesToggle}
+            keyName={activationKey.name}
+            repositories={availableRepositories}
+            isLoading={isLoading}
+            error={error}
+          />
         </TextContent>
-        <AddAdditionalRepositoriesButton
-          onClick={handleEditAdditionalRepositoriesToggle}
-        />
-        <AddAdditionalRepositoriesModal
-          isOpen={isEditAdditionalRepositoriesModalOpen}
-          handleModalToggle={handleEditAdditionalRepositoriesToggle}
-          keyName={activationKey.name}
-          repositories={availableRepositories}
-          isLoading={isLoading}
-          error={error}
-        />
         <AdditionalRepositoriesTable
           repositories={activationKey.additionalRepositories}
           name={activationKey.name}
