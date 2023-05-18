@@ -120,11 +120,12 @@ const AdditionalRepositoriesTable = (props) => {
       <PaginationTop />
       <TableComposable aria-label="ActivationKeys">
         <Thead>
-          <Tr ouiaSafe={true}>
+          <Tr>
             <Th sort={getSortParams(0)} width={40}>
               {columnNames.repositoryName}
             </Th>
             <Th sort={getSortParams(1)}>{columnNames.repositoryLabel}</Th>
+            <Th />
           </Tr>
         </Thead>
         <Tbody>
@@ -159,6 +160,13 @@ const AdditionalRepositoriesTable = (props) => {
           repositoryLabelToDelete={repositoryLabelToDelete}
         />
       </TableComposable>
+      <DeleteAdditionalRepositoriesModal
+        name={name}
+        isOpen={isDeleteAdditionalRepositoriesModalOpen}
+        handleModalToggle={handleDeleteAdditionalRepositoriesToggle}
+        repositoryNameToDelete={repositoryNameToDelete}
+        repositoryLabelToDelete={repositoryLabelToDelete}
+      />
       {repositories.length === 0 && <NoAdditionalRepositories />}
       <PaginationBottom />
     </React.Fragment>
@@ -168,7 +176,6 @@ const AdditionalRepositoriesTable = (props) => {
 AdditionalRepositoriesTable.propTypes = {
   repositories: propTypes.array.isRequired,
   name: propTypes.string.isRequired,
-  setRepositories: propTypes.func,
 };
 
 export default AdditionalRepositoriesTable;

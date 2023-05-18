@@ -238,6 +238,9 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
             </div>
           </button>
         </th>
+        <th
+          class=""
+        />
       </tr>
     </thead>
     <tbody
@@ -781,6 +784,9 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
             </div>
           </button>
         </th>
+        <th
+          class=""
+        />
       </tr>
     </thead>
     <tbody
@@ -1368,6 +1374,9 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
             </div>
           </button>
         </th>
+        <th
+          class=""
+        />
       </tr>
     </thead>
     <tbody
@@ -1955,6 +1964,9 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
             </div>
           </button>
         </th>
+        <th
+          class=""
+        />
       </tr>
     </thead>
     <tbody
@@ -2542,6 +2554,9 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
             </div>
           </button>
         </th>
+        <th
+          class=""
+        />
       </tr>
     </thead>
     <tbody
@@ -3128,6 +3143,9 @@ exports[`AdditionalRepositoriesTable when using pagination can change page 1`] =
             </div>
           </button>
         </th>
+        <th
+          class=""
+        />
       </tr>
     </thead>
     <tbody
@@ -3668,6 +3686,9 @@ exports[`AdditionalRepositoriesTable when using pagination can change per page 1
             </div>
           </button>
         </th>
+        <th
+          class=""
+        />
       </tr>
     </thead>
     <tbody
