@@ -152,6 +152,13 @@ const AdditionalRepositoriesTable = (props) => {
             );
           })}
         </Tbody>
+        <DeleteAdditionalRepositoriesModal
+          name={name}
+          isOpen={isDeleteAdditionalRepositoriesModalOpen}
+          handleModalToggle={() => handleDeleteAdditionalRepositoriesToggle}
+          repositoryNameToDelete={repositoryNameToDelete}
+          repositoryLabelToDelete={repositoryLabelToDelete}
+        />
       </TableComposable>
       <DeleteAdditionalRepositoriesModal
         name={name}
