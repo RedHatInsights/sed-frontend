@@ -154,7 +154,7 @@ const AdditionalRepositoriesTable = (props) => {
         <DeleteAdditionalRepositoriesModal
           name={name}
           isOpen={isDeleteAdditionalRepositoriesModalOpen}
-          handleModalToggle={() => handleDeleteAdditionalRepositoriesToggle}
+          handleModalToggle={handleDeleteAdditionalRepositoriesToggle}
           repositoryNameToDelete={repositoryNameToDelete}
           repositoryLabelToDelete={repositoryLabelToDelete}
         />
