@@ -118,7 +118,7 @@ const AdditionalRepositoriesTable = (props) => {
   return (
     <React.Fragment>
       <PaginationTop />
-      <TableComposable aria-label="Additional-Reposiories">
+      <TableComposable aria-label="ActivationKeys">
         <Thead>
           <Tr>
             <Th sort={getSortParams(0)} width={40}>
