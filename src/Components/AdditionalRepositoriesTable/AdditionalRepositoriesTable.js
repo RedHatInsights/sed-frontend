@@ -169,7 +169,6 @@ const AdditionalRepositoriesTable = (props) => {
 AdditionalRepositoriesTable.propTypes = {
   repositories: propTypes.array.isRequired,
   name: propTypes.string.isRequired,
-  setRepositories: propTypes.func,
 };
 
 export default AdditionalRepositoriesTable;
