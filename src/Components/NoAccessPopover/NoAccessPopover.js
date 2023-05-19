@@ -6,10 +6,9 @@ const NoAccessPopover = ({ content: Button }) => {
   return (
     <React.Fragment>
       <Tooltip
-        position="bottom-start"
         content={<div>For editing access, contact your administrator.</div>}
       >
-        <div>
+        <div className="pf-u-display-inline-block">
           <Button />
         </div>
       </Tooltip>
@@ -17,8 +16,8 @@ const NoAccessPopover = ({ content: Button }) => {
   );
 };
 
-export default NoAccessPopover;
-
 NoAccessPopover.propTypes = {
   content: propTypes.elementType.isRequired,
 };
+
+export default NoAccessPopover;
