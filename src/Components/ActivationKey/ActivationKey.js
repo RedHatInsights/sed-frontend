@@ -29,6 +29,8 @@ import DeleteActivationKeyConfirmationModal from '../Modals/DeleteActivationKeyC
 import EditActivationKeyModal from '../Modals/EditActivationKeyModal';
 import NoAccessPopover from '../NoAccessPopover';
 import { useQueryClient } from 'react-query';
+import { EditReleaseVersionModal } from '../Modals/EditReleaseVersionModal';
+import useReleaseVersions from '../../hooks/useReleaseVersions';
 
 const ActivationKey = () => {
   const history = useHistory();
@@ -45,12 +47,18 @@ const ActivationKey = () => {
     error: keyError,
     data: activationKey,
   } = useActivationKey(id);
+  const {
+    isLoading: areReleaseVersionsLoading,
+    data: releaseVersions
+  } = useReleaseVersions();
 
   const description =
     'View and edit details and repositories for this activation key.';
   const [isDeleteActivationKeyModalOpen, setIsDeleteActivationKeyModalOpen] =
     useState(false);
   const [isEditActivationKeyModalOpen, setIsEditActivationKeyModalOpen] =
+    useState(false);
+  const [isEditReleaseVersionModalOpen, setIsEditReleaseVersionModalOpen] = 
     useState(false);
   const handleDeleteActivationKeyModalToggle = (keyDeleted) => {
     setIsDeleteActivationKeyModalOpen(!isDeleteActivationKeyModalOpen);
@@ -62,6 +70,10 @@ const ActivationKey = () => {
   const handleEditActivationKeyModalToggle = () => {
     setIsEditActivationKeyModalOpen(!isEditActivationKeyModalOpen);
   };
+
+  const handleEditReleaseVersionModalToggle = () => {
+    setIsEditReleaseVersionModalOpen(!isEditReleaseVersionModalOpen);
+  }
 
   const editModalDescription =
     'System purpose values are used by the subscriptions service to help filter and identify hosts. Setting values for these attributes is optional, but doing so ensures that subscriptions reporting accurately reflects the system. Only those values available to your account are shown.';
@@ -107,7 +119,10 @@ const ActivationKey = () => {
                       />
                     </GalleryItem>
                     <GalleryItem>
-                      <WorkloadCard activationKey={activationKey} />
+                      <WorkloadCard
+                        activationKey={activationKey}
+                        actionHandler={handleEditReleaseVersionModalToggle}
+                      />
                     </GalleryItem>
                   </Gallery>
                 </GridItem>
@@ -132,6 +147,13 @@ const ActivationKey = () => {
               activationKeyName={id}
               systemPurposeOnly={true}
               modalSize="small"
+            />
+            <EditReleaseVersionModal
+              isOpen={isEditReleaseVersionModalOpen}
+              onClose={handleEditReleaseVersionModalToggle}
+              releaseVersions={releaseVersions}
+              areReleaseVersionsLoading={areReleaseVersionsLoading}
+              activationKey={activationKey}
             />
           </React.Fragment>
         )}
