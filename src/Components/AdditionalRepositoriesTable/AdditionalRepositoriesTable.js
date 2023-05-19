@@ -138,16 +138,14 @@ const AdditionalRepositoriesTable = (props) => {
                 <Td dataLabel={columnNames.repositoryLabel}>
                   {repository.repositoryLabel}
                 </Td>
-                <Td>
-                  <RemoveAdditionalRepositoriesButton
-                    onClick={() =>
-                      handleDeleteAdditionalRepositoriesToggle(
-                        repository.repositoryName,
-                        repository.repositoryLabel
-                      )
-                    }
-                  />
-                </Td>
+                <RemoveAdditionalRepositoriesButton
+                  onClick={() =>
+                    handleDeleteAdditionalRepositoriesToggle(
+                      repository.repositoryName,
+                      repository.repositoryLabel
+                    )
+                  }
+                />
               </Tr>
             );
           })}
@@ -155,7 +153,7 @@ const AdditionalRepositoriesTable = (props) => {
         <DeleteAdditionalRepositoriesModal
           name={name}
           isOpen={isDeleteAdditionalRepositoriesModalOpen}
-          handleModalToggle={() => handleDeleteAdditionalRepositoriesToggle}
+          handleModalToggle={handleDeleteAdditionalRepositoriesToggle}
           repositoryNameToDelete={repositoryNameToDelete}
           repositoryLabelToDelete={repositoryLabelToDelete}
         />

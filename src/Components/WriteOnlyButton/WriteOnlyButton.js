@@ -15,7 +15,11 @@ const WriteOnlyButton = (props) => {
     <>
       {isDisabled ? (
         <NoAccessPopover
-          content={() => <Button isDisabled>{children}</Button>}
+          content={() => (
+            <Button {...buttonProps} isDisabled>
+              {children}
+            </Button>
+          )}
         />
       ) : (
         <Button {...buttonProps}>{children}</Button>

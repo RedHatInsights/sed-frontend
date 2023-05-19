@@ -48,7 +48,7 @@ const DeleteAdditionalRepositoriesModal = (props) => {
             `Additional repository ${repositoryNameToDelete} deleted`
           );
           queryClient.invalidateQueries(queryName, updatedData);
-          handleModalToggle(true);
+          handleModalToggle();
         },
         onError: () => {
           addErrorNotification('Something went wrong. Please try again');
