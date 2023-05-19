@@ -6,6 +6,7 @@ const NoAccessPopover = ({ content: Button }) => {
   return (
     <React.Fragment>
       <Tooltip
+        position="bottom-start"
         content={<div>For editing access, contact your administrator.</div>}
       >
         <div>
