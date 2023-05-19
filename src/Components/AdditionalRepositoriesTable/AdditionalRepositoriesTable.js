@@ -138,7 +138,6 @@ const AdditionalRepositoriesTable = (props) => {
                 <Td dataLabel={columnNames.repositoryLabel}>
                   {repository.repositoryLabel}
                 </Td>
-
                 <RemoveAdditionalRepositoriesButton
                   onClick={() =>
                     handleDeleteAdditionalRepositoriesToggle(
@@ -159,6 +158,13 @@ const AdditionalRepositoriesTable = (props) => {
           repositoryLabelToDelete={repositoryLabelToDelete}
         />
       </TableComposable>
+      <DeleteAdditionalRepositoriesModal
+        name={name}
+        isOpen={isDeleteAdditionalRepositoriesModalOpen}
+        handleModalToggle={handleDeleteAdditionalRepositoriesToggle}
+        repositoryNameToDelete={repositoryNameToDelete}
+        repositoryLabelToDelete={repositoryLabelToDelete}
+      />
       {repositories.length === 0 && <NoAdditionalRepositories />}
       <PaginationBottom />
     </React.Fragment>
