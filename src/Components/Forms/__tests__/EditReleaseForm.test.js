@@ -1,7 +1,7 @@
-import { QueryClient, QueryClientProvider } from "react-query";
-import { Provider } from "react-redux";
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { Provider } from 'react-redux';
 import { init } from '../../../store';
-import { EditReleaseVersionForm } from "../EditReleaseVersionForm";
+import { EditReleaseVersionForm } from '../EditReleaseVersionForm';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 
@@ -16,9 +16,9 @@ const props = {
     releaseVersion: '',
     usage: '',
     serviceLevel: '',
-    role: ''
-  }
-}
+    role: '',
+  },
+};
 
 describe('Edit release version form', () => {
   it('renders correctly', () => {

@@ -2,9 +2,12 @@ import { useQuery } from 'react-query';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const fetchReleaseVersions = (token) => async () => {
-  const response = await fetch(`/api/rhsm/v2/products/RHEL/extended-update-support-versions`, {
-    headers: { Authorization: `Bearer ${await token}` },
-  });
+  const response = await fetch(
+    `/api/rhsm/v2/products/RHEL/extended-update-support-versions`,
+    {
+      headers: { Authorization: `Bearer ${await token}` },
+    }
+  );
 
   const releaseVersions = await response.json();
 

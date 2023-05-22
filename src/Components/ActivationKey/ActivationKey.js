@@ -47,10 +47,8 @@ const ActivationKey = () => {
     error: keyError,
     data: activationKey,
   } = useActivationKey(id);
-  const {
-    isLoading: areReleaseVersionsLoading,
-    data: releaseVersions
-  } = useReleaseVersions();
+  const { isLoading: areReleaseVersionsLoading, data: releaseVersions } =
+    useReleaseVersions();
 
   const description =
     'View and edit details and repositories for this activation key.';
@@ -58,7 +56,7 @@ const ActivationKey = () => {
     useState(false);
   const [isEditActivationKeyModalOpen, setIsEditActivationKeyModalOpen] =
     useState(false);
-  const [isEditReleaseVersionModalOpen, setIsEditReleaseVersionModalOpen] = 
+  const [isEditReleaseVersionModalOpen, setIsEditReleaseVersionModalOpen] =
     useState(false);
   const handleDeleteActivationKeyModalToggle = (keyDeleted) => {
     setIsDeleteActivationKeyModalOpen(!isDeleteActivationKeyModalOpen);
@@ -73,7 +71,7 @@ const ActivationKey = () => {
 
   const handleEditReleaseVersionModalToggle = () => {
     setIsEditReleaseVersionModalOpen(!isEditReleaseVersionModalOpen);
-  }
+  };
 
   const editModalDescription =
     'System purpose values are used by the subscriptions service to help filter and identify hosts. Setting values for these attributes is optional, but doing so ensures that subscriptions reporting accurately reflects the system. Only those values available to your account are shown.';

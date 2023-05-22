@@ -19,8 +19,8 @@ const props = {
     releaseVersion: '',
     serviceLevel: '',
     usage: '',
-    role: ''
-  }
+    role: '',
+  },
 };
 
 describe('Edit Release Version Modal', () => {
@@ -31,7 +31,7 @@ describe('Edit Release Version Modal', () => {
           <EditReleaseVersionModal {...props} />
         </QueryClientProvider>
       </Provider>
-    )
+    );
 
     expect(screen.getByText('Edit release version')).toBeInTheDocument();
     expect(screen.getByText('Not defined')).toBeInTheDocument();

@@ -16,7 +16,7 @@ const activationKeyMutation = (token) => async (data) => {
         role,
         serviceLevel,
         usage,
-        releaseVersion
+        releaseVersion,
       }),
     }
   );
