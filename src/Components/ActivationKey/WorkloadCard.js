@@ -11,12 +11,14 @@ import {
   TextListItem,
   TextListItemVariants,
   Title,
+  CardActions,
 } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import ActivationKeysDocsPopover from '../ActivationKeysDocsPopover';
+import EditButton from './EditButton';
 
 const WorkloadCard = (props) => {
-  const { activationKey } = props;
+  const { activationKey, actionHandler } = props;
   const notDefinedText = 'Not defined';
   const docsPopoverContent = (
     <TextContent>
@@ -40,6 +42,9 @@ const WorkloadCard = (props) => {
             />
           </Title>
         </CardTitle>
+        <CardActions>
+          <EditButton onClick={actionHandler} />
+        </CardActions>
       </CardHeader>
       <CardBody>
         <TextContent>
@@ -61,6 +66,7 @@ const WorkloadCard = (props) => {
 
 WorkloadCard.propTypes = {
   activationKey: propTypes.object,
+  actionHandler: propTypes.func,
 };
 
 export default WorkloadCard;
