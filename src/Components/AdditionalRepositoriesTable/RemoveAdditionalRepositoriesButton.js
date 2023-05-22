@@ -7,7 +7,7 @@ import { Tooltip } from '@patternfly/react-core';
 const RemoveAdditionalRepositoriesButton = ({ onClick, isDisabled }) => {
   return (
     <React.Fragment>
-      {isDisabled ? (
+      {!isDisabled ? (
         <Tooltip
           position="top"
           content={<div>Remove</div>}
