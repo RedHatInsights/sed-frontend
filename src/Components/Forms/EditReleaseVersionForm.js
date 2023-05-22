@@ -10,6 +10,7 @@ import {
 import useUpdateActivationKey from '../../hooks/useUpdateActivationKey';
 import { useQueryClient } from 'react-query';
 import useNotifications from '../../hooks/useNotifications';
+import PropTypes from 'prop-types';
 
 export const EditReleaseVersionForm = ({
   releaseVersions,
@@ -92,4 +93,10 @@ export const EditReleaseVersionForm = ({
       </ActionGroup>
     </Form>
   );
+};
+
+EditReleaseVersionForm.propTypes = {
+  releaseVersions: PropTypes.array,
+  activationKey: PropTypes.object,
+  onClose: PropTypes.func,
 };

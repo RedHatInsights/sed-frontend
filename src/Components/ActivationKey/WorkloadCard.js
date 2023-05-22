@@ -66,6 +66,7 @@ const WorkloadCard = (props) => {
 
 WorkloadCard.propTypes = {
   activationKey: propTypes.object,
+  actionHandler: propTypes.func,
 };
 
 export default WorkloadCard;
