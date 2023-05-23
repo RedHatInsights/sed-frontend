@@ -3,6 +3,7 @@
 # Red Hat Connector Dashboard
 
 ## First time setup
+
 ### Quick start
 1. Make sure you have [`Node.js`](https://nodejs.org/en/) and [`npm`](https://www.npmjs.com/) installed
 2. Run [script to patch your `/etc/hosts`](https://github.com/RedHatInsights/insights-proxy/blob/master/scripts/patch-etc-hosts.sh)
