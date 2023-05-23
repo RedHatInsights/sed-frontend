@@ -1,13 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { useQueryClient } from 'react-query';
 import { WriteOnlyButton } from '../WriteOnlyButton';
 import { MinusCircleIcon } from '@patternfly/react-icons';
 import { Tooltip } from '@patternfly/react-core';
 
-const RemoveAdditionalRepositoriesButton = ({ onClick, isDisabled }) => {
+const RemoveAdditionalRepositoriesButton = ({ onClick }) => {
+  const queryClient = useQueryClient();
+  const user = queryClient.getQueryData('user');
+  const isButtonEnabled = user?.rbacPermissions.canWriteActivationKeys || false;
+
   return (
-    <React.Fragment>
-      {!isDisabled ? (
+    <>
+      {isButtonEnabled ? (
         <Tooltip
           position="top"
           content={<div>Remove</div>}
@@ -26,13 +31,12 @@ const RemoveAdditionalRepositoriesButton = ({ onClick, isDisabled }) => {
           <MinusCircleIcon />
         </WriteOnlyButton>
       )}
-    </React.Fragment>
+    </>
   );
 };
 
 RemoveAdditionalRepositoriesButton.propTypes = {
   onClick: PropTypes.func.isRequired,
-  isDisabled: PropTypes.bool.isRequired,
 };
 
 export default RemoveAdditionalRepositoriesButton;
