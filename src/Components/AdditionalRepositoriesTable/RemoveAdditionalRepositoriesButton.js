@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { useQueryClient } from 'react-query';
 import { WriteOnlyButton } from '../WriteOnlyButton';
 import { MinusCircleIcon } from '@patternfly/react-icons';
-import { Tooltip } from '@patternfly/react-core';
 
 const RemoveAdditionalRepositoriesButton = ({ onClick }) => {
   const queryClient = useQueryClient();
@@ -11,27 +10,16 @@ const RemoveAdditionalRepositoriesButton = ({ onClick }) => {
   const isButtonEnabled = user?.rbacPermissions.canWriteActivationKeys || false;
 
   return (
-    <>
-      {isButtonEnabled ? (
-        <Tooltip
-          position="top"
-          content={<div>Remove</div>}
-          trigger="mouseenter"
-        >
-          <WriteOnlyButton
-            onClick={onClick}
-            variant="plain"
-            aria-label="Action"
-          >
-            <MinusCircleIcon />
-          </WriteOnlyButton>
-        </Tooltip>
-      ) : (
-        <WriteOnlyButton onClick={onClick} variant="plain" aria-label="Action">
-          <MinusCircleIcon />
-        </WriteOnlyButton>
-      )}
-    </>
+    <WriteOnlyButton
+      onClick={onClick}
+      enabledTooltip="Remove"
+      disabledTooltip="For editing access, contact your administrator."
+      variant="plain"
+      aria-label="Action"
+      disabled={!isButtonEnabled}
+    >
+      <MinusCircleIcon />
+    </WriteOnlyButton>
   );
 };
 
