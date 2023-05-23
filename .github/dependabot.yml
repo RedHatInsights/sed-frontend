@@ -1,15 +1,18 @@
 version: 2
 updates:
-- package-ecosystem: npm
-  directory: "/"
-  schedule:
-    interval: weekly
-    time: "12:00"
-    timezone: EST
-  open-pull-requests-limit: 10
-  reviewers:
-  - "@RedHatInsights/team-interact"
-  allow:
-  - dependency-name: "@redhat-cloud-services/frontend*"
-  - dependency-name: "@patternfly/*"
-    dependency-type: direct
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+    labels:
+      - "dependencies"
+    open-pull-requests-limit: 5
+    commit-message:
+      prefix: "chore(deps):"
+    allow:
+      - dependency-name: "@redhat-cloud-services/frontend*"
+      - dependency-name: "@patternfly/*"
+        dependency-type: direct
+    ignore:
+      - dependency-name: "react-router-dom"
+        versions: ["6.x"]

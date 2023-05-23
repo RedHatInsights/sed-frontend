@@ -3,6 +3,7 @@
 # Red Hat Connector Dashboard
 
 ## First time setup
+
 ### Quick start
 1. Make sure you have [`Node.js`](https://nodejs.org/en/) and [`npm`](https://www.npmjs.com/) installed
 2. Run [script to patch your `/etc/hosts`](https://github.com/RedHatInsights/insights-proxy/blob/master/scripts/patch-etc-hosts.sh)
@@ -14,7 +15,7 @@ There is a [comprehensive quick start guide in the Storybook Documentation](http
 ## Running locally
 1. Install dependencies with `npm install`
 2. Run development server with `npm run start:proxy:beta`
-3. Local version of the app will be available at https://stage.foo.redhat.com:1337/beta/settings/connector/
+3. Local version of the app will be available at https://stage.foo.redhat.com:1337/preview/settings/connector/
 
 ### Testing
 

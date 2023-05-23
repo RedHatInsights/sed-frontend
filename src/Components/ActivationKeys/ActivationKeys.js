@@ -17,6 +17,7 @@ import {
   PageHeader,
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import ActivationKeysTable from '../ActivationKeysTable';
 import { useQueryClient } from 'react-query';
 import NoAccessView from './no-access';
@@ -29,6 +30,8 @@ import CreateActivationKeyButton from './CreateActivationKeyButton';
 import DeleteActivationKeyConfirmationModal from '../Modals/DeleteActivationKeyConfirmationModal';
 import ActivationKeysDocsPopover from '../ActivationKeysDocsPopover';
 const ActivationKeys = () => {
+  const { updateDocumentTitle } = useChrome();
+  updateDocumentTitle?.('Activation Keys - Remote Host Configuration');
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData('user');
   const { isLoading, error, data } = useActivationKeys();

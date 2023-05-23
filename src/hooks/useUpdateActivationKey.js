@@ -2,7 +2,7 @@ import { useMutation } from 'react-query';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const activationKeyMutation = (token) => async (data) => {
-  const { activationKeyName, role, serviceLevel, usage } = data;
+  const { activationKeyName, role, serviceLevel, usage, releaseVersion } = data;
 
   const response = await fetch(
     `/api/rhsm/v2/activation_keys/${activationKeyName}`,
@@ -13,9 +13,10 @@ const activationKeyMutation = (token) => async (data) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        role: role,
-        serviceLevel: serviceLevel,
-        usage: usage,
+        role,
+        serviceLevel,
+        usage,
+        releaseVersion,
       }),
     }
   );
