@@ -17,6 +17,8 @@ const WriteOnlyButton = (props) => {
   const user = queryClient.getQueryData('user');
   const isDisabled = !user?.rbacPermissions.canWriteActivationKeys;
 
+  const showEnabledTooltip = enabledTooltip && !isDisabled;
+
   return (
     <>
       {isDisabled ? (
@@ -34,9 +36,19 @@ const WriteOnlyButton = (props) => {
           )}
         />
       ) : (
-        <Tooltip position="top" content={enabledTooltip} trigger="mouseenter">
-          <Button {...buttonProps}>{children}</Button>
-        </Tooltip>
+        <>
+          {showEnabledTooltip ? (
+            <Tooltip
+              position="top"
+              content={enabledTooltip}
+              trigger="mouseenter"
+            >
+              <Button {...buttonProps}>{children}</Button>
+            </Tooltip>
+          ) : (
+            <Button {...buttonProps}>{children}</Button>
+          )}
+        </>
       )}
     </>
   );
@@ -44,7 +56,7 @@ const WriteOnlyButton = (props) => {
 
 WriteOnlyButton.propTypes = {
   children: PropTypes.element.isRequired,
-  enabledTooltip: PropTypes.string.isRequired,
+  enabledTooltip: PropTypes.string,
   disabledTooltip: PropTypes.string,
 };
 
