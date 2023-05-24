@@ -37,7 +37,7 @@ const WriteOnlyButton = (props) => {
         />
       ) : (
         <>
-          {showEnabledTooltip ? (
+          {showEnabledTooltip && (
             <Tooltip
               position="top"
               content={enabledTooltip}
@@ -45,9 +45,8 @@ const WriteOnlyButton = (props) => {
             >
               <Button {...buttonProps}>{children}</Button>
             </Tooltip>
-          ) : (
-            <Button {...buttonProps}>{children}</Button>
           )}
+          {!showEnabledTooltip && <Button {...buttonProps}>{children}</Button>}
         </>
       )}
     </>
