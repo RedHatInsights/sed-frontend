@@ -20,6 +20,7 @@ export const EditReleaseVersionForm = ({
   const [selectedVersion, setSelectedVersion] = useState(
     activationKey.releaseVersion
   );
+
   const { mutate, isLoading } = useUpdateActivationKey();
   const { addSuccessNotification, addErrorNotification } = useNotifications();
   const queryClient = useQueryClient();

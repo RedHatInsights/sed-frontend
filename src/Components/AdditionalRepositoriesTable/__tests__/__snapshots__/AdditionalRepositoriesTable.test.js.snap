@@ -238,6 +238,9 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
             </div>
           </button>
         </th>
+        <th
+          class=""
+        />
       </tr>
     </thead>
     <tbody
@@ -260,6 +263,29 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
         >
           label-a
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-3"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -277,6 +303,29 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
         >
           label-b
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-4"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
     </tbody>
   </table>
@@ -356,7 +405,7 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
           aria-label="Go to first page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="first"
-          data-ouia-component-id="OUIA-Generated-Button-plain-3"
+          data-ouia-component-id="OUIA-Generated-Button-plain-5"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -385,7 +434,7 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
           aria-label="Go to previous page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
-          data-ouia-component-id="OUIA-Generated-Button-plain-4"
+          data-ouia-component-id="OUIA-Generated-Button-plain-6"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -434,7 +483,7 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
           aria-label="Go to next page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="next"
-          data-ouia-component-id="OUIA-Generated-Button-plain-5"
+          data-ouia-component-id="OUIA-Generated-Button-plain-7"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -463,7 +512,7 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
           aria-label="Go to last page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="last"
-          data-ouia-component-id="OUIA-Generated-Button-plain-6"
+          data-ouia-component-id="OUIA-Generated-Button-plain-8"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -489,7 +538,7 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
 </div>
 `;
 
-exports[`when row column headings are clicked can sort by label 1`] = `
+exports[`AdditionalRepositoriesTable when row column headings are clicked can sort by label 1`] = `
 <div>
   <div
     class="pf-c-pagination pf-m-compact"
@@ -584,7 +633,7 @@ exports[`when row column headings are clicked can sort by label 1`] = `
           aria-label="Go to previous page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
-          data-ouia-component-id="OUIA-Generated-Button-plain-43"
+          data-ouia-component-id="OUIA-Generated-Button-plain-54"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -613,7 +662,7 @@ exports[`when row column headings are clicked can sort by label 1`] = `
           aria-label="Go to next page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="next"
-          data-ouia-component-id="OUIA-Generated-Button-plain-44"
+          data-ouia-component-id="OUIA-Generated-Button-plain-55"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -727,6 +776,9 @@ exports[`when row column headings are clicked can sort by label 1`] = `
             </div>
           </button>
         </th>
+        <th
+          class=""
+        />
       </tr>
     </thead>
     <tbody
@@ -749,6 +801,29 @@ exports[`when row column headings are clicked can sort by label 1`] = `
         >
           label-a
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-47"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -766,6 +841,29 @@ exports[`when row column headings are clicked can sort by label 1`] = `
         >
           label-b
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-48"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -783,6 +881,29 @@ exports[`when row column headings are clicked can sort by label 1`] = `
         >
           label-c
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-49"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
     </tbody>
   </table>
@@ -862,7 +983,7 @@ exports[`when row column headings are clicked can sort by label 1`] = `
           aria-label="Go to first page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="first"
-          data-ouia-component-id="OUIA-Generated-Button-plain-45"
+          data-ouia-component-id="OUIA-Generated-Button-plain-56"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -891,7 +1012,7 @@ exports[`when row column headings are clicked can sort by label 1`] = `
           aria-label="Go to previous page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
-          data-ouia-component-id="OUIA-Generated-Button-plain-46"
+          data-ouia-component-id="OUIA-Generated-Button-plain-57"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -940,7 +1061,7 @@ exports[`when row column headings are clicked can sort by label 1`] = `
           aria-label="Go to next page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="next"
-          data-ouia-component-id="OUIA-Generated-Button-plain-47"
+          data-ouia-component-id="OUIA-Generated-Button-plain-58"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -969,7 +1090,7 @@ exports[`when row column headings are clicked can sort by label 1`] = `
           aria-label="Go to last page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="last"
-          data-ouia-component-id="OUIA-Generated-Button-plain-48"
+          data-ouia-component-id="OUIA-Generated-Button-plain-59"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -995,7 +1116,7 @@ exports[`when row column headings are clicked can sort by label 1`] = `
 </div>
 `;
 
-exports[`when row column headings are clicked can sort by label, reversed 1`] = `
+exports[`AdditionalRepositoriesTable when row column headings are clicked can sort by label, reversed 1`] = `
 <div>
   <div
     class="pf-c-pagination pf-m-compact"
@@ -1090,7 +1211,7 @@ exports[`when row column headings are clicked can sort by label, reversed 1`] = 
           aria-label="Go to previous page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
-          data-ouia-component-id="OUIA-Generated-Button-plain-61"
+          data-ouia-component-id="OUIA-Generated-Button-plain-75"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -1119,7 +1240,7 @@ exports[`when row column headings are clicked can sort by label, reversed 1`] = 
           aria-label="Go to next page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="next"
-          data-ouia-component-id="OUIA-Generated-Button-plain-62"
+          data-ouia-component-id="OUIA-Generated-Button-plain-76"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -1233,6 +1354,9 @@ exports[`when row column headings are clicked can sort by label, reversed 1`] = 
             </div>
           </button>
         </th>
+        <th
+          class=""
+        />
       </tr>
     </thead>
     <tbody
@@ -1255,6 +1379,29 @@ exports[`when row column headings are clicked can sort by label, reversed 1`] = 
         >
           label-c
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-62"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -1272,6 +1419,29 @@ exports[`when row column headings are clicked can sort by label, reversed 1`] = 
         >
           label-b
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-63"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -1289,6 +1459,29 @@ exports[`when row column headings are clicked can sort by label, reversed 1`] = 
         >
           label-a
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-64"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
     </tbody>
   </table>
@@ -1368,7 +1561,7 @@ exports[`when row column headings are clicked can sort by label, reversed 1`] = 
           aria-label="Go to first page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="first"
-          data-ouia-component-id="OUIA-Generated-Button-plain-63"
+          data-ouia-component-id="OUIA-Generated-Button-plain-77"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -1397,7 +1590,7 @@ exports[`when row column headings are clicked can sort by label, reversed 1`] = 
           aria-label="Go to previous page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
-          data-ouia-component-id="OUIA-Generated-Button-plain-64"
+          data-ouia-component-id="OUIA-Generated-Button-plain-78"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -1446,7 +1639,7 @@ exports[`when row column headings are clicked can sort by label, reversed 1`] = 
           aria-label="Go to next page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="next"
-          data-ouia-component-id="OUIA-Generated-Button-plain-65"
+          data-ouia-component-id="OUIA-Generated-Button-plain-79"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -1475,7 +1668,7 @@ exports[`when row column headings are clicked can sort by label, reversed 1`] = 
           aria-label="Go to last page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="last"
-          data-ouia-component-id="OUIA-Generated-Button-plain-66"
+          data-ouia-component-id="OUIA-Generated-Button-plain-80"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -1501,7 +1694,7 @@ exports[`when row column headings are clicked can sort by label, reversed 1`] = 
 </div>
 `;
 
-exports[`when row column headings are clicked can sort by name 1`] = `
+exports[`AdditionalRepositoriesTable when row column headings are clicked can sort by name 1`] = `
 <div>
   <div
     class="pf-c-pagination pf-m-compact"
@@ -1596,7 +1789,7 @@ exports[`when row column headings are clicked can sort by name 1`] = `
           aria-label="Go to previous page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
-          data-ouia-component-id="OUIA-Generated-Button-plain-13"
+          data-ouia-component-id="OUIA-Generated-Button-plain-18"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -1625,7 +1818,7 @@ exports[`when row column headings are clicked can sort by name 1`] = `
           aria-label="Go to next page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="next"
-          data-ouia-component-id="OUIA-Generated-Button-plain-14"
+          data-ouia-component-id="OUIA-Generated-Button-plain-19"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -1739,6 +1932,9 @@ exports[`when row column headings are clicked can sort by name 1`] = `
             </div>
           </button>
         </th>
+        <th
+          class=""
+        />
       </tr>
     </thead>
     <tbody
@@ -1761,6 +1957,29 @@ exports[`when row column headings are clicked can sort by name 1`] = `
         >
           label-a
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-11"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -1778,6 +1997,29 @@ exports[`when row column headings are clicked can sort by name 1`] = `
         >
           label-b
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-12"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -1795,6 +2037,29 @@ exports[`when row column headings are clicked can sort by name 1`] = `
         >
           label-c
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-13"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
     </tbody>
   </table>
@@ -1874,7 +2139,7 @@ exports[`when row column headings are clicked can sort by name 1`] = `
           aria-label="Go to first page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="first"
-          data-ouia-component-id="OUIA-Generated-Button-plain-15"
+          data-ouia-component-id="OUIA-Generated-Button-plain-20"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -1903,7 +2168,7 @@ exports[`when row column headings are clicked can sort by name 1`] = `
           aria-label="Go to previous page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
-          data-ouia-component-id="OUIA-Generated-Button-plain-16"
+          data-ouia-component-id="OUIA-Generated-Button-plain-21"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -1952,7 +2217,7 @@ exports[`when row column headings are clicked can sort by name 1`] = `
           aria-label="Go to next page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="next"
-          data-ouia-component-id="OUIA-Generated-Button-plain-17"
+          data-ouia-component-id="OUIA-Generated-Button-plain-22"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -1981,7 +2246,7 @@ exports[`when row column headings are clicked can sort by name 1`] = `
           aria-label="Go to last page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="last"
-          data-ouia-component-id="OUIA-Generated-Button-plain-18"
+          data-ouia-component-id="OUIA-Generated-Button-plain-23"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -2007,7 +2272,7 @@ exports[`when row column headings are clicked can sort by name 1`] = `
 </div>
 `;
 
-exports[`when row column headings are clicked can sort by name, reversed 1`] = `
+exports[`AdditionalRepositoriesTable when row column headings are clicked can sort by name, reversed 1`] = `
 <div>
   <div
     class="pf-c-pagination pf-m-compact"
@@ -2102,7 +2367,7 @@ exports[`when row column headings are clicked can sort by name, reversed 1`] = `
           aria-label="Go to previous page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
-          data-ouia-component-id="OUIA-Generated-Button-plain-31"
+          data-ouia-component-id="OUIA-Generated-Button-plain-39"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -2131,7 +2396,7 @@ exports[`when row column headings are clicked can sort by name, reversed 1`] = `
           aria-label="Go to next page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="next"
-          data-ouia-component-id="OUIA-Generated-Button-plain-32"
+          data-ouia-component-id="OUIA-Generated-Button-plain-40"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -2245,6 +2510,9 @@ exports[`when row column headings are clicked can sort by name, reversed 1`] = `
             </div>
           </button>
         </th>
+        <th
+          class=""
+        />
       </tr>
     </thead>
     <tbody
@@ -2267,6 +2535,29 @@ exports[`when row column headings are clicked can sort by name, reversed 1`] = `
         >
           label-a
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-26"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -2284,6 +2575,29 @@ exports[`when row column headings are clicked can sort by name, reversed 1`] = `
         >
           label-b
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-27"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -2301,6 +2615,29 @@ exports[`when row column headings are clicked can sort by name, reversed 1`] = `
         >
           label-c
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-28"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
     </tbody>
   </table>
@@ -2380,7 +2717,7 @@ exports[`when row column headings are clicked can sort by name, reversed 1`] = `
           aria-label="Go to first page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="first"
-          data-ouia-component-id="OUIA-Generated-Button-plain-33"
+          data-ouia-component-id="OUIA-Generated-Button-plain-41"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -2409,7 +2746,7 @@ exports[`when row column headings are clicked can sort by name, reversed 1`] = `
           aria-label="Go to previous page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
-          data-ouia-component-id="OUIA-Generated-Button-plain-34"
+          data-ouia-component-id="OUIA-Generated-Button-plain-42"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -2458,7 +2795,7 @@ exports[`when row column headings are clicked can sort by name, reversed 1`] = `
           aria-label="Go to next page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="next"
-          data-ouia-component-id="OUIA-Generated-Button-plain-35"
+          data-ouia-component-id="OUIA-Generated-Button-plain-43"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -2487,7 +2824,7 @@ exports[`when row column headings are clicked can sort by name, reversed 1`] = `
           aria-label="Go to last page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="last"
-          data-ouia-component-id="OUIA-Generated-Button-plain-36"
+          data-ouia-component-id="OUIA-Generated-Button-plain-44"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -2513,7 +2850,7 @@ exports[`when row column headings are clicked can sort by name, reversed 1`] = `
 </div>
 `;
 
-exports[`when using pagination can change page 1`] = `
+exports[`AdditionalRepositoriesTable when using pagination can change page 1`] = `
 <div>
   <div
     class="pf-c-pagination pf-m-compact"
@@ -2608,7 +2945,7 @@ exports[`when using pagination can change page 1`] = `
           aria-label="Go to previous page"
           class="pf-c-button pf-m-plain"
           data-action="previous"
-          data-ouia-component-id="OUIA-Generated-Button-plain-73"
+          data-ouia-component-id="OUIA-Generated-Button-plain-97"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           type="button"
@@ -2636,7 +2973,7 @@ exports[`when using pagination can change page 1`] = `
           aria-label="Go to next page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="next"
-          data-ouia-component-id="OUIA-Generated-Button-plain-74"
+          data-ouia-component-id="OUIA-Generated-Button-plain-98"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -2750,6 +3087,9 @@ exports[`when using pagination can change page 1`] = `
             </div>
           </button>
         </th>
+        <th
+          class=""
+        />
       </tr>
     </thead>
     <tbody
@@ -2772,6 +3112,29 @@ exports[`when using pagination can change page 1`] = `
         >
           label-10
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-83"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -2789,6 +3152,29 @@ exports[`when using pagination can change page 1`] = `
         >
           label-11
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-84"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
     </tbody>
   </table>
@@ -2868,7 +3254,7 @@ exports[`when using pagination can change page 1`] = `
           aria-label="Go to first page"
           class="pf-c-button pf-m-plain"
           data-action="first"
-          data-ouia-component-id="OUIA-Generated-Button-plain-75"
+          data-ouia-component-id="OUIA-Generated-Button-plain-99"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           type="button"
@@ -2896,7 +3282,7 @@ exports[`when using pagination can change page 1`] = `
           aria-label="Go to previous page"
           class="pf-c-button pf-m-plain"
           data-action="previous"
-          data-ouia-component-id="OUIA-Generated-Button-plain-76"
+          data-ouia-component-id="OUIA-Generated-Button-plain-100"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           type="button"
@@ -2943,7 +3329,7 @@ exports[`when using pagination can change page 1`] = `
           aria-label="Go to next page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="next"
-          data-ouia-component-id="OUIA-Generated-Button-plain-77"
+          data-ouia-component-id="OUIA-Generated-Button-plain-101"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -2972,7 +3358,7 @@ exports[`when using pagination can change page 1`] = `
           aria-label="Go to last page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="last"
-          data-ouia-component-id="OUIA-Generated-Button-plain-78"
+          data-ouia-component-id="OUIA-Generated-Button-plain-102"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -2998,7 +3384,7 @@ exports[`when using pagination can change page 1`] = `
 </div>
 `;
 
-exports[`when using pagination can change per page 1`] = `
+exports[`AdditionalRepositoriesTable when using pagination can change per page 1`] = `
 <div>
   <div
     class="pf-c-pagination pf-m-compact"
@@ -3093,7 +3479,7 @@ exports[`when using pagination can change per page 1`] = `
           aria-label="Go to previous page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
-          data-ouia-component-id="OUIA-Generated-Button-plain-85"
+          data-ouia-component-id="OUIA-Generated-Button-plain-119"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -3122,7 +3508,7 @@ exports[`when using pagination can change per page 1`] = `
           aria-label="Go to next page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="next"
-          data-ouia-component-id="OUIA-Generated-Button-plain-86"
+          data-ouia-component-id="OUIA-Generated-Button-plain-120"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -3236,6 +3622,9 @@ exports[`when using pagination can change per page 1`] = `
             </div>
           </button>
         </th>
+        <th
+          class=""
+        />
       </tr>
     </thead>
     <tbody
@@ -3258,6 +3647,29 @@ exports[`when using pagination can change per page 1`] = `
         >
           label-0
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-105"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -3275,6 +3687,29 @@ exports[`when using pagination can change per page 1`] = `
         >
           label-1
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-106"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -3292,6 +3727,29 @@ exports[`when using pagination can change per page 1`] = `
         >
           label-2
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-107"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -3309,6 +3767,29 @@ exports[`when using pagination can change per page 1`] = `
         >
           label-3
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-108"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -3326,6 +3807,29 @@ exports[`when using pagination can change per page 1`] = `
         >
           label-4
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-109"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -3343,6 +3847,29 @@ exports[`when using pagination can change per page 1`] = `
         >
           label-5
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-110"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -3360,6 +3887,29 @@ exports[`when using pagination can change per page 1`] = `
         >
           label-6
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-111"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -3377,6 +3927,29 @@ exports[`when using pagination can change per page 1`] = `
         >
           label-7
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-112"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -3394,6 +3967,29 @@ exports[`when using pagination can change per page 1`] = `
         >
           label-8
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-113"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -3411,6 +4007,29 @@ exports[`when using pagination can change per page 1`] = `
         >
           label-9
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-114"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -3428,6 +4047,29 @@ exports[`when using pagination can change per page 1`] = `
         >
           label-10
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-121"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
       <tr
         class=""
@@ -3445,6 +4087,29 @@ exports[`when using pagination can change per page 1`] = `
         >
           label-11
         </td>
+        <button
+          aria-disabled="false"
+          aria-label="Action"
+          class="pf-c-button pf-m-plain"
+          data-ouia-component-id="OUIA-Generated-Button-plain-122"
+          data-ouia-component-type="PF4/Button"
+          data-ouia-safe="true"
+          type="button"
+        >
+          <svg
+            aria-hidden="true"
+            fill="currentColor"
+            height="1em"
+            role="img"
+            style="vertical-align: -0.125em;"
+            viewBox="0 0 512 512"
+            width="1em"
+          >
+            <path
+              d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+            />
+          </svg>
+        </button>
       </tr>
     </tbody>
   </table>
@@ -3524,7 +4189,7 @@ exports[`when using pagination can change per page 1`] = `
           aria-label="Go to first page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="first"
-          data-ouia-component-id="OUIA-Generated-Button-plain-87"
+          data-ouia-component-id="OUIA-Generated-Button-plain-123"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -3553,7 +4218,7 @@ exports[`when using pagination can change per page 1`] = `
           aria-label="Go to previous page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
-          data-ouia-component-id="OUIA-Generated-Button-plain-88"
+          data-ouia-component-id="OUIA-Generated-Button-plain-124"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -3602,7 +4267,7 @@ exports[`when using pagination can change per page 1`] = `
           aria-label="Go to next page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="next"
-          data-ouia-component-id="OUIA-Generated-Button-plain-89"
+          data-ouia-component-id="OUIA-Generated-Button-plain-125"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""
@@ -3631,7 +4296,7 @@ exports[`when using pagination can change per page 1`] = `
           aria-label="Go to last page"
           class="pf-c-button pf-m-plain pf-m-disabled"
           data-action="last"
-          data-ouia-component-id="OUIA-Generated-Button-plain-90"
+          data-ouia-component-id="OUIA-Generated-Button-plain-126"
           data-ouia-component-type="PF4/Button"
           data-ouia-safe="true"
           disabled=""

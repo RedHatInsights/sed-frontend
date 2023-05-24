@@ -8,7 +8,7 @@ const NoAccessPopover = ({ content: Button }) => {
       <Tooltip
         content={<div>For editing access, contact your administrator.</div>}
       >
-        <div>
+        <div className="pf-u-display-inline-block">
           <Button />
         </div>
       </Tooltip>
@@ -16,8 +16,8 @@ const NoAccessPopover = ({ content: Button }) => {
   );
 };
 
-export default NoAccessPopover;
-
 NoAccessPopover.propTypes = {
-  content: propTypes.elementType,
+  content: propTypes.elementType.isRequired,
 };
+
+export default NoAccessPopover;
