@@ -6,7 +6,12 @@ import NoAccessPopover from '../NoAccessPopover';
 import { Tooltip } from '@patternfly/react-core';
 
 const WriteOnlyButton = (props) => {
-  const { children, enabledTooltip, disabledTooltip, ...buttonProps } = props;
+  const {
+    children,
+    enabledTooltip,
+    disabledTooltip = 'Disabled',
+    ...buttonProps
+  } = props;
 
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData('user');
@@ -40,7 +45,7 @@ const WriteOnlyButton = (props) => {
 WriteOnlyButton.propTypes = {
   children: PropTypes.element.isRequired,
   enabledTooltip: PropTypes.string.isRequired,
-  disabledTooltip: PropTypes.string.isRequired,
+  disabledTooltip: PropTypes.string,
 };
 
 export default WriteOnlyButton;
