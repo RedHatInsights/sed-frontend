@@ -17,7 +17,10 @@ export const EditReleaseVersionForm = ({
   activationKey,
   onClose,
 }) => {
-  const [selectedVersion, setSelectedVersion] = useState('');
+  const [selectedVersion, setSelectedVersion] = useState(
+    activationKey.releaseVersion
+  );
+
   const { mutate, isLoading } = useUpdateActivationKey();
   const { addSuccessNotification, addErrorNotification } = useNotifications();
   const queryClient = useQueryClient();
@@ -26,13 +29,16 @@ export const EditReleaseVersionForm = ({
     <FormSelectOption value={version} label={version} key={i} />
   ));
 
-  options.push(
-    <FormSelectOption
-      value=""
-      label="Not defined"
-      key={releaseVersions?.length}
-    />
-  );
+  if (!activationKey.releaseVersion) {
+    options.push(
+      <FormSelectOption
+        value=""
+        label="Not defined"
+        key={releaseVersions?.length}
+        isDisabled
+      />
+    );
+  }
 
   const submitForm = () => {
     mutate(
@@ -67,7 +73,7 @@ export const EditReleaseVersionForm = ({
     >
       <FormGroup label="Release version" type="string">
         <FormSelect
-          value={selectedVersion || activationKey.releaseVersion}
+          value={selectedVersion}
           onChange={(version) => setSelectedVersion(version)}
           aria-label="Release version form input"
           isDisabled={isLoading}
@@ -82,9 +88,7 @@ export const EditReleaseVersionForm = ({
           variant="primary"
           type="submit"
           isDisabled={
-            !selectedVersion ||
-            selectedVersion === activationKey.releaseVersion ||
-            isLoading
+            selectedVersion === activationKey.releaseVersion || isLoading
           }
           isLoading={isLoading}
         >
