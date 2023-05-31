@@ -138,14 +138,16 @@ const AdditionalRepositoriesTable = (props) => {
                 <Td dataLabel={columnNames.repositoryLabel}>
                   {repository.repositoryLabel}
                 </Td>
-                <RemoveAdditionalRepositoriesButton
-                  onClick={() =>
-                    handleDeleteAdditionalRepositoriesToggle(
-                      repository.repositoryName,
-                      repository.repositoryLabel
-                    )
-                  }
-                />
+                <Td>
+                  <RemoveAdditionalRepositoriesButton
+                    onClick={() =>
+                      handleDeleteAdditionalRepositoriesToggle(
+                        repository.repositoryName,
+                        repository.repositoryLabel
+                      )
+                    }
+                  />
+                </Td>
               </Tr>
             );
           })}
