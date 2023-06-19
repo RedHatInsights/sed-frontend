@@ -50,7 +50,7 @@
     "@patternfly/react-icons": "^4.93.3",
     "@patternfly/react-table": "4.112.6",
     "@redhat-cloud-services/config-manager-client": "^1.0.75",
-    "@redhat-cloud-services/frontend-components": "^3.9.32",
+    "@redhat-cloud-services/frontend-components": "^3.10.0",
     "@redhat-cloud-services/frontend-components-notifications": "^3.2.6",
     "@redhat-cloud-services/frontend-components-utilities": "^3.5.0",
     "@unleash/proxy-client-react": "^3.3.0",
