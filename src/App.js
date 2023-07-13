@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useMemo } from 'react';
+import React, { useEffect, useContext } from 'react';
 import { Routes } from './Routes';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
@@ -29,26 +29,12 @@ const App = () => {
     getRegistry().register({ notifications: notificationsReducer });
   }, [getRegistry]);
 
-  const appNavClick = useMemo(
-    () => ({
-      settings(redirect) {
-        chrome.appNavClick({ id: 'settings', redirect });
-      },
-      activationKeys(redirect) {
-        chrome.appNavClick({ id: 'activationKeys', redirect });
-      },
-    }),
-    []
-  );
-
   useEffect(() => {
     chrome.identifyApp('connector');
     const unregister = chrome.on('APP_NAVIGATION', (event) => {
       if (event.domEvent) {
         history.push(`/${event.navId}`);
-        appNavClick[event.navId] !== undefined
-          ? appNavClick[event.navId](true)
-          : appNavClick.settings(true);
+        chrome.appNavClick({ id: event.navId, redirect: true });
       }
     });
     return () => unregister();

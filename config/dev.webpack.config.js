@@ -12,8 +12,8 @@ const webpackProxy = {
   // localChrome: '/Users/rkaluzik/rh/insights-chrome/build/',
   env: `stage-${process.env.BETA ? 'beta' : 'stable'}`,
   appUrl: process.env.BETA
-    ? ['/beta/settings/connector', '/preview/settings/connector']
-    : ['/settings/connector'],
+    ? ['/beta/insights/connector', '/preview/insights/connector']
+    : ['/insights/connector'],
   // routes: {
   //   '/apps/inventory': { host: 'http://stage.foo.redhat.com:8002' },
   //   '/preview/config': {
