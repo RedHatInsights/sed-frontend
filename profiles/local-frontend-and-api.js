@@ -1,6 +1,6 @@
 /*global module*/
 
-const SECTION = 'settings';
+const SECTION = 'insights';
 const APP_ID = 'connector';
 const FRONTEND_PORT = 8002;
 const API_PORT = 8888;
