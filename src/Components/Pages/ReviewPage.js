@@ -7,11 +7,21 @@ import {
   DescriptionListTerm,
   DescriptionListGroup,
   DescriptionListDescription,
+  TextContent,
 } from '@patternfly/react-core';
 import Loading from '../LoadingState/Loading';
 import PropTypes from 'prop-types';
 
-const ReviewPage = ({ name, workload, role, sla, usage, isLoading }) => {
+const ReviewPage = ({
+  name,
+  workload,
+  role,
+  sla,
+  usage,
+  isLoading,
+  extendedReleaseProduct,
+  extendedReleaseVersion,
+}) => {
   return isLoading ? (
     <Loading />
   ) : (
@@ -35,7 +45,17 @@ const ReviewPage = ({ name, workload, role, sla, usage, isLoading }) => {
         </DescriptionListGroup>
         <DescriptionListGroup>
           <DescriptionListTerm>Workload</DescriptionListTerm>
-          <DescriptionListDescription>{workload}</DescriptionListDescription>
+          <DescriptionListDescription>
+            <TextContent>
+              <Text component="p">{workload}</Text>
+              {workload.includes('Extended') && (
+                <>
+                  <Text component="p">{extendedReleaseProduct}</Text>
+                  <Text component="p">{extendedReleaseVersion}</Text>
+                </>
+              )}
+            </TextContent>
+          </DescriptionListDescription>
         </DescriptionListGroup>
         <DescriptionListGroup>
           <DescriptionListTerm>Role</DescriptionListTerm>
@@ -69,6 +89,8 @@ ReviewPage.propTypes = {
   sla: PropTypes.string.isRequired,
   usage: PropTypes.string.isRequired,
   isLoading: PropTypes.bool.isRequired,
+  extendedReleaseProduct: PropTypes.string.isRequired,
+  extendedReleaseVersion: PropTypes.string.isRequired,
 };
 
 export default ReviewPage;

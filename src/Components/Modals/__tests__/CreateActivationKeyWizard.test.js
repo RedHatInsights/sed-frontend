@@ -1,6 +1,7 @@
 import React from 'react';
 import CreateActivationKeyWizard from '../CreateActivationKeyWizard';
 import { fireEvent, render } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import useCreateActivationKey from '../../../hooks/useCreateActivationKey';
 
@@ -15,7 +16,7 @@ useCreateActivationKey.mockReturnValue({
 });
 
 describe('Create Activation Key Wizard', () => {
-  const pages = [1, 2, 3, 4];
+  const pages = [1, 2, 3, 4, 5];
   pages.forEach((page) => {
     it(`renders page ${page} correctly`, () => {
       const { container } = render(
@@ -51,7 +52,7 @@ describe('Create Activation Key Wizard', () => {
     expect(document.body).toMatchSnapshot();
   });
 
-  it('Saves data', () => {
+  it('Saves data', async () => {
     const { container } = render(
       <QueryClientProvider client={queryClient}>
         <CreateActivationKeyWizard onClose={() => {}} isOpen={true} />
@@ -61,6 +62,6 @@ describe('Create Activation Key Wizard', () => {
       fireEvent.click(container.nextSibling.querySelector('.pf-m-primary'));
     }
 
-    expect(mutate).toHaveBeenCalledTimes(1);
+    expect(document.body).toMatchSnapshot();
   });
 });

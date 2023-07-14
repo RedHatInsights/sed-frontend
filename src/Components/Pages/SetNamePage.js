@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import {
   Title,
@@ -9,7 +9,10 @@ import {
   Form,
 } from '@patternfly/react-core';
 
-const SetNamePage = ({ name, setName }) => {
+const SetNamePage = ({ name, setName, nameIsValid }) => {
+  const [enableValidationFeedback, setEnableValidationFeedback] =
+    useState(false);
+
   const helperText =
     'Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens.';
 
@@ -31,6 +34,10 @@ const SetNamePage = ({ name, setName }) => {
           isRequired
           helperText={helperText}
           fieldId="activation-key-name"
+          validated={
+            nameIsValid || !enableValidationFeedback ? 'default' : 'error'
+          }
+          helperTextInvalid={`Name requirements have not been met. ${helperText}`}
         >
           <TextInput
             id="activation-key-name"
@@ -38,6 +45,10 @@ const SetNamePage = ({ name, setName }) => {
             type="text"
             value={name}
             onChange={setName}
+            validated={
+              nameIsValid || !enableValidationFeedback ? 'default' : 'error'
+            }
+            onBlur={() => setEnableValidationFeedback(true)}
           />
         </FormGroup>
       </Form>
@@ -48,6 +59,7 @@ const SetNamePage = ({ name, setName }) => {
 SetNamePage.propTypes = {
   name: PropTypes.string.isRequired,
   setName: PropTypes.func.isRequired,
+  nameIsValid: PropTypes.bool.isRequired,
 };
 
 export default SetNamePage;

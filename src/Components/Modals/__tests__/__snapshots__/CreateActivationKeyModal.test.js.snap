@@ -308,10 +308,12 @@ exports[`Create Activation Key Modal renders the wizard when feature flag is ena
                     >
                       <button
                         aria-current="false"
-                        class="pf-c-wizard__nav-link"
+                        aria-disabled="true"
+                        class="pf-c-wizard__nav-link pf-m-disabled"
                         data-ouia-component-id="OUIA-Generated-WizardNavItem-2"
                         data-ouia-component-type="PF4/WizardNavItem"
                         data-ouia-safe="true"
+                        disabled=""
                         id="1"
                       >
                         Workload
@@ -322,10 +324,12 @@ exports[`Create Activation Key Modal renders the wizard when feature flag is ena
                     >
                       <button
                         aria-current="false"
-                        class="pf-c-wizard__nav-link"
+                        aria-disabled="true"
+                        class="pf-c-wizard__nav-link pf-m-disabled"
                         data-ouia-component-id="OUIA-Generated-WizardNavItem-3"
                         data-ouia-component-type="PF4/WizardNavItem"
                         data-ouia-safe="true"
+                        disabled=""
                         id="2"
                       >
                         System purpose
@@ -336,10 +340,12 @@ exports[`Create Activation Key Modal renders the wizard when feature flag is ena
                     >
                       <button
                         aria-current="false"
-                        class="pf-c-wizard__nav-link"
+                        aria-disabled="true"
+                        class="pf-c-wizard__nav-link pf-m-disabled"
                         data-ouia-component-id="OUIA-Generated-WizardNavItem-4"
                         data-ouia-component-type="PF4/WizardNavItem"
                         data-ouia-safe="true"
+                        disabled=""
                         id="3"
                       >
                         Review
@@ -432,11 +438,12 @@ exports[`Create Activation Key Modal renders the wizard when feature flag is ena
                 class="pf-c-wizard__footer"
               >
                 <button
-                  aria-disabled="false"
-                  class="pf-c-button pf-m-primary"
+                  aria-disabled="true"
+                  class="pf-c-button pf-m-primary pf-m-disabled"
                   data-ouia-component-id="OUIA-Generated-Button-primary-2"
                   data-ouia-component-type="PF4/Button"
                   data-ouia-safe="true"
+                  disabled=""
                   type="submit"
                 >
                   Next

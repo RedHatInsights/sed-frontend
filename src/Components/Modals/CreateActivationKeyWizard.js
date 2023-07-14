@@ -10,6 +10,7 @@ import ReviewPage from '../Pages/ReviewPage';
 import SetNamePage from '../Pages/SetNamePage';
 import SetWorkloadPage from '../Pages/SetWorkLoadPage';
 import SetSystemPurposePage from '../Pages/SetSystemPurposePage';
+import SuccessPage from '../Pages/SuccessPage';
 
 const workloadOptions = ['Latest release', 'Extended support'];
 const confirmCloseTitle = 'Exit activation key creation?';
@@ -25,7 +26,9 @@ const ConfirmCloseFooter = ({ onClose, returnToWizard }) => (
   </>
 );
 
-const CreateActivationKeyWizard = ({ onClose, isOpen }) => {
+const nameValidator = /^([\w-_])+$/;
+
+const CreateActivationKeyWizard = ({ onClose: parentOnClose, isOpen }) => {
   const queryClient = useQueryClient();
   const { mutate, isLoading: createActivationKeyIsLoading } =
     useCreateActivationKey();
@@ -37,12 +40,23 @@ const CreateActivationKeyWizard = ({ onClose, isOpen }) => {
   const { addSuccessNotification, addErrorNotification } = useNotifications();
   const [name, setName] = useState('');
   const [workload, setWorkload] = useState(workloadOptions[0]);
+  const [extendedReleaseProduct, setExtendedReleaseProduct] = useState('');
+  const [extendedReleaseVersion, setExtendedReleaseVersion] = useState('');
+  const [extendedReleaseRepositories, setExtendedReleaseRepositories] =
+    useState([]);
   const [role, setRole] = useState('');
   const [sla, setSla] = useState('');
   const [usage, setUsage] = useState('');
   const [isConfirmClose, setIsConfirmClose] = useState(false);
   const [shouldConfirmClose, setShouldConfirmClose] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
+
+  const nameIsValid = nameValidator.test(name);
+
+  const onClose = () => {
+    queryClient.invalidateQueries('activation_keys');
+    parentOnClose();
+  };
 
   const confirmClose = (onClose) => {
     if (shouldConfirmClose) {
@@ -60,7 +74,10 @@ const CreateActivationKeyWizard = ({ onClose, isOpen }) => {
     {
       id: 0,
       name: 'Name',
-      component: <SetNamePage name={name} setName={setName} />,
+      component: (
+        <SetNamePage name={name} setName={setName} nameIsValid={nameIsValid} />
+      ),
+      enableNext: nameIsValid,
     },
     {
       id: 1,
@@ -70,8 +87,14 @@ const CreateActivationKeyWizard = ({ onClose, isOpen }) => {
           workloadOptions={workloadOptions}
           workload={workload}
           setWorkload={setWorkload}
+          extendedReleaseProduct={extendedReleaseProduct}
+          setExtendedReleaseProduct={setExtendedReleaseProduct}
+          extendedReleaseVersion={extendedReleaseVersion}
+          setExtendedReleaseVersion={setExtendedReleaseVersion}
+          setExtendedReleaseRepositories={setExtendedReleaseRepositories}
         />
       ),
+      isDisabled: !nameIsValid,
     },
     {
       id: 2,
@@ -89,6 +112,7 @@ const CreateActivationKeyWizard = ({ onClose, isOpen }) => {
           isError={error}
         />
       ),
+      isDisabled: !nameIsValid,
     },
     {
       id: 3,
@@ -101,9 +125,24 @@ const CreateActivationKeyWizard = ({ onClose, isOpen }) => {
           sla={sla}
           usage={usage}
           isLoading={createActivationKeyIsLoading}
+          extendedReleaseProduct={extendedReleaseProduct}
+          extendedReleaseVersion={extendedReleaseVersion}
         />
       ),
+      isDisabled: !nameIsValid,
       nextButtonText: 'Create',
+    },
+    {
+      id: 4,
+      name: 'Finish',
+      component: (
+        <SuccessPage
+          isLoading={createActivationKeyIsLoading}
+          name={name}
+          onClose={onClose}
+        />
+      ),
+      isFinishedStep: true,
     },
   ];
 
@@ -134,29 +173,35 @@ const CreateActivationKeyWizard = ({ onClose, isOpen }) => {
           navAriaLabel="Create activation key steps"
           mainAriaLabel="Create activation key content"
           onCurrentStepChanged={(step) => {
-            if (step.id > 0) setShouldConfirmClose(true);
+            setShouldConfirmClose(step.id > 0 && step.id < 4);
             setCurrentStep(step.id);
+            if (step.id == 4) {
+              mutate(
+                {
+                  name,
+                  role,
+                  serviceLevel: sla,
+                  usage,
+                  additionalRepositories: workload.includes('Extended')
+                    ? extendedReleaseRepositories
+                    : undefined,
+                },
+                {
+                  onSuccess: () => {
+                    addSuccessNotification(`Activation key "${name}" created`);
+                  },
+                  onError: () => {
+                    addErrorNotification('Something went wrong', {
+                      description:
+                        'Your changes could not be saved. Please try again.',
+                    });
+                    onClose();
+                  },
+                }
+              );
+            }
           }}
           startAtStep={currentStep + 1}
-          onSave={() => {
-            mutate(
-              { name, role, serviceLevel: sla, usage },
-              {
-                onSuccess: () => {
-                  queryClient.invalidateQueries('activation_keys');
-                  addSuccessNotification(`Activation key "${name}" created`);
-                  onClose();
-                },
-                onError: () => {
-                  addErrorNotification('Something went wrong', {
-                    description:
-                      'Your changes could not be saved. Please try again.',
-                  });
-                  onClose();
-                },
-              }
-            );
-          }}
           onClose={() => confirmClose(onClose)}
         />
       )}
