@@ -9,6 +9,7 @@ import {
   FormGroup,
   FormSelect,
   FormSelectOption,
+  Tooltip,
 } from '@patternfly/react-core';
 import PropTypes from 'prop-types';
 import useEusVersions from '../../hooks/useEusVersions';
@@ -63,7 +64,9 @@ const SetWorkloadPage = ({
       </Text>
       {!isLoading ? (
         workloadOptions.map((wl) => {
-          return (
+          const isDisabled = wl == 'Extended support' && error == 400;
+
+          const button = (
             <Radio
               label={wl}
               onChange={() => setWorkload(wl)}
@@ -71,9 +74,20 @@ const SetWorkloadPage = ({
               className="pf-u-mb-md"
               name={wl}
               id={wl}
-              isDisabled={wl == 'Extended support' && error == 400}
+              isDisabled={isDisabled}
               key={wl}
             />
+          );
+
+          return isDisabled ? (
+            <Tooltip
+              content="Your account has no extended support subscriptions"
+              position="left"
+            >
+              {button}
+            </Tooltip>
+          ) : (
+            button
           );
         })
       ) : (

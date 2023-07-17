@@ -2,13 +2,21 @@ import { useMutation } from 'react-query';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const activationKeyMutation = (token) => async (data) => {
-  const { name, role, serviceLevel, usage, additionalRepositories } = data;
+  const {
+    name,
+    role,
+    serviceLevel,
+    usage,
+    additionalRepositories,
+    releaseVersion,
+  } = data;
 
   const body = {
-    name: name,
-    role: role,
-    serviceLevel: serviceLevel,
-    usage: usage,
+    name,
+    role,
+    serviceLevel,
+    usage,
+    ...(releaseVersion ? { releaseVersion } : {}),
   };
 
   if (additionalRepositories) {
