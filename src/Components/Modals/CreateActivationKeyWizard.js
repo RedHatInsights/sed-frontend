@@ -185,6 +185,7 @@ const CreateActivationKeyWizard = ({ onClose: parentOnClose, isOpen }) => {
                   additionalRepositories: workload.includes('Extended')
                     ? extendedReleaseRepositories
                     : undefined,
+                  releaseVersion: extendedReleaseVersion,
                 },
                 {
                   onSuccess: () => {
