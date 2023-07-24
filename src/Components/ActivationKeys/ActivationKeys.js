@@ -115,9 +115,7 @@ const ActivationKeys = () => {
           </SplitItem>
         </Split>
         <TextContent>
-          <Text component={TextVariants.p}>
-            Organization ID: {user.orgId}
-          </Text>
+          <Text component={TextVariants.p}>Organization ID: {user.orgId}</Text>
         </TextContent>
       </PageHeader>
       <Main>

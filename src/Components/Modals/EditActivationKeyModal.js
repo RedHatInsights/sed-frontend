@@ -57,23 +57,25 @@ const EditActivationKeyModal = (props) => {
       isOpen={isOpen}
       onClose={handleModalToggle}
     >
-      {(isLoading || isKeyLoading) && !keyError ?
-        <Loading /> :
-        systemPurposeOnly ?
-          <SystemPurposeForm
-            activationKey={activationKey}
-            handleModalToggle={handleModalToggle}
-            submitForm={submitForm}
-            isSuccess={updated}
-            isError={error}
-          /> : 
-          <ActivationKeyForm
-            activationKey={activationKey}
-            handleModalToggle={handleModalToggle}
-            submitForm={submitForm}
-            isSuccess={updated}
-            isError={error}
-          />}
+      {(isLoading || isKeyLoading) && !keyError ? (
+        <Loading />
+      ) : systemPurposeOnly ? (
+        <SystemPurposeForm
+          activationKey={activationKey}
+          handleModalToggle={handleModalToggle}
+          submitForm={submitForm}
+          isSuccess={updated}
+          isError={error}
+        />
+      ) : (
+        <ActivationKeyForm
+          activationKey={activationKey}
+          handleModalToggle={handleModalToggle}
+          submitForm={submitForm}
+          isSuccess={updated}
+          isError={error}
+        />
+      )}
     </Modal>
   );
 };
