@@ -29,13 +29,16 @@ export const EditReleaseVersionForm = ({
     <FormSelectOption value={version} label={version} key={i} />
   ));
 
-  options.push(
-    <FormSelectOption
-      value=""
-      label="Not defined"
-      key={releaseVersions?.length}
-    />
-  );
+  if (!activationKey.releaseVersion) {
+    options.push(
+      <FormSelectOption
+        value=""
+        label="Not defined"
+        key={releaseVersions?.length}
+        isDisabled
+      />
+    );
+  }
 
   const submitForm = () => {
     mutate(
