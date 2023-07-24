@@ -95,70 +95,66 @@ const ActivationKeys = () => {
     setIsEditActivationKeyModalOpen(!isEditActivationKeyModalOpen);
   };
 
-  const Page = () => {
-    return (
-      <React.Fragment>
-        <PageHeader>
-          <Split hasGutter className="page-title">
-            <SplitItem isFilled>
-              <Flex>
-                <FlexItem spacer={{ default: 'spacerSm' }}>
-                  <PageHeaderTitle title="Activation Keys" />
-                </FlexItem>
-                <FlexItem>
-                  <ActivationKeysDocsPopover
-                    popoverContent={popoverContent}
-                    title="Activation Keys"
-                    position="right"
-                  />
-                </FlexItem>
-              </Flex>
-            </SplitItem>
-          </Split>
-          <TextContent>
-            <Text component={TextVariants.p}>
-              Organization ID: {user.orgId}
-            </Text>
-          </TextContent>
-        </PageHeader>
-        <Main>
-          <PageSection variant={PageSectionVariants.light}>
-            {isLoading && <Loading />}
-            {!isLoading && !error && data.length > 0 && (
-              <>
-                <ActionGroup>
-                  <CreateActivationKeyButton onClick={handleModalToggle} />
-                </ActionGroup>
-                <ActivationKeysTable actions={actions} />
-              </>
-            )}
-            {!isLoading && !error && !data.length && (
-              <NoActivationKeysFound handleModalToggle={handleModalToggle} />
-            )}
-          </PageSection>
-        </Main>
-        <CreateActivationKeyModal
-          isOpen={isOpen}
-          handleModalToggle={handleModalToggle}
-        />
-        <EditActivationKeyModal
-          title="Edit activation key"
-          isOpen={isEditActivationKeyModalOpen}
-          handleModalToggle={handleEditActivationKeyModalToggle}
-          activationKeyName={currentKeyName}
-          modalSize="large"
-        />
-        <DeleteActivationKeyConfirmationModal
-          handleModalToggle={handleDeleteActivationKeyModalToggle}
-          isOpen={isDeleteActivationKeyModalOpen}
-          name={currentKeyName}
-        />
-      </React.Fragment>
-    );
-  };
+  const Page = (
+    <React.Fragment>
+      <PageHeader>
+        <Split hasGutter className="page-title">
+          <SplitItem isFilled>
+            <Flex>
+              <FlexItem spacer={{ default: 'spacerSm' }}>
+                <PageHeaderTitle title="Activation Keys" />
+              </FlexItem>
+              <FlexItem>
+                <ActivationKeysDocsPopover
+                  popoverContent={popoverContent}
+                  title="Activation Keys"
+                  position="right"
+                />
+              </FlexItem>
+            </Flex>
+          </SplitItem>
+        </Split>
+        <TextContent>
+          <Text component={TextVariants.p}>Organization ID: {user.orgId}</Text>
+        </TextContent>
+      </PageHeader>
+      <Main>
+        <PageSection variant={PageSectionVariants.light}>
+          {isLoading && <Loading />}
+          {!isLoading && !error && data.length > 0 && (
+            <>
+              <ActionGroup>
+                <CreateActivationKeyButton onClick={handleModalToggle} />
+              </ActionGroup>
+              <ActivationKeysTable actions={actions} />
+            </>
+          )}
+          {!isLoading && !error && !data.length && (
+            <NoActivationKeysFound handleModalToggle={handleModalToggle} />
+          )}
+        </PageSection>
+      </Main>
+      <CreateActivationKeyModal
+        isOpen={isOpen}
+        handleModalToggle={handleModalToggle}
+      />
+      <EditActivationKeyModal
+        title="Edit activation key"
+        isOpen={isEditActivationKeyModalOpen}
+        handleModalToggle={handleEditActivationKeyModalToggle}
+        activationKeyName={currentKeyName}
+        modalSize="large"
+      />
+      <DeleteActivationKeyConfirmationModal
+        handleModalToggle={handleDeleteActivationKeyModalToggle}
+        isOpen={isDeleteActivationKeyModalOpen}
+        name={currentKeyName}
+      />
+    </React.Fragment>
+  );
 
   if (user.rbacPermissions.canReadActivationKeys) {
-    return <Page />;
+    return Page;
   } else {
     return <NoAccessView />;
   }

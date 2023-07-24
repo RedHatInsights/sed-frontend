@@ -49,25 +49,6 @@ const EditActivationKeyModal = (props) => {
     );
   };
 
-  const FormWrapper = () => {
-    return systemPurposeOnly ? (
-      <SystemPurposeForm
-        activationKey={activationKey}
-        handleModalToggle={handleModalToggle}
-        submitForm={submitForm}
-        isSuccess={updated}
-        isError={error}
-      />
-    ) : (
-      <ActivationKeyForm
-        activationKey={activationKey}
-        handleModalToggle={handleModalToggle}
-        submitForm={submitForm}
-        isSuccess={updated}
-        isError={error}
-      />
-    );
-  };
   return (
     <Modal
       variant={modalSizes[modalSize]}
@@ -76,7 +57,25 @@ const EditActivationKeyModal = (props) => {
       isOpen={isOpen}
       onClose={handleModalToggle}
     >
-      {(isLoading || isKeyLoading) && !keyError ? <Loading /> : <FormWrapper />}
+      {(isLoading || isKeyLoading) && !keyError ? (
+        <Loading />
+      ) : systemPurposeOnly ? (
+        <SystemPurposeForm
+          activationKey={activationKey}
+          handleModalToggle={handleModalToggle}
+          submitForm={submitForm}
+          isSuccess={updated}
+          isError={error}
+        />
+      ) : (
+        <ActivationKeyForm
+          activationKey={activationKey}
+          handleModalToggle={handleModalToggle}
+          submitForm={submitForm}
+          isSuccess={updated}
+          isError={error}
+        />
+      )}
     </Modal>
   );
 };
