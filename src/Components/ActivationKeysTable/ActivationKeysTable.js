@@ -16,6 +16,7 @@ import propTypes from 'prop-types';
 import { useQueryClient } from 'react-query';
 import { KebabToggle } from '@patternfly/react-core';
 import useFeatureFlag from '../../hooks/useFeatureFlag';
+import DeleteActivationKeyButton from '../ActivationKeys/DeleteActivationKeyButton';
 
 const CustomActionsToggle = (props) => (
   <KebabToggle
@@ -75,12 +76,19 @@ const ActivationKeysTable = (props) => {
                   {datum.serviceLevel}
                 </Td>
                 <Td dataLabel={columnNames.usage}>{datum.usage}</Td>
-                <Td isActionCell>
-                  <ActionsColumn
-                    items={rowActions}
-                    isDisabled={isActionsDisabled()}
-                    actionsToggle={CustomActionsToggle}
-                  />
+                <Td isActionCell={!keyDetailsIsEnabled}>
+                  {!keyDetailsIsEnabled && (
+                    <ActionsColumn
+                      items={rowActions}
+                      isDisabled={isActionsDisabled()}
+                      actionsToggle={CustomActionsToggle}
+                    />
+                  )}
+                  {keyDetailsIsEnabled && (
+                    <DeleteActivationKeyButton
+                      onClick={rowActions[1].onClick}
+                    />
+                  )}
                 </Td>
               </Tr>
             );
