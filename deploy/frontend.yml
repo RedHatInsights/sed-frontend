@@ -30,7 +30,7 @@ objects:
               title: Activation Keys
               href: /settings/connector/activation-keys
       module:
-        manifestLocation: /apps/connector/fed-mods.json
+        manifestLocation: /settings/connector/fed-mods.json
         modules:
           - id: connector
             module: ./RootApp
