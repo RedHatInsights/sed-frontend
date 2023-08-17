@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import { Route, Routes } from 'react-router-dom';
 import { Bullseye, Spinner } from '@patternfly/react-core';
 import pckg from '../package.json';
-import Authentication from './Components/Authentication/Authentication';
 import ActivationKey from './Components/ActivationKey/ActivationKey';
 import useFeatureFlag from './hooks/useFeatureFlag';
 const { routes: paths } = pckg;
@@ -31,36 +30,34 @@ const AppRoutes = () => {
     'sed-frontend.activationKeysDetailsPage'
   );
   return (
-    <Authentication>
-      <Routes>
-        {keyDetailsIsEnabled && (
-          <Route
-            path={paths.activationKey}
-            element={
-              <SuspenseWrapped>
-                <ActivationKey />
-              </SuspenseWrapped>
-            }
-          />
-        )}
+    <Routes>
+      {keyDetailsIsEnabled && (
         <Route
-          path={paths.activationKeys}
+          path={paths.activationKey}
           element={
             <SuspenseWrapped>
-              <ActivationKeys />
+              <ActivationKey />
             </SuspenseWrapped>
           }
         />
-        <Route
-          path={paths.connector}
-          element={
-            <SuspenseWrapped>
-              <Dashboard />
-            </SuspenseWrapped>
-          }
-        />
-      </Routes>
-    </Authentication>
+      )}
+      <Route
+        path={paths.activationKeys}
+        element={
+          <SuspenseWrapped>
+            <ActivationKeys />
+          </SuspenseWrapped>
+        }
+      />
+      <Route
+        path={paths.connector}
+        element={
+          <SuspenseWrapped>
+            <Dashboard />
+          </SuspenseWrapped>
+        }
+      />
+    </Routes>
   );
 };
 

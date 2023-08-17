@@ -65,10 +65,12 @@ jest.mock('../../../Components/AdditionalRepositoriesTable', () => () => (
 jest.mock('../../../Components/shared/breadcrumbs', () => () => (
   <div>Breadcrumbs</div>
 ));
-// eslint-disable-next-line react/display-name
-jest.mock('../../ActivationKeys/no-access', () => () => (
-  <div>Not Authorized</div>
-));
+
+jest.mock(
+  '@redhat-cloud-services/frontend-components/NotAuthorized',
+  // eslint-disable-next-line react/display-name
+  () => () => <div>Not Authorized</div>
+);
 
 jest.mock(
   '@redhat-cloud-services/frontend-components/Unavailable',

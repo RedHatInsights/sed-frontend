@@ -6,13 +6,17 @@ import Loading from '../LoadingState/Loading';
 import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable';
 import propTypes from 'prop-types';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
+import NotAuthorized from '@redhat-cloud-services/frontend-components/NotAuthorized';
 
 const Authentication = ({ children }) => {
   const queryClient = useQueryClient();
   const location = useLocation();
   const chrome = useChrome();
-
-  const { isLoading, isFetching, isSuccess, isError } = useUser();
+  const { isLoading, isFetching, isSuccess, isError, data } = useUser();
+  const hasAnyPermission =
+    data?.rbacPermissions &&
+    (data.rbacPermissions.canReadActivationKeys ||
+      data.rbacPermissions.canWriteActivationKeys);
 
   useEffect(() => {
     isSuccess && chrome?.hideGlobalFilter();
@@ -30,6 +34,8 @@ const Authentication = ({ children }) => {
     return <Unavailable />;
   } else if (isLoading === true || isFetching === true) {
     return <Loading />;
+  } else if (isSuccess === true && !hasAnyPermission) {
+    return <NotAuthorized serviceName="Remote Host Configuration" />;
   } else if (isSuccess === true) {
     return <>{children}</>;
   } else {
@@ -38,7 +44,7 @@ const Authentication = ({ children }) => {
 };
 
 Authentication.propTypes = {
-  children: propTypes.object,
+  children: propTypes.node,
 };
 
 export default Authentication;
