@@ -10,14 +10,14 @@ objects:
     spec:
       envName: ${ENV_NAME}
       title: "Manage configuration"
-      routePrefix: settings
+      routePrefix: insights
       deploymentRepo: https://github.com/RedHatInsights/sed-frontend
       API:
         versions:
           - v1
       frontend:
         paths:
-          - /settings/connector
+          - /insights/connector
       image: ${IMAGE}:${IMAGE_TAG}
       navItems:
         - title: Remote Host Configuration
@@ -25,17 +25,17 @@ objects:
           routes:
             - appId: connector
               title: Manage configuration
-              href: /settings/connector
+              href: /insights/connector
             - appId: connector
               title: Activation Keys
-              href: /settings/connector/activation-keys
+              href: /insights/connector/activation-keys
       module:
         manifestLocation: /apps/connector/fed-mods.json
         modules:
           - id: connector
             module: ./RootApp
             routes:
-              - pathname: /settings/connector
+              - pathname: /insights/connector
         moduleID: connector
 parameters:
   - name: ENV_NAME
