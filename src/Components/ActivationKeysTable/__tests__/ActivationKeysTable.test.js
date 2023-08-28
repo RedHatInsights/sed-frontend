@@ -13,7 +13,7 @@ jest.mock('uuid', () => {
 jest.mock('../../../hooks/useFeatureFlag');
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
-  useRouteMatch: () => ({ url: '/' }),
+  useLocation: () => ({ pathname: '/connector/test-key' }),
 }));
 
 const queryClient = new QueryClient();

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Tabs, Tab, TabTitleText } from '@patternfly/react-core';
 import LogsTable from './LogsTable';
 import SystemsTable from './SystemsTable';
-import { useHistory } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import pckg from '../../../package.json';
 import { useDispatch } from 'react-redux';
 import { clearNotifications } from '@redhat-cloud-services/frontend-components-notifications/redux';
@@ -13,7 +13,9 @@ const tabMapper = ['runs', 'systems'];
 const ConnectLog = () => {
   const [activeTabKey, setActiveTabKey] = useState(0);
   const dispatch = useDispatch();
-  const { push, location } = useHistory();
+  const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
     dispatch(clearNotifications());
     const searchParams = new URLSearchParams(location.search);
@@ -23,12 +25,11 @@ const ConnectLog = () => {
     if (activeTab !== -1) {
       setActiveTabKey(activeTab);
     } else {
-      push({
-        pathname: location.pathname,
-        search: new URLSearchParams({
+      navigate(
+        `?${new URLSearchParams({
           active_tab: tabMapper[0],
-        }).toString(),
-      });
+        }).toString()}`
+      );
     }
   }, []);
   return (
@@ -36,17 +37,16 @@ const ConnectLog = () => {
       title="Red Hat connect log"
       variant="medium"
       isOpen={true}
-      onClose={() => push(paths.connector)}
+      onClose={() => navigate(paths.connector)}
     >
       <Tabs
         activeKey={activeTabKey}
         onSelect={(_e, tabKey) => {
-          push({
-            pathname: location.pathname,
-            search: new URLSearchParams({
+          navigate(
+            `?${new URLSearchParams({
               active_tab: tabMapper[tabKey],
-            }).toString(),
-          });
+            }).toString()}`
+          );
           setActiveTabKey(tabKey);
         }}
       >

@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Tabs, Tab } from '@patternfly/react-core';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import classnames from 'classnames';
 
 import './nav-tabs.scss';
 
 const NavTabs = ({ tabItems, TabsProps: { className, ...TabsProps } }) => {
-  const { push } = useHistory();
+  const navigate = useNavigate();
   const { pathname, search } = useLocation();
   const activeTab = tabItems.find(({ pathname: tabPathname }) =>
     pathname.includes(tabPathname)
   );
   const handleTabClick = (_event, tabIndex) =>
-    push({ pathname: tabItems[tabIndex].pathname, search });
+    navigate(`${tabItems[tabIndex].pathname}?${search}`);
 
   return (
     <Tabs

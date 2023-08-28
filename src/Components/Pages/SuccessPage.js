@@ -10,11 +10,11 @@ import {
   Title,
 } from '@patternfly/react-core';
 import { CheckCircleIcon } from '@patternfly/react-icons';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 const SuccessPage = ({ isLoading, name, onClose }) => {
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const content = isLoading ? (
     <Spinner />
@@ -28,7 +28,7 @@ const SuccessPage = ({ isLoading, name, onClose }) => {
       </EmptyStateBody>
       <Button
         variant="primary"
-        onClick={() => history.push(`/activation-keys/${name}`)}
+        onClick={() => navigate(`/activation-keys/${name}`)}
       >
         View activation key
       </Button>
