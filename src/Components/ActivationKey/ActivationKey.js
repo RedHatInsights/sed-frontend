@@ -22,7 +22,6 @@ import useActivationKey from '../../hooks/useActivationKey';
 import Loading from '../LoadingState/Loading';
 import SystemPurposeCard from './SystemPurposeCard';
 import WorkloadCard from './WorkloadCard';
-import NoAccessView from '../ActivationKeys/no-access';
 import DeleteButton from './DeleteButton';
 import DeleteActivationKeyConfirmationModal from '../Modals/DeleteActivationKeyConfirmationModal';
 import EditActivationKeyModal from '../Modals/EditActivationKeyModal';
@@ -73,10 +72,6 @@ const ActivationKey = () => {
 
   const editModalDescription =
     'System purpose values are used by the subscriptions service to help filter and identify hosts. Setting values for these attributes is optional, but doing so ensures that subscriptions reporting accurately reflects the system. Only those values available to your account are shown.';
-
-  if (!user.rbacPermissions.canReadActivationKeys) {
-    return <NoAccessView />;
-  }
 
   return (
     <React.Fragment>

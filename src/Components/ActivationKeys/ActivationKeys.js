@@ -19,7 +19,6 @@ import {
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import ActivationKeysTable from '../ActivationKeysTable';
 import { useQueryClient } from 'react-query';
-import NoAccessView from './no-access';
 import NoActivationKeysFound from '../EmptyState';
 import CreateActivationKeyModal from '../Modals/CreateActivationKeyModal';
 import EditActivationKeyModal from '../Modals/EditActivationKeyModal';
@@ -94,7 +93,7 @@ const ActivationKeys = () => {
     setIsEditActivationKeyModalOpen(!isEditActivationKeyModalOpen);
   };
 
-  const Page = (
+  return (
     <React.Fragment>
       <PageHeader>
         <Split hasGutter className="page-title">
@@ -151,12 +150,6 @@ const ActivationKeys = () => {
       />
     </React.Fragment>
   );
-
-  if (user.rbacPermissions.canReadActivationKeys) {
-    return Page;
-  } else {
-    return <NoAccessView />;
-  }
 };
 
 export default ActivationKeys;

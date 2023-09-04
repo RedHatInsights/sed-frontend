@@ -2,11 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Modal, Tabs, Tab, TabTitleText } from '@patternfly/react-core';
 import LogsTable from './LogsTable';
 import SystemsTable from './SystemsTable';
-import { useNavigate, useLocation } from 'react-router-dom';
-import pckg from '../../../package.json';
+import { useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import useNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate';
 import { clearNotifications } from '@redhat-cloud-services/frontend-components-notifications/redux';
-const { routes: paths } = pckg;
 
 const tabMapper = ['runs', 'systems'];
 
@@ -37,7 +36,7 @@ const ConnectLog = () => {
       title="Red Hat connect log"
       variant="medium"
       isOpen={true}
-      onClose={() => navigate(paths.connector)}
+      onClose={() => navigate('/')}
     >
       <Tabs
         activeKey={activeTabKey}
