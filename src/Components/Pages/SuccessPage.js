@@ -10,11 +10,11 @@ import {
   Title,
 } from '@patternfly/react-core';
 import { CheckCircleIcon } from '@patternfly/react-icons';
-import { useNavigate } from 'react-router-dom';
+import useInsightsNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate/useInsightsNavigate';
 import PropTypes from 'prop-types';
 
 const SuccessPage = ({ isLoading, name, onClose }) => {
-  const navigate = useNavigate();
+  const navigate = useInsightsNavigate();
 
   const content = isLoading ? (
     <Spinner />
