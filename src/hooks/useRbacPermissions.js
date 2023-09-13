@@ -13,6 +13,7 @@ const getUserRbacPermissions = (permissions) => {
       canWriteActivationKeys:
         permissions.includes('config-manager:activation_keys:write') ||
         permissions.includes('config-manager:activation_keys:*'),
+      canReadInventory: permissions.includes('inventory:hosts:read'),
     };
 
     return rbacPermissions;

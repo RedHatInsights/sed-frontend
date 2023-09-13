@@ -15,6 +15,10 @@ jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
           resourceDefinitions: [],
           permission: 'config-manager:activation_keys:read',
         },
+        {
+          resourceDefinitions: [],
+          permission: 'inventory:hosts:read',
+        },
       ]),
   }),
 }));
@@ -23,6 +27,7 @@ describe('useRbacPermissions', () => {
   let rbacObject = {
     canReadActivationKeys: true,
     canWriteActivationKeys: true,
+    canReadInventory: true,
   };
 
   it('build and returns rbac permissions object from the API', async () => {
