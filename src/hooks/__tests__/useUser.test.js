@@ -15,6 +15,10 @@ jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
           resourceDefinitions: [],
           permission: 'config-manager:activation_keys:read',
         },
+        {
+          resourceDefinitions: [],
+          permission: 'inventory:hosts:read',
+        },
       ]),
     auth: {
       getUser: () =>
@@ -48,6 +52,7 @@ describe('useUser hook', () => {
       rbacPermissions: {
         canReadActivationKeys: true,
         canWriteActivationKeys: true,
+        canReadInventory: true,
       },
     });
   });

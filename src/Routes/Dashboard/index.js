@@ -35,6 +35,7 @@ import { useActions } from '../../store/actions';
 import connectedSystemsReducer from '../../store/connectedSystems';
 import activeStateReducer from '../../store/currStateReducer';
 import logReducer from '../../store/logReducer';
+import useUser from '../../hooks/useUser';
 import './dashboard.scss';
 
 const { routes: paths } = pckg;
@@ -61,6 +62,7 @@ const SamplePage = () => {
   const dispatch = useDispatch();
   const location = useLocation();
   const { fetchConnectedHosts, fetchCurrState, saveCurrState } = useActions();
+  const { data: userData } = useUser();
 
   const activeStateLoaded = useSelector(
     ({ activeStateReducer }) => activeStateReducer?.loaded
@@ -88,8 +90,10 @@ const SamplePage = () => {
       connectedSystemsReducer,
     });
     dispatch(fetchCurrState());
-    dispatch(fetchConnectedHosts());
-  }, [getRegistry]);
+    if (userData.rbacPermissions.canReadInventory) {
+      dispatch(fetchConnectedHosts());
+    }
+  }, [getRegistry, userData]);
 
   useEffect(() => {
     insights?.chrome?.appAction?.('cloud-connector-dashboard');
