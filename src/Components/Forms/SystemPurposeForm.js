@@ -3,12 +3,9 @@ import { ActionGroup, Button, Form } from '@patternfly/react-core';
 import useSystemPurposeAttributes from '../../hooks/useSystemPurposeAttributes';
 import ActivationKeysFormSelect from './ActivationKeysFormSelect';
 import PropTypes from 'prop-types';
-import useNotifications from '../../hooks/useNotifications';
 
 const SystemPurposeForm = (props) => {
-  const { handleModalToggle, submitForm, isSuccess, isError, activationKey } =
-    props;
-  const { addSuccessNotification, addErrorNotification } = useNotifications();
+  const { handleModalToggle, submitForm, activationKey } = props;
   const { isLoading, error, data } = useSystemPurposeAttributes();
   const [role, setRole] = useState('');
   const [serviceLevel, setServiceLevel] = useState('');
@@ -39,22 +36,6 @@ const SystemPurposeForm = (props) => {
       activationKey.usage === usage
     );
   };
-
-  if (isSuccess) {
-    const successMessage = `Changes saved for activation key "${activationKey.name}"`;
-    addSuccessNotification(successMessage, {
-      timeout: false,
-    });
-    handleModalToggle();
-  } else if (isError) {
-    const errorMessage = activationKey
-      ? `Error updating activation key ${activationKey.name}.`
-      : 'Activation Key was not created, please try again.';
-    addErrorNotification(errorMessage, {
-      timeout: 8000,
-    });
-    handleModalToggle();
-  }
 
   return (
     <Form id="activation-key-form" onSubmit={handleSubmit}>

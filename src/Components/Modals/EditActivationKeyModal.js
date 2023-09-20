@@ -7,6 +7,7 @@ import propTypes from 'prop-types';
 import Loading from '../LoadingState/Loading';
 import { useQueryClient } from 'react-query';
 import SystemPurposeForm from '../Forms/SystemPurposeForm';
+import useNotifications from '../../hooks/useNotifications';
 
 const EditActivationKeyModal = (props) => {
   const {
@@ -21,6 +22,7 @@ const EditActivationKeyModal = (props) => {
   const [error, setError] = React.useState(false);
   const { handleModalToggle, isOpen } = props;
   const { mutate, isLoading } = useUpdateActivationKey();
+  const { addErrorNotification, addSuccessNotification } = useNotifications();
   const {
     isLoading: isKeyLoading,
     error: keyError,
@@ -40,10 +42,22 @@ const EditActivationKeyModal = (props) => {
           setUpdated(true);
           queryClient.invalidateQueries('activation_keys');
           queryClient.resetQueries(`activation_key_${activationKeyName}`);
+          handleModalToggle();
+          const successMessage = `Changes saved for activation key "${activationKey.name}"`;
+          addSuccessNotification(successMessage, {
+            timeout: false,
+          });
         },
         onError: () => {
           setError(true);
           setUpdated(false);
+          handleModalToggle();
+          const errorMessage = activationKey
+            ? `Error updating activation key ${activationKey.name}.`
+            : 'Activation Key was not created, please try again.';
+          addErrorNotification(errorMessage, {
+            timeout: 8000,
+          });
         },
       }
     );
