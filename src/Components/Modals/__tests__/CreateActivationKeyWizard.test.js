@@ -21,7 +21,10 @@ describe('Create Activation Key Wizard', () => {
     it(`renders page ${page} correctly`, () => {
       const { container } = render(
         <QueryClientProvider client={queryClient}>
-          <CreateActivationKeyWizard onClose={() => {}} isOpen={true} />
+          <CreateActivationKeyWizard
+            handleModalToggle={() => {}}
+            isOpen={true}
+          />
         </QueryClientProvider>
       );
       for (let i = 1; i < page; i++) {
@@ -34,7 +37,7 @@ describe('Create Activation Key Wizard', () => {
   it("Doesn't confirm on close when nothing has been done", () => {
     const { container } = render(
       <QueryClientProvider client={queryClient}>
-        <CreateActivationKeyWizard onClose={() => {}} isOpen={true} />
+        <CreateActivationKeyWizard handleModalToggle={() => {}} isOpen={true} />
       </QueryClientProvider>
     );
     fireEvent.click(container.nextSibling.querySelector('.pf-c-wizard__close'));
@@ -44,7 +47,7 @@ describe('Create Activation Key Wizard', () => {
   it('Confirms on close one next has been clicked', () => {
     const { container } = render(
       <QueryClientProvider client={queryClient}>
-        <CreateActivationKeyWizard onClose={() => {}} isOpen={true} />
+        <CreateActivationKeyWizard handleModalToggle={() => {}} isOpen={true} />
       </QueryClientProvider>
     );
     fireEvent.click(container.nextSibling.querySelector('.pf-m-primary'));
@@ -55,7 +58,7 @@ describe('Create Activation Key Wizard', () => {
   it('Saves data', async () => {
     const { container } = render(
       <QueryClientProvider client={queryClient}>
-        <CreateActivationKeyWizard onClose={() => {}} isOpen={true} />
+        <CreateActivationKeyWizard handleModalToggle={() => {}} isOpen={true} />
       </QueryClientProvider>
     );
     for (let i = 0; i < 4; i++) {

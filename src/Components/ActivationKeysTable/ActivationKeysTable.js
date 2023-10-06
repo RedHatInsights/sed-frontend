@@ -7,29 +7,15 @@ import {
   Th,
   Tbody,
   Td,
-  ActionsColumn,
 } from '@patternfly/react-table';
 import useActivationKeys from '../../hooks/useActivationKeys';
 import Loading from '../LoadingState/Loading';
 import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable';
-import propTypes from 'prop-types';
-import { useQueryClient } from 'react-query';
-import { KebabToggle } from '@patternfly/react-core';
-import useFeatureFlag from '../../hooks/useFeatureFlag';
 import DeleteActivationKeyButton from '../ActivationKeys/DeleteActivationKeyButton';
-
-const CustomActionsToggle = (props) => (
-  <KebabToggle
-    onToggle={props.onToggle}
-    isDisabled={props.isDisabled}
-    className={props.isDisabled ? 'pf-m-disabled' : ''}
-  >
-    Actions
-  </KebabToggle>
-);
+import PropTypes from 'prop-types';
 
 const ActivationKeysTable = (props) => {
-  const { actions } = props;
+  const { onDelete } = props;
   const columnNames = {
     name: 'Key Name',
     role: 'Role',
@@ -37,16 +23,8 @@ const ActivationKeysTable = (props) => {
     usage: 'Usage',
   };
   const { isLoading, error, data } = useActivationKeys();
-  const queryClient = useQueryClient();
-  const user = queryClient.getQueryData('user');
-  const isActionsDisabled = () => {
-    return !user.rbacPermissions.canWriteActivationKeys;
-  };
   const location = useLocation();
 
-  const keyDetailsIsEnabled = useFeatureFlag(
-    'sed-frontend.activationKeysDetailsPage'
-  );
   const Results = () => {
     return (
       <TableComposable aria-label="ActivationKeys">
@@ -61,37 +39,23 @@ const ActivationKeysTable = (props) => {
         </Thead>
         <Tbody>
           {data.map((datum) => {
-            let rowActions = actions(datum.name);
             return (
               <Tr key={datum.name} ouiaSafe={true}>
                 <Td modifier="breakWord" dataLabel={columnNames.name}>
-                  {keyDetailsIsEnabled ? (
-                    <Link to={`${location.pathname}/${datum.name}`}>
-                      {' '}
-                      {datum.name}
-                    </Link>
-                  ) : (
-                    datum.name
-                  )}
+                  <Link to={`${location.pathname}/${datum.name}`}>
+                    {' '}
+                    {datum.name}
+                  </Link>
                 </Td>
                 <Td dataLabel={columnNames.role}>{datum.role}</Td>
                 <Td dataLabel={columnNames.serviceLevel}>
                   {datum.serviceLevel}
                 </Td>
                 <Td dataLabel={columnNames.usage}>{datum.usage}</Td>
-                <Td isActionCell={!keyDetailsIsEnabled}>
-                  {!keyDetailsIsEnabled && (
-                    <ActionsColumn
-                      items={rowActions}
-                      isDisabled={isActionsDisabled()}
-                      actionsToggle={CustomActionsToggle}
-                    />
-                  )}
-                  {keyDetailsIsEnabled && (
-                    <DeleteActivationKeyButton
-                      onClick={rowActions[1].onClick}
-                    />
-                  )}
+                <Td>
+                  <DeleteActivationKeyButton
+                    onClick={() => onDelete(datum.name)}
+                  />
                 </Td>
               </Tr>
             );
@@ -111,12 +75,7 @@ const ActivationKeysTable = (props) => {
 };
 
 ActivationKeysTable.propTypes = {
-  actions: propTypes.func,
-};
-
-CustomActionsToggle.propTypes = {
-  onToggle: propTypes.func,
-  isDisabled: propTypes.bool,
+  onDelete: PropTypes.func.isRequired,
 };
 
 export default ActivationKeysTable;

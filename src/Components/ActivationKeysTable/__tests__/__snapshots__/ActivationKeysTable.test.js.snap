@@ -62,7 +62,12 @@ exports[`ActivationKeysTable renders correctly 1`] = `
           class="pf-m-break-word"
           data-label="Key Name"
         >
-          A
+          <a
+            href="/connector/test-key/A"
+          >
+             
+            A
+          </a>
         </td>
         <td
           class=""
@@ -83,37 +88,30 @@ exports[`ActivationKeysTable renders correctly 1`] = `
           D
         </td>
         <td
-          class="pf-c-table__action"
+          class=""
         >
-          <div
-            class="pf-c-dropdown pf-m-align-right"
-            data-ouia-component-id="OUIA-Generated-Dropdown-1"
-            data-ouia-component-type="PF4/Dropdown"
+          <button
+            aria-disabled="false"
+            class="pf-c-button pf-m-plain"
+            data-ouia-component-id="OUIA-Generated-Button-plain-1"
+            data-ouia-component-type="PF4/Button"
             data-ouia-safe="true"
+            type="button"
           >
-            <button
-              aria-expanded="false"
-              aria-haspopup="true"
-              aria-label="Actions"
-              class="pf-c-dropdown__toggle pf-m-plain"
-              id="pf-dropdown-toggle-id-0"
-              type="button"
+            <svg
+              aria-hidden="true"
+              fill="currentColor"
+              height="1em"
+              role="img"
+              style="vertical-align: -0.125em;"
+              viewBox="0 0 448 512"
+              width="1em"
             >
-              <svg
-                aria-hidden="true"
-                fill="currentColor"
-                height="1em"
-                role="img"
-                style="vertical-align: -0.125em;"
-                viewBox="0 0 192 512"
-                width="1em"
-              >
-                <path
-                  d="M96 184c39.8 0 72 32.2 72 72s-32.2 72-72 72-72-32.2-72-72 32.2-72 72-72zM24 80c0 39.8 32.2 72 72 72s72-32.2 72-72S135.8 8 96 8 24 40.2 24 80zm0 352c0 39.8 32.2 72 72 72s72-32.2 72-72-32.2-72-72-72-72 32.2-72 72z"
-                />
-              </svg>
-            </button>
-          </div>
+              <path
+                d="M432 32H312l-9.4-18.7A24 24 0 0 0 281.1 0H166.8a23.72 23.72 0 0 0-21.4 13.3L136 32H16A16 16 0 0 0 0 48v32a16 16 0 0 0 16 16h416a16 16 0 0 0 16-16V48a16 16 0 0 0-16-16zM53.2 467a48 48 0 0 0 47.9 45h245.8a48 48 0 0 0 47.9-45L416 128H32z"
+              />
+            </svg>
+          </button>
         </td>
       </tr>
     </tbody>
