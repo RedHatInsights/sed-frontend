@@ -10,6 +10,7 @@ import {
   FormSelect,
   FormSelectOption,
   Tooltip,
+  TextContent,
 } from '@patternfly/react-core';
 import PropTypes from 'prop-types';
 import useEusVersions from '../../hooks/useEusVersions';
@@ -63,8 +64,8 @@ const SetWorkloadPage = ({
         activation key detail page.{' '}
       </Text>
       {!isLoading ? (
-        workloadOptions.map((wl) => {
-          const isDisabled = wl == 'Extended support' && error == 400;
+        workloadOptions.map((wl, i) => {
+          const isDisabled = i == 1 && error == 400;
 
           const button = (
             <Radio
@@ -79,22 +80,46 @@ const SetWorkloadPage = ({
             />
           );
 
-          return isDisabled ? (
+          return (
             <Tooltip
-              content="Your account has no extended support subscriptions"
+              key={i}
+              content={
+                isDisabled ? (
+                  'Your account has no extended support subscriptions'
+                ) : i == 0 ? (
+                  'Activation key will use the latest RHEL release'
+                ) : (
+                  <TextContent>
+                    <Text
+                      className="pf-u-color-light-100"
+                      component={TextVariants.small}
+                    >
+                      Activation key can be version locked to a specific version
+                      of RHEL. You can only version lock an activation key to a
+                      RHEL release that has the option of Extended Update
+                      Support (EUS). For more information please refer to:{' '}
+                      <a
+                        href="https://access.redhat.com/articles/rhel-eus#c9"
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        https://access.redhat.com/articles/rhel-eus#c9
+                      </a>
+                    </Text>
+                  </TextContent>
+                )
+              }
               position="left"
             >
               {button}
             </Tooltip>
-          ) : (
-            button
           );
         })
       ) : (
         <Spinner />
       )}
 
-      {workload === 'Extended support' && (
+      {workload === workloadOptions[1] && (
         <Form>
           <FormGroup label="Product">
             <FormSelect

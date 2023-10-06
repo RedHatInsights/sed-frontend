@@ -12,7 +12,7 @@ import SetWorkloadPage from '../Pages/SetWorkLoadPage';
 import SetSystemPurposePage from '../Pages/SetSystemPurposePage';
 import SuccessPage from '../Pages/SuccessPage';
 
-const workloadOptions = ['Latest release', 'Extended support'];
+const workloadOptions = ['Latest release', 'Extended support releases'];
 const confirmCloseTitle = 'Exit activation key creation?';
 const confirmCloseBody = <p>All inputs will be discarded.</p>;
 const ConfirmCloseFooter = ({ onClose, returnToWizard }) => (
