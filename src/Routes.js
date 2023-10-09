@@ -4,7 +4,6 @@ import { Route, Routes } from 'react-router-dom';
 import { Bullseye, Spinner } from '@patternfly/react-core';
 import pckg from '../package.json';
 import ActivationKey from './Components/ActivationKey/ActivationKey';
-import useFeatureFlag from './hooks/useFeatureFlag';
 const { routes: paths } = pckg;
 
 const Dashboard = lazy(() =>
@@ -26,21 +25,16 @@ const SuspenseWrapped = ({ children }) => (
 );
 
 const AppRoutes = () => {
-  const keyDetailsIsEnabled = useFeatureFlag(
-    'sed-frontend.activationKeysDetailsPage'
-  );
   return (
     <Routes>
-      {keyDetailsIsEnabled && (
-        <Route
-          path={paths.activationKey}
-          element={
-            <SuspenseWrapped>
-              <ActivationKey />
-            </SuspenseWrapped>
-          }
-        />
-      )}
+      <Route
+        path={paths.activationKey}
+        element={
+          <SuspenseWrapped>
+            <ActivationKey />
+          </SuspenseWrapped>
+        }
+      />
       <Route
         path={paths.activationKeys}
         element={

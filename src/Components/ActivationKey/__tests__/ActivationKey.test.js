@@ -10,13 +10,11 @@ import useUser from '../../../hooks/useUser';
 import { get, def } from 'bdd-lazy-var';
 import useActivationKey from '../../../hooks/useActivationKey';
 import '@testing-library/jest-dom';
-import useFeatureFlag from '../../../hooks/useFeatureFlag';
 import useAvailableRepositories from '../../../hooks/useAvailableRepositories';
 
 jest.mock('../../../hooks/useAvailableRepositories');
 jest.mock('../../../hooks/useActivationKey');
 jest.mock('../../../hooks/useUser');
-jest.mock('../../../hooks/useFeatureFlag');
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useLocation: () => ({
@@ -51,7 +49,6 @@ const mockAuthenticateUser = (isLoading, isError, rbacPermissions) => {
     isError: isError,
     data: user,
   });
-  useFeatureFlag.mockReturnValue(true);
   if (isError === false) {
     queryClient.setQueryData('user', user);
   }

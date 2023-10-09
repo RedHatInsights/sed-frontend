@@ -28,7 +28,7 @@ const ConfirmCloseFooter = ({ onClose, returnToWizard }) => (
 
 const nameValidator = /^([\w-_])+$/;
 
-const CreateActivationKeyWizard = ({ onClose: parentOnClose, isOpen }) => {
+const CreateActivationKeyWizard = ({ handleModalToggle, isOpen }) => {
   const queryClient = useQueryClient();
   const { mutate, isLoading: createActivationKeyIsLoading } =
     useCreateActivationKey();
@@ -55,7 +55,7 @@ const CreateActivationKeyWizard = ({ onClose: parentOnClose, isOpen }) => {
 
   const onClose = () => {
     queryClient.invalidateQueries('activation_keys');
-    parentOnClose();
+    handleModalToggle();
   };
 
   const confirmClose = (onClose) => {
@@ -217,7 +217,7 @@ ConfirmCloseFooter.propTypes = {
 };
 
 CreateActivationKeyWizard.propTypes = {
-  onClose: PropTypes.func.isRequired,
+  handleModalToggle: PropTypes.func.isRequired,
   isOpen: PropTypes.bool.isRequired,
 };
 

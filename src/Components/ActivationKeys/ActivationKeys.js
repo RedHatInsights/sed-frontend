@@ -20,8 +20,8 @@ import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import ActivationKeysTable from '../ActivationKeysTable';
 import { useQueryClient } from 'react-query';
 import NoActivationKeysFound from '../EmptyState';
-import CreateActivationKeyModal from '../Modals/CreateActivationKeyModal';
 import EditActivationKeyModal from '../Modals/EditActivationKeyModal';
+import CreateActivationKeyWizard from '../Modals/CreateActivationKeyWizard';
 import useActivationKeys from '../../hooks/useActivationKeys';
 import Loading from '../LoadingState/Loading';
 import CreateActivationKeyButton from './CreateActivationKeyButton';
@@ -64,19 +64,6 @@ const ActivationKeys = () => {
       </Text>
     </TextContent>
   );
-
-  const actions = (activationKeyName) => {
-    return [
-      {
-        title: 'Edit',
-        onClick: () => handleEditActivationKeyModalToggle(activationKeyName),
-      },
-      {
-        title: 'Delete',
-        onClick: () => handleDeleteActivationKeyModalToggle(activationKeyName),
-      },
-    ];
-  };
 
   const setKeyName = (modalOpen, name) => {
     let currentName = modalOpen ? '' : name;
@@ -124,7 +111,9 @@ const ActivationKeys = () => {
               <ActionGroup>
                 <CreateActivationKeyButton onClick={handleModalToggle} />
               </ActionGroup>
-              <ActivationKeysTable actions={actions} />
+              <ActivationKeysTable
+                onDelete={handleDeleteActivationKeyModalToggle}
+              />
             </>
           )}
           {!isLoading && !error && !data.length && (
@@ -132,7 +121,8 @@ const ActivationKeys = () => {
           )}
         </PageSection>
       </Main>
-      <CreateActivationKeyModal
+      <CreateActivationKeyWizard
+        key={isOpen}
         isOpen={isOpen}
         handleModalToggle={handleModalToggle}
       />

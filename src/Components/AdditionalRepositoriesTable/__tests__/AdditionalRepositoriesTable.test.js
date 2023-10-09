@@ -2,11 +2,9 @@ import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { fireEvent, render, screen } from '@testing-library/react';
 import AdditionalRepositoriesTable from '../AdditionalRepositoriesTable';
-import useFeatureFlag from '../../../hooks/useFeatureFlag';
 import { get, def } from 'bdd-lazy-var';
 import '@testing-library/jest-dom';
 import useAvailableRepositories from '../../../hooks/useAvailableRepositories';
-jest.mock('../../../hooks/useFeatureFlag');
 jest.mock('../../../hooks/useAvailableRepositories');
 jest.mock('uuid', () => {
   return { v4: jest.fn(() => '00000000-0000-0000-0000-000000000000') };
@@ -47,7 +45,6 @@ describe('AdditionalRepositoriesTable', () => {
       error: get('error'),
       data: get('data'),
     });
-    useFeatureFlag.mockReturnValue(false);
   });
   const repositories = [
     {

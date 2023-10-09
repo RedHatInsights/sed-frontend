@@ -1,16 +1,15 @@
 import React from 'react';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 import ActivationKeysTable from '../ActivationKeysTable';
 import useActivationKeys from '../../../hooks/useActivationKeys';
 import { get, def } from 'bdd-lazy-var';
 import '@testing-library/jest-dom';
-import useFeatureFlag from '../../../hooks/useFeatureFlag';
+import { BrowserRouter } from 'react-router-dom';
 jest.mock('../../../hooks/useActivationKeys');
 jest.mock('uuid', () => {
   return { v4: jest.fn(() => '00000000-0000-0000-0000-000000000000') };
 });
-jest.mock('../../../hooks/useFeatureFlag');
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useLocation: () => ({ pathname: '/connector/test-key' }),
@@ -18,18 +17,12 @@ jest.mock('react-router-dom', () => ({
 
 const queryClient = new QueryClient();
 
-const actions = () => {
-  return [
-    {
-      title: 'Delete',
-      onClick: () => null,
-    },
-  ];
-};
 const Table = () => (
-  <QueryClientProvider client={queryClient}>
-    <ActivationKeysTable actions={actions} />
-  </QueryClientProvider>
+  <BrowserRouter>
+    <QueryClientProvider client={queryClient}>
+      <ActivationKeysTable onDelete={() => {}} />
+    </QueryClientProvider>
+  </BrowserRouter>
 );
 
 jest.mock(
@@ -67,19 +60,12 @@ describe('ActivationKeysTable', () => {
       error: get('error'),
       data: get('data'),
     });
-    useFeatureFlag.mockReturnValue(false);
   });
 
   it('renders correctly', () => {
     const { container } = render(<Table />);
 
     expect(container).toMatchSnapshot();
-  });
-
-  it('displays enabled actions', () => {
-    render(<Table />);
-    const actions = screen.getByLabelText('Actions');
-    expect(actions.closest('button')).not.toBeDisabled();
   });
 
   describe('when loading', () => {
@@ -100,11 +86,6 @@ describe('ActivationKeysTable', () => {
           canWriteActivationKeys: false,
         },
       };
-    });
-    it('displays disabled actions', () => {
-      render(<Table />);
-      const actions = screen.getByLabelText('Actions');
-      expect(actions.closest('button')).toBeDisabled();
     });
   });
 
