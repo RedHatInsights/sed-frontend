@@ -27,6 +27,7 @@ const SystemsTable = () => {
           ...mergeWithEntities(),
         });
       }}
+      showCentosVersions
     />
   );
 };
