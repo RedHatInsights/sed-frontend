@@ -130,9 +130,9 @@ const Services = ({
                     content={
                       <div>
                         To perform this action, you must be granted the
-                        &quot;System Administrator&quot; role by your
-                        Organization Administrator in your Setting&apos;s User
-                        Access area.
+                        &quot;RHC Administrator&quot; and &quot;Inventory Hosts
+                        Administrator&quot; roles by your Organization
+                        Administrator in your Setting&apos;s User Access area.
                       </div>
                     }
                   >
