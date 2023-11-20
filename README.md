@@ -1,4 +1,4 @@
-[![Build Status](https://api.travis-ci.com/RedHatInsights/sed-frontend.svg?branch=master)](https://api.travis-ci.com/RedHatInsights/sed-frontend.svg?branch=master)
+[![Build Status](https://app.travis-ci.com/RedHatInsights/sed-frontend.svg?branch=master)](https://app.travis-ci.com/RedHatInsights/sed-frontend) [![codecov](https://codecov.io/gh/RedHatInsights/sed-frontend/branch/master/graph/badge.svg?token=XC4AD7NQFW)](https://codecov.io/gh/RedHatInsights/sed-frontend)
 
 # Red Hat Connector Dashboard
 
