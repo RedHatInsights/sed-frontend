@@ -3,11 +3,9 @@ const config = require('@redhat-cloud-services/frontend-components-config');
 
 const insightsProxy = {
   https: false,
-  ...(process.env.BETA && { deployment: 'beta/apps' }),
 };
 
 const webpackProxy = {
-  deployment: process.env.BETA ? 'beta/apps' : 'apps',
   useProxy: true,
   // localChrome: '/Users/rkaluzik/rh/insights-chrome/build/',
   env: `stage-${process.env.BETA ? 'beta' : 'stable'}`,
