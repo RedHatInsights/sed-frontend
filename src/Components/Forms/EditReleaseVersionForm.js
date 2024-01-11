@@ -71,7 +71,7 @@ export const EditReleaseVersionForm = ({
       <FormGroup label="Release version" type="string">
         <FormSelect
           value={selectedVersion}
-          onChange={(version) => setSelectedVersion(version)}
+          onChange={(_event, version) => setSelectedVersion(version)}
           aria-label="Release version form input"
           isDisabled={isLoading}
         >

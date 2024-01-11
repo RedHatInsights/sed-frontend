@@ -20,7 +20,7 @@ import {
 } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 import {
-  TableComposable,
+  Table /* data-codemods */,
   Thead,
   Tr,
   Th,
@@ -177,7 +177,7 @@ const Services = ({
         </Toolbar>
       </StackItem>
       <StackItem>
-        <TableComposable aria-label="Settings table">
+        <Table aria-label="Settings table">
           <Thead>
             <Tr>
               <Th>Permission</Th>
@@ -262,7 +262,7 @@ const Services = ({
               </Tr>
             ))}
           </Tbody>
-        </TableComposable>
+        </Table>
       </StackItem>
     </Stack>
   );

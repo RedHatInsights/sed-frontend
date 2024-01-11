@@ -2,9 +2,8 @@ import React from 'react';
 import {
   EmptyState,
   EmptyStateBody,
-  EmptyStateIcon,
-  Title,
-} from '@patternfly/react-core';
+  EmptyStateIcon, EmptyStateHeader, EmptyStateFooter,
+  } from '@patternfly/react-core';
 import PropTypes from 'prop-types';
 import { AddCircleOIcon } from '@patternfly/react-icons';
 import CreateActivationKeyButton from '../ActivationKeys/CreateActivationKeyButton';
@@ -14,17 +13,14 @@ const NoActivationKeysFound = (props) => {
   return (
     <>
       <EmptyState>
-        <EmptyStateIcon icon={AddCircleOIcon} />
-        <Title headingLevel="h5" size="lg">
-          No activation keys
-        </Title>
+        <EmptyStateHeader titleText="No activation keys" icon={<EmptyStateIcon icon={AddCircleOIcon} />} headingLevel="h5" />
         <EmptyStateBody>
           You currently have no activation keys to display. Activation keys
           allow you to register a system with system purpose, role and usage
           attached.
-        </EmptyStateBody>
+        </EmptyStateBody><EmptyStateFooter>
         <CreateActivationKeyButton onClick={handleModalToggle} />
-      </EmptyState>
+      </EmptyStateFooter></EmptyState>
     </>
   );
 };

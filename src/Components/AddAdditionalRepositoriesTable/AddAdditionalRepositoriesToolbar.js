@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
 import {
-  SearchInput,
-  Select,
-  SelectOption,
-  ToggleGroupItem,
-  Toolbar,
-  ToolbarContent,
-  ToolbarGroup,
-  ToolbarItem,
-  ToggleGroup,
+	SearchInput,
+	ToggleGroupItem,
+	Toolbar,
+	ToolbarContent,
+	ToolbarGroup,
+	ToolbarItem,
+	ToggleGroup
 } from '@patternfly/react-core';
+import {
+	Select,
+	SelectOption
+} from '@patternfly/react-core/deprecated';
 import { FilterIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 
@@ -36,7 +38,7 @@ const AddAdditionalRepositoriesToolbar = ({
           <ToolbarItem spacer={{ default: 'spacerNone' }}>
             <Select
               isOpen={isSelectFilterByExpanded}
-              onToggle={(isSelectFilterByExpanded) =>
+              onToggle={(_event, isSelectFilterByExpanded) =>
                 setIsSelectFilterByExpanded(isSelectFilterByExpanded)
               }
               toggleIcon={<FilterIcon />}
@@ -70,7 +72,7 @@ const AddAdditionalRepositoriesToolbar = ({
               <ToggleGroupItem
                 text="All"
                 isSelected={!onlyShowSelectedRepositories}
-                onChange={(selected) => {
+                onChange={(_event, selected) => {
                   if (selected) {
                     setOnlyShowSelectedRepositories(false);
                   }
@@ -79,7 +81,7 @@ const AddAdditionalRepositoriesToolbar = ({
               <ToggleGroupItem
                 text="Selected"
                 isSelected={onlyShowSelectedRepositories}
-                onChange={(selected) => {
+                onChange={(_event, selected) => {
                   if (selected) {
                     setOnlyShowSelectedRepositories(true);
                   }
@@ -89,7 +91,7 @@ const AddAdditionalRepositoriesToolbar = ({
             </ToggleGroup>
           </ToolbarItem>
         </ToolbarGroup>
-        <ToolbarItem variant="pagination" alignment={{ default: 'alignRight' }}>
+        <ToolbarItem variant="pagination" align={{ default: 'alignRight' }}>
           {pagination}
         </ToolbarItem>
       </ToolbarContent>

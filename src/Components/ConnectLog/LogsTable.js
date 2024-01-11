@@ -1,12 +1,14 @@
 import React, { Fragment, useEffect, useState, useCallback } from 'react';
 import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableVariant,
-  expandable,
-  cellWidth,
+	TableVariant,
+	expandable,
+	cellWidth
 } from '@patternfly/react-table';
+import {
+	Table,
+	TableHeader,
+	TableBody
+} from '@patternfly/react-table/deprecated';
 import PropTypes from 'prop-types';
 import {
   Pagination,

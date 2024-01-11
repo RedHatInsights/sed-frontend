@@ -11,8 +11,7 @@ import {
   TextListItem,
   TextListItemVariants,
   Title,
-  CardActions,
-} from '@patternfly/react-core';
+  } from '@patternfly/react-core';
 import EditButton from './EditButton';
 import propTypes from 'prop-types';
 import ActivationKeysDocsPopover from '../ActivationKeysDocsPopover';
@@ -41,7 +40,11 @@ const SystemPurposeCard = (props) => {
   );
   return (
     <Card>
-      <CardHeader>
+      <CardHeader actions={{ actions: <>{user.rbacPermissions.canWriteActivationKeys ? (
+            <ButtonWrapper />
+          ) : (
+            <NoAccessPopover content={ButtonWrapper} />
+          )}</>, hasNoOffset: false, className: undefined}} >
         <CardTitle>
           <Title headingLevel="h2">
             System Purpose{' '}
@@ -51,13 +54,7 @@ const SystemPurposeCard = (props) => {
             />{' '}
           </Title>
         </CardTitle>
-        <CardActions>
-          {user.rbacPermissions.canWriteActivationKeys ? (
-            <ButtonWrapper />
-          ) : (
-            <NoAccessPopover content={ButtonWrapper} />
-          )}
-        </CardActions>
+        
       </CardHeader>
       <CardBody>
         <TextContent>

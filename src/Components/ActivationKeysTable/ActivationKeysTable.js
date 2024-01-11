@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
-  TableComposable,
+  Table /* data-codemods */,
   Thead,
   Tr,
   Th,
@@ -27,7 +27,7 @@ const ActivationKeysTable = (props) => {
 
   const Results = () => {
     return (
-      <TableComposable aria-label="ActivationKeys">
+      <Table aria-label="ActivationKeys">
         <Thead>
           <Tr ouiaSafe={true}>
             <Th width={40}>{columnNames.name}</Th>
@@ -61,7 +61,7 @@ const ActivationKeysTable = (props) => {
             );
           })}
         </Tbody>
-      </TableComposable>
+      </Table>
     );
   };
 

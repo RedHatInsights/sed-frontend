@@ -123,7 +123,7 @@ const SetWorkloadPage = ({
         <Form>
           <FormGroup label="Product">
             <FormSelect
-              onChange={(v) => setExtendedReleaseProduct(v)}
+              onChange={(_event, v) => setExtendedReleaseProduct(v)}
               value={extendedReleaseProduct}
               id="product"
             >
@@ -140,7 +140,7 @@ const SetWorkloadPage = ({
           </FormGroup>
           <FormGroup label="Version">
             <FormSelect
-              onChange={(v) => setExtendedReleaseVersion(v)}
+              onChange={(_event, v) => setExtendedReleaseVersion(v)}
               value={extendedReleaseVersion}
               id="version"
             >

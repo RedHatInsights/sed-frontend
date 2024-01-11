@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  TableComposable,
+  Table /* data-codemods */,
   Thead,
   Tr,
   Th,
@@ -118,7 +118,7 @@ const AdditionalRepositoriesTable = (props) => {
   return (
     <React.Fragment>
       <PaginationTop />
-      <TableComposable aria-label="ActivationKeys">
+      <Table aria-label="ActivationKeys">
         <Thead>
           <Tr>
             <Th sort={getSortParams(0)} width={40}>
@@ -159,7 +159,7 @@ const AdditionalRepositoriesTable = (props) => {
           repositoryNameToDelete={repositoryNameToDelete}
           repositoryLabelToDelete={repositoryLabelToDelete}
         />
-      </TableComposable>
+      </Table>
       <DeleteAdditionalRepositoriesModal
         name={name}
         isOpen={isDeleteAdditionalRepositoriesModalOpen}

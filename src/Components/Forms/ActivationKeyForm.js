@@ -105,7 +105,7 @@ const ActivationKeyForm = (props) => {
             isRequired
             type="text"
             validated={validated}
-            onChange={validateName}
+            onChange={(_event, value) => validateName(value)}
             name="name"
           />
         </FormGroup>

@@ -11,8 +11,7 @@ import {
   TextListItem,
   TextListItemVariants,
   Title,
-  CardActions,
-} from '@patternfly/react-core';
+  } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import ActivationKeysDocsPopover from '../ActivationKeysDocsPopover';
 import EditButton from './EditButton';
@@ -32,7 +31,7 @@ const WorkloadCard = (props) => {
   );
   return (
     <Card style={{ minHeight: '100%' }}>
-      <CardHeader>
+      <CardHeader actions={{ actions: <><EditButton onClick={actionHandler} /></>, hasNoOffset: false, className: undefined}} >
         <CardTitle>
           <Title headingLevel="h2">
             Workload{' '}
@@ -42,9 +41,7 @@ const WorkloadCard = (props) => {
             />
           </Title>
         </CardTitle>
-        <CardActions>
-          <EditButton onClick={actionHandler} />
-        </CardActions>
+        
       </CardHeader>
       <CardBody>
         <TextContent>

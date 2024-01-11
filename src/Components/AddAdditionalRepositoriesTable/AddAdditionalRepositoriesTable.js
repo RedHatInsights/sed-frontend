@@ -4,13 +4,11 @@ import {
   EmptyState,
   EmptyStateBody,
   EmptyStateIcon,
-  EmptyStatePrimary,
-  Pagination,
-  Title,
-} from '@patternfly/react-core';
+  Pagination, EmptyStateActions, EmptyStateHeader, EmptyStateFooter,
+  } from '@patternfly/react-core';
 import { SearchIcon } from '@patternfly/react-icons';
 import {
-  TableComposable,
+  Table /* data-codemods */,
   Thead,
   Tr,
   Th,
@@ -139,17 +137,16 @@ const AddAdditionalRepositoriesTable = (props) => {
 
   const emptyState = (
     <EmptyState>
-      <EmptyStateIcon icon={SearchIcon} />
-      <Title headingLevel="h2">No results found</Title>
+      <EmptyStateHeader titleText="No results found" icon={<EmptyStateIcon icon={SearchIcon} />} headingLevel="h2" />
       <EmptyStateBody>
         No results match the filter criteria. Clear all filters and try again.
-      </EmptyStateBody>
-      <EmptyStatePrimary>
+      </EmptyStateBody><EmptyStateFooter>
+      <EmptyStateActions>
         <Button variant="link" onClick={() => setFilter('')}>
           Clear all filters
         </Button>
-      </EmptyStatePrimary>
-    </EmptyState>
+      </EmptyStateActions>
+    </EmptyStateFooter></EmptyState>
   );
 
   return (
@@ -171,7 +168,7 @@ const AddAdditionalRepositoriesTable = (props) => {
         onlyShowSelectedRepositories={onlyShowSelectedRepositories}
         setOnlyShowSelectedRepositories={setOnlyShowSelectedRepositories}
       />
-      <TableComposable variant="compact">
+      <Table variant="compact">
         <Thead>
           <Tr>
             <Th />
@@ -219,7 +216,7 @@ const AddAdditionalRepositoriesTable = (props) => {
             </Tr>
           )}
         </Tbody>
-      </TableComposable>
+      </Table>
       {pagination}
     </>
   );
