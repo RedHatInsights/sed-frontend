@@ -1,13 +1,9 @@
 import React, { Fragment, useEffect, useState, useCallback } from 'react';
+import { TableVariant, expandable, cellWidth } from '@patternfly/react-table';
 import {
-	TableVariant,
-	expandable,
-	cellWidth
-} from '@patternfly/react-table';
-import {
-	Table,
-	TableHeader,
-	TableBody
+  Table,
+  TableHeader,
+  TableBody,
 } from '@patternfly/react-table/deprecated';
 import PropTypes from 'prop-types';
 import {
