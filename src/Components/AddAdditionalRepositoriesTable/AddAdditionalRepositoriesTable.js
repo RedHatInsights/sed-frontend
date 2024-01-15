@@ -4,8 +4,11 @@ import {
   EmptyState,
   EmptyStateBody,
   EmptyStateIcon,
-  Pagination, EmptyStateActions, EmptyStateHeader, EmptyStateFooter,
-  } from '@patternfly/react-core';
+  Pagination,
+  EmptyStateActions,
+  EmptyStateHeader,
+  EmptyStateFooter,
+} from '@patternfly/react-core';
 import { SearchIcon } from '@patternfly/react-icons';
 import {
   Table /* data-codemods */,
@@ -137,16 +140,22 @@ const AddAdditionalRepositoriesTable = (props) => {
 
   const emptyState = (
     <EmptyState>
-      <EmptyStateHeader titleText="No results found" icon={<EmptyStateIcon icon={SearchIcon} />} headingLevel="h2" />
+      <EmptyStateHeader
+        titleText="No results found"
+        icon={<EmptyStateIcon icon={SearchIcon} />}
+        headingLevel="h2"
+      />
       <EmptyStateBody>
         No results match the filter criteria. Clear all filters and try again.
-      </EmptyStateBody><EmptyStateFooter>
-      <EmptyStateActions>
-        <Button variant="link" onClick={() => setFilter('')}>
-          Clear all filters
-        </Button>
-      </EmptyStateActions>
-    </EmptyStateFooter></EmptyState>
+      </EmptyStateBody>
+      <EmptyStateFooter>
+        <EmptyStateActions>
+          <Button variant="link" onClick={() => setFilter('')}>
+            Clear all filters
+          </Button>
+        </EmptyStateActions>
+      </EmptyStateFooter>
+    </EmptyState>
   );
 
   return (

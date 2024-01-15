@@ -18,10 +18,10 @@ const SetNamePage = ({ name, setName, nameIsValid }) => {
 
   return (
     <>
-      <Title headingLevel="h2" className="pf-u-mb-sm">
+      <Title headingLevel="h2" className="pf-v5-u-mb-sm">
         Name key
       </Title>
-      <Text component={TextVariants.p} className="pf-u-mb-xl">
+      <Text component={TextVariants.p} className="pf-v5-u-mb-xl">
         This name cannot be modified after the activation key is created.
       </Text>
       <Form
@@ -32,11 +32,13 @@ const SetNamePage = ({ name, setName, nameIsValid }) => {
         <FormGroup
           label="Name"
           isRequired
-          helperText={helperText}
+          HelperText={helperText}
           fieldId="activation-key-name"
+          // Which one should I use here ? FormHelperText, HelperText, or HelperTextItem
           validated={
             nameIsValid || !enableValidationFeedback ? 'default' : 'error'
           }
+          // Which one should I use here ? FormHelperText, HelperText, or HelperTextItem
           helperTextInvalid={`Name requirements have not been met. ${helperText}`}
         >
           <TextInput

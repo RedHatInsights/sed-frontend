@@ -96,7 +96,7 @@ const Services = ({
   const getStatusIcon = (row) => {
     if (formState[row.id].value) {
       return (
-        <Flex style={{ color: 'var(--pf-global--success-color--200)' }}>
+        <Flex style={{ color: 'var(--pf-v5-global--success-color--200)' }}>
           <FlexItem spacer={{ default: 'spacerXs' }}>
             <CheckCircleIcon />
           </FlexItem>
@@ -107,7 +107,7 @@ const Services = ({
       );
     }
     return (
-      <Flex style={{ color: 'var(--pf-global--default-color--300)' }}>
+      <Flex style={{ color: 'var(--pf-v5-global--default-color--300)' }}>
         <FlexItem spacer={{ default: 'spacerXs' }}>
           <BanIcon />
         </FlexItem>
@@ -119,7 +119,7 @@ const Services = ({
   };
 
   return (
-    <Stack hasGutter className="pf-u-p-md">
+    <Stack hasGutter className="pf-v5-u-p-md">
       <StackItem>
         <Toolbar id="toolbar-items">
           <ToolbarContent>
@@ -200,7 +200,7 @@ const Services = ({
                         </FlexItem>
                         {row.additionalInfo && (
                           <FlexItem
-                            style={{ color: 'var(--pf-global--Color--100)' }}
+                            style={{ color: 'var(--pf-v5-global--Color--100)' }}
                           >
                             <i>{row.additionalInfo}</i>
                           </FlexItem>
@@ -221,7 +221,7 @@ const Services = ({
                                 rel="noopener noreferrer"
                               >
                                 {link.name}
-                                <ExternalLinkAltIcon className="pf-u-ml-sm" />
+                                <ExternalLinkAltIcon className="pf-v5-u-ml-sm" />
                               </a>
                             </FlexItem>
                           ))}

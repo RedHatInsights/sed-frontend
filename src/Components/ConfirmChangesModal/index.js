@@ -47,7 +47,7 @@ const ConfirmChangesModal = ({
           . Selected settings will also be applied to <b>all future systems</b>{' '}
           that are connected through remote host configuration (rhc).
         </Text>
-        <Text component="p" className="pf-u-mb-sm">
+        <Text component="p" className="pf-v5-u-mb-sm">
           Upon confirmation, an Ansible Playbook will be pushed to{' '}
           {systemsCount} {pluralize(systemsCount, 'system')} to apply changes.
         </Text>

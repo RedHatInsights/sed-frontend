@@ -55,10 +55,10 @@ const SetWorkloadPage = ({
 
   return (
     <>
-      <Title headingLevel="h2" className="pf-u-mb-sm">
+      <Title headingLevel="h2" className="pf-v5-u-mb-sm">
         Select Workload
       </Title>
-      <Text component={TextVariants.p} className="pf-u-mb-xl">
+      <Text component={TextVariants.p} className="pf-v5-u-mb-xl">
         Choose a workload option to associate an appropriate selection of
         repositories to the activation key. Repositories can be edited on the
         activation key detail page.{' '}
@@ -72,7 +72,7 @@ const SetWorkloadPage = ({
               label={wl}
               onChange={() => setWorkload(wl)}
               isChecked={wl == workload}
-              className="pf-u-mb-md"
+              className="pf-v5-u-mb-md"
               name={wl}
               id={wl}
               isDisabled={isDisabled}
@@ -91,7 +91,7 @@ const SetWorkloadPage = ({
                 ) : (
                   <TextContent>
                     <Text
-                      className="pf-u-color-light-100"
+                      className="pf-v5-u-color-light-100"
                       component={TextVariants.small}
                     >
                       Activation key can be version locked to a specific version

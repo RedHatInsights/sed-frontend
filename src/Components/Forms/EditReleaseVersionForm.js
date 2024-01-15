@@ -78,7 +78,7 @@ export const EditReleaseVersionForm = ({
           {options}
         </FormSelect>
       </FormGroup>
-      <ActionGroup className="pf-u-mt-0">
+      <ActionGroup className="pf-v5-u-mt-0">
         <Button
           key="save"
           id="submit-release-version-form-button"

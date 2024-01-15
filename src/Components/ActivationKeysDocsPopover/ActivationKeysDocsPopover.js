@@ -15,7 +15,7 @@ const ActivationKeysDocsPopover = (props) => {
     <Popover
       headerContent={title}
       position={positions[position]}
-      className="connector pf-u-color-100"
+      className="connector pf-v5-u-color-100"
       bodyContent={popoverContent}
     >
       <Button variant="plain" isInline style={{ padding: 0 }}>

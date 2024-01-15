@@ -98,7 +98,7 @@ const ActivationKeyForm = (props) => {
   return (
     <Form id="activation-key-form" onSubmit={handleSubmit}>
       {!activationKey && (
-        <FormGroup label="Name" isRequired helperText={validationText}>
+        <FormGroup label="Name" isRequired HelperText={validationText}>
           <TextInput
             id="activation-key-name"
             label="Name"

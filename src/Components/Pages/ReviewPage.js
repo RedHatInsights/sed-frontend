@@ -26,10 +26,10 @@ const ReviewPage = ({
     <Loading />
   ) : (
     <>
-      <Title headingLevel="h2" className="pf-u-mb-sm">
+      <Title headingLevel="h2" className="pf-v5-u-mb-sm">
         Review
       </Title>
-      <Text component={TextVariants.p} className="pf-u-mb-xl">
+      <Text component={TextVariants.p} className="pf-v5-u-mb-xl">
         Review the following information and click <b>Create</b> to create the
         activation key.
       </Text>

@@ -28,7 +28,7 @@ describe('Create Activation Key Wizard', () => {
         </QueryClientProvider>
       );
       for (let i = 1; i < page; i++) {
-        fireEvent.click(container.nextSibling.querySelector('.pf-m-primary'));
+        fireEvent.click(container.nextSibling.querySelector('$pf-v5-m-primary'));
       }
       expect(document.body).toMatchSnapshot();
     });
@@ -40,7 +40,7 @@ describe('Create Activation Key Wizard', () => {
         <CreateActivationKeyWizard handleModalToggle={() => {}} isOpen={true} />
       </QueryClientProvider>
     );
-    fireEvent.click(container.nextSibling.querySelector('.pf-c-wizard__close'));
+    fireEvent.click(container.nextSibling.querySelector('$pf-v5-c-wizard__close'));
     expect(document.body).toMatchSnapshot();
   });
 
@@ -50,8 +50,8 @@ describe('Create Activation Key Wizard', () => {
         <CreateActivationKeyWizard handleModalToggle={() => {}} isOpen={true} />
       </QueryClientProvider>
     );
-    fireEvent.click(container.nextSibling.querySelector('.pf-m-primary'));
-    fireEvent.click(container.nextSibling.querySelector('.pf-c-wizard__close'));
+    fireEvent.click(container.nextSibling.querySelector('$pf-v5-m-primary'));
+    fireEvent.click(container.nextSibling.querySelector('$pf-v5-c-wizard__close'));
     expect(document.body).toMatchSnapshot();
   });
 
@@ -62,7 +62,7 @@ describe('Create Activation Key Wizard', () => {
       </QueryClientProvider>
     );
     for (let i = 0; i < 4; i++) {
-      fireEvent.click(container.nextSibling.querySelector('.pf-m-primary'));
+      fireEvent.click(container.nextSibling.querySelector('$pf-v5-m-primary'));
     }
 
     expect(document.body).toMatchSnapshot();
