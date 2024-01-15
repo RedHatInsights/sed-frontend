@@ -3,25 +3,25 @@
 exports[`ActivationKeys renders correctly 1`] = `
 <div>
   <section
-    class="pf-l-page-header pf-c-page-header pf-l-page__main-section pf-c-page__main-section pf-m-light"
+    class="pf-v5-l-page-header pf-v5-c-page-header pf-v5-l-page__main-section pf-v5-c-page__main-section pf-m-light"
     widget-type="InsightsPageHeader"
   >
     <div
-      class="pf-l-split pf-m-gutter page-title"
+      class="pf-v5-l-split pf-m-gutter page-title"
     >
       <div
-        class="pf-l-split__item pf-m-fill"
+        class="pf-v5-l-split__item pf-m-fill"
       >
         <div
-          class="pf-l-flex"
+          class="pf-v5-l-flex"
         >
           <div
             class="pf-m-spacer-sm"
           >
             <h1
-              class="pf-c-title pf-m-2xl"
+              class="pf-v5-c-title pf-m-2xl"
               data-ouia-component-id="OUIA-Generated-Title-1"
-              data-ouia-component-type="PF4/Title"
+              data-ouia-component-type="PF5/Title"
               data-ouia-safe="true"
               widget-type="InsightsPageHeaderTitle"
             >
@@ -31,40 +31,44 @@ exports[`ActivationKeys renders correctly 1`] = `
           <div
             class=""
           >
-            <button
-              aria-disabled="false"
-              class="pf-c-button pf-m-plain"
-              data-ouia-component-id="OUIA-Generated-Button-plain-1"
-              data-ouia-component-type="PF4/Button"
-              data-ouia-safe="true"
-              style="padding: 0px;"
-              type="button"
+            <div
+              style="display: contents;"
             >
-              <svg
-                aria-hidden="true"
-                fill="currentColor"
-                height="1em"
-                role="img"
-                style="vertical-align: -0.125em;"
-                viewBox="0 0 512 512"
-                width="1em"
+              <button
+                aria-disabled="false"
+                class="pf-v5-c-button pf-m-plain"
+                data-ouia-component-id="OUIA-Generated-Button-plain-1"
+                data-ouia-component-type="PF5/Button"
+                data-ouia-safe="true"
+                style="padding: 0px;"
+                type="button"
               >
-                <path
-                  d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
-                />
-              </svg>
-            </button>
+                <svg
+                  aria-hidden="true"
+                  class="pf-v5-svg"
+                  fill="currentColor"
+                  height="1em"
+                  role="img"
+                  viewBox="0 0 512 512"
+                  width="1em"
+                >
+                  <path
+                    d="M256 8C119.043 8 8 119.083 8 256c0 136.997 111.043 248 248 248s248-111.003 248-248C504 119.083 392.957 8 256 8zm0 448c-110.532 0-200-89.431-200-200 0-110.495 89.472-200 200-200 110.491 0 200 89.471 200 200 0 110.53-89.431 200-200 200zm107.244-255.2c0 67.052-72.421 68.084-72.421 92.863V300c0 6.627-5.373 12-12 12h-45.647c-6.627 0-12-5.373-12-12v-8.659c0-35.745 27.1-50.034 47.579-61.516 17.561-9.845 28.324-16.541 28.324-29.579 0-17.246-21.999-28.693-39.784-28.693-23.189 0-33.894 10.977-48.942 29.969-4.057 5.12-11.46 6.071-16.666 2.124l-27.824-21.098c-5.107-3.872-6.251-11.066-2.644-16.363C184.846 131.491 214.94 112 261.794 112c49.071 0 101.45 38.304 101.45 88.8zM298 368c0 23.159-18.841 42-42 42s-42-18.841-42-42 18.841-42 42-42 42 18.841 42 42z"
+                  />
+                </svg>
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div
-      class="pf-c-content"
+      class="pf-v5-c-content"
     >
       <p
         class=""
         data-ouia-component-id="OUIA-Generated-Text-1"
-        data-ouia-component-type="PF4/Text"
+        data-ouia-component-type="PF5/Text"
         data-ouia-safe="true"
         data-pf-content="true"
       >
@@ -74,25 +78,25 @@ exports[`ActivationKeys renders correctly 1`] = `
     </div>
   </section>
   <section
-    class="pf-l-page__main-section pf-c-page__main-section"
+    class="pf-v5-l-page__main-section pf-v5-c-page__main-section"
   >
     <section
-      class="pf-c-page__main-section pf-m-light"
+      class="pf-v5-c-page__main-section pf-m-light"
     >
       <div
-        class="pf-c-form__group pf-m-action"
+        class="pf-v5-c-form__group pf-m-action"
       >
         <div
-          class="pf-c-form__group-control"
+          class="pf-v5-c-form__group-control"
         >
           <div
-            class="pf-c-form__actions"
+            class="pf-v5-c-form__actions"
           >
             <button
               aria-disabled="false"
-              class="pf-c-button pf-m-primary"
+              class="pf-v5-c-button pf-m-primary"
               data-ouia-component-id="OUIA-Generated-Button-primary-1"
-              data-ouia-component-type="PF4/Button"
+              data-ouia-component-type="PF5/Button"
               data-ouia-safe="true"
               type="button"
             >
