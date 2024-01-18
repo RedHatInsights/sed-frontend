@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, waitFor } from '@testing-library/react';
 import { createQueryWrapper } from '../../utils/testHelpers';
 import { useRbacPermissions } from '../useRbacPermissions';
 
@@ -31,7 +31,7 @@ describe('useRbacPermissions', () => {
   };
 
   it('build and returns rbac permissions object from the API', async () => {
-    const { result, waitFor } = renderHook(() => useRbacPermissions(), {
+    const { result } = renderHook(() => useRbacPermissions(), {
       wrapper: createQueryWrapper(),
     });
 

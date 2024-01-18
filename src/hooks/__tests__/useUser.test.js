@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, waitFor } from '@testing-library/react';
 import useUser from '../useUser';
 import { createQueryWrapper } from '../../utils/testHelpers';
 
@@ -40,7 +40,7 @@ jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
 
 describe('useUser hook', () => {
   it('gets the user data and permissions', async () => {
-    const { result, waitFor } = renderHook(() => useUser(), {
+    const { result } = renderHook(() => useUser(), {
       wrapper: createQueryWrapper(),
     });
 

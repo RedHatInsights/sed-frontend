@@ -78,7 +78,6 @@
     "@redhat-cloud-services/frontend-components-config": "^4.6.36",
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
-    "@testing-library/react-hooks": "^8.0.1",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.4.1",
     "axios-mock-adapter": "^1.19.0",
     "babel-core": "7.0.0-bridge.0",

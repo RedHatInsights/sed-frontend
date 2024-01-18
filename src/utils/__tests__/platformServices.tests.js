@@ -1,6 +1,6 @@
 import { useAuthenticateUser } from '../platformServices';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, waitFor } from '@testing-library/react';
 import { createQueryWrapper } from '../../utils/testHelpers';
 
 jest.mock('@redhat-cloud-services/frontend-components/useChrome', () =>
@@ -30,7 +30,7 @@ describe('Authenticate User method', () => {
       },
     }));
 
-    const { result, waitFor } = renderHook(() => useAuthenticateUser(), {
+    const { result } = renderHook(() => useAuthenticateUser(), {
       wrapper: createQueryWrapper(),
     });
 
@@ -55,7 +55,7 @@ describe('Authenticate User method', () => {
       },
     }));
 
-    const { result, waitFor } = renderHook(() => useAuthenticateUser(), {
+    const { result } = renderHook(() => useAuthenticateUser(), {
       wrapper: createQueryWrapper(),
     });
 
