@@ -87,6 +87,7 @@ const AdditionalRepositoriesTable = (props) => {
       onPerPageSelect={handlePerPageSelect}
       variant={PaginationVariant.top}
       isCompact
+      aria-label='pagination-top'
     />
   );
 
@@ -98,6 +99,7 @@ const AdditionalRepositoriesTable = (props) => {
       onSetPage={handleSetPage}
       onPerPageSelect={handlePerPageSelect}
       variant={PaginationVariant.bottom}
+      aria-label='pagination-bottom'
     />
   );
 

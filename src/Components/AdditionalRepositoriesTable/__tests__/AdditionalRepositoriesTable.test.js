@@ -176,8 +176,9 @@ describe('AdditionalRepositoriesTable', () => {
       );
 
       const { container } = render(<Table />);
-      const perPageArrow = screen.getAllByLabelText('Items per page')[0];
-      fireEvent.click(perPageArrow);
+      const PaginationTop = screen.getByLabelText('pagination-top');
+      const arrowIcon = PaginationTop.children[1].firstChild.children[1];
+      fireEvent.click(arrowIcon);
       const perPageAmout = screen.getByText('20 per page');
       fireEvent.click(perPageAmout);
 
