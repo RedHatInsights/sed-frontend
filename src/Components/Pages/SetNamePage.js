@@ -46,7 +46,7 @@ const SetNamePage = ({ name, setName, nameIsValid }) => {
             isRequired
             type="text"
             value={name}
-            onChange={setName}
+            onChange={(_event, name) => setName(name)}
             validated={
               nameIsValid || !enableValidationFeedback ? 'default' : 'error'
             }
