@@ -52,7 +52,7 @@
     "@redhat-cloud-services/config-manager-client": "^1.0.75",
     "@redhat-cloud-services/frontend-components": "^4.0.1",
     "@redhat-cloud-services/frontend-components-notifications": "^4.1.0",
-    "@redhat-cloud-services/frontend-components-utilities": "^4.0.0",
+    "@redhat-cloud-services/frontend-components-utilities": "^4.0.2",
     "@unleash/proxy-client-react": "^3.3.0",
     "classnames": "2.2.6",
     "react": "^18.2.0",
