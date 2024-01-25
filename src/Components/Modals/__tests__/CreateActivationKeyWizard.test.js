@@ -1,6 +1,6 @@
 import React from 'react';
 import CreateActivationKeyWizard from '../CreateActivationKeyWizard';
-import { fireEvent, render } from '@testing-library/react';
+import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import useCreateActivationKey from '../../../hooks/useCreateActivationKey';
@@ -19,7 +19,7 @@ describe('Create Activation Key Wizard', () => {
   const pages = [1, 2, 3, 4, 5];
   pages.forEach((page) => {
     it(`renders page ${page} correctly`, () => {
-      const { container } = render(
+      render(
         <QueryClientProvider client={queryClient}>
           <CreateActivationKeyWizard
             handleModalToggle={() => {}}
@@ -28,7 +28,8 @@ describe('Create Activation Key Wizard', () => {
         </QueryClientProvider>
       );
       for (let i = 1; i < page; i++) {
-        fireEvent.click(container.nextSibling.querySelector('$pf-v5-m-primary'));
+        const nextStepBtn = screen.getByText('Next');
+        fireEvent.click(nextStepBtn);
       }
       expect(document.body).toMatchSnapshot();
     });
@@ -40,7 +41,7 @@ describe('Create Activation Key Wizard', () => {
         <CreateActivationKeyWizard handleModalToggle={() => {}} isOpen={true} />
       </QueryClientProvider>
     );
-    fireEvent.click(container.nextSibling.querySelector('$pf-v5-c-wizard__close'));
+    fireEvent.click(container.nextSibling.querySelector('.pf-v5-c-wizard__close'));
     expect(document.body).toMatchSnapshot();
   });
 
@@ -50,19 +51,22 @@ describe('Create Activation Key Wizard', () => {
         <CreateActivationKeyWizard handleModalToggle={() => {}} isOpen={true} />
       </QueryClientProvider>
     );
-    fireEvent.click(container.nextSibling.querySelector('$pf-v5-m-primary'));
-    fireEvent.click(container.nextSibling.querySelector('$pf-v5-c-wizard__close'));
+
+    const nextStepBtn = screen.getByText('Next');
+    fireEvent.click(nextStepBtn);
+    fireEvent.click(container.nextSibling.querySelector('.pf-v5-c-wizard__close'));
     expect(document.body).toMatchSnapshot();
   });
 
   it('Saves data', async () => {
-    const { container } = render(
+    render(
       <QueryClientProvider client={queryClient}>
         <CreateActivationKeyWizard handleModalToggle={() => {}} isOpen={true} />
       </QueryClientProvider>
     );
     for (let i = 0; i < 4; i++) {
-      fireEvent.click(container.nextSibling.querySelector('$pf-v5-m-primary'));
+      const nextStepBtn = screen.getByText('Next');
+      fireEvent.click(nextStepBtn);    
     }
 
     expect(document.body).toMatchSnapshot();
