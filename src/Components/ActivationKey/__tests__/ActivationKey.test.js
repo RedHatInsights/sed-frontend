@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { init } from '../../../store';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import useUser from '../../../hooks/useUser';
-import { get, def } from 'bdd-lazy-var';
+import { get, def } from 'bdd-lazy-var/global';
 import useActivationKey from '../../../hooks/useActivationKey';
 import '@testing-library/jest-dom';
 import useAvailableRepositories from '../../../hooks/useAvailableRepositories';

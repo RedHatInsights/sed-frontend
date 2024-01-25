@@ -38,7 +38,7 @@ exports[`Notifications renders correctly 1`] = `
             class="pf-v5-c-alert__title"
           >
             <span
-              class="pf-v5-u-screen-reader"
+              class="pf-v5-screen-reader"
             >
               Success alert:
             </span>
@@ -105,7 +105,7 @@ exports[`Notifications renders correctly 1`] = `
             class="pf-v5-c-alert__title"
           >
             <span
-              class="pf-v5-u-screen-reader"
+              class="pf-v5-screen-reader"
             >
               Danger alert:
             </span>
@@ -172,7 +172,7 @@ exports[`Notifications renders correctly 1`] = `
             class="pf-v5-c-alert__title"
           >
             <span
-              class="pf-v5-u-screen-reader"
+              class="pf-v5-screen-reader"
             >
               Info alert:
             </span>

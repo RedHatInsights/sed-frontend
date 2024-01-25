@@ -44,7 +44,13 @@ describe('useUser hook', () => {
       wrapper: createQueryWrapper(),
     });
 
-    await waitFor(() => result.current.isSuccess);
+    await waitFor(() => result.current.isSuccess, {timeout: 100000});
+
+    console.log("$$$$$$$$$$$$$");
+    console.log(result, "result");
+    console.log(result.current.isSuccess, "result.current.isSuccess");
+    console.log(result.current, "result.current");
+    console.log(result.current.data, "result.current.data");
 
     expect(result.current.data).toEqual({
       accountNumber: '1',

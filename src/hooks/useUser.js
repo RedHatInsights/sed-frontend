@@ -4,7 +4,9 @@ import { useAuthenticateUser } from '../utils/platformServices';
 
 const useUser = () => {
   const rbacPermissions = useRbacPermissions();
+  console.log(rbacPermissions, "rbacPermissions");
   const authenticateUser = useAuthenticateUser();
+  console.log(authenticateUser, "authenticateUser");
 
   return useQuery(
     'user',
