@@ -5,7 +5,7 @@ import useUpdateActivationKey from '../../hooks/useUpdateActivationKey';
 import useActivationKey from '../../hooks/useActivationKey';
 import propTypes from 'prop-types';
 import Loading from '../LoadingState/Loading';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import SystemPurposeForm from '../Forms/SystemPurposeForm';
 import useNotifications from '../../hooks/useNotifications';
 
@@ -40,8 +40,8 @@ const EditActivationKeyModal = (props) => {
         onSuccess: () => {
           setError(false);
           setUpdated(true);
-          queryClient.invalidateQueries('activation_keys');
-          queryClient.resetQueries(`activation_key_${activationKeyName}`);
+          queryClient.invalidateQueries(['activation_keys']);
+          queryClient.resetQueries([`activation_key_${activationKeyName}`]);
           handleModalToggle();
           const successMessage = `Changes saved for activation key "${activationKey.name}"`;
           addSuccessNotification(successMessage, {

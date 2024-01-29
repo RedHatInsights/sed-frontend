@@ -18,7 +18,7 @@ import {
 } from '@redhat-cloud-services/frontend-components/PageHeader';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import ActivationKeysTable from '../ActivationKeysTable';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import NoActivationKeysFound from '../EmptyState';
 import EditActivationKeyModal from '../Modals/EditActivationKeyModal';
 import CreateActivationKeyWizard from '../Modals/CreateActivationKeyWizard';
@@ -31,7 +31,7 @@ const ActivationKeys = () => {
   const { updateDocumentTitle } = useChrome();
   updateDocumentTitle?.('Activation Keys - Remote Host Configuration');
   const queryClient = useQueryClient();
-  const user = queryClient.getQueryData('user');
+  const user = queryClient.getQueryData(['user']);
   const { isLoading, error, data } = useActivationKeys();
   const [isOpen, setisOpen] = useState(false);
   const [currentKeyName, setCurrentKeyName] = useState('');

@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import Authentication from '../../../Components/Authentication';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { init } from '../../../store';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import useUser from '../../../hooks/useUser';
 import { get, def } from 'bdd-lazy-var/global';
 import useActivationKey from '../../../hooks/useActivationKey';
@@ -50,7 +50,7 @@ const mockAuthenticateUser = (isLoading, isError, rbacPermissions) => {
     data: user,
   });
   if (isError === false) {
-    queryClient.setQueryData('user', user);
+    queryClient.setQueryData(['user'], user);
   }
 };
 

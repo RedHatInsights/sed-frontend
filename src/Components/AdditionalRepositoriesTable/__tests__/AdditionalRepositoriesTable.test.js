@@ -1,5 +1,5 @@
 import React from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen } from '@testing-library/react';
 import AdditionalRepositoriesTable from '../AdditionalRepositoriesTable';
 import { get, def } from 'bdd-lazy-var';

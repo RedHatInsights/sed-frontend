@@ -6,7 +6,7 @@ import {
   ActionGroup,
   Button,
 } from '@patternfly/react-core';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import useAddAdditionalRepositories from '../../hooks/useAddAdditionalRepositories';
 import useNotifications from '../../hooks/useNotifications';
 import AddAdditionalRepositoriesTable from '../AddAdditionalRepositoriesTable';
@@ -34,10 +34,8 @@ const AddAdditionalRepositoriesModal = (props) => {
       { selectedRepositories, keyName },
       {
         onSuccess: () => {
-          queryClient.resetQueries(`activation_key_${keyName}`);
-          queryClient.resetQueries(
-            `activation_key_${keyName}_available_repositories`
-          );
+          queryClient.resetQueries([`activation_key_${keyName}`]);
+          queryClient.resetQueries([`activation_key_${keyName}_available_repositories`]);
           addSuccessNotification(
             `Repositories have been added for '${keyName}'`
           );

@@ -60,6 +60,15 @@ describe('Authenticate User method', () => {
     });
 
     await waitFor(() => result.current.isError);
+
+    // all undefined except for result
+    console.log("&&&&&&&&&&");
+    console.log(result.status, "result.status");
+    console.log(result.isLoading, "result.isLoading");
+    console.log(result.isError, "result.isError");
+    console.log(result.error, "result.error");
+    console.log(result, "result");
+
     expect(result.current.error.message).toEqual(
       'Error authenticating user: Error getting user'
     );

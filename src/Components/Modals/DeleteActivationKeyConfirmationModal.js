@@ -12,7 +12,7 @@ import propTypes from 'prop-types';
 import useDeleteActivationKey from '../../hooks/useDeleteActivationKey';
 import useNotifications from '../../hooks/useNotifications';
 import Loading from '../LoadingState/Loading';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 
 const DeleteActivationKeyConfirmationModal = (props) => {
   const { isOpen, handleModalToggle, name } = props;
@@ -23,9 +23,8 @@ const DeleteActivationKeyConfirmationModal = (props) => {
   const deleteActivationKey = (name) => {
     mutate(name, {
       onSuccess: (_data, name) => {
-        queryClient.setQueryData('activation_keys', (oldData) =>
-          oldData.filter((entry) => entry.name != name)
-        );
+        queryClient.setQueryData(['activation_keys'], (oldData) =>
+          oldData.filter((entry) => entry.name != name));
         addSuccessNotification(`Activation key ${name} deleted`);
         handleModalToggle(true);
       },

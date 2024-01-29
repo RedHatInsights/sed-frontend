@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 import useCreateActivationKey from '../../hooks/useCreateActivationKey';
 import useSystemPurposeAttributes from '../../hooks/useSystemPurposeAttributes';
 import useNotifications from '../../hooks/useNotifications';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import ReviewPage from '../Pages/ReviewPage';
 import SetNamePage from '../Pages/SetNamePage';
 import SetWorkloadPage from '../Pages/SetWorkLoadPage';
@@ -55,7 +55,7 @@ const CreateActivationKeyWizard = ({ handleModalToggle, isOpen }) => {
   const nameIsValid = nameValidator.test(name);
 
   const onClose = () => {
-    queryClient.invalidateQueries('activation_keys');
+    queryClient.invalidateQueries(['activation_keys']);
     handleModalToggle();
   };
 

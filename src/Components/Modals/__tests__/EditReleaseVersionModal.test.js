@@ -1,7 +1,7 @@
 import React from 'react';
 import { EditReleaseVersionModal } from '../EditReleaseVersionModal';
 import { Provider } from 'react-redux';
-import { QueryClientProvider, QueryClient } from 'react-query';
+import { QueryClientProvider, QueryClient } from '@tanstack/react-query';
 import { init } from '../../../store';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';

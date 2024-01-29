@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const fetchEusVersions = (token) => async () => {
@@ -22,14 +22,15 @@ const useEusVersions = () => {
   const chrome = useChrome();
 
   return useQuery({
-    queryKey: 'eus_versions',
+    queryKey: ['eus_versions'],
     queryFn: () => fetchEusVersions(chrome?.auth?.getToken())(),
+
     retry: (failureCount, error) => {
       if (failureCount < 3 && error != '400') {
         return true;
       }
       return false;
-    },
+    }
   });
 };
 

@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const fetchActivationKeysData = (token) => async () => {
@@ -19,10 +19,7 @@ const getActivationKeys = (token) => async () => {
 const useActivationKeys = () => {
   const chrome = useChrome();
 
-  return useQuery(
-    'activation_keys',
-    getActivationKeys(chrome?.auth?.getToken())
-  );
+  return useQuery(['activation_keys'], getActivationKeys(chrome?.auth?.getToken()));
 };
 
 export { useActivationKeys as default };

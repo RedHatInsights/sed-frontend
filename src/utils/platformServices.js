@@ -1,10 +1,10 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const useAuthenticateUser = () => {
   const chrome = useChrome();
 
-  return useQuery('authenticated-user', () => {
+  return useQuery(['authenticated-user'], () => {
     try {
       return chrome?.auth?.getUser();
     } catch (e) {
