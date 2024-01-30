@@ -1,5 +1,4 @@
 import { useQuery } from 'react-query';
-
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const useAuthenticateUser = () => {
