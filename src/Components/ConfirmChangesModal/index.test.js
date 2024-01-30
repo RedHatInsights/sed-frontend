@@ -15,7 +15,14 @@ describe('ConfirmChangesModal', () => {
   it('renders correctly', () => {
     const handleCancel = jest.fn();
     const handleConfirm = jest.fn();
-    render(<ConfirmChangesModal isOpen systemsCount={2} handleCancel={handleCancel} handleConfirm={handleConfirm} />);
+    render(
+      <ConfirmChangesModal
+        isOpen
+        systemsCount={2}
+        handleCancel={handleCancel}
+        handleConfirm={handleConfirm}
+      />
+    );
     expect(screen.getByText('View playbook')).toBeInTheDocument();
     expect(screen.getAllByText('Confirm changes')).toHaveLength(2);
     expect(screen.getAllByText('Confirm changes')[0]).toBeInTheDocument();

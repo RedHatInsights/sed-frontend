@@ -7,7 +7,7 @@ import {
   Text,
   TextVariants,
 } from '@patternfly/react-core';
-import ExclamationTriangleIcon from '@patternfly/react-icons/dist/js/icons/external-link-alt-icon';
+import { ExclamationTriangleIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 import useNotifications from '../../hooks/useNotifications';
 import { useQueryClient } from '@tanstack/react-query';

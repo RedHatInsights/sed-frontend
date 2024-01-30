@@ -31,7 +31,17 @@ const WorkloadCard = (props) => {
   );
   return (
     <Card style={{ minHeight: '100%' }}>
-      <CardHeader actions={{ actions: <><EditButton onClick={actionHandler} /></>, hasNoOffset: false, className: undefined}} >
+      <CardHeader
+        actions={{
+          actions: (
+            <>
+              <EditButton onClick={actionHandler} />
+            </>
+          ),
+          hasNoOffset: false,
+          className: undefined,
+        }}
+      >
         <CardTitle>
           <Title headingLevel="h2">
             Workload{' '}
@@ -41,7 +51,6 @@ const WorkloadCard = (props) => {
             />
           </Title>
         </CardTitle>
-        
       </CardHeader>
       <CardBody>
         <TextContent>

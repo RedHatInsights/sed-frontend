@@ -41,7 +41,9 @@ describe('Create Activation Key Wizard', () => {
         <CreateActivationKeyWizard handleModalToggle={() => {}} isOpen={true} />
       </QueryClientProvider>
     );
-    fireEvent.click(container.nextSibling.querySelector('.pf-v5-c-wizard__close'));
+    fireEvent.click(
+      container.nextSibling.querySelector('.pf-v5-c-wizard__close')
+    );
     expect(document.body).toMatchSnapshot();
   });
 
@@ -54,7 +56,9 @@ describe('Create Activation Key Wizard', () => {
 
     const nextStepBtn = screen.getByText('Next');
     fireEvent.click(nextStepBtn);
-    fireEvent.click(container.nextSibling.querySelector('.pf-v5-c-wizard__close'));
+    fireEvent.click(
+      container.nextSibling.querySelector('.pf-v5-c-wizard__close')
+    );
     expect(document.body).toMatchSnapshot();
   });
 
@@ -66,7 +70,7 @@ describe('Create Activation Key Wizard', () => {
     );
     for (let i = 0; i < 4; i++) {
       const nextStepBtn = screen.getByText('Next');
-      fireEvent.click(nextStepBtn);    
+      fireEvent.click(nextStepBtn);
     }
 
     expect(document.body).toMatchSnapshot();

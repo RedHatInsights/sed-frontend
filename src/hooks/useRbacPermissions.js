@@ -25,7 +25,8 @@ const useRbacPermissions = () => {
   const permissions = chrome.getUserPermissions('config-manager');
 
   return useQuery(['rbac_permissions'], () =>
-    getUserRbacPermissions(permissions));
+    getUserRbacPermissions(permissions)
+  );
 };
 
 export { getUserRbacPermissions, useRbacPermissions };

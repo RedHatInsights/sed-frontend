@@ -6,6 +6,9 @@ import {
   TextInput,
   TextVariants,
   FormGroup,
+  FormHelperText,
+  HelperText,
+  HelperTextItem,
   Form,
 } from '@patternfly/react-core';
 
@@ -15,6 +18,9 @@ const SetNamePage = ({ name, setName, nameIsValid }) => {
 
   const helperText =
     'Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens.';
+  const validated =
+    nameIsValid || !enableValidationFeedback ? 'default' : 'error';
+  const helperTextInvalid = `Name requirements have not been met. ${helperText}`;
 
   return (
     <>
@@ -29,29 +35,23 @@ const SetNamePage = ({ name, setName, nameIsValid }) => {
           e.preventDefault();
         }}
       >
-        <FormGroup
-          label="Name"
-          isRequired
-          HelperText={helperText}
-          fieldId="activation-key-name"
-          // Which one should I use here ? FormHelperText, HelperText, or HelperTextItem
-          validated={
-            nameIsValid || !enableValidationFeedback ? 'default' : 'error'
-          }
-          // Which one should I use here ? FormHelperText, HelperText, or HelperTextItem
-          helperTextInvalid={`Name requirements have not been met. ${helperText}`}
-        >
+        <FormGroup label="Name" isRequired fieldId="activation-key-name">
           <TextInput
             id="activation-key-name"
             isRequired
             type="text"
             value={name}
             onChange={(_event, name) => setName(name)}
-            validated={
-              nameIsValid || !enableValidationFeedback ? 'default' : 'error'
-            }
+            validated={validated}
             onBlur={() => setEnableValidationFeedback(true)}
           />
+          <FormHelperText>
+            <HelperText>
+              <HelperTextItem variant={validated}>
+                {validated === 'default' ? helperText : helperTextInvalid}
+              </HelperTextItem>
+            </HelperText>
+          </FormHelperText>
         </FormGroup>
       </Form>
     </>

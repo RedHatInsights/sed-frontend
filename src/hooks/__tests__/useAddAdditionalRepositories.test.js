@@ -6,7 +6,6 @@ import useAddAdditionalRepositories from '../useAddAdditionalRepositories';
 enableFetchMocks();
 
 describe('useAddAdditionalRepositories', () => {
-
   it('adds additional repository to activationKey', async () => {
     fetch.mockResponseOnce(
       JSON.stringify({ body: [{ repositoryLabel: 'repository-A' }] })

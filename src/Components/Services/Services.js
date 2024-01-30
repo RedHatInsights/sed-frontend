@@ -20,7 +20,7 @@ import {
 } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 import {
-  Table /* data-codemods */,
+  Table,
   Thead,
   Tr,
   Th,

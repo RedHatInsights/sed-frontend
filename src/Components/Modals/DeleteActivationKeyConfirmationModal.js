@@ -7,7 +7,7 @@ import {
   Text,
   TextVariants,
 } from '@patternfly/react-core';
-import ExclamationTriangleIcon from '@patternfly/react-icons/dist/js/icons/external-link-alt-icon';
+import { ExclamationTriangleIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 import useDeleteActivationKey from '../../hooks/useDeleteActivationKey';
 import useNotifications from '../../hooks/useNotifications';
@@ -24,7 +24,8 @@ const DeleteActivationKeyConfirmationModal = (props) => {
     mutate(name, {
       onSuccess: (_data, name) => {
         queryClient.setQueryData(['activation_keys'], (oldData) =>
-          oldData.filter((entry) => entry.name != name));
+          oldData.filter((entry) => entry.name != name)
+        );
         addSuccessNotification(`Activation key ${name} deleted`);
         handleModalToggle(true);
       },

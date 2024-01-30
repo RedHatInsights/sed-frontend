@@ -5,7 +5,10 @@ import {
   EmptyState,
   EmptyStateBody,
   EmptyStateIcon,
-  Spinner, EmptyStateActions, EmptyStateHeader, EmptyStateFooter,
+  Spinner, 
+  EmptyStateActions, 
+  EmptyStateHeader, 
+  EmptyStateFooter,
   } from '@patternfly/react-core';
 import { CheckCircleIcon } from '@patternfly/react-icons';
 import useInsightsNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate/useInsightsNavigate';
@@ -18,23 +21,29 @@ const SuccessPage = ({ isLoading, name, onClose }) => {
     <Spinner />
   ) : (
     <EmptyState>
-      <EmptyStateHeader titleText="Activation key created" icon={<EmptyStateIcon color="green" icon={CheckCircleIcon} />} headingLevel="h4" />
+      <EmptyStateHeader
+        titleText="Activation key created"
+        icon={<EmptyStateIcon color="green" icon={CheckCircleIcon} />}
+        headingLevel="h4"
+      />
       <EmptyStateBody>
         <b>{name}</b> is now available for use. Click <b>View activation key</b>{' '}
         to edit settings or add repositories.
-      </EmptyStateBody><EmptyStateFooter>
-      <Button
-        variant="primary"
-        onClick={() => navigate(`/activation-keys/${name}`)}
-      >
-        View activation key
-      </Button>
-      <EmptyStateActions>
-        <Button variant="link" onClick={onClose}>
-          Close
+      </EmptyStateBody>
+      <EmptyStateFooter>
+        <Button
+          variant="primary"
+          onClick={() => navigate(`/activation-keys/${name}`)}
+        >
+          View activation key
         </Button>
-      </EmptyStateActions>
-    </EmptyStateFooter></EmptyState>
+        <EmptyStateActions>
+          <Button variant="link" onClick={onClose}>
+            Close
+          </Button>
+        </EmptyStateActions>
+      </EmptyStateFooter>
+    </EmptyState>
   );
 
   return <Bullseye>{content}</Bullseye>;

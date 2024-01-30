@@ -6,7 +6,6 @@ import useUpdateActivationKey from '../useUpdateActivationKey';
 enableFetchMocks();
 
 describe('useUpdateActivationKey', () => {
-
   it('updates activation key', async () => {
     fetch.mockResponseOnce(JSON.stringify({ body: { id: 'id' } }));
     const keyParams = {

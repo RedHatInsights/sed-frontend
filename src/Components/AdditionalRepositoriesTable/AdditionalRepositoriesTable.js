@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import {
-  Table /* data-codemods */,
+  Table,
   Thead,
   Tr,
   Th,
@@ -87,7 +87,7 @@ const AdditionalRepositoriesTable = (props) => {
       onPerPageSelect={handlePerPageSelect}
       variant={PaginationVariant.top}
       isCompact
-      aria-label='pagination-top'
+      aria-label="pagination-top"
     />
   );
 
@@ -99,7 +99,7 @@ const AdditionalRepositoriesTable = (props) => {
       onSetPage={handleSetPage}
       onPerPageSelect={handlePerPageSelect}
       variant={PaginationVariant.bottom}
-      aria-label='pagination-bottom'
+      aria-label="pagination-bottom"
     />
   );
 

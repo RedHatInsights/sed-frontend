@@ -45,7 +45,9 @@ export const EditReleaseVersionForm = ({
       },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries([`activation_key_${activationKey.name}`]);
+          queryClient.invalidateQueries([
+            `activation_key_${activationKey.name}`,
+          ]);
           addSuccessNotification(
             `Changes saved for activation key "${activationKey.name}"`
           );

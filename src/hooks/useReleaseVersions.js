@@ -23,7 +23,8 @@ const useReleaseVersions = (keyName) => {
   const chrome = useChrome();
 
   return useQuery([`activation_key_${keyName}`], () =>
-    getReleaseVersions(chrome?.auth?.getToken())(keyName));
+    getReleaseVersions(chrome?.auth?.getToken())(keyName)
+  );
 };
 
 export { useReleaseVersions as default };

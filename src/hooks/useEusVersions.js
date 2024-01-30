@@ -24,13 +24,12 @@ const useEusVersions = () => {
   return useQuery({
     queryKey: ['eus_versions'],
     queryFn: () => fetchEusVersions(chrome?.auth?.getToken())(),
-
     retry: (failureCount, error) => {
       if (failureCount < 3 && error != '400') {
         return true;
       }
       return false;
-    }
+    },
   });
 };
 

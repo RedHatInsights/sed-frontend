@@ -43,7 +43,8 @@ const useAvailableRepositories = (keyName) => {
   const token = chrome?.auth?.getToken();
 
   return useQuery([`activation_key_${keyName}_available_repositories`], () =>
-    fetchAdditionalRepositories(token, keyName));
+    fetchAdditionalRepositories(token, keyName)
+  );
 };
 
 export { useAvailableRepositories as default };

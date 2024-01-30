@@ -222,9 +222,6 @@ exports[`Create Activation Key Wizard Confirms on close one next has been clicke
                     >
                       <div
                         class="pf-v5-c-form__group"
-                        helpertext="Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        helpertextinvalid="Name requirements have not been met. Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        validated="default"
                       >
                         <div
                           class="pf-v5-c-form__group-label"
@@ -265,6 +262,23 @@ exports[`Create Activation Key Wizard Confirms on close one next has been clicke
                               value=""
                             />
                           </span>
+                          <div
+                            class="pf-v5-c-form__helper-text"
+                          >
+                            <div
+                              class="pf-v5-c-helper-text"
+                            >
+                              <div
+                                class="pf-v5-c-helper-text__item"
+                              >
+                                <span
+                                  class="pf-v5-c-helper-text__item-text"
+                                >
+                                  Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens.
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </form>
@@ -542,9 +556,6 @@ exports[`Create Activation Key Wizard Doesn't confirm on close when nothing has 
                     >
                       <div
                         class="pf-v5-c-form__group"
-                        helpertext="Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        helpertextinvalid="Name requirements have not been met. Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        validated="default"
                       >
                         <div
                           class="pf-v5-c-form__group-label"
@@ -585,6 +596,23 @@ exports[`Create Activation Key Wizard Doesn't confirm on close when nothing has 
                               value=""
                             />
                           </span>
+                          <div
+                            class="pf-v5-c-form__helper-text"
+                          >
+                            <div
+                              class="pf-v5-c-helper-text"
+                            >
+                              <div
+                                class="pf-v5-c-helper-text__item"
+                              >
+                                <span
+                                  class="pf-v5-c-helper-text__item-text"
+                                >
+                                  Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens.
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </form>
@@ -862,9 +890,6 @@ exports[`Create Activation Key Wizard Saves data 1`] = `
                     >
                       <div
                         class="pf-v5-c-form__group"
-                        helpertext="Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        helpertextinvalid="Name requirements have not been met. Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        validated="default"
                       >
                         <div
                           class="pf-v5-c-form__group-label"
@@ -905,6 +930,23 @@ exports[`Create Activation Key Wizard Saves data 1`] = `
                               value=""
                             />
                           </span>
+                          <div
+                            class="pf-v5-c-form__helper-text"
+                          >
+                            <div
+                              class="pf-v5-c-helper-text"
+                            >
+                              <div
+                                class="pf-v5-c-helper-text__item"
+                              >
+                                <span
+                                  class="pf-v5-c-helper-text__item-text"
+                                >
+                                  Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens.
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </form>
@@ -1182,9 +1224,6 @@ exports[`Create Activation Key Wizard renders page 1 correctly 1`] = `
                     >
                       <div
                         class="pf-v5-c-form__group"
-                        helpertext="Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        helpertextinvalid="Name requirements have not been met. Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        validated="default"
                       >
                         <div
                           class="pf-v5-c-form__group-label"
@@ -1225,6 +1264,23 @@ exports[`Create Activation Key Wizard renders page 1 correctly 1`] = `
                               value=""
                             />
                           </span>
+                          <div
+                            class="pf-v5-c-form__helper-text"
+                          >
+                            <div
+                              class="pf-v5-c-helper-text"
+                            >
+                              <div
+                                class="pf-v5-c-helper-text__item"
+                              >
+                                <span
+                                  class="pf-v5-c-helper-text__item-text"
+                                >
+                                  Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens.
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </form>
@@ -1502,9 +1558,6 @@ exports[`Create Activation Key Wizard renders page 2 correctly 1`] = `
                     >
                       <div
                         class="pf-v5-c-form__group"
-                        helpertext="Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        helpertextinvalid="Name requirements have not been met. Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        validated="default"
                       >
                         <div
                           class="pf-v5-c-form__group-label"
@@ -1545,6 +1598,23 @@ exports[`Create Activation Key Wizard renders page 2 correctly 1`] = `
                               value=""
                             />
                           </span>
+                          <div
+                            class="pf-v5-c-form__helper-text"
+                          >
+                            <div
+                              class="pf-v5-c-helper-text"
+                            >
+                              <div
+                                class="pf-v5-c-helper-text__item"
+                              >
+                                <span
+                                  class="pf-v5-c-helper-text__item-text"
+                                >
+                                  Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens.
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </form>
@@ -1822,9 +1892,6 @@ exports[`Create Activation Key Wizard renders page 3 correctly 1`] = `
                     >
                       <div
                         class="pf-v5-c-form__group"
-                        helpertext="Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        helpertextinvalid="Name requirements have not been met. Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        validated="default"
                       >
                         <div
                           class="pf-v5-c-form__group-label"
@@ -1865,6 +1932,23 @@ exports[`Create Activation Key Wizard renders page 3 correctly 1`] = `
                               value=""
                             />
                           </span>
+                          <div
+                            class="pf-v5-c-form__helper-text"
+                          >
+                            <div
+                              class="pf-v5-c-helper-text"
+                            >
+                              <div
+                                class="pf-v5-c-helper-text__item"
+                              >
+                                <span
+                                  class="pf-v5-c-helper-text__item-text"
+                                >
+                                  Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens.
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </form>
@@ -2142,9 +2226,6 @@ exports[`Create Activation Key Wizard renders page 4 correctly 1`] = `
                     >
                       <div
                         class="pf-v5-c-form__group"
-                        helpertext="Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        helpertextinvalid="Name requirements have not been met. Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        validated="default"
                       >
                         <div
                           class="pf-v5-c-form__group-label"
@@ -2185,6 +2266,23 @@ exports[`Create Activation Key Wizard renders page 4 correctly 1`] = `
                               value=""
                             />
                           </span>
+                          <div
+                            class="pf-v5-c-form__helper-text"
+                          >
+                            <div
+                              class="pf-v5-c-helper-text"
+                            >
+                              <div
+                                class="pf-v5-c-helper-text__item"
+                              >
+                                <span
+                                  class="pf-v5-c-helper-text__item-text"
+                                >
+                                  Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens.
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </form>
@@ -2462,9 +2560,6 @@ exports[`Create Activation Key Wizard renders page 5 correctly 1`] = `
                     >
                       <div
                         class="pf-v5-c-form__group"
-                        helpertext="Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        helpertextinvalid="Name requirements have not been met. Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens."
-                        validated="default"
                       >
                         <div
                           class="pf-v5-c-form__group-label"
@@ -2505,6 +2600,23 @@ exports[`Create Activation Key Wizard renders page 5 correctly 1`] = `
                               value=""
                             />
                           </span>
+                          <div
+                            class="pf-v5-c-form__helper-text"
+                          >
+                            <div
+                              class="pf-v5-c-helper-text"
+                            >
+                              <div
+                                class="pf-v5-c-helper-text__item"
+                              >
+                                <span
+                                  class="pf-v5-c-helper-text__item-text"
+                                >
+                                  Your activation key name must be unique and must contain only numbers, letters, underscores, and hyphens.
+                                </span>
+                              </div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </form>

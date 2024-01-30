@@ -9,7 +9,6 @@ exports[`Activation Key Form renders correctly when data is loaded 1`] = `
   >
     <div
       class="pf-v5-c-form__group"
-      helpertext="Provide a name to be used when registering the activation key. Your activation key name must be unique, may contain only numbers, letters, underscores, and hyphens, and less than 256 characters."
     >
       <div
         class="pf-v5-c-form__group-label"
@@ -51,11 +50,27 @@ exports[`Activation Key Form renders correctly when data is loaded 1`] = `
             value=""
           />
         </span>
+        <div
+          class="pf-v5-c-form__helper-text"
+        >
+          <div
+            class="pf-v5-c-helper-text"
+          >
+            <div
+              class="pf-v5-c-helper-text__item"
+            >
+              <span
+                class="pf-v5-c-helper-text__item-text"
+              >
+                Provide a name to be used when registering the activation key. Your activation key name must be unique, may contain only numbers, letters, underscores, and hyphens, and less than 256 characters.
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div
       class="pf-v5-c-form__group"
-      helpertext="Select the required role from the list. The list only contains roles available to the activation key."
     >
       <div
         class="pf-v5-c-form__group-label"
@@ -137,11 +152,27 @@ exports[`Activation Key Form renders correctly when data is loaded 1`] = `
             </span>
           </span>
         </span>
+        <div
+          class="pf-v5-c-form__helper-text"
+        >
+          <div
+            class="pf-v5-c-helper-text"
+          >
+            <div
+              class="pf-v5-c-helper-text__item"
+            >
+              <span
+                class="pf-v5-c-helper-text__item-text"
+              >
+                Select the required role from the list. The list only contains roles available to the activation key.
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div
       class="pf-v5-c-form__group"
-      helpertext="Select the required service level from the list. The list only contains service levels available to the activation key."
     >
       <div
         class="pf-v5-c-form__group-label"
@@ -223,11 +254,27 @@ exports[`Activation Key Form renders correctly when data is loaded 1`] = `
             </span>
           </span>
         </span>
+        <div
+          class="pf-v5-c-form__helper-text"
+        >
+          <div
+            class="pf-v5-c-helper-text"
+          >
+            <div
+              class="pf-v5-c-helper-text__item"
+            >
+              <span
+                class="pf-v5-c-helper-text__item-text"
+              >
+                Select the required service level from the list. The list only contains service levels available to the activation key.
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div
       class="pf-v5-c-form__group"
-      helpertext="Select the required usage from the list. The list only contains usages available to the activation key."
     >
       <div
         class="pf-v5-c-form__group-label"
@@ -309,6 +356,23 @@ exports[`Activation Key Form renders correctly when data is loaded 1`] = `
             </span>
           </span>
         </span>
+        <div
+          class="pf-v5-c-form__helper-text"
+        >
+          <div
+            class="pf-v5-c-helper-text"
+          >
+            <div
+              class="pf-v5-c-helper-text__item"
+            >
+              <span
+                class="pf-v5-c-helper-text__item-text"
+              >
+                Select the required usage from the list. The list only contains usages available to the activation key.
+              </span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
     <div

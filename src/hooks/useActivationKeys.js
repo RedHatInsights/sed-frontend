@@ -19,7 +19,10 @@ const getActivationKeys = (token) => async () => {
 const useActivationKeys = () => {
   const chrome = useChrome();
 
-  return useQuery(['activation_keys'], getActivationKeys(chrome?.auth?.getToken()));
+  return useQuery(
+    ['activation_keys'],
+    getActivationKeys(chrome?.auth?.getToken())
+  );
 };
 
 export { useActivationKeys as default };

@@ -24,7 +24,8 @@ const useActivationKey = (keyName) => {
   const chrome = useChrome();
 
   return useQuery([`activation_key_${keyName}`], () =>
-    getActivationKey(chrome?.auth?.getToken())(keyName));
+    getActivationKey(chrome?.auth?.getToken())(keyName)
+  );
 };
 
 export { useActivationKey as default };

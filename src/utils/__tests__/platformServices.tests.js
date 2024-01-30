@@ -11,14 +11,15 @@ describe('Authenticate User method', () => {
   it('should return a promise with user data', async () => {
     useChrome.mockImplementation(() => ({
       auth: {
-        getUser: () => Promise.resolve(({
-          identity: {
-            account_number: 1,
-            internal: {
-              org_id: 1,
+        getUser: () =>
+          Promise.resolve({
+            identity: {
+              account_number: 1,
+              internal: {
+                org_id: 1,
+              },
             },
-          },
-        })),
+          }),
       },
     }));
 
@@ -41,13 +42,14 @@ describe('Authenticate User method', () => {
   it('should throw an error if rejected', async () => {
     useChrome.mockImplementation(() => ({
       auth: {
-          getUser: () => Promise.reject(new Error('Error getting user')),
-        },
-      }),
-    );
+        getUser: () => Promise.reject(new Error('Error getting user')),
+      },
+    }));
 
-    expect(() => renderHook(() => useAuthenticateUser(), {
-      wrapper: createQueryWrapper(),
-    }).toThrow(Error('Error getting user')));
+    expect(() =>
+      renderHook(() => useAuthenticateUser(), {
+        wrapper: createQueryWrapper(),
+      }).toThrow(Error('Error getting user'))
+    );
   });
 });

@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import {
   FormGroup,
+  FormHelperText,
+  HelperText,
+  HelperTextItem,
   FormSelect,
   FormSelectOption,
 } from '@patternfly/react-core';
@@ -29,7 +32,7 @@ const ActivationKeysFormSelect = (props) => {
   };
 
   return (
-    <FormGroup label={label} labelIcon={popover} HelperText={helperText}>
+    <FormGroup label={label} labelIcon={popover}>
       <FormSelect
         onChange={(_event, value) => valueChange(value)}
         value={selected || value}
@@ -43,6 +46,11 @@ const ActivationKeysFormSelect = (props) => {
           isDisabled={disableDefaultValues}
         />
       </FormSelect>
+      <FormHelperText>
+        <HelperText>
+          <HelperTextItem>{helperText}</HelperTextItem>
+        </HelperText>
+      </FormHelperText>
     </FormGroup>
   );
 };

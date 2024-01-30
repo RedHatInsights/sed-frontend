@@ -40,11 +40,21 @@ const SystemPurposeCard = (props) => {
   );
   return (
     <Card>
-      <CardHeader actions={{ actions: <>{user.rbacPermissions.canWriteActivationKeys ? (
-            <ButtonWrapper />
-          ) : (
-            <NoAccessPopover content={ButtonWrapper} />
-          )}</>, hasNoOffset: false, className: undefined}} >
+      <CardHeader
+        actions={{
+          actions: (
+            <>
+              {user.rbacPermissions.canWriteActivationKeys ? (
+                <ButtonWrapper />
+              ) : (
+                <NoAccessPopover content={ButtonWrapper} />
+              )}
+            </>
+          ),
+          hasNoOffset: false,
+          className: undefined,
+        }}
+      >
         <CardTitle>
           <Title headingLevel="h2">
             System Purpose{' '}
@@ -54,7 +64,6 @@ const SystemPurposeCard = (props) => {
             />{' '}
           </Title>
         </CardTitle>
-        
       </CardHeader>
       <CardBody>
         <TextContent>

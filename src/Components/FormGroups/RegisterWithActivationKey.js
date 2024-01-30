@@ -22,11 +22,11 @@ const RegisterWithActivationKey = () => (
         </Tooltip>
       </span>
     }
-    HelperText={<CopyHelperText />}
   >
     <ClipboardCopy>
       rhc connect -a &#60;activation-key&#62; -o&nbsp; &#60;organization-id&#62;
     </ClipboardCopy>
+    <CopyHelperText />
   </FormGroup>
 );
 

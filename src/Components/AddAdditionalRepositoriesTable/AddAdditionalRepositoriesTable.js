@@ -11,7 +11,7 @@ import {
 } from '@patternfly/react-core';
 import { SearchIcon } from '@patternfly/react-icons';
 import {
-  Table /* data-codemods */,
+  Table,
   Thead,
   Tr,
   Th,
