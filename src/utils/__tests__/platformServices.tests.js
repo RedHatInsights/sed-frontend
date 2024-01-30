@@ -34,7 +34,7 @@ describe('Authenticate User method', () => {
       wrapper: createQueryWrapper(),
     });
 
-    await waitFor(() => result.current.isSuccess);
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     expect(result.current.data).toEqual({
       identity: {
@@ -55,19 +55,17 @@ describe('Authenticate User method', () => {
       },
     }));
 
+    // await waitFor(() => expect(renderHook(() => useAuthenticateUser(), {
+    //   wrapper: createQueryWrapper(),
+    // })).toThrow(Error('Error authenticating user: Error getting user')));
+
     const { result } = renderHook(() => useAuthenticateUser(), {
       wrapper: createQueryWrapper(),
     });
 
-    await waitFor(() => result.current.isError);
+    await waitFor(() => expect(result.current.isError).toBe(true));
 
-    // all undefined except for result
-    console.log("&&&&&&&&&&");
-    console.log(result.status, "result.status");
-    console.log(result.isLoading, "result.isLoading");
-    console.log(result.isError, "result.isError");
-    console.log(result.error, "result.error");
-    console.log(result, "result");
+    // expect(result).toThrow(Error('Error authenticating user: Error getting user'));
 
     expect(result.current.error.message).toEqual(
       'Error authenticating user: Error getting user'

@@ -35,7 +35,7 @@ describe('useRbacPermissions', () => {
       wrapper: createQueryWrapper(),
     });
 
-    await waitFor(() => result.current.isSuccess);
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     expect(result.current.data).toEqual(rbacObject);
   });
