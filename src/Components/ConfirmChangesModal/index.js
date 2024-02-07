@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useConfigApi } from '../../api';
+import { useGetPlaybookPreview } from '../../api';
 import { Button, Modal, Text, TextContent } from '@patternfly/react-core';
 import { pluralize, downloadFile } from '../../utils/helpers';
 
@@ -11,7 +11,7 @@ const ConfirmChangesModal = ({
   systemsCount,
   data,
 }) => {
-  const configApi = useConfigApi();
+  const playbook = useGetPlaybookPreview(data);
 
   return (
     <Modal
@@ -55,14 +55,7 @@ const ConfirmChangesModal = ({
       <Button
         variant="link"
         onClick={() => {
-          (async () => {
-            const playbook = await configApi.getPlaybookPreview({
-              compliance: data.compliance,
-              insights: data.insights,
-              remediations: data.remediations,
-            });
-            downloadFile(playbook);
-          })();
+          downloadFile(playbook);
         }}
         style={{ paddingLeft: 0 }}
       >
