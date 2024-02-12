@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  Table,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-} from '@patternfly/react-table';
+import { Table, Thead, Tr, Th, Tbody, Td } from '@patternfly/react-table';
 import { Pagination, PaginationVariant } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import RemoveAdditionalRepositoriesButton from './RemoveAdditionalRepositoriesButton';

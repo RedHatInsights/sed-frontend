@@ -19,14 +19,7 @@ import {
   ExternalLinkAltIcon,
 } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
-import {
-  Table,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-} from '@patternfly/react-table';
+import { Table, Thead, Tr, Th, Tbody, Td } from '@patternfly/react-table';
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 import { permissions } from './permissionsConfig';

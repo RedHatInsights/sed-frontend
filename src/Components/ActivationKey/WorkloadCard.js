@@ -11,7 +11,7 @@ import {
   TextListItem,
   TextListItemVariants,
   Title,
-  } from '@patternfly/react-core';
+} from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import ActivationKeysDocsPopover from '../ActivationKeysDocsPopover';
 import EditButton from './EditButton';

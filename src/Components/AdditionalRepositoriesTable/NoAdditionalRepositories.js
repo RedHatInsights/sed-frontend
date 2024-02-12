@@ -2,9 +2,9 @@ import React from 'react';
 import {
   EmptyState,
   EmptyStateBody,
-  EmptyStateIcon, 
+  EmptyStateIcon,
   EmptyStateHeader,
-  } from '@patternfly/react-core';
+} from '@patternfly/react-core';
 import { AddCircleOIcon } from '@patternfly/react-icons';
 
 const NoAdditionalRepositories = () => {

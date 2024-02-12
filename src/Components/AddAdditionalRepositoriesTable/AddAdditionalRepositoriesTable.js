@@ -10,14 +10,7 @@ import {
   EmptyStateFooter,
 } from '@patternfly/react-core';
 import { SearchIcon } from '@patternfly/react-icons';
-import {
-  Table,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-} from '@patternfly/react-table';
+import { Table, Thead, Tr, Th, Tbody, Td } from '@patternfly/react-table';
 import React, { useEffect, useState } from 'react';
 import Loading from '../LoadingState/Loading';
 import AddAdditionalRepositoriesToolbar from './AddAdditionalRepositoriesToolbar';

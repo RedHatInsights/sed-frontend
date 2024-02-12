@@ -5,11 +5,11 @@ import {
   EmptyState,
   EmptyStateBody,
   EmptyStateIcon,
-  Spinner, 
-  EmptyStateActions, 
-  EmptyStateHeader, 
+  Spinner,
+  EmptyStateActions,
+  EmptyStateHeader,
   EmptyStateFooter,
-  } from '@patternfly/react-core';
+} from '@patternfly/react-core';
 import { CheckCircleIcon } from '@patternfly/react-icons';
 import useInsightsNavigate from '@redhat-cloud-services/frontend-components-utilities/useInsightsNavigate/useInsightsNavigate';
 import PropTypes from 'prop-types';

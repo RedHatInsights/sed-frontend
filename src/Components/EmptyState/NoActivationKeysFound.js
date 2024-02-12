@@ -2,10 +2,10 @@ import React from 'react';
 import {
   EmptyState,
   EmptyStateBody,
-  EmptyStateIcon, 
-  EmptyStateHeader, 
+  EmptyStateIcon,
+  EmptyStateHeader,
   EmptyStateFooter,
-  } from '@patternfly/react-core';
+} from '@patternfly/react-core';
 import PropTypes from 'prop-types';
 import { AddCircleOIcon } from '@patternfly/react-icons';
 import CreateActivationKeyButton from '../ActivationKeys/CreateActivationKeyButton';
