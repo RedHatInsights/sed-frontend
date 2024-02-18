@@ -57,7 +57,7 @@ const SetSystemPurposePage = ({
             fieldId="activation-key-role"
           >
             <FormSelect
-              onChange={setRole}
+              onChange={(_event, value) => setRole(value)}
               value={role}
               id="activation-key-role"
             >
@@ -70,7 +70,11 @@ const SetSystemPurposePage = ({
             className="pf-v5-u-mb-sm"
             fieldId="activation-key-sla"
           >
-            <FormSelect onChange={setSla} value={sla} id="activation-key-sla">
+            <FormSelect
+              onChange={(_event, value) => setSla(value)}
+              value={sla}
+              id="activation-key-sla"
+            >
               <Options options={data.serviceLevel} />
               <Placeholder />
             </FormSelect>
@@ -81,7 +85,7 @@ const SetSystemPurposePage = ({
             fieldId="activation-key-usage"
           >
             <FormSelect
-              onChange={setUsage}
+              onChange={(_event, value) => setUsage(value)}
               value={usage}
               id="activation-key-usage"
             >
