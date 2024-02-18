@@ -17,9 +17,8 @@ const RemoveAdditionalRepositoriesButton = ({ onClick }) => {
       variant="plain"
       aria-label="Action"
       disabled={!isButtonEnabled}
-    >
-      <MinusCircleIcon />
-    </WriteOnlyButton>
+      icon={<MinusCircleIcon />}
+    />
   );
 };
 

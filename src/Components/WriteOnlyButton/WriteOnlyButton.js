@@ -54,7 +54,7 @@ const WriteOnlyButton = (props) => {
 };
 
 WriteOnlyButton.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   enabledTooltip: PropTypes.string,
   disabledTooltip: PropTypes.string,
 };

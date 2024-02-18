@@ -108,7 +108,7 @@ SetSystemPurposePage.propTypes = {
   setUsage: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired,
+  isError: PropTypes.oneOfType([PropTypes.bool, () => null]),
 };
 
 export default SetSystemPurposePage;
