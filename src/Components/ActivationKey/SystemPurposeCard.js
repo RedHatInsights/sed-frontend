@@ -52,7 +52,7 @@ const SystemPurposeCard = (props) => {
             </>
           ),
           hasNoOffset: false,
-          className: undefined,
+          className: 'SystemPurposeCardHeader',
         }}
       >
         <CardTitle>

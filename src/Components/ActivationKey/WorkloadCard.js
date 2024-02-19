@@ -39,7 +39,7 @@ const WorkloadCard = (props) => {
             </>
           ),
           hasNoOffset: false,
-          className: undefined,
+          className: 'WorkloadCardHeader',
         }}
       >
         <CardTitle>
