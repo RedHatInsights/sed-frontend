@@ -59,7 +59,7 @@ const AddAdditionalRepositoriesToolbar = ({
             <SearchInput
               placeholder={`Filter by ${friendlyNameMap[filterBy]}`}
               value={filter}
-              onChange={setFilter}
+              onChange={(_event, value) => setFilter(value)}
               isDisabled={searchIsDisabled}
               onClear={() => setFilter('')}
               style={{ width: '400px' }}
