@@ -3,7 +3,7 @@ import {
   EmptyState,
   EmptyStateBody,
   EmptyStateIcon,
-  Title,
+  EmptyStateHeader,
 } from '@patternfly/react-core';
 import { AddCircleOIcon } from '@patternfly/react-icons';
 
@@ -11,10 +11,11 @@ const NoAdditionalRepositories = () => {
   return (
     <>
       <EmptyState>
-        <EmptyStateIcon icon={AddCircleOIcon} />
-        <Title headingLevel="h5" size="lg">
-          No additional repositories
-        </Title>
+        <EmptyStateHeader
+          titleText="No additional repositories"
+          icon={<EmptyStateIcon icon={AddCircleOIcon} />}
+          headingLevel="h5"
+        />
         <EmptyStateBody>
           You currently have no additional repositories to display.
         </EmptyStateBody>

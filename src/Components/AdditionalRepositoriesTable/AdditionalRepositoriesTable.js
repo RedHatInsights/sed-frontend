@@ -1,12 +1,5 @@
 import React, { useState } from 'react';
-import {
-  TableComposable,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-} from '@patternfly/react-table';
+import { Table, Thead, Tr, Th, Tbody, Td } from '@patternfly/react-table';
 import { Pagination, PaginationVariant } from '@patternfly/react-core';
 import propTypes from 'prop-types';
 import RemoveAdditionalRepositoriesButton from './RemoveAdditionalRepositoriesButton';
@@ -87,6 +80,7 @@ const AdditionalRepositoriesTable = (props) => {
       onPerPageSelect={handlePerPageSelect}
       variant={PaginationVariant.top}
       isCompact
+      aria-label="pagination-top"
     />
   );
 
@@ -98,6 +92,7 @@ const AdditionalRepositoriesTable = (props) => {
       onSetPage={handleSetPage}
       onPerPageSelect={handlePerPageSelect}
       variant={PaginationVariant.bottom}
+      aria-label="pagination-bottom"
     />
   );
 
@@ -118,7 +113,7 @@ const AdditionalRepositoriesTable = (props) => {
   return (
     <React.Fragment>
       <PaginationTop />
-      <TableComposable aria-label="ActivationKeys">
+      <Table aria-label="ActivationKeys">
         <Thead>
           <Tr>
             <Th sort={getSortParams(0)} width={40}>
@@ -159,7 +154,7 @@ const AdditionalRepositoriesTable = (props) => {
           repositoryNameToDelete={repositoryNameToDelete}
           repositoryLabelToDelete={repositoryLabelToDelete}
         />
-      </TableComposable>
+      </Table>
       <DeleteAdditionalRepositoriesModal
         name={name}
         isOpen={isDeleteAdditionalRepositoriesModalOpen}

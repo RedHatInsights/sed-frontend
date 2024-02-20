@@ -1,4 +1,4 @@
-import { renderHook } from '@testing-library/react-hooks';
+import { renderHook, waitFor } from '@testing-library/react';
 import fetch, { enableFetchMocks } from 'jest-fetch-mock';
 import { createQueryWrapper } from '../../utils/testHelpers';
 import useActivationKeys from '../useActivationKeys';
@@ -18,11 +18,11 @@ describe('useActivationKeys', () => {
 
     fetch.mockResponseOnce(JSON.stringify({ body: [...keyData] }));
 
-    const { result, waitFor } = renderHook(() => useActivationKeys(), {
+    const { result } = renderHook(() => useActivationKeys(), {
       wrapper: createQueryWrapper(),
     });
 
-    await waitFor(() => result.current.isSuccess);
+    await waitFor(() => expect(result.current.isSuccess).toBe(true));
 
     expect(result.current.data).toEqual(keyData);
   });

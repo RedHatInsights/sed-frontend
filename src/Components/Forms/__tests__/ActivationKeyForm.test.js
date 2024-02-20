@@ -3,7 +3,7 @@ import ActivationKeyForm from '../ActivationKeyForm';
 import useSystemPurposeAttributes from '../../../hooks/useSystemPurposeAttributes';
 import { Provider } from 'react-redux';
 import { init } from '../../../store';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { fireEvent, render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 const queryClient = new QueryClient();

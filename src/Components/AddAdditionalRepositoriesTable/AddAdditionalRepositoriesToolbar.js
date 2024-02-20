@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import {
   SearchInput,
-  Select,
-  SelectOption,
   ToggleGroupItem,
   Toolbar,
   ToolbarContent,
@@ -10,6 +8,8 @@ import {
   ToolbarItem,
   ToggleGroup,
 } from '@patternfly/react-core';
+import { Select, SelectOption } from '@patternfly/react-core/deprecated';
+
 import { FilterIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 
@@ -36,7 +36,7 @@ const AddAdditionalRepositoriesToolbar = ({
           <ToolbarItem spacer={{ default: 'spacerNone' }}>
             <Select
               isOpen={isSelectFilterByExpanded}
-              onToggle={(isSelectFilterByExpanded) =>
+              onToggle={(_event, isSelectFilterByExpanded) =>
                 setIsSelectFilterByExpanded(isSelectFilterByExpanded)
               }
               toggleIcon={<FilterIcon />}
@@ -59,7 +59,7 @@ const AddAdditionalRepositoriesToolbar = ({
             <SearchInput
               placeholder={`Filter by ${friendlyNameMap[filterBy]}`}
               value={filter}
-              onChange={setFilter}
+              onChange={(_event, value) => setFilter(value)}
               isDisabled={searchIsDisabled}
               onClear={() => setFilter('')}
               style={{ width: '400px' }}
@@ -70,7 +70,7 @@ const AddAdditionalRepositoriesToolbar = ({
               <ToggleGroupItem
                 text="All"
                 isSelected={!onlyShowSelectedRepositories}
-                onChange={(selected) => {
+                onChange={(_event, selected) => {
                   if (selected) {
                     setOnlyShowSelectedRepositories(false);
                   }
@@ -79,7 +79,7 @@ const AddAdditionalRepositoriesToolbar = ({
               <ToggleGroupItem
                 text="Selected"
                 isSelected={onlyShowSelectedRepositories}
-                onChange={(selected) => {
+                onChange={(_event, selected) => {
                   if (selected) {
                     setOnlyShowSelectedRepositories(true);
                   }
@@ -89,7 +89,7 @@ const AddAdditionalRepositoriesToolbar = ({
             </ToggleGroup>
           </ToolbarItem>
         </ToolbarGroup>
-        <ToolbarItem variant="pagination" alignment={{ default: 'alignRight' }}>
+        <ToolbarItem variant="pagination" align={{ default: 'alignRight' }}>
           {pagination}
         </ToolbarItem>
       </ToolbarContent>

@@ -153,7 +153,7 @@ const SamplePage = () => {
               }
             >
               Connecting with Red Hat
-              {<ExternalLinkAltIcon className="pf-u-ml-sm" />}
+              {<ExternalLinkAltIcon className="pf-v5-u-ml-sm" />}
             </a>
           </StackItem>
         </Stack>
@@ -179,7 +179,7 @@ const SamplePage = () => {
             />
           ) : (
             <Bullseye>
-              <Spinner className="pf-u-p-lg" size="xl" />
+              <Spinner className="pf-v5-u-p-lg" size="xl" />
             </Bullseye>
           )}
         </div>

@@ -3,24 +3,23 @@
 exports[`renders correctly 1`] = `
 <div>
   <div
-    class="pf-l-bullseye"
+    class="pf-v5-l-bullseye"
   >
-    <span
+    <svg
       aria-label="Contents"
       aria-valuetext="Loading..."
-      class="pf-c-spinner pf-m-xl"
+      class="pf-v5-c-spinner pf-m-xl"
       role="progressbar"
+      viewBox="0 0 100 100"
     >
-      <span
-        class="pf-c-spinner__clipper"
+      <circle
+        class="pf-v5-c-spinner__path"
+        cx="50"
+        cy="50"
+        fill="none"
+        r="45"
       />
-      <span
-        class="pf-c-spinner__lead-ball"
-      />
-      <span
-        class="pf-c-spinner__tail-ball"
-      />
-    </span>
+    </svg>
   </div>
 </div>
 `;

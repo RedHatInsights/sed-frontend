@@ -4,19 +4,13 @@ import {
   EmptyState,
   EmptyStateBody,
   EmptyStateIcon,
-  EmptyStatePrimary,
   Pagination,
-  Title,
+  EmptyStateActions,
+  EmptyStateHeader,
+  EmptyStateFooter,
 } from '@patternfly/react-core';
 import { SearchIcon } from '@patternfly/react-icons';
-import {
-  TableComposable,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-} from '@patternfly/react-table';
+import { Table, Thead, Tr, Th, Tbody, Td } from '@patternfly/react-table';
 import React, { useEffect, useState } from 'react';
 import Loading from '../LoadingState/Loading';
 import AddAdditionalRepositoriesToolbar from './AddAdditionalRepositoriesToolbar';
@@ -139,16 +133,21 @@ const AddAdditionalRepositoriesTable = (props) => {
 
   const emptyState = (
     <EmptyState>
-      <EmptyStateIcon icon={SearchIcon} />
-      <Title headingLevel="h2">No results found</Title>
+      <EmptyStateHeader
+        titleText="No results found"
+        icon={<EmptyStateIcon icon={SearchIcon} />}
+        headingLevel="h2"
+      />
       <EmptyStateBody>
         No results match the filter criteria. Clear all filters and try again.
       </EmptyStateBody>
-      <EmptyStatePrimary>
-        <Button variant="link" onClick={() => setFilter('')}>
-          Clear all filters
-        </Button>
-      </EmptyStatePrimary>
+      <EmptyStateFooter>
+        <EmptyStateActions>
+          <Button variant="link" onClick={() => setFilter('')}>
+            Clear all filters
+          </Button>
+        </EmptyStateActions>
+      </EmptyStateFooter>
     </EmptyState>
   );
 
@@ -171,7 +170,7 @@ const AddAdditionalRepositoriesTable = (props) => {
         onlyShowSelectedRepositories={onlyShowSelectedRepositories}
         setOnlyShowSelectedRepositories={setOnlyShowSelectedRepositories}
       />
-      <TableComposable variant="compact">
+      <Table variant="compact">
         <Thead>
           <Tr>
             <Th />
@@ -219,7 +218,7 @@ const AddAdditionalRepositoriesTable = (props) => {
             </Tr>
           )}
         </Tbody>
-      </TableComposable>
+      </Table>
       {pagination}
     </>
   );

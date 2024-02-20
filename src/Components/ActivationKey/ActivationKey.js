@@ -26,14 +26,14 @@ import DeleteButton from './DeleteButton';
 import DeleteActivationKeyConfirmationModal from '../Modals/DeleteActivationKeyConfirmationModal';
 import EditActivationKeyModal from '../Modals/EditActivationKeyModal';
 import NoAccessPopover from '../NoAccessPopover';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { EditReleaseVersionModal } from '../Modals/EditReleaseVersionModal';
 import useReleaseVersions from '../../hooks/useReleaseVersions';
 
 const ActivationKey = () => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const user = queryClient.getQueryData('user');
+  const user = queryClient.getQueryData(['user']);
   const { id } = useParams();
   const breadcrumbs = [
     { title: 'Activation Keys', to: '../activation-keys' },

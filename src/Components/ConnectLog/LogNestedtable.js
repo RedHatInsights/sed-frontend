@@ -7,7 +7,11 @@ import {
   TextVariants,
 } from '@patternfly/react-core';
 import PropTypes from 'prop-types';
-import { Table, TableHeader, TableBody } from '@patternfly/react-table';
+import {
+  Table,
+  TableHeader,
+  TableBody,
+} from '@patternfly/react-table/deprecated';
 
 const columns = [
   { title: 'Service' },

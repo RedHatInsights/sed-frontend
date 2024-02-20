@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const fetchAdditionalRepositories = async (
@@ -42,7 +42,7 @@ const useAvailableRepositories = (keyName) => {
   const chrome = useChrome();
   const token = chrome?.auth?.getToken();
 
-  return useQuery(`activation_key_${keyName}_available_repositories`, () =>
+  return useQuery([`activation_key_${keyName}_available_repositories`], () =>
     fetchAdditionalRepositories(token, keyName)
   );
 };

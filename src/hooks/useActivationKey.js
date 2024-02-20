@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const fetchActivationKeyData = (token) => async (keyName) => {
@@ -23,7 +23,7 @@ const getActivationKey = (token) => async (keyName) => {
 const useActivationKey = (keyName) => {
   const chrome = useChrome();
 
-  return useQuery(`activation_key_${keyName}`, () =>
+  return useQuery([`activation_key_${keyName}`], () =>
     getActivationKey(chrome?.auth?.getToken())(keyName)
   );
 };

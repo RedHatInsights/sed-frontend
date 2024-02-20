@@ -19,14 +19,7 @@ import {
   ExternalLinkAltIcon,
 } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
-import {
-  TableComposable,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-} from '@patternfly/react-table';
+import { Table, Thead, Tr, Th, Tbody, Td } from '@patternfly/react-table';
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 import { permissions } from './permissionsConfig';
@@ -96,7 +89,7 @@ const Services = ({
   const getStatusIcon = (row) => {
     if (formState[row.id].value) {
       return (
-        <Flex style={{ color: 'var(--pf-global--success-color--200)' }}>
+        <Flex style={{ color: 'var(--pf-v5-global--success-color--200)' }}>
           <FlexItem spacer={{ default: 'spacerXs' }}>
             <CheckCircleIcon />
           </FlexItem>
@@ -107,7 +100,7 @@ const Services = ({
       );
     }
     return (
-      <Flex style={{ color: 'var(--pf-global--default-color--300)' }}>
+      <Flex style={{ color: 'var(--pf-v5-global--default-color--300)' }}>
         <FlexItem spacer={{ default: 'spacerXs' }}>
           <BanIcon />
         </FlexItem>
@@ -119,7 +112,7 @@ const Services = ({
   };
 
   return (
-    <Stack hasGutter className="pf-u-p-md">
+    <Stack hasGutter className="pf-v5-u-p-md">
       <StackItem>
         <Toolbar id="toolbar-items">
           <ToolbarContent>
@@ -177,7 +170,7 @@ const Services = ({
         </Toolbar>
       </StackItem>
       <StackItem>
-        <TableComposable aria-label="Settings table">
+        <Table aria-label="Settings table">
           <Thead>
             <Tr>
               <Th>Permission</Th>
@@ -200,7 +193,7 @@ const Services = ({
                         </FlexItem>
                         {row.additionalInfo && (
                           <FlexItem
-                            style={{ color: 'var(--pf-global--Color--100)' }}
+                            style={{ color: 'var(--pf-v5-global--Color--100)' }}
                           >
                             <i>{row.additionalInfo}</i>
                           </FlexItem>
@@ -221,7 +214,7 @@ const Services = ({
                                 rel="noopener noreferrer"
                               >
                                 {link.name}
-                                <ExternalLinkAltIcon className="pf-u-ml-sm" />
+                                <ExternalLinkAltIcon className="pf-v5-u-ml-sm" />
                               </a>
                             </FlexItem>
                           ))}
@@ -262,7 +255,7 @@ const Services = ({
               </Tr>
             ))}
           </Tbody>
-        </TableComposable>
+        </Table>
       </StackItem>
     </Stack>
   );

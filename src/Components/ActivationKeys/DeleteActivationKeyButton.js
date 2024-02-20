@@ -10,9 +10,8 @@ const DeleteActivationKeyButton = ({ onClick }) => {
       onClick={onClick}
       disabledTooltip="For editing access, contact your administrator."
       enabledTooltip="Delete"
-    >
-      <TrashIcon />
-    </WriteOnlyButton>
+      icon={<TrashIcon />}
+    />
   );
 };
 

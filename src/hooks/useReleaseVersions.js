@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const fetchReleaseVersions = (token) => async () => {
@@ -22,7 +22,7 @@ const getReleaseVersions = (token) => async (keyName) => {
 const useReleaseVersions = (keyName) => {
   const chrome = useChrome();
 
-  return useQuery(`activation_key_${keyName}`, () =>
+  return useQuery([`activation_key_${keyName}`], () =>
     getReleaseVersions(chrome?.auth?.getToken())(keyName)
   );
 };

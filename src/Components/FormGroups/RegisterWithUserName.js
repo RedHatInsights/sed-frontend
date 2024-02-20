@@ -47,11 +47,11 @@ const RegisterWithUserName = () => {
           </Popover>
         </span>
       }
-      helperText={<CopyHelperText />}
     >
       <ClipboardCopy>
         rhc connect -u &#60;username&#62; -p &#60;password&#62;
       </ClipboardCopy>
+      <CopyHelperText />
     </FormGroup>
   );
 };

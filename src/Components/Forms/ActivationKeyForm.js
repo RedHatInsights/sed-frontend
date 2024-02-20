@@ -4,6 +4,9 @@ import {
   Button,
   Form,
   FormGroup,
+  FormHelperText,
+  HelperText,
+  HelperTextItem,
   Popover,
   TextInput,
   Text,
@@ -98,16 +101,23 @@ const ActivationKeyForm = (props) => {
   return (
     <Form id="activation-key-form" onSubmit={handleSubmit}>
       {!activationKey && (
-        <FormGroup label="Name" isRequired helperText={validationText}>
+        <FormGroup label="Name" isRequired>
           <TextInput
             id="activation-key-name"
             label="Name"
             isRequired
             type="text"
             validated={validated}
-            onChange={validateName}
+            onChange={(_event, value) => validateName(value)}
             name="name"
           />
+          <FormHelperText>
+            <HelperText>
+              <HelperTextItem variant={validated}>
+                {validationText}
+              </HelperTextItem>
+            </HelperText>
+          </FormHelperText>
         </FormGroup>
       )}
       {activationKey && (

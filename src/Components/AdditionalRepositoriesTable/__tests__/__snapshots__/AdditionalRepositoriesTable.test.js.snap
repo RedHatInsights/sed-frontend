@@ -3,15 +3,16 @@
 exports[`AdditionalRepositoriesTable renders correctly 1`] = `
 <div>
   <div
-    class="pf-c-pagination pf-m-compact"
+    aria-label="pagination-top"
+    class="pf-v5-c-pagination pf-m-compact"
     data-ouia-component-id="OUIA-Generated-Pagination-top-1"
-    data-ouia-component-type="PF4/Pagination"
+    data-ouia-component-type="PF5/Pagination"
     data-ouia-safe="true"
     id="options-menu-top-pagination"
-    style="--pf-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
+    style="--pf-v5-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
   >
     <div
-      class="pf-c-pagination__total-items"
+      class="pf-v5-c-pagination__total-items"
     >
       <b>
         1
@@ -25,18 +26,17 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
         2
       </b>
        
-      
     </div>
-    <div
-      class="pf-c-options-menu"
-      data-ouia-component-type="PF4/PaginationOptionsMenu"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-options-menu__toggle pf-m-plain pf-m-text"
+    <div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="pf-v5-c-menu-toggle pf-m-plain pf-m-text"
+        id="options-menu-top-toggle"
+        type="button"
       >
         <span
-          class="pf-c-options-menu__toggle-text"
+          class="pf-v5-c-menu-toggle__text"
         >
           <b>
             1
@@ -50,28 +50,19 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
             2
           </b>
            
-          
         </span>
-        <button
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-label="Items per page"
-          class="  pf-c-options-menu__toggle-button"
-          data-ouia-component-id="OUIA-Generated-DropdownToggle-1"
-          data-ouia-component-type="PF4/DropdownToggle"
-          data-ouia-safe="true"
-          id="options-menu-top-toggle"
-          type="button"
+        <span
+          class="pf-v5-c-menu-toggle__controls"
         >
           <span
-            class="pf-c-options-menu__toggle-button-icon"
+            class="pf-v5-c-menu-toggle__toggle-icon"
           >
             <svg
               aria-hidden="true"
+              class="pf-v5-svg"
               fill="currentColor"
               height="1em"
               role="img"
-              style="vertical-align: -0.125em;"
               viewBox="0 0 320 512"
               width="1em"
             >
@@ -80,33 +71,33 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
               />
             </svg>
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
     <nav
       aria-label="Pagination"
-      class="pf-c-pagination__nav"
+      class="pf-v5-c-pagination__nav"
     >
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to previous page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
           data-ouia-component-id="OUIA-Generated-Button-plain-1"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -117,25 +108,25 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to next page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="next"
           data-ouia-component-id="OUIA-Generated-Button-plain-2"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -149,47 +140,48 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
   </div>
   <table
     aria-label="ActivationKeys"
-    class="pf-c-table pf-m-grid-md"
+    class="pf-v5-c-table pf-m-grid-md"
     data-ouia-component-id="OUIA-Generated-Table-1"
-    data-ouia-component-type="PF4/Table"
+    data-ouia-component-type="PF5/Table"
     data-ouia-safe="true"
     role="grid"
   >
     <thead
-      class=""
+      class="pf-v5-c-table__thead"
     >
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-1"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <th
           aria-sort="none"
-          class="pf-c-table__sort pf-m-width-40"
+          class="pf-v5-c-table__th pf-v5-c-table__sort pf-m-width-40"
           scope="col"
+          tabindex="-1"
         >
           <button
-            class="pf-c-table__button"
+            class="pf-v5-c-table__button"
             type="button"
           >
             <div
-              class="pf-c-table__button-content"
+              class="pf-v5-c-table__button-content"
             >
               <span
-                class="pf-c-table__text"
+                class="pf-v5-c-table__text"
               >
                 Name
               </span>
               <span
-                class="pf-c-table__sort-indicator"
+                class="pf-v5-c-table__sort-indicator"
               >
                 <svg
                   aria-hidden="true"
+                  class="pf-v5-svg"
                   fill="currentColor"
                   height="1em"
                   role="img"
-                  style="vertical-align: -0.125em;"
                   viewBox="0 0 256 512"
                   width="1em"
                 >
@@ -203,30 +195,31 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
         </th>
         <th
           aria-sort="none"
-          class="pf-c-table__sort"
+          class="pf-v5-c-table__th pf-v5-c-table__sort"
           scope="col"
+          tabindex="-1"
         >
           <button
-            class="pf-c-table__button"
+            class="pf-v5-c-table__button"
             type="button"
           >
             <div
-              class="pf-c-table__button-content"
+              class="pf-v5-c-table__button-content"
             >
               <span
-                class="pf-c-table__text"
+                class="pf-v5-c-table__text"
               >
                 Label
               </span>
               <span
-                class="pf-c-table__sort-indicator"
+                class="pf-v5-c-table__sort-indicator"
               >
                 <svg
                   aria-hidden="true"
+                  class="pf-v5-svg"
                   fill="currentColor"
                   height="1em"
                   role="img"
-                  style="vertical-align: -0.125em;"
                   viewBox="0 0 256 512"
                   width="1em"
                 >
@@ -239,122 +232,138 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
           </button>
         </th>
         <th
-          class=""
+          class="pf-v5-c-table__th"
+          tabindex="-1"
         />
       </tr>
     </thead>
     <tbody
-      class=""
+      class="pf-v5-c-table__tbody"
       role="rowgroup"
     >
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-2"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-a
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-3"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-3"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-3"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-b
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-4"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-4"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>
   </table>
   <div
-    class="pf-c-pagination pf-m-bottom"
+    aria-label="pagination-bottom"
+    class="pf-v5-c-pagination pf-m-bottom"
     data-ouia-component-id="OUIA-Generated-Pagination-bottom-1"
-    data-ouia-component-type="PF4/Pagination"
+    data-ouia-component-type="PF5/Pagination"
     data-ouia-safe="true"
     id="options-menu-bottom-pagination"
-    style="--pf-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
+    style="--pf-v5-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
   >
-    <div
-      class="pf-c-options-menu pf-m-top"
-      data-ouia-component-type="PF4/PaginationOptionsMenu"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-options-menu__toggle pf-m-plain pf-m-text"
+    <div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="pf-v5-c-menu-toggle pf-m-plain pf-m-text"
+        id="options-menu-bottom-toggle"
+        type="button"
       >
         <span
-          class="pf-c-options-menu__toggle-text"
+          class="pf-v5-c-menu-toggle__text"
         >
           <b>
             1
@@ -368,28 +377,19 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
             2
           </b>
            
-          
         </span>
-        <button
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-label="Items per page"
-          class="  pf-c-options-menu__toggle-button"
-          data-ouia-component-id="OUIA-Generated-DropdownToggle-2"
-          data-ouia-component-type="PF4/DropdownToggle"
-          data-ouia-safe="true"
-          id="options-menu-bottom-toggle"
-          type="button"
+        <span
+          class="pf-v5-c-menu-toggle__controls"
         >
           <span
-            class="pf-c-options-menu__toggle-button-icon"
+            class="pf-v5-c-menu-toggle__toggle-icon"
           >
             <svg
               aria-hidden="true"
+              class="pf-v5-svg"
               fill="currentColor"
               height="1em"
               role="img"
-              style="vertical-align: -0.125em;"
               viewBox="0 0 320 512"
               width="1em"
             >
@@ -398,33 +398,33 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
               />
             </svg>
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
     <nav
       aria-label="Pagination"
-      class="pf-c-pagination__nav"
+      class="pf-v5-c-pagination__nav"
     >
       <div
-        class="pf-c-pagination__nav-control pf-m-first"
+        class="pf-v5-c-pagination__nav-control pf-m-first"
       >
         <button
           aria-disabled="true"
           aria-label="Go to first page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="first"
           data-ouia-component-id="OUIA-Generated-Button-plain-5"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 448 512"
             width="1em"
           >
@@ -435,25 +435,25 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to previous page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
           data-ouia-component-id="OUIA-Generated-Button-plain-6"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -464,17 +464,24 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-page-select"
+        class="pf-v5-c-pagination__nav-page-select"
       >
-        <input
-          aria-label="Current page"
-          class="pf-c-form-control"
-          disabled=""
-          max="1"
-          min="1"
-          type="number"
-          value="1"
-        />
+        <span
+          class="pf-v5-c-form-control pf-m-disabled"
+        >
+          <input
+            aria-invalid="false"
+            aria-label="Current page"
+            data-ouia-component-id="OUIA-Generated-TextInputBase-1"
+            data-ouia-component-type="PF5/TextInput"
+            data-ouia-safe="true"
+            disabled=""
+            max="1"
+            min="1"
+            type="number"
+            value="1"
+          />
+        </span>
         <span
           aria-hidden="true"
         >
@@ -484,25 +491,25 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
         </span>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to next page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="next"
           data-ouia-component-id="OUIA-Generated-Button-plain-7"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -513,25 +520,25 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control pf-m-last"
+        class="pf-v5-c-pagination__nav-control pf-m-last"
       >
         <button
           aria-disabled="true"
           aria-label="Go to last page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="last"
           data-ouia-component-id="OUIA-Generated-Button-plain-8"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 448 512"
             width="1em"
           >
@@ -549,15 +556,16 @@ exports[`AdditionalRepositoriesTable renders correctly 1`] = `
 exports[`AdditionalRepositoriesTable when row column headings are clicked can sort by label 1`] = `
 <div>
   <div
-    class="pf-c-pagination pf-m-compact"
+    aria-label="pagination-top"
+    class="pf-v5-c-pagination pf-m-compact"
     data-ouia-component-id="OUIA-Generated-Pagination-top-8"
-    data-ouia-component-type="PF4/Pagination"
+    data-ouia-component-type="PF5/Pagination"
     data-ouia-safe="true"
     id="options-menu-top-pagination"
-    style="--pf-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
+    style="--pf-v5-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
   >
     <div
-      class="pf-c-pagination__total-items"
+      class="pf-v5-c-pagination__total-items"
     >
       <b>
         1
@@ -571,18 +579,17 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         3
       </b>
        
-      
     </div>
-    <div
-      class="pf-c-options-menu"
-      data-ouia-component-type="PF4/PaginationOptionsMenu"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-options-menu__toggle pf-m-plain pf-m-text"
+    <div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="pf-v5-c-menu-toggle pf-m-plain pf-m-text"
+        id="options-menu-top-toggle"
+        type="button"
       >
         <span
-          class="pf-c-options-menu__toggle-text"
+          class="pf-v5-c-menu-toggle__text"
         >
           <b>
             1
@@ -596,28 +603,19 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
             3
           </b>
            
-          
         </span>
-        <button
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-label="Items per page"
-          class="  pf-c-options-menu__toggle-button"
-          data-ouia-component-id="OUIA-Generated-DropdownToggle-15"
-          data-ouia-component-type="PF4/DropdownToggle"
-          data-ouia-safe="true"
-          id="options-menu-top-toggle"
-          type="button"
+        <span
+          class="pf-v5-c-menu-toggle__controls"
         >
           <span
-            class="pf-c-options-menu__toggle-button-icon"
+            class="pf-v5-c-menu-toggle__toggle-icon"
           >
             <svg
               aria-hidden="true"
+              class="pf-v5-svg"
               fill="currentColor"
               height="1em"
               role="img"
-              style="vertical-align: -0.125em;"
               viewBox="0 0 320 512"
               width="1em"
             >
@@ -626,33 +624,33 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
               />
             </svg>
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
     <nav
       aria-label="Pagination"
-      class="pf-c-pagination__nav"
+      class="pf-v5-c-pagination__nav"
     >
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to previous page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
           data-ouia-component-id="OUIA-Generated-Button-plain-54"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -663,25 +661,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to next page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="next"
           data-ouia-component-id="OUIA-Generated-Button-plain-55"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -695,47 +693,48 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
   </div>
   <table
     aria-label="ActivationKeys"
-    class="pf-c-table pf-m-grid-md"
+    class="pf-v5-c-table pf-m-grid-md"
     data-ouia-component-id="OUIA-Generated-Table-4"
-    data-ouia-component-type="PF4/Table"
+    data-ouia-component-type="PF5/Table"
     data-ouia-safe="true"
     role="grid"
   >
     <thead
-      class=""
+      class="pf-v5-c-table__thead"
     >
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-12"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <th
           aria-sort="none"
-          class="pf-c-table__sort pf-m-width-40"
+          class="pf-v5-c-table__th pf-v5-c-table__sort pf-m-width-40"
           scope="col"
+          tabindex="-1"
         >
           <button
-            class="pf-c-table__button"
+            class="pf-v5-c-table__button"
             type="button"
           >
             <div
-              class="pf-c-table__button-content"
+              class="pf-v5-c-table__button-content"
             >
               <span
-                class="pf-c-table__text"
+                class="pf-v5-c-table__text"
               >
                 Name
               </span>
               <span
-                class="pf-c-table__sort-indicator"
+                class="pf-v5-c-table__sort-indicator"
               >
                 <svg
                   aria-hidden="true"
+                  class="pf-v5-svg"
                   fill="currentColor"
                   height="1em"
                   role="img"
-                  style="vertical-align: -0.125em;"
                   viewBox="0 0 256 512"
                   width="1em"
                 >
@@ -749,30 +748,31 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </th>
         <th
           aria-sort="ascending"
-          class="pf-c-table__sort pf-m-selected"
+          class="pf-v5-c-table__th pf-v5-c-table__sort pf-m-selected"
           scope="col"
+          tabindex="-1"
         >
           <button
-            class="pf-c-table__button"
+            class="pf-v5-c-table__button"
             type="button"
           >
             <div
-              class="pf-c-table__button-content"
+              class="pf-v5-c-table__button-content"
             >
               <span
-                class="pf-c-table__text"
+                class="pf-v5-c-table__text"
               >
                 Label
               </span>
               <span
-                class="pf-c-table__sort-indicator"
+                class="pf-v5-c-table__sort-indicator"
               >
                 <svg
                   aria-hidden="true"
+                  class="pf-v5-svg"
                   fill="currentColor"
                   height="1em"
                   role="img"
-                  style="vertical-align: -0.125em;"
                   viewBox="0 0 256 512"
                   width="1em"
                 >
@@ -785,166 +785,189 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
           </button>
         </th>
         <th
-          class=""
+          class="pf-v5-c-table__th"
+          tabindex="-1"
         />
       </tr>
     </thead>
     <tbody
-      class=""
+      class="pf-v5-c-table__tbody"
       role="rowgroup"
     >
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-13"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-a
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-47"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-47"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-14"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-b
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-48"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-48"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-15"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-c
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-49"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-49"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>
   </table>
   <div
-    class="pf-c-pagination pf-m-bottom"
+    aria-label="pagination-bottom"
+    class="pf-v5-c-pagination pf-m-bottom"
     data-ouia-component-id="OUIA-Generated-Pagination-bottom-8"
-    data-ouia-component-type="PF4/Pagination"
+    data-ouia-component-type="PF5/Pagination"
     data-ouia-safe="true"
     id="options-menu-bottom-pagination"
-    style="--pf-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
+    style="--pf-v5-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
   >
-    <div
-      class="pf-c-options-menu pf-m-top"
-      data-ouia-component-type="PF4/PaginationOptionsMenu"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-options-menu__toggle pf-m-plain pf-m-text"
+    <div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="pf-v5-c-menu-toggle pf-m-plain pf-m-text"
+        id="options-menu-bottom-toggle"
+        type="button"
       >
         <span
-          class="pf-c-options-menu__toggle-text"
+          class="pf-v5-c-menu-toggle__text"
         >
           <b>
             1
@@ -958,28 +981,19 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
             3
           </b>
            
-          
         </span>
-        <button
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-label="Items per page"
-          class="  pf-c-options-menu__toggle-button"
-          data-ouia-component-id="OUIA-Generated-DropdownToggle-16"
-          data-ouia-component-type="PF4/DropdownToggle"
-          data-ouia-safe="true"
-          id="options-menu-bottom-toggle"
-          type="button"
+        <span
+          class="pf-v5-c-menu-toggle__controls"
         >
           <span
-            class="pf-c-options-menu__toggle-button-icon"
+            class="pf-v5-c-menu-toggle__toggle-icon"
           >
             <svg
               aria-hidden="true"
+              class="pf-v5-svg"
               fill="currentColor"
               height="1em"
               role="img"
-              style="vertical-align: -0.125em;"
               viewBox="0 0 320 512"
               width="1em"
             >
@@ -988,33 +1002,33 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
               />
             </svg>
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
     <nav
       aria-label="Pagination"
-      class="pf-c-pagination__nav"
+      class="pf-v5-c-pagination__nav"
     >
       <div
-        class="pf-c-pagination__nav-control pf-m-first"
+        class="pf-v5-c-pagination__nav-control pf-m-first"
       >
         <button
           aria-disabled="true"
           aria-label="Go to first page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="first"
           data-ouia-component-id="OUIA-Generated-Button-plain-56"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 448 512"
             width="1em"
           >
@@ -1025,25 +1039,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to previous page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
           data-ouia-component-id="OUIA-Generated-Button-plain-57"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -1054,17 +1068,24 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-page-select"
+        class="pf-v5-c-pagination__nav-page-select"
       >
-        <input
-          aria-label="Current page"
-          class="pf-c-form-control"
-          disabled=""
-          max="1"
-          min="1"
-          type="number"
-          value="1"
-        />
+        <span
+          class="pf-v5-c-form-control pf-m-disabled"
+        >
+          <input
+            aria-invalid="false"
+            aria-label="Current page"
+            data-ouia-component-id="OUIA-Generated-TextInputBase-8"
+            data-ouia-component-type="PF5/TextInput"
+            data-ouia-safe="true"
+            disabled=""
+            max="1"
+            min="1"
+            type="number"
+            value="1"
+          />
+        </span>
         <span
           aria-hidden="true"
         >
@@ -1074,25 +1095,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </span>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to next page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="next"
           data-ouia-component-id="OUIA-Generated-Button-plain-58"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -1103,25 +1124,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control pf-m-last"
+        class="pf-v5-c-pagination__nav-control pf-m-last"
       >
         <button
           aria-disabled="true"
           aria-label="Go to last page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="last"
           data-ouia-component-id="OUIA-Generated-Button-plain-59"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 448 512"
             width="1em"
           >
@@ -1139,15 +1160,16 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
 exports[`AdditionalRepositoriesTable when row column headings are clicked can sort by label, reversed 1`] = `
 <div>
   <div
-    class="pf-c-pagination pf-m-compact"
+    aria-label="pagination-top"
+    class="pf-v5-c-pagination pf-m-compact"
     data-ouia-component-id="OUIA-Generated-Pagination-top-11"
-    data-ouia-component-type="PF4/Pagination"
+    data-ouia-component-type="PF5/Pagination"
     data-ouia-safe="true"
     id="options-menu-top-pagination"
-    style="--pf-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
+    style="--pf-v5-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
   >
     <div
-      class="pf-c-pagination__total-items"
+      class="pf-v5-c-pagination__total-items"
     >
       <b>
         1
@@ -1161,18 +1183,17 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         3
       </b>
        
-      
     </div>
-    <div
-      class="pf-c-options-menu"
-      data-ouia-component-type="PF4/PaginationOptionsMenu"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-options-menu__toggle pf-m-plain pf-m-text"
+    <div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="pf-v5-c-menu-toggle pf-m-plain pf-m-text"
+        id="options-menu-top-toggle"
+        type="button"
       >
         <span
-          class="pf-c-options-menu__toggle-text"
+          class="pf-v5-c-menu-toggle__text"
         >
           <b>
             1
@@ -1186,28 +1207,19 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
             3
           </b>
            
-          
         </span>
-        <button
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-label="Items per page"
-          class="  pf-c-options-menu__toggle-button"
-          data-ouia-component-id="OUIA-Generated-DropdownToggle-21"
-          data-ouia-component-type="PF4/DropdownToggle"
-          data-ouia-safe="true"
-          id="options-menu-top-toggle"
-          type="button"
+        <span
+          class="pf-v5-c-menu-toggle__controls"
         >
           <span
-            class="pf-c-options-menu__toggle-button-icon"
+            class="pf-v5-c-menu-toggle__toggle-icon"
           >
             <svg
               aria-hidden="true"
+              class="pf-v5-svg"
               fill="currentColor"
               height="1em"
               role="img"
-              style="vertical-align: -0.125em;"
               viewBox="0 0 320 512"
               width="1em"
             >
@@ -1216,33 +1228,33 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
               />
             </svg>
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
     <nav
       aria-label="Pagination"
-      class="pf-c-pagination__nav"
+      class="pf-v5-c-pagination__nav"
     >
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to previous page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
           data-ouia-component-id="OUIA-Generated-Button-plain-75"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -1253,25 +1265,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to next page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="next"
           data-ouia-component-id="OUIA-Generated-Button-plain-76"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -1285,47 +1297,48 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
   </div>
   <table
     aria-label="ActivationKeys"
-    class="pf-c-table pf-m-grid-md"
+    class="pf-v5-c-table pf-m-grid-md"
     data-ouia-component-id="OUIA-Generated-Table-5"
-    data-ouia-component-type="PF4/Table"
+    data-ouia-component-type="PF5/Table"
     data-ouia-safe="true"
     role="grid"
   >
     <thead
-      class=""
+      class="pf-v5-c-table__thead"
     >
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-16"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <th
           aria-sort="none"
-          class="pf-c-table__sort pf-m-width-40"
+          class="pf-v5-c-table__th pf-v5-c-table__sort pf-m-width-40"
           scope="col"
+          tabindex="-1"
         >
           <button
-            class="pf-c-table__button"
+            class="pf-v5-c-table__button"
             type="button"
           >
             <div
-              class="pf-c-table__button-content"
+              class="pf-v5-c-table__button-content"
             >
               <span
-                class="pf-c-table__text"
+                class="pf-v5-c-table__text"
               >
                 Name
               </span>
               <span
-                class="pf-c-table__sort-indicator"
+                class="pf-v5-c-table__sort-indicator"
               >
                 <svg
                   aria-hidden="true"
+                  class="pf-v5-svg"
                   fill="currentColor"
                   height="1em"
                   role="img"
-                  style="vertical-align: -0.125em;"
                   viewBox="0 0 256 512"
                   width="1em"
                 >
@@ -1339,30 +1352,31 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </th>
         <th
           aria-sort="descending"
-          class="pf-c-table__sort pf-m-selected"
+          class="pf-v5-c-table__th pf-v5-c-table__sort pf-m-selected"
           scope="col"
+          tabindex="-1"
         >
           <button
-            class="pf-c-table__button"
+            class="pf-v5-c-table__button"
             type="button"
           >
             <div
-              class="pf-c-table__button-content"
+              class="pf-v5-c-table__button-content"
             >
               <span
-                class="pf-c-table__text"
+                class="pf-v5-c-table__text"
               >
                 Label
               </span>
               <span
-                class="pf-c-table__sort-indicator"
+                class="pf-v5-c-table__sort-indicator"
               >
                 <svg
                   aria-hidden="true"
+                  class="pf-v5-svg"
                   fill="currentColor"
                   height="1em"
                   role="img"
-                  style="vertical-align: -0.125em;"
                   viewBox="0 0 256 512"
                   width="1em"
                 >
@@ -1375,166 +1389,189 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
           </button>
         </th>
         <th
-          class=""
+          class="pf-v5-c-table__th"
+          tabindex="-1"
         />
       </tr>
     </thead>
     <tbody
-      class=""
+      class="pf-v5-c-table__tbody"
       role="rowgroup"
     >
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-17"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-c
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-62"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-62"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-18"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-b
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-63"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-63"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-19"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-a
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-64"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-64"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>
   </table>
   <div
-    class="pf-c-pagination pf-m-bottom"
+    aria-label="pagination-bottom"
+    class="pf-v5-c-pagination pf-m-bottom"
     data-ouia-component-id="OUIA-Generated-Pagination-bottom-11"
-    data-ouia-component-type="PF4/Pagination"
+    data-ouia-component-type="PF5/Pagination"
     data-ouia-safe="true"
     id="options-menu-bottom-pagination"
-    style="--pf-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
+    style="--pf-v5-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
   >
-    <div
-      class="pf-c-options-menu pf-m-top"
-      data-ouia-component-type="PF4/PaginationOptionsMenu"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-options-menu__toggle pf-m-plain pf-m-text"
+    <div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="pf-v5-c-menu-toggle pf-m-plain pf-m-text"
+        id="options-menu-bottom-toggle"
+        type="button"
       >
         <span
-          class="pf-c-options-menu__toggle-text"
+          class="pf-v5-c-menu-toggle__text"
         >
           <b>
             1
@@ -1548,28 +1585,19 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
             3
           </b>
            
-          
         </span>
-        <button
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-label="Items per page"
-          class="  pf-c-options-menu__toggle-button"
-          data-ouia-component-id="OUIA-Generated-DropdownToggle-22"
-          data-ouia-component-type="PF4/DropdownToggle"
-          data-ouia-safe="true"
-          id="options-menu-bottom-toggle"
-          type="button"
+        <span
+          class="pf-v5-c-menu-toggle__controls"
         >
           <span
-            class="pf-c-options-menu__toggle-button-icon"
+            class="pf-v5-c-menu-toggle__toggle-icon"
           >
             <svg
               aria-hidden="true"
+              class="pf-v5-svg"
               fill="currentColor"
               height="1em"
               role="img"
-              style="vertical-align: -0.125em;"
               viewBox="0 0 320 512"
               width="1em"
             >
@@ -1578,33 +1606,33 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
               />
             </svg>
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
     <nav
       aria-label="Pagination"
-      class="pf-c-pagination__nav"
+      class="pf-v5-c-pagination__nav"
     >
       <div
-        class="pf-c-pagination__nav-control pf-m-first"
+        class="pf-v5-c-pagination__nav-control pf-m-first"
       >
         <button
           aria-disabled="true"
           aria-label="Go to first page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="first"
           data-ouia-component-id="OUIA-Generated-Button-plain-77"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 448 512"
             width="1em"
           >
@@ -1615,25 +1643,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to previous page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
           data-ouia-component-id="OUIA-Generated-Button-plain-78"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -1644,17 +1672,24 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-page-select"
+        class="pf-v5-c-pagination__nav-page-select"
       >
-        <input
-          aria-label="Current page"
-          class="pf-c-form-control"
-          disabled=""
-          max="1"
-          min="1"
-          type="number"
-          value="1"
-        />
+        <span
+          class="pf-v5-c-form-control pf-m-disabled"
+        >
+          <input
+            aria-invalid="false"
+            aria-label="Current page"
+            data-ouia-component-id="OUIA-Generated-TextInputBase-11"
+            data-ouia-component-type="PF5/TextInput"
+            data-ouia-safe="true"
+            disabled=""
+            max="1"
+            min="1"
+            type="number"
+            value="1"
+          />
+        </span>
         <span
           aria-hidden="true"
         >
@@ -1664,25 +1699,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </span>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to next page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="next"
           data-ouia-component-id="OUIA-Generated-Button-plain-79"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -1693,25 +1728,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control pf-m-last"
+        class="pf-v5-c-pagination__nav-control pf-m-last"
       >
         <button
           aria-disabled="true"
           aria-label="Go to last page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="last"
           data-ouia-component-id="OUIA-Generated-Button-plain-80"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 448 512"
             width="1em"
           >
@@ -1729,15 +1764,16 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
 exports[`AdditionalRepositoriesTable when row column headings are clicked can sort by name 1`] = `
 <div>
   <div
-    class="pf-c-pagination pf-m-compact"
+    aria-label="pagination-top"
+    class="pf-v5-c-pagination pf-m-compact"
     data-ouia-component-id="OUIA-Generated-Pagination-top-3"
-    data-ouia-component-type="PF4/Pagination"
+    data-ouia-component-type="PF5/Pagination"
     data-ouia-safe="true"
     id="options-menu-top-pagination"
-    style="--pf-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
+    style="--pf-v5-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
   >
     <div
-      class="pf-c-pagination__total-items"
+      class="pf-v5-c-pagination__total-items"
     >
       <b>
         1
@@ -1751,18 +1787,17 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         3
       </b>
        
-      
     </div>
-    <div
-      class="pf-c-options-menu"
-      data-ouia-component-type="PF4/PaginationOptionsMenu"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-options-menu__toggle pf-m-plain pf-m-text"
+    <div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="pf-v5-c-menu-toggle pf-m-plain pf-m-text"
+        id="options-menu-top-toggle"
+        type="button"
       >
         <span
-          class="pf-c-options-menu__toggle-text"
+          class="pf-v5-c-menu-toggle__text"
         >
           <b>
             1
@@ -1776,28 +1811,19 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
             3
           </b>
            
-          
         </span>
-        <button
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-label="Items per page"
-          class="  pf-c-options-menu__toggle-button"
-          data-ouia-component-id="OUIA-Generated-DropdownToggle-5"
-          data-ouia-component-type="PF4/DropdownToggle"
-          data-ouia-safe="true"
-          id="options-menu-top-toggle"
-          type="button"
+        <span
+          class="pf-v5-c-menu-toggle__controls"
         >
           <span
-            class="pf-c-options-menu__toggle-button-icon"
+            class="pf-v5-c-menu-toggle__toggle-icon"
           >
             <svg
               aria-hidden="true"
+              class="pf-v5-svg"
               fill="currentColor"
               height="1em"
               role="img"
-              style="vertical-align: -0.125em;"
               viewBox="0 0 320 512"
               width="1em"
             >
@@ -1806,33 +1832,33 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
               />
             </svg>
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
     <nav
       aria-label="Pagination"
-      class="pf-c-pagination__nav"
+      class="pf-v5-c-pagination__nav"
     >
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to previous page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
           data-ouia-component-id="OUIA-Generated-Button-plain-18"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -1843,25 +1869,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to next page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="next"
           data-ouia-component-id="OUIA-Generated-Button-plain-19"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -1875,47 +1901,48 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
   </div>
   <table
     aria-label="ActivationKeys"
-    class="pf-c-table pf-m-grid-md"
+    class="pf-v5-c-table pf-m-grid-md"
     data-ouia-component-id="OUIA-Generated-Table-2"
-    data-ouia-component-type="PF4/Table"
+    data-ouia-component-type="PF5/Table"
     data-ouia-safe="true"
     role="grid"
   >
     <thead
-      class=""
+      class="pf-v5-c-table__thead"
     >
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-4"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <th
           aria-sort="ascending"
-          class="pf-c-table__sort pf-m-selected pf-m-width-40"
+          class="pf-v5-c-table__th pf-v5-c-table__sort pf-m-selected pf-m-width-40"
           scope="col"
+          tabindex="-1"
         >
           <button
-            class="pf-c-table__button"
+            class="pf-v5-c-table__button"
             type="button"
           >
             <div
-              class="pf-c-table__button-content"
+              class="pf-v5-c-table__button-content"
             >
               <span
-                class="pf-c-table__text"
+                class="pf-v5-c-table__text"
               >
                 Name
               </span>
               <span
-                class="pf-c-table__sort-indicator"
+                class="pf-v5-c-table__sort-indicator"
               >
                 <svg
                   aria-hidden="true"
+                  class="pf-v5-svg"
                   fill="currentColor"
                   height="1em"
                   role="img"
-                  style="vertical-align: -0.125em;"
                   viewBox="0 0 256 512"
                   width="1em"
                 >
@@ -1929,30 +1956,31 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </th>
         <th
           aria-sort="none"
-          class="pf-c-table__sort"
+          class="pf-v5-c-table__th pf-v5-c-table__sort"
           scope="col"
+          tabindex="-1"
         >
           <button
-            class="pf-c-table__button"
+            class="pf-v5-c-table__button"
             type="button"
           >
             <div
-              class="pf-c-table__button-content"
+              class="pf-v5-c-table__button-content"
             >
               <span
-                class="pf-c-table__text"
+                class="pf-v5-c-table__text"
               >
                 Label
               </span>
               <span
-                class="pf-c-table__sort-indicator"
+                class="pf-v5-c-table__sort-indicator"
               >
                 <svg
                   aria-hidden="true"
+                  class="pf-v5-svg"
                   fill="currentColor"
                   height="1em"
                   role="img"
-                  style="vertical-align: -0.125em;"
                   viewBox="0 0 256 512"
                   width="1em"
                 >
@@ -1965,166 +1993,189 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
           </button>
         </th>
         <th
-          class=""
+          class="pf-v5-c-table__th"
+          tabindex="-1"
         />
       </tr>
     </thead>
     <tbody
-      class=""
+      class="pf-v5-c-table__tbody"
       role="rowgroup"
     >
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-5"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-a
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-11"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-11"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-6"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-b
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-12"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-12"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-7"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-c
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-13"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-13"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>
   </table>
   <div
-    class="pf-c-pagination pf-m-bottom"
+    aria-label="pagination-bottom"
+    class="pf-v5-c-pagination pf-m-bottom"
     data-ouia-component-id="OUIA-Generated-Pagination-bottom-3"
-    data-ouia-component-type="PF4/Pagination"
+    data-ouia-component-type="PF5/Pagination"
     data-ouia-safe="true"
     id="options-menu-bottom-pagination"
-    style="--pf-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
+    style="--pf-v5-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
   >
-    <div
-      class="pf-c-options-menu pf-m-top"
-      data-ouia-component-type="PF4/PaginationOptionsMenu"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-options-menu__toggle pf-m-plain pf-m-text"
+    <div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="pf-v5-c-menu-toggle pf-m-plain pf-m-text"
+        id="options-menu-bottom-toggle"
+        type="button"
       >
         <span
-          class="pf-c-options-menu__toggle-text"
+          class="pf-v5-c-menu-toggle__text"
         >
           <b>
             1
@@ -2138,28 +2189,19 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
             3
           </b>
            
-          
         </span>
-        <button
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-label="Items per page"
-          class="  pf-c-options-menu__toggle-button"
-          data-ouia-component-id="OUIA-Generated-DropdownToggle-6"
-          data-ouia-component-type="PF4/DropdownToggle"
-          data-ouia-safe="true"
-          id="options-menu-bottom-toggle"
-          type="button"
+        <span
+          class="pf-v5-c-menu-toggle__controls"
         >
           <span
-            class="pf-c-options-menu__toggle-button-icon"
+            class="pf-v5-c-menu-toggle__toggle-icon"
           >
             <svg
               aria-hidden="true"
+              class="pf-v5-svg"
               fill="currentColor"
               height="1em"
               role="img"
-              style="vertical-align: -0.125em;"
               viewBox="0 0 320 512"
               width="1em"
             >
@@ -2168,33 +2210,33 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
               />
             </svg>
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
     <nav
       aria-label="Pagination"
-      class="pf-c-pagination__nav"
+      class="pf-v5-c-pagination__nav"
     >
       <div
-        class="pf-c-pagination__nav-control pf-m-first"
+        class="pf-v5-c-pagination__nav-control pf-m-first"
       >
         <button
           aria-disabled="true"
           aria-label="Go to first page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="first"
           data-ouia-component-id="OUIA-Generated-Button-plain-20"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 448 512"
             width="1em"
           >
@@ -2205,25 +2247,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to previous page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
           data-ouia-component-id="OUIA-Generated-Button-plain-21"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -2234,17 +2276,24 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-page-select"
+        class="pf-v5-c-pagination__nav-page-select"
       >
-        <input
-          aria-label="Current page"
-          class="pf-c-form-control"
-          disabled=""
-          max="1"
-          min="1"
-          type="number"
-          value="1"
-        />
+        <span
+          class="pf-v5-c-form-control pf-m-disabled"
+        >
+          <input
+            aria-invalid="false"
+            aria-label="Current page"
+            data-ouia-component-id="OUIA-Generated-TextInputBase-3"
+            data-ouia-component-type="PF5/TextInput"
+            data-ouia-safe="true"
+            disabled=""
+            max="1"
+            min="1"
+            type="number"
+            value="1"
+          />
+        </span>
         <span
           aria-hidden="true"
         >
@@ -2254,25 +2303,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </span>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to next page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="next"
           data-ouia-component-id="OUIA-Generated-Button-plain-22"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -2283,25 +2332,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control pf-m-last"
+        class="pf-v5-c-pagination__nav-control pf-m-last"
       >
         <button
           aria-disabled="true"
           aria-label="Go to last page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="last"
           data-ouia-component-id="OUIA-Generated-Button-plain-23"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 448 512"
             width="1em"
           >
@@ -2319,15 +2368,16 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
 exports[`AdditionalRepositoriesTable when row column headings are clicked can sort by name, reversed 1`] = `
 <div>
   <div
-    class="pf-c-pagination pf-m-compact"
+    aria-label="pagination-top"
+    class="pf-v5-c-pagination pf-m-compact"
     data-ouia-component-id="OUIA-Generated-Pagination-top-6"
-    data-ouia-component-type="PF4/Pagination"
+    data-ouia-component-type="PF5/Pagination"
     data-ouia-safe="true"
     id="options-menu-top-pagination"
-    style="--pf-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
+    style="--pf-v5-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
   >
     <div
-      class="pf-c-pagination__total-items"
+      class="pf-v5-c-pagination__total-items"
     >
       <b>
         1
@@ -2341,18 +2391,17 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         3
       </b>
        
-      
     </div>
-    <div
-      class="pf-c-options-menu"
-      data-ouia-component-type="PF4/PaginationOptionsMenu"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-options-menu__toggle pf-m-plain pf-m-text"
+    <div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="pf-v5-c-menu-toggle pf-m-plain pf-m-text"
+        id="options-menu-top-toggle"
+        type="button"
       >
         <span
-          class="pf-c-options-menu__toggle-text"
+          class="pf-v5-c-menu-toggle__text"
         >
           <b>
             1
@@ -2366,28 +2415,19 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
             3
           </b>
            
-          
         </span>
-        <button
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-label="Items per page"
-          class="  pf-c-options-menu__toggle-button"
-          data-ouia-component-id="OUIA-Generated-DropdownToggle-11"
-          data-ouia-component-type="PF4/DropdownToggle"
-          data-ouia-safe="true"
-          id="options-menu-top-toggle"
-          type="button"
+        <span
+          class="pf-v5-c-menu-toggle__controls"
         >
           <span
-            class="pf-c-options-menu__toggle-button-icon"
+            class="pf-v5-c-menu-toggle__toggle-icon"
           >
             <svg
               aria-hidden="true"
+              class="pf-v5-svg"
               fill="currentColor"
               height="1em"
               role="img"
-              style="vertical-align: -0.125em;"
               viewBox="0 0 320 512"
               width="1em"
             >
@@ -2396,33 +2436,33 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
               />
             </svg>
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
     <nav
       aria-label="Pagination"
-      class="pf-c-pagination__nav"
+      class="pf-v5-c-pagination__nav"
     >
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to previous page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
           data-ouia-component-id="OUIA-Generated-Button-plain-39"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -2433,25 +2473,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to next page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="next"
           data-ouia-component-id="OUIA-Generated-Button-plain-40"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -2465,47 +2505,48 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
   </div>
   <table
     aria-label="ActivationKeys"
-    class="pf-c-table pf-m-grid-md"
+    class="pf-v5-c-table pf-m-grid-md"
     data-ouia-component-id="OUIA-Generated-Table-3"
-    data-ouia-component-type="PF4/Table"
+    data-ouia-component-type="PF5/Table"
     data-ouia-safe="true"
     role="grid"
   >
     <thead
-      class=""
+      class="pf-v5-c-table__thead"
     >
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-8"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <th
           aria-sort="descending"
-          class="pf-c-table__sort pf-m-selected pf-m-width-40"
+          class="pf-v5-c-table__th pf-v5-c-table__sort pf-m-selected pf-m-width-40"
           scope="col"
+          tabindex="-1"
         >
           <button
-            class="pf-c-table__button"
+            class="pf-v5-c-table__button"
             type="button"
           >
             <div
-              class="pf-c-table__button-content"
+              class="pf-v5-c-table__button-content"
             >
               <span
-                class="pf-c-table__text"
+                class="pf-v5-c-table__text"
               >
                 Name
               </span>
               <span
-                class="pf-c-table__sort-indicator"
+                class="pf-v5-c-table__sort-indicator"
               >
                 <svg
                   aria-hidden="true"
+                  class="pf-v5-svg"
                   fill="currentColor"
                   height="1em"
                   role="img"
-                  style="vertical-align: -0.125em;"
                   viewBox="0 0 256 512"
                   width="1em"
                 >
@@ -2519,30 +2560,31 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </th>
         <th
           aria-sort="none"
-          class="pf-c-table__sort"
+          class="pf-v5-c-table__th pf-v5-c-table__sort"
           scope="col"
+          tabindex="-1"
         >
           <button
-            class="pf-c-table__button"
+            class="pf-v5-c-table__button"
             type="button"
           >
             <div
-              class="pf-c-table__button-content"
+              class="pf-v5-c-table__button-content"
             >
               <span
-                class="pf-c-table__text"
+                class="pf-v5-c-table__text"
               >
                 Label
               </span>
               <span
-                class="pf-c-table__sort-indicator"
+                class="pf-v5-c-table__sort-indicator"
               >
                 <svg
                   aria-hidden="true"
+                  class="pf-v5-svg"
                   fill="currentColor"
                   height="1em"
                   role="img"
-                  style="vertical-align: -0.125em;"
                   viewBox="0 0 256 512"
                   width="1em"
                 >
@@ -2555,166 +2597,189 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
           </button>
         </th>
         <th
-          class=""
+          class="pf-v5-c-table__th"
+          tabindex="-1"
         />
       </tr>
     </thead>
     <tbody
-      class=""
+      class="pf-v5-c-table__tbody"
       role="rowgroup"
     >
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-9"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-a
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-26"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-26"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-10"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-b
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-27"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-27"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-11"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-c
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-28"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-28"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>
   </table>
   <div
-    class="pf-c-pagination pf-m-bottom"
+    aria-label="pagination-bottom"
+    class="pf-v5-c-pagination pf-m-bottom"
     data-ouia-component-id="OUIA-Generated-Pagination-bottom-6"
-    data-ouia-component-type="PF4/Pagination"
+    data-ouia-component-type="PF5/Pagination"
     data-ouia-safe="true"
     id="options-menu-bottom-pagination"
-    style="--pf-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
+    style="--pf-v5-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
   >
-    <div
-      class="pf-c-options-menu pf-m-top"
-      data-ouia-component-type="PF4/PaginationOptionsMenu"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-options-menu__toggle pf-m-plain pf-m-text"
+    <div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="pf-v5-c-menu-toggle pf-m-plain pf-m-text"
+        id="options-menu-bottom-toggle"
+        type="button"
       >
         <span
-          class="pf-c-options-menu__toggle-text"
+          class="pf-v5-c-menu-toggle__text"
         >
           <b>
             1
@@ -2728,28 +2793,19 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
             3
           </b>
            
-          
         </span>
-        <button
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-label="Items per page"
-          class="  pf-c-options-menu__toggle-button"
-          data-ouia-component-id="OUIA-Generated-DropdownToggle-12"
-          data-ouia-component-type="PF4/DropdownToggle"
-          data-ouia-safe="true"
-          id="options-menu-bottom-toggle"
-          type="button"
+        <span
+          class="pf-v5-c-menu-toggle__controls"
         >
           <span
-            class="pf-c-options-menu__toggle-button-icon"
+            class="pf-v5-c-menu-toggle__toggle-icon"
           >
             <svg
               aria-hidden="true"
+              class="pf-v5-svg"
               fill="currentColor"
               height="1em"
               role="img"
-              style="vertical-align: -0.125em;"
               viewBox="0 0 320 512"
               width="1em"
             >
@@ -2758,33 +2814,33 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
               />
             </svg>
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
     <nav
       aria-label="Pagination"
-      class="pf-c-pagination__nav"
+      class="pf-v5-c-pagination__nav"
     >
       <div
-        class="pf-c-pagination__nav-control pf-m-first"
+        class="pf-v5-c-pagination__nav-control pf-m-first"
       >
         <button
           aria-disabled="true"
           aria-label="Go to first page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="first"
           data-ouia-component-id="OUIA-Generated-Button-plain-41"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 448 512"
             width="1em"
           >
@@ -2795,25 +2851,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to previous page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
           data-ouia-component-id="OUIA-Generated-Button-plain-42"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -2824,17 +2880,24 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-page-select"
+        class="pf-v5-c-pagination__nav-page-select"
       >
-        <input
-          aria-label="Current page"
-          class="pf-c-form-control"
-          disabled=""
-          max="1"
-          min="1"
-          type="number"
-          value="1"
-        />
+        <span
+          class="pf-v5-c-form-control pf-m-disabled"
+        >
+          <input
+            aria-invalid="false"
+            aria-label="Current page"
+            data-ouia-component-id="OUIA-Generated-TextInputBase-6"
+            data-ouia-component-type="PF5/TextInput"
+            data-ouia-safe="true"
+            disabled=""
+            max="1"
+            min="1"
+            type="number"
+            value="1"
+          />
+        </span>
         <span
           aria-hidden="true"
         >
@@ -2844,25 +2907,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </span>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to next page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="next"
           data-ouia-component-id="OUIA-Generated-Button-plain-43"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -2873,25 +2936,25 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control pf-m-last"
+        class="pf-v5-c-pagination__nav-control pf-m-last"
       >
         <button
           aria-disabled="true"
           aria-label="Go to last page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="last"
           data-ouia-component-id="OUIA-Generated-Button-plain-44"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 448 512"
             width="1em"
           >
@@ -2909,15 +2972,16 @@ exports[`AdditionalRepositoriesTable when row column headings are clicked can so
 exports[`AdditionalRepositoriesTable when using pagination can change page 1`] = `
 <div>
   <div
-    class="pf-c-pagination pf-m-compact"
+    aria-label="pagination-top"
+    class="pf-v5-c-pagination pf-m-compact"
     data-ouia-component-id="OUIA-Generated-Pagination-top-13"
-    data-ouia-component-type="PF4/Pagination"
+    data-ouia-component-type="PF5/Pagination"
     data-ouia-safe="true"
     id="options-menu-top-pagination"
-    style="--pf-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
+    style="--pf-v5-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
   >
     <div
-      class="pf-c-pagination__total-items"
+      class="pf-v5-c-pagination__total-items"
     >
       <b>
         11
@@ -2931,18 +2995,17 @@ exports[`AdditionalRepositoriesTable when using pagination can change page 1`] =
         12
       </b>
        
-      
     </div>
-    <div
-      class="pf-c-options-menu"
-      data-ouia-component-type="PF4/PaginationOptionsMenu"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-options-menu__toggle pf-m-plain pf-m-text"
+    <div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="pf-v5-c-menu-toggle pf-m-plain pf-m-text"
+        id="options-menu-top-toggle"
+        type="button"
       >
         <span
-          class="pf-c-options-menu__toggle-text"
+          class="pf-v5-c-menu-toggle__text"
         >
           <b>
             11
@@ -2956,28 +3019,19 @@ exports[`AdditionalRepositoriesTable when using pagination can change page 1`] =
             12
           </b>
            
-          
         </span>
-        <button
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-label="Items per page"
-          class="  pf-c-options-menu__toggle-button"
-          data-ouia-component-id="OUIA-Generated-DropdownToggle-25"
-          data-ouia-component-type="PF4/DropdownToggle"
-          data-ouia-safe="true"
-          id="options-menu-top-toggle"
-          type="button"
+        <span
+          class="pf-v5-c-menu-toggle__controls"
         >
           <span
-            class="pf-c-options-menu__toggle-button-icon"
+            class="pf-v5-c-menu-toggle__toggle-icon"
           >
             <svg
               aria-hidden="true"
+              class="pf-v5-svg"
               fill="currentColor"
               height="1em"
               role="img"
-              style="vertical-align: -0.125em;"
               viewBox="0 0 320 512"
               width="1em"
             >
@@ -2986,32 +3040,32 @@ exports[`AdditionalRepositoriesTable when using pagination can change page 1`] =
               />
             </svg>
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
     <nav
       aria-label="Pagination"
-      class="pf-c-pagination__nav"
+      class="pf-v5-c-pagination__nav"
     >
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="false"
           aria-label="Go to previous page"
-          class="pf-c-button pf-m-plain"
+          class="pf-v5-c-button pf-m-plain"
           data-action="previous"
           data-ouia-component-id="OUIA-Generated-Button-plain-97"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -3022,25 +3076,25 @@ exports[`AdditionalRepositoriesTable when using pagination can change page 1`] =
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to next page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="next"
           data-ouia-component-id="OUIA-Generated-Button-plain-98"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -3054,47 +3108,48 @@ exports[`AdditionalRepositoriesTable when using pagination can change page 1`] =
   </div>
   <table
     aria-label="ActivationKeys"
-    class="pf-c-table pf-m-grid-md"
+    class="pf-v5-c-table pf-m-grid-md"
     data-ouia-component-id="OUIA-Generated-Table-6"
-    data-ouia-component-type="PF4/Table"
+    data-ouia-component-type="PF5/Table"
     data-ouia-safe="true"
     role="grid"
   >
     <thead
-      class=""
+      class="pf-v5-c-table__thead"
     >
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-20"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <th
           aria-sort="none"
-          class="pf-c-table__sort pf-m-width-40"
+          class="pf-v5-c-table__th pf-v5-c-table__sort pf-m-width-40"
           scope="col"
+          tabindex="-1"
         >
           <button
-            class="pf-c-table__button"
+            class="pf-v5-c-table__button"
             type="button"
           >
             <div
-              class="pf-c-table__button-content"
+              class="pf-v5-c-table__button-content"
             >
               <span
-                class="pf-c-table__text"
+                class="pf-v5-c-table__text"
               >
                 Name
               </span>
               <span
-                class="pf-c-table__sort-indicator"
+                class="pf-v5-c-table__sort-indicator"
               >
                 <svg
                   aria-hidden="true"
+                  class="pf-v5-svg"
                   fill="currentColor"
                   height="1em"
                   role="img"
-                  style="vertical-align: -0.125em;"
                   viewBox="0 0 256 512"
                   width="1em"
                 >
@@ -3108,30 +3163,31 @@ exports[`AdditionalRepositoriesTable when using pagination can change page 1`] =
         </th>
         <th
           aria-sort="none"
-          class="pf-c-table__sort"
+          class="pf-v5-c-table__th pf-v5-c-table__sort"
           scope="col"
+          tabindex="-1"
         >
           <button
-            class="pf-c-table__button"
+            class="pf-v5-c-table__button"
             type="button"
           >
             <div
-              class="pf-c-table__button-content"
+              class="pf-v5-c-table__button-content"
             >
               <span
-                class="pf-c-table__text"
+                class="pf-v5-c-table__text"
               >
                 Label
               </span>
               <span
-                class="pf-c-table__sort-indicator"
+                class="pf-v5-c-table__sort-indicator"
               >
                 <svg
                   aria-hidden="true"
+                  class="pf-v5-svg"
                   fill="currentColor"
                   height="1em"
                   role="img"
-                  style="vertical-align: -0.125em;"
                   viewBox="0 0 256 512"
                   width="1em"
                 >
@@ -3144,122 +3200,138 @@ exports[`AdditionalRepositoriesTable when using pagination can change page 1`] =
           </button>
         </th>
         <th
-          class=""
+          class="pf-v5-c-table__th"
+          tabindex="-1"
         />
       </tr>
     </thead>
     <tbody
-      class=""
+      class="pf-v5-c-table__tbody"
       role="rowgroup"
     >
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-21"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-10
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-83"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-83"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-22"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-11
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-84"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-84"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>
   </table>
   <div
-    class="pf-c-pagination pf-m-bottom"
+    aria-label="pagination-bottom"
+    class="pf-v5-c-pagination pf-m-bottom"
     data-ouia-component-id="OUIA-Generated-Pagination-bottom-13"
-    data-ouia-component-type="PF4/Pagination"
+    data-ouia-component-type="PF5/Pagination"
     data-ouia-safe="true"
     id="options-menu-bottom-pagination"
-    style="--pf-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
+    style="--pf-v5-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
   >
-    <div
-      class="pf-c-options-menu pf-m-top"
-      data-ouia-component-type="PF4/PaginationOptionsMenu"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-options-menu__toggle pf-m-plain pf-m-text"
+    <div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="pf-v5-c-menu-toggle pf-m-plain pf-m-text"
+        id="options-menu-bottom-toggle"
+        type="button"
       >
         <span
-          class="pf-c-options-menu__toggle-text"
+          class="pf-v5-c-menu-toggle__text"
         >
           <b>
             11
@@ -3273,28 +3345,19 @@ exports[`AdditionalRepositoriesTable when using pagination can change page 1`] =
             12
           </b>
            
-          
         </span>
-        <button
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-label="Items per page"
-          class="  pf-c-options-menu__toggle-button"
-          data-ouia-component-id="OUIA-Generated-DropdownToggle-26"
-          data-ouia-component-type="PF4/DropdownToggle"
-          data-ouia-safe="true"
-          id="options-menu-bottom-toggle"
-          type="button"
+        <span
+          class="pf-v5-c-menu-toggle__controls"
         >
           <span
-            class="pf-c-options-menu__toggle-button-icon"
+            class="pf-v5-c-menu-toggle__toggle-icon"
           >
             <svg
               aria-hidden="true"
+              class="pf-v5-svg"
               fill="currentColor"
               height="1em"
               role="img"
-              style="vertical-align: -0.125em;"
               viewBox="0 0 320 512"
               width="1em"
             >
@@ -3303,32 +3366,32 @@ exports[`AdditionalRepositoriesTable when using pagination can change page 1`] =
               />
             </svg>
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
     <nav
       aria-label="Pagination"
-      class="pf-c-pagination__nav"
+      class="pf-v5-c-pagination__nav"
     >
       <div
-        class="pf-c-pagination__nav-control pf-m-first"
+        class="pf-v5-c-pagination__nav-control pf-m-first"
       >
         <button
           aria-disabled="false"
           aria-label="Go to first page"
-          class="pf-c-button pf-m-plain"
+          class="pf-v5-c-button pf-m-plain"
           data-action="first"
           data-ouia-component-id="OUIA-Generated-Button-plain-99"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 448 512"
             width="1em"
           >
@@ -3339,24 +3402,24 @@ exports[`AdditionalRepositoriesTable when using pagination can change page 1`] =
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="false"
           aria-label="Go to previous page"
-          class="pf-c-button pf-m-plain"
+          class="pf-v5-c-button pf-m-plain"
           data-action="previous"
           data-ouia-component-id="OUIA-Generated-Button-plain-100"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -3367,16 +3430,23 @@ exports[`AdditionalRepositoriesTable when using pagination can change page 1`] =
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-page-select"
+        class="pf-v5-c-pagination__nav-page-select"
       >
-        <input
-          aria-label="Current page"
-          class="pf-c-form-control"
-          max="2"
-          min="1"
-          type="number"
-          value="2"
-        />
+        <span
+          class="pf-v5-c-form-control"
+        >
+          <input
+            aria-invalid="false"
+            aria-label="Current page"
+            data-ouia-component-id="OUIA-Generated-TextInputBase-13"
+            data-ouia-component-type="PF5/TextInput"
+            data-ouia-safe="true"
+            max="2"
+            min="1"
+            type="number"
+            value="2"
+          />
+        </span>
         <span
           aria-hidden="true"
         >
@@ -3386,25 +3456,25 @@ exports[`AdditionalRepositoriesTable when using pagination can change page 1`] =
         </span>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to next page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="next"
           data-ouia-component-id="OUIA-Generated-Button-plain-101"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -3415,25 +3485,25 @@ exports[`AdditionalRepositoriesTable when using pagination can change page 1`] =
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control pf-m-last"
+        class="pf-v5-c-pagination__nav-control pf-m-last"
       >
         <button
           aria-disabled="true"
           aria-label="Go to last page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="last"
           data-ouia-component-id="OUIA-Generated-Button-plain-102"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 448 512"
             width="1em"
           >
@@ -3451,15 +3521,16 @@ exports[`AdditionalRepositoriesTable when using pagination can change page 1`] =
 exports[`AdditionalRepositoriesTable when using pagination can change per page 1`] = `
 <div>
   <div
-    class="pf-c-pagination pf-m-compact"
+    aria-label="pagination-top"
+    class="pf-v5-c-pagination pf-m-compact"
     data-ouia-component-id="OUIA-Generated-Pagination-top-15"
-    data-ouia-component-type="PF4/Pagination"
+    data-ouia-component-type="PF5/Pagination"
     data-ouia-safe="true"
     id="options-menu-top-pagination"
-    style="--pf-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
+    style="--pf-v5-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
   >
     <div
-      class="pf-c-pagination__total-items"
+      class="pf-v5-c-pagination__total-items"
     >
       <b>
         1
@@ -3473,18 +3544,17 @@ exports[`AdditionalRepositoriesTable when using pagination can change per page 1
         12
       </b>
        
-      
     </div>
-    <div
-      class="pf-c-options-menu"
-      data-ouia-component-type="PF4/PaginationOptionsMenu"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-options-menu__toggle pf-m-plain pf-m-text"
+    <div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="pf-v5-c-menu-toggle pf-m-plain pf-m-text"
+        id="options-menu-top-toggle"
+        type="button"
       >
         <span
-          class="pf-c-options-menu__toggle-text"
+          class="pf-v5-c-menu-toggle__text"
         >
           <b>
             1
@@ -3498,28 +3568,19 @@ exports[`AdditionalRepositoriesTable when using pagination can change per page 1
             12
           </b>
            
-          
         </span>
-        <button
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-label="Items per page"
-          class="  pf-c-options-menu__toggle-button"
-          data-ouia-component-id="OUIA-Generated-DropdownToggle-29"
-          data-ouia-component-type="PF4/DropdownToggle"
-          data-ouia-safe="true"
-          id="options-menu-top-toggle"
-          type="button"
+        <span
+          class="pf-v5-c-menu-toggle__controls"
         >
           <span
-            class="pf-c-options-menu__toggle-button-icon"
+            class="pf-v5-c-menu-toggle__toggle-icon"
           >
             <svg
               aria-hidden="true"
+              class="pf-v5-svg"
               fill="currentColor"
               height="1em"
               role="img"
-              style="vertical-align: -0.125em;"
               viewBox="0 0 320 512"
               width="1em"
             >
@@ -3528,33 +3589,33 @@ exports[`AdditionalRepositoriesTable when using pagination can change per page 1
               />
             </svg>
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
     <nav
       aria-label="Pagination"
-      class="pf-c-pagination__nav"
+      class="pf-v5-c-pagination__nav"
     >
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to previous page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
           data-ouia-component-id="OUIA-Generated-Button-plain-119"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -3565,25 +3626,25 @@ exports[`AdditionalRepositoriesTable when using pagination can change per page 1
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to next page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="next"
           data-ouia-component-id="OUIA-Generated-Button-plain-120"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -3597,47 +3658,48 @@ exports[`AdditionalRepositoriesTable when using pagination can change per page 1
   </div>
   <table
     aria-label="ActivationKeys"
-    class="pf-c-table pf-m-grid-md"
+    class="pf-v5-c-table pf-m-grid-md"
     data-ouia-component-id="OUIA-Generated-Table-7"
-    data-ouia-component-type="PF4/Table"
+    data-ouia-component-type="PF5/Table"
     data-ouia-safe="true"
     role="grid"
   >
     <thead
-      class=""
+      class="pf-v5-c-table__thead"
     >
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-31"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <th
           aria-sort="none"
-          class="pf-c-table__sort pf-m-width-40"
+          class="pf-v5-c-table__th pf-v5-c-table__sort pf-m-width-40"
           scope="col"
+          tabindex="-1"
         >
           <button
-            class="pf-c-table__button"
+            class="pf-v5-c-table__button"
             type="button"
           >
             <div
-              class="pf-c-table__button-content"
+              class="pf-v5-c-table__button-content"
             >
               <span
-                class="pf-c-table__text"
+                class="pf-v5-c-table__text"
               >
                 Name
               </span>
               <span
-                class="pf-c-table__sort-indicator"
+                class="pf-v5-c-table__sort-indicator"
               >
                 <svg
                   aria-hidden="true"
+                  class="pf-v5-svg"
                   fill="currentColor"
                   height="1em"
                   role="img"
-                  style="vertical-align: -0.125em;"
                   viewBox="0 0 256 512"
                   width="1em"
                 >
@@ -3651,30 +3713,31 @@ exports[`AdditionalRepositoriesTable when using pagination can change per page 1
         </th>
         <th
           aria-sort="none"
-          class="pf-c-table__sort"
+          class="pf-v5-c-table__th pf-v5-c-table__sort"
           scope="col"
+          tabindex="-1"
         >
           <button
-            class="pf-c-table__button"
+            class="pf-v5-c-table__button"
             type="button"
           >
             <div
-              class="pf-c-table__button-content"
+              class="pf-v5-c-table__button-content"
             >
               <span
-                class="pf-c-table__text"
+                class="pf-v5-c-table__text"
               >
                 Label
               </span>
               <span
-                class="pf-c-table__sort-indicator"
+                class="pf-v5-c-table__sort-indicator"
               >
                 <svg
                   aria-hidden="true"
+                  class="pf-v5-svg"
                   fill="currentColor"
                   height="1em"
                   role="img"
-                  style="vertical-align: -0.125em;"
                   viewBox="0 0 256 512"
                   width="1em"
                 >
@@ -3687,562 +3750,648 @@ exports[`AdditionalRepositoriesTable when using pagination can change per page 1
           </button>
         </th>
         <th
-          class=""
+          class="pf-v5-c-table__th"
+          tabindex="-1"
         />
       </tr>
     </thead>
     <tbody
-      class=""
+      class="pf-v5-c-table__tbody"
       role="rowgroup"
     >
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-32"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-0
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-105"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-105"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-33"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-1
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-106"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-106"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-34"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-2
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-107"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-107"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-35"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-3
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-108"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-108"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-36"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-4
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-109"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-109"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-37"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-5
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-110"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-110"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-38"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-6
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-111"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-111"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-39"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-7
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-112"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-112"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-40"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-8
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-113"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-113"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-41"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-9
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-114"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-114"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-42"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-10
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-121"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-121"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
       <tr
-        class=""
+        class="pf-v5-c-table__tr"
         data-ouia-component-id="OUIA-Generated-TableRow-43"
-        data-ouia-component-type="PF4/TableRow"
+        data-ouia-component-type="PF5/TableRow"
         data-ouia-safe="true"
       >
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Name"
+          tabindex="-1"
         />
         <td
-          class=""
+          class="pf-v5-c-table__td"
           data-label="Label"
+          tabindex="-1"
         >
           label-11
         </td>
         <td
-          class=""
+          class="pf-v5-c-table__td"
+          tabindex="-1"
         >
-          <button
-            aria-disabled="false"
-            aria-label="Action"
-            class="pf-c-button pf-m-plain"
-            data-ouia-component-id="OUIA-Generated-Button-plain-122"
-            data-ouia-component-type="PF4/Button"
-            data-ouia-safe="true"
-            type="button"
+          <div
+            style="display: contents;"
           >
-            <svg
-              aria-hidden="true"
-              fill="currentColor"
-              height="1em"
-              role="img"
-              style="vertical-align: -0.125em;"
-              viewBox="0 0 512 512"
-              width="1em"
+            <button
+              aria-disabled="false"
+              aria-label="Action"
+              class="pf-v5-c-button pf-m-plain"
+              data-ouia-component-id="OUIA-Generated-Button-plain-122"
+              data-ouia-component-type="PF5/Button"
+              data-ouia-safe="true"
+              type="button"
             >
-              <path
-                d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
-              />
-            </svg>
-          </button>
+              <svg
+                aria-hidden="true"
+                class="pf-v5-svg"
+                fill="currentColor"
+                height="1em"
+                role="img"
+                viewBox="0 0 512 512"
+                width="1em"
+              >
+                <path
+                  d="M256 8C119 8 8 119 8 256s111 248 248 248 248-111 248-248S393 8 256 8zM124 296c-6.6 0-12-5.4-12-12v-56c0-6.6 5.4-12 12-12h264c6.6 0 12 5.4 12 12v56c0 6.6-5.4 12-12 12H124z"
+                />
+              </svg>
+            </button>
+          </div>
         </td>
       </tr>
     </tbody>
   </table>
   <div
-    class="pf-c-pagination pf-m-bottom"
+    aria-label="pagination-bottom"
+    class="pf-v5-c-pagination pf-m-bottom"
     data-ouia-component-id="OUIA-Generated-Pagination-bottom-15"
-    data-ouia-component-type="PF4/Pagination"
+    data-ouia-component-type="PF5/Pagination"
     data-ouia-safe="true"
     id="options-menu-bottom-pagination"
-    style="--pf-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
+    style="--pf-v5-c-pagination__nav-page-select--c-form-control--width-chars: 2;"
   >
-    <div
-      class="pf-c-options-menu pf-m-top"
-      data-ouia-component-type="PF4/PaginationOptionsMenu"
-      data-ouia-safe="true"
-    >
-      <div
-        class="pf-c-options-menu__toggle pf-m-plain pf-m-text"
+    <div>
+      <button
+        aria-expanded="false"
+        aria-haspopup="listbox"
+        class="pf-v5-c-menu-toggle pf-m-plain pf-m-text"
+        id="options-menu-bottom-toggle"
+        type="button"
       >
         <span
-          class="pf-c-options-menu__toggle-text"
+          class="pf-v5-c-menu-toggle__text"
         >
           <b>
             1
@@ -4256,28 +4405,19 @@ exports[`AdditionalRepositoriesTable when using pagination can change per page 1
             12
           </b>
            
-          
         </span>
-        <button
-          aria-expanded="false"
-          aria-haspopup="listbox"
-          aria-label="Items per page"
-          class="  pf-c-options-menu__toggle-button"
-          data-ouia-component-id="OUIA-Generated-DropdownToggle-30"
-          data-ouia-component-type="PF4/DropdownToggle"
-          data-ouia-safe="true"
-          id="options-menu-bottom-toggle"
-          type="button"
+        <span
+          class="pf-v5-c-menu-toggle__controls"
         >
           <span
-            class="pf-c-options-menu__toggle-button-icon"
+            class="pf-v5-c-menu-toggle__toggle-icon"
           >
             <svg
               aria-hidden="true"
+              class="pf-v5-svg"
               fill="currentColor"
               height="1em"
               role="img"
-              style="vertical-align: -0.125em;"
               viewBox="0 0 320 512"
               width="1em"
             >
@@ -4286,33 +4426,33 @@ exports[`AdditionalRepositoriesTable when using pagination can change per page 1
               />
             </svg>
           </span>
-        </button>
-      </div>
+        </span>
+      </button>
     </div>
     <nav
       aria-label="Pagination"
-      class="pf-c-pagination__nav"
+      class="pf-v5-c-pagination__nav"
     >
       <div
-        class="pf-c-pagination__nav-control pf-m-first"
+        class="pf-v5-c-pagination__nav-control pf-m-first"
       >
         <button
           aria-disabled="true"
           aria-label="Go to first page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="first"
           data-ouia-component-id="OUIA-Generated-Button-plain-123"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 448 512"
             width="1em"
           >
@@ -4323,25 +4463,25 @@ exports[`AdditionalRepositoriesTable when using pagination can change per page 1
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to previous page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="previous"
           data-ouia-component-id="OUIA-Generated-Button-plain-124"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -4352,17 +4492,24 @@ exports[`AdditionalRepositoriesTable when using pagination can change per page 1
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-page-select"
+        class="pf-v5-c-pagination__nav-page-select"
       >
-        <input
-          aria-label="Current page"
-          class="pf-c-form-control"
-          disabled=""
-          max="1"
-          min="1"
-          type="number"
-          value="1"
-        />
+        <span
+          class="pf-v5-c-form-control pf-m-disabled"
+        >
+          <input
+            aria-invalid="false"
+            aria-label="Current page"
+            data-ouia-component-id="OUIA-Generated-TextInputBase-15"
+            data-ouia-component-type="PF5/TextInput"
+            data-ouia-safe="true"
+            disabled=""
+            max="1"
+            min="1"
+            type="number"
+            value="1"
+          />
+        </span>
         <span
           aria-hidden="true"
         >
@@ -4372,25 +4519,25 @@ exports[`AdditionalRepositoriesTable when using pagination can change per page 1
         </span>
       </div>
       <div
-        class="pf-c-pagination__nav-control"
+        class="pf-v5-c-pagination__nav-control"
       >
         <button
           aria-disabled="true"
           aria-label="Go to next page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="next"
           data-ouia-component-id="OUIA-Generated-Button-plain-125"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 256 512"
             width="1em"
           >
@@ -4401,25 +4548,25 @@ exports[`AdditionalRepositoriesTable when using pagination can change per page 1
         </button>
       </div>
       <div
-        class="pf-c-pagination__nav-control pf-m-last"
+        class="pf-v5-c-pagination__nav-control pf-m-last"
       >
         <button
           aria-disabled="true"
           aria-label="Go to last page"
-          class="pf-c-button pf-m-plain pf-m-disabled"
+          class="pf-v5-c-button pf-m-plain pf-m-disabled"
           data-action="last"
           data-ouia-component-id="OUIA-Generated-Button-plain-126"
-          data-ouia-component-type="PF4/Button"
+          data-ouia-component-type="PF5/Button"
           data-ouia-safe="true"
           disabled=""
           type="button"
         >
           <svg
             aria-hidden="true"
+            class="pf-v5-svg"
             fill="currentColor"
             height="1em"
             role="img"
-            style="vertical-align: -0.125em;"
             viewBox="0 0 448 512"
             width="1em"
           >

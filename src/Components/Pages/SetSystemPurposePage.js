@@ -40,10 +40,10 @@ const SetSystemPurposePage = ({
   ) : (
     !isError && (
       <>
-        <Title headingLevel="h2" className="pf-u-mb-sm">
+        <Title headingLevel="h2" className="pf-v5-u-mb-sm">
           Select system purpose
         </Title>
-        <Text component={TextVariants.p} className="pf-u-mb-xl">
+        <Text component={TextVariants.p} className="pf-v5-u-mb-xl">
           System purpose values are used by the subscriptions service to help
           filter and identify hosts. Setting values for these attributes is an
           optional step, but doing so ensures that subscriptions reporting
@@ -53,11 +53,11 @@ const SetSystemPurposePage = ({
         <Form>
           <FormGroup
             label="Role"
-            className="pf-u-mb-sm"
+            className="pf-v5-u-mb-sm"
             fieldId="activation-key-role"
           >
             <FormSelect
-              onChange={setRole}
+              onChange={(_event, value) => setRole(value)}
               value={role}
               id="activation-key-role"
             >
@@ -67,21 +67,25 @@ const SetSystemPurposePage = ({
           </FormGroup>
           <FormGroup
             label="Service level agreement (SLA)"
-            className="pf-u-mb-sm"
+            className="pf-v5-u-mb-sm"
             fieldId="activation-key-sla"
           >
-            <FormSelect onChange={setSla} value={sla} id="activation-key-sla">
+            <FormSelect
+              onChange={(_event, value) => setSla(value)}
+              value={sla}
+              id="activation-key-sla"
+            >
               <Options options={data.serviceLevel} />
               <Placeholder />
             </FormSelect>
           </FormGroup>
           <FormGroup
             label="Usage"
-            className="pf-u-mb-sm"
+            className="pf-v5-u-mb-sm"
             fieldId="activation-key-usage"
           >
             <FormSelect
-              onChange={setUsage}
+              onChange={(_event, value) => setUsage(value)}
               value={usage}
               id="activation-key-usage"
             >
@@ -104,7 +108,7 @@ SetSystemPurposePage.propTypes = {
   setUsage: PropTypes.func.isRequired,
   data: PropTypes.object.isRequired,
   isLoading: PropTypes.bool.isRequired,
-  isError: PropTypes.bool.isRequired,
+  isError: PropTypes.oneOfType([PropTypes.bool, () => null]),
 };
 
 export default SetSystemPurposePage;

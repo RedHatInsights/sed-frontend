@@ -17,10 +17,10 @@ const ConnectSystemsModal = () => {
   return (
     <Popover
       headerContent="About Remote Host Configuration Manager"
-      className="connector pf-u-color-100"
+      className="connector pf-v5-u-color-100"
       position={PopoverPosition.rightStart}
       bodyContent={
-        <TextContent className="pf-u-font-size-sm">
+        <TextContent className="pf-v5-u-font-size-sm">
           <Text>
             Remote host configuration (rhc) allows you to register with Red Hat
             Subscription Management (RHSM), connect to Red Hat Insights, and
@@ -43,7 +43,7 @@ const ConnectSystemsModal = () => {
             </Text>
             .
           </Text>
-          <div className="pf-c-form pf-u-pb-lg">
+          <div className="pf-v5-c-form pf-v5-u-pb-lg">
             <RegisterWithActivationKey />
           </div>
           <a
@@ -54,7 +54,7 @@ const ConnectSystemsModal = () => {
             }
           >
             Connecting with Red Hat
-            {<ExternalLinkAltIcon className="pf-u-ml-sm" />}
+            {<ExternalLinkAltIcon className="pf-v5-u-ml-sm" />}
           </a>
         </TextContent>
       }

@@ -1,12 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import { WriteOnlyButton } from '../WriteOnlyButton';
 import { MinusCircleIcon } from '@patternfly/react-icons';
 
 const RemoveAdditionalRepositoriesButton = ({ onClick }) => {
   const queryClient = useQueryClient();
-  const user = queryClient.getQueryData('user');
+  const user = queryClient.getQueryData(['user']);
   const isButtonEnabled = user?.rbacPermissions.canWriteActivationKeys || false;
 
   return (
@@ -17,9 +17,8 @@ const RemoveAdditionalRepositoriesButton = ({ onClick }) => {
       variant="plain"
       aria-label="Action"
       disabled={!isButtonEnabled}
-    >
-      <MinusCircleIcon />
-    </WriteOnlyButton>
+      icon={<MinusCircleIcon />}
+    />
   );
 };
 

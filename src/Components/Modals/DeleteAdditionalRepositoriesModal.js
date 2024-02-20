@@ -10,7 +10,7 @@ import {
 import { ExclamationTriangleIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 import useNotifications from '../../hooks/useNotifications';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import useDeleteAdditionalRepositories from '../../hooks/useDeleteAdditionalRepositories';
 
 const DeleteAdditionalRepositoriesModal = (props) => {

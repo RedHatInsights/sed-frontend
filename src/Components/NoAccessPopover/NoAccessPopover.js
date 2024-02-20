@@ -8,7 +8,7 @@ const NoAccessPopover = ({ content: Button }) => {
       <Tooltip
         content={<div>For editing access, contact your administrator.</div>}
       >
-        <div className="pf-u-display-inline-block">
+        <div className="pf-v5-u-display-inline-block">
           <Button />
         </div>
       </Tooltip>

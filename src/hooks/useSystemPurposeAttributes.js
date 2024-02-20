@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const fetchSystemPurposeAttributes = (token) => async () => {
@@ -23,7 +23,7 @@ const useSystemPurposeAttributes = () => {
   const chrome = useChrome();
 
   return useQuery(
-    'organization_system_purpose_attributes',
+    ['organization_system_purpose_attributes'],
     getSystemPurposeAttributes(chrome?.auth?.getToken())
   );
 };

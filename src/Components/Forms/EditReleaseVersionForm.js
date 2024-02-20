@@ -8,7 +8,7 @@ import {
   FormSelectOption,
 } from '@patternfly/react-core';
 import useUpdateActivationKey from '../../hooks/useUpdateActivationKey';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 import useNotifications from '../../hooks/useNotifications';
 import PropTypes from 'prop-types';
 
@@ -45,7 +45,9 @@ export const EditReleaseVersionForm = ({
       },
       {
         onSuccess: () => {
-          queryClient.invalidateQueries(`activation_key_${activationKey.name}`);
+          queryClient.invalidateQueries([
+            `activation_key_${activationKey.name}`,
+          ]);
           addSuccessNotification(
             `Changes saved for activation key "${activationKey.name}"`
           );
@@ -71,14 +73,14 @@ export const EditReleaseVersionForm = ({
       <FormGroup label="Release version" type="string">
         <FormSelect
           value={selectedVersion}
-          onChange={(version) => setSelectedVersion(version)}
+          onChange={(_event, version) => setSelectedVersion(version)}
           aria-label="Release version form input"
           isDisabled={isLoading}
         >
           {options}
         </FormSelect>
       </FormGroup>
-      <ActionGroup className="pf-u-mt-0">
+      <ActionGroup className="pf-v5-u-mt-0">
         <Button
           key="save"
           id="submit-release-version-form-button"

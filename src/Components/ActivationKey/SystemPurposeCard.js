@@ -11,19 +11,18 @@ import {
   TextListItem,
   TextListItemVariants,
   Title,
-  CardActions,
 } from '@patternfly/react-core';
 import EditButton from './EditButton';
 import propTypes from 'prop-types';
 import ActivationKeysDocsPopover from '../ActivationKeysDocsPopover';
 import NoAccessPopover from '../NoAccessPopover';
-import { useQueryClient } from 'react-query';
+import { useQueryClient } from '@tanstack/react-query';
 
 const SystemPurposeCard = (props) => {
   const { activationKey, actionHandler } = props;
   const notDefinedText = 'Not defined';
   const queryClient = useQueryClient();
-  const user = queryClient.getQueryData('user');
+  const user = queryClient.getQueryData(['user']);
 
   const ButtonWrapper = () => {
     return <EditButton onClick={actionHandler} />;
@@ -41,7 +40,21 @@ const SystemPurposeCard = (props) => {
   );
   return (
     <Card>
-      <CardHeader>
+      <CardHeader
+        actions={{
+          actions: (
+            <>
+              {user.rbacPermissions.canWriteActivationKeys ? (
+                <ButtonWrapper />
+              ) : (
+                <NoAccessPopover content={ButtonWrapper} />
+              )}
+            </>
+          ),
+          hasNoOffset: false,
+          className: 'SystemPurposeCardHeader',
+        }}
+      >
         <CardTitle>
           <Title headingLevel="h2">
             System Purpose{' '}
@@ -51,13 +64,6 @@ const SystemPurposeCard = (props) => {
             />{' '}
           </Title>
         </CardTitle>
-        <CardActions>
-          {user.rbacPermissions.canWriteActivationKeys ? (
-            <ButtonWrapper />
-          ) : (
-            <NoAccessPopover content={ButtonWrapper} />
-          )}
-        </CardActions>
       </CardHeader>
       <CardBody>
         <TextContent>

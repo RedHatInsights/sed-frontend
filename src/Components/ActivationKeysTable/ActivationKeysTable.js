@@ -1,13 +1,6 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import {
-  TableComposable,
-  Thead,
-  Tr,
-  Th,
-  Tbody,
-  Td,
-} from '@patternfly/react-table';
+import { Table, Thead, Tr, Th, Tbody, Td } from '@patternfly/react-table';
 import useActivationKeys from '../../hooks/useActivationKeys';
 import Loading from '../LoadingState/Loading';
 import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable';
@@ -27,7 +20,7 @@ const ActivationKeysTable = (props) => {
 
   const Results = () => {
     return (
-      <TableComposable aria-label="ActivationKeys">
+      <Table aria-label="ActivationKeys">
         <Thead>
           <Tr ouiaSafe={true}>
             <Th width={40}>{columnNames.name}</Th>
@@ -61,7 +54,7 @@ const ActivationKeysTable = (props) => {
             );
           })}
         </Tbody>
-      </TableComposable>
+      </Table>
     );
   };
 

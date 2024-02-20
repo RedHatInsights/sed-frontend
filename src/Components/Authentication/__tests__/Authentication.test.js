@@ -1,7 +1,7 @@
 import React from 'react';
 import { render, waitFor } from '@testing-library/react';
 import useUser from '../../../hooks/useUser';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { get, def } from 'bdd-lazy-var';
 import Authentication from '../Authentication';
 
@@ -34,7 +34,7 @@ const mockAuthenticateUser = (
   });
 
   if (isError === false) {
-    queryClient.setQueryData('user', user);
+    queryClient.setQueryData(['user'], user);
   }
 };
 
