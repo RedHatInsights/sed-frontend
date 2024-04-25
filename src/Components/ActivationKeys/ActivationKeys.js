@@ -29,7 +29,7 @@ import DeleteActivationKeyConfirmationModal from '../Modals/DeleteActivationKeyC
 import ActivationKeysDocsPopover from '../ActivationKeysDocsPopover';
 const ActivationKeys = () => {
   const { updateDocumentTitle } = useChrome();
-  updateDocumentTitle?.('Activation Keys - System Configuration | RHEL');
+  updateDocumentTitle?.('Activation Keys - System Configuration | RHEL', true);
   const queryClient = useQueryClient();
   const user = queryClient.getQueryData(['user']);
   const { isLoading, error, data } = useActivationKeys();
