@@ -52,7 +52,10 @@ const ConnectLog = lazy(() =>
 
 const SamplePage = () => {
   const { updateDocumentTitle } = useChrome();
-  updateDocumentTitle?.('Manage Configuration - Remote Host Configuration');
+  updateDocumentTitle?.(
+    'Remote Host Configuration - System Configuration | RHEL',
+    true
+  );
   const navigate = useNavigate();
   const { getRegistry } = useContext(RegistryContext);
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
