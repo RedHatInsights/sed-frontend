@@ -1,5 +1,4 @@
 export const CONNECTOR_API_BASE = '/api/config-manager/v2';
-export const V1_API_BASE = '/api/config-manager/v1';
 
 import { useAxiosWithPlatformInterceptors } from '@redhat-cloud-services/frontend-components-utilities/interceptors';
 import { DefaultApi } from '@redhat-cloud-services/config-manager-client';
@@ -37,7 +36,7 @@ export const useGetPlaybookPreview = (data) => {
         const previewData = dataTransformer(data);
         const playbookPreview =
           previewData &&
-          (await axios.post(`${V1_API_BASE}/states/preview`, {
+          (await axios.post(`${CONNECTOR_API_BASE}/states/preview`, {
             compliance_openscap: previewData.compliance,
             insights: previewData.active,
             remediations: previewData.remediations,
