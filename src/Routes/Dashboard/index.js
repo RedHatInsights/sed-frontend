@@ -70,11 +70,12 @@ const SamplePage = () => {
   const activeStateLoaded = useSelector(
     ({ activeStateReducer }) => activeStateReducer?.loaded
   );
-  const { compliance, remediations, active } = useSelector(
+  const { compliance, remediations, active, profileId } = useSelector(
     ({ activeStateReducer }) => ({
       compliance: activeStateReducer?.values?.compliance,
       remediations: activeStateReducer?.values?.remediations,
       active: activeStateReducer?.values?.active,
+      profileId: activeStateReducer?.values?.id,
     }),
     shallowEqual
   );
@@ -191,7 +192,6 @@ const SamplePage = () => {
         isOpen={confirmChangesOpen}
         handleCancel={() => setConfirmChangesOpen(false)}
         systemsCount={systemsCount}
-        data={dataRef.current}
         handleConfirm={() => {
           setConfirmChangesOpen(false);
           (async () => {
@@ -210,6 +210,7 @@ const SamplePage = () => {
             setIsEditing(false);
           })();
         }}
+        profileId={profileId}
       />
     </React.Fragment>
   );
