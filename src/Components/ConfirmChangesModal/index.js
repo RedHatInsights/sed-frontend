@@ -9,9 +9,9 @@ const ConfirmChangesModal = ({
   handleCancel,
   handleConfirm,
   systemsCount,
-  data,
+  profileId,
 }) => {
-  const playbook = useGetPlaybookPreview(data);
+  const playbook = useGetPlaybookPreview(profileId);
 
   return (
     <Modal
@@ -70,11 +70,7 @@ ConfirmChangesModal.propTypes = {
   handleConfirm: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
   systemsCount: PropTypes.number.isRequired,
-  data: PropTypes.shape({
-    compliance: PropTypes.bool,
-    remediations: PropTypes.bool,
-    insights: PropTypes.bool,
-  }),
+  profileId: PropTypes.string.isRequired,
 };
 
 export default ConfirmChangesModal;

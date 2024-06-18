@@ -18,6 +18,7 @@ const currStateFulfilled = (state, { payload }) => ({
     remediations: payload?.remediations,
     insights: payload?.insights,
     active: payload?.active,
+    id: payload?.id,
   },
 });
 
