@@ -8,19 +8,5 @@ module.exports = {
     '@babel/plugin-proposal-object-rest-spread',
     '@babel/plugin-proposal-class-properties',
     'lodash',
-    [
-      'transform-imports',
-      {
-        '@patternfly/react-icons': {
-          transform: (importName) =>
-            `@patternfly/react-icons/dist/js/icons/${importName
-              .split(/(?=[A-Z])/)
-              .join('-')
-              .toLowerCase()}`,
-          preventFullImport: true,
-        },
-      },
-      'react-icons',
-    ]
   ],
 };

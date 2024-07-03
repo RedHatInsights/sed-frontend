@@ -13,7 +13,7 @@ import {
   TextContent,
   TextVariants,
 } from '@patternfly/react-core';
-import HelpIcon from '@patternfly/react-icons/dist/js/icons/help-icon';
+import { HelpIcon } from '@patternfly/react-icons';
 import useSystemPurposeAttributes from '../../hooks/useSystemPurposeAttributes';
 import ActivationKeysFormSelect from './ActivationKeysFormSelect';
 import PropTypes from 'prop-types';
