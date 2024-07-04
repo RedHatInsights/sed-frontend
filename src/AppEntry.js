@@ -5,6 +5,7 @@ import { init, RegistryContext } from './store';
 import App from './App';
 import logger from 'redux-logger';
 import Authentication from './Components/Authentication/Authentication';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -19,7 +20,10 @@ const queryClient = new QueryClient({
 });
 
 const AppEntry = () => {
-  const registry = IS_DEV ? init(logger) : init();
+  const chrome = useChrome();
+
+  const registry = chrome.isProd() ? init() : init(logger);
+
   return (
     <QueryClientProvider client={queryClient}>
       <RegistryContext.Provider
