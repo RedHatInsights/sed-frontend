@@ -4,7 +4,6 @@
   "private": false,
   "scripts": {
     "build": "fec build",
-    "build:prod": "NODE_ENV=production fec build",
     "deploy": "npm-run-all build:prod lint test",
     "lint": "npm-run-all lint:*",
     "lint:js": "eslint config src",
