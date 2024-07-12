@@ -1,9 +1,9 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
+const packageJson = require('./package.json');
 
 module.exports = {
   appUrl: '/insights/connector',
-  debug: true,
   useProxy: process.env.PROXY === 'true',
   proxyVerbose: true,
   plugins: [
@@ -11,9 +11,7 @@ module.exports = {
       IS_DEV: process.env.NODE_ENV === 'development',
     }),
   ],
-  ...(process.env.HOT
-    ? { hotReload: process.env.HOT === 'true' }
-    : { hotReload: true }),
+  hotReload: process.env.HOT === 'true',
   ...(process.env.port ? { port: parseInt(process.env.port) } : {}),
   moduleFederation: {
     shared: [
@@ -21,7 +19,7 @@ module.exports = {
         'react-router-dom': {
           singleton: true,
           import: false,
-          version: '^6.8.1',
+          version: packageJson.dependencies['react-router-dom'],
           requiredVersion: '>=6.0.0 <7.0.0',
         },
       },
