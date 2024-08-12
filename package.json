@@ -77,7 +77,7 @@
     "@cypress/react18": "^2.0.0",
     "@patternfly/patternfly": "^4.222.4",
     "@redhat-cloud-services/eslint-config-redhat-cloud-services": "^2.0.3",
-    "@redhat-cloud-services/frontend-components-config": "^6.1.1",
+    "@redhat-cloud-services/frontend-components-config": "^6.2.2",
     "@redhat-cloud-services/tsc-transform-imports": "^1.0.13",
     "@testing-library/jest-dom": "^6.2.0",
     "@testing-library/react": "^14.1.2",
