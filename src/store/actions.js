@@ -25,9 +25,9 @@ const saveCurrState =
 
 const fetchLog =
   (api) =>
-  ({ perPage = 50, page = 1 } = {}) => ({
+  ({ sort = 'created_at:desc', perPage = 50, page = 1 } = {}) => ({
     type: GET_LOG,
-    payload: api.getProfiles(perPage, (page - 1) * perPage),
+    payload: api.getProfiles(sort, perPage, (page - 1) * perPage),
   });
 
 const fetchConnectedHosts = (api) => () => ({
