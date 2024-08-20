@@ -59,7 +59,9 @@ describe('actions', () => {
       } = renderHook(() => useActions());
 
       mock
-        .onGet('/api/config-manager/v2/profiles?limit=50&offset=0')
+        .onGet(
+          '/api/config-manager/v2/profiles?sort_by=created_at%3Adesc&limit=50&offset=0'
+        )
         .reply(200, {});
       const action = fetchLog();
       await action.payload;
@@ -74,7 +76,9 @@ describe('actions', () => {
       } = renderHook(() => useActions());
 
       mock
-        .onGet('/api/config-manager/v2/profiles?limit=50&offset=50')
+        .onGet(
+          '/api/config-manager/v2/profiles?sort_by=created_at%3Adesc&limit=50&offset=50'
+        )
         .reply(200, {});
       const action = fetchLog({ page: 2 });
       await action.payload;
@@ -89,7 +93,9 @@ describe('actions', () => {
       } = renderHook(() => useActions());
 
       mock
-        .onGet('/api/config-manager/v2/profiles?limit=22&offset=0')
+        .onGet(
+          '/api/config-manager/v2/profiles?sort_by=created_at%3Adesc&limit=22&offset=0'
+        )
         .reply(200, {});
       const action = fetchLog({ perPage: 22 });
       await action.payload;
@@ -104,7 +110,9 @@ describe('actions', () => {
       } = renderHook(() => useActions());
 
       mock
-        .onGet('/api/config-manager/v2/profiles?limit=22&offset=44')
+        .onGet(
+          '/api/config-manager/v2/profiles?sort_by=created_at%3Adesc&limit=22&offset=44'
+        )
         .reply(200, {});
       const action = fetchLog({ perPage: 22, page: 3 });
       await action.payload;
