@@ -33,7 +33,7 @@ const ConnectLog = () => {
   }, []);
   return (
     <Modal
-      title="Red Hat connect log"
+      title="Remote Host Configuration log"
       variant="medium"
       isOpen={true}
       onClose={() => navigate('/')}
