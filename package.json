@@ -73,7 +73,7 @@
     "@babel/preset-env": "7.12.13",
     "@babel/preset-flow": "7.12.13",
     "@babel/preset-react": "7.12.13",
-    "@cypress/code-coverage": "^3.10.0",
+    "@cypress/code-coverage": "^3.12.37",
     "@cypress/react18": "^2.0.1",
     "@patternfly/patternfly": "^4.222.4",
     "@redhat-cloud-services/eslint-config-redhat-cloud-services": "^2.0.3",
