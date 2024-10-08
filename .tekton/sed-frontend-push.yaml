@@ -211,7 +211,6 @@ spec:
         workspace: git-auth
       - name: netrc
         workspace: netrc
-    - name: build-container
     - name: parse-build-deploy-script
       params:
         - name: path-context
@@ -341,6 +340,7 @@ spec:
 
     #           npm install
     #           npm test
+    - name: build-container
       params:
       - name: IMAGE
         value: $(params.output-image)
