@@ -1,5 +1,10 @@
 import React, { Fragment, useEffect, useState, useCallback } from 'react';
-import { TableVariant, expandable, cellWidth } from '@patternfly/react-table';
+import {
+  TableVariant,
+  expandable,
+  cellWidth,
+  sortable,
+} from '@patternfly/react-table';
 import {
   Table,
   TableHeader,
@@ -25,8 +30,10 @@ import { useConfigApi } from '../../api';
 
 const columns = [
   {
+    key: 'created',
     title: 'Initiated date/time',
     cellFormatters: [expandable],
+    transforms: [sortable],
   },
   'Initiator',
   {
@@ -91,22 +98,29 @@ const LogsTable = () => {
   const { fetchLog } = useActions();
   const configApi = useConfigApi();
 
+  // sort param is not returned by API, so we have to store it on client
+  const [sortDirection, setSortDirection] = useState('desc');
+
   const logLoaded = useSelector(
     ({ logReducer }) => logReducer?.loaded || false
   );
+
   const rows = useSelector(({ logReducer }) => logReducer?.results || []);
+
   const pagination = useSelector(
     ({ logReducer }) => ({
       itemCount: logReducer?.total,
       perPage: logReducer?.limit,
       page:
-        Math.floor((logReducer?.offset || 0) / (logReducer?.limit || 0)) + 1,
+        Math.floor((logReducer?.offset ?? 0) / (logReducer?.limit ?? 1)) + 1,
     }),
     shallowEqual
   );
+
   useEffect(() => {
     dispatch(fetchLog());
   }, []);
+
   const onCollapse = (_e, _key, isOpen, { id }) => {
     setOpened(() =>
       isOpen ? [...opened, id] : opened.filter((openId) => openId !== id)
@@ -115,13 +129,40 @@ const LogsTable = () => {
 
   const setPage = useCallback(
     (_e, pageNumber) =>
-      dispatch(fetchLog({ page: pageNumber, perPage: pagination.perPage })),
-    [dispatch, pagination.perPage]
+      dispatch(
+        fetchLog({
+          page: pageNumber,
+          perPage: pagination.perPage,
+          sort: `created_at:${sortDirection}`,
+        })
+      ),
+    [dispatch, pagination.perPage, sortDirection]
   );
 
   const setPerPage = useCallback(
-    (_e, perPage) => dispatch(fetchLog({ page: 1, perPage })),
-    [dispatch]
+    (_e, perPage) =>
+      dispatch(
+        fetchLog({
+          page: 1,
+          perPage,
+          sort: `created_at:${sortDirection}`,
+        })
+      ),
+    [dispatch, sortDirection]
+  );
+
+  const setSort = useCallback(
+    (event, key, direction) => {
+      setSortDirection(direction);
+      dispatch(
+        fetchLog({
+          page: pagination.page,
+          perPage: pagination.perPage,
+          sort: `created_at:${direction}`,
+        })
+      );
+    },
+    [dispatch, pagination]
   );
 
   const onClick = (id) => {
@@ -153,6 +194,12 @@ const LogsTable = () => {
           rows={rowsMapper(rows, opened, onClick)}
           cells={columns}
           onCollapse={onCollapse}
+          sortBy={{
+            // only date/time column is sortable
+            index: 1,
+            direction: sortDirection,
+          }}
+          onSort={setSort}
         >
           <TableHeader />
           <TableBody />
