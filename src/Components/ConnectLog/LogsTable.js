@@ -27,6 +27,7 @@ import LogNestedTable from './LogNestedtable';
 import { downloadFile } from '../../utils/helpers';
 import { useActions } from '../../store/actions';
 import { useConfigApi } from '../../api';
+import useNotifications from '../../hooks/useNotifications';
 
 const columns = [
   {
@@ -97,6 +98,8 @@ const LogsTable = () => {
   const dispatch = useDispatch();
   const { fetchLog } = useActions();
   const configApi = useConfigApi();
+  const { addInfoNotification, addSuccessNotification, addErrorNotification } =
+    useNotifications();
 
   // sort param is not returned by API, so we have to store it on client
   const [sortDirection, setSortDirection] = useState('desc');
@@ -167,8 +170,15 @@ const LogsTable = () => {
 
   const onClick = (id) => {
     (async () => {
-      const data = await configApi.getPlaybook(id);
-      downloadFile(data);
+      try {
+        const data = await configApi.getPlaybook(id);
+
+        addInfoNotification('Log is being downloaded');
+        downloadFile(data);
+        addSuccessNotification('Download successful');
+      } catch (error) {
+        addErrorNotification('Download failed');
+      }
     })();
   };
 
