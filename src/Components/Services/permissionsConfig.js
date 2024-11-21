@@ -1,13 +1,17 @@
 export const permissions = [
   {
     id: 'remediations',
-    name: 'Allow Insights users to use “Remediations” to send Ansible Playbooks to fix issues on your systems',
+    name: 'Allow permitted Insights users to execute remediation playbooks on rhc-connected systems',
     description:
-      'Users can create Ansible Playbooks using the “Remediate” function in Insights and then execute these playbooks on systems in inventory. Playbooks are sent to systems to fix issues using the Cloud Connector technology.',
+      'Users with Remediations administrator access can execute Ansible Playbooks on rhc-connected systems in inventory. NOTE: This setting does not enable remote playbook remediations on Satellite-managed content hosts. ',
     links: [
       {
-        name: 'About Cloud Connector',
+        name: 'About Remote host configuration and management',
         link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/remote_host_configuration_and_management/index',
+      },
+      {
+        name: 'About Enabling remote playbook remediations for Satellite-managed content hosts',
+        link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/red_hat_insights_remediations_guide/index',
       },
     ],
   },
