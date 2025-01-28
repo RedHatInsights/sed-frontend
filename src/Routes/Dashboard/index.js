@@ -1,6 +1,5 @@
 import {
   Bullseye,
-  Button,
   Flex,
   FlexItem,
   Spinner,
@@ -16,38 +15,22 @@ import {
   PageHeader,
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import React, {
-  lazy,
-  Suspense,
-  useContext,
-  useEffect,
-  useRef,
-  useState,
-} from 'react';
+import React, { lazy, useContext, useEffect, useRef, useState } from 'react';
 import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
-import { useLocation, useNavigate } from 'react-router-dom';
-import pckg from '../../../package.json';
 import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
 import Services from '../../Components/Services/Services';
 import { RegistryContext } from '../../store';
 import { useActions } from '../../store/actions';
 import connectedSystemsReducer from '../../store/connectedSystems';
 import activeStateReducer from '../../store/currStateReducer';
-import logReducer from '../../store/logReducer';
 import useUser from '../../hooks/useUser';
 import './dashboard.scss';
-
-const { routes: paths } = pckg;
 
 const AboutRemoteHostConfigPopover = lazy(() =>
   import(
     /* webpackChunkName: "ConnectSysAboutRemoteHostConfigPopovertemsModal" */ '../../Components/AboutRemoteHostConfigPopover/AboutRemoteHostConfigPopover'
   )
-);
-
-const ConnectLog = lazy(() =>
-  import(/* webpackChunkName: "ConnectLog" */ '../../Components/ConnectLog')
 );
 
 const SamplePage = () => {
@@ -56,14 +39,12 @@ const SamplePage = () => {
     'Remote Host Configuration - System Configuration | RHEL',
     true
   );
-  const navigate = useNavigate();
   const { getRegistry } = useContext(RegistryContext);
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
   const [madeChanges, setMadeChanges] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
   const dataRef = useRef();
   const dispatch = useDispatch();
-  const location = useLocation();
   const { fetchConnectedHosts, fetchCurrState, saveCurrState } = useActions();
   const { data: userData } = useUser();
 
@@ -90,7 +71,6 @@ const SamplePage = () => {
   useEffect(() => {
     getRegistry().register({
       activeStateReducer,
-      logReducer,
       connectedSystemsReducer,
     });
     dispatch(fetchCurrState());
@@ -103,22 +83,8 @@ const SamplePage = () => {
     insights?.chrome?.appAction?.('cloud-connector-dashboard');
   }, []);
 
-  const isLogsModalOpen = location.pathname.split('/').pop() === paths.logModal;
-
   return (
     <React.Fragment>
-      {isLogsModalOpen && (
-        <Suspense
-          fallback={
-            <Bullseye>
-              <Spinner />
-            </Bullseye>
-          }
-        >
-          <ConnectLog />
-        </Suspense>
-      )}
-
       <PageHeader className="page-header">
         <Split hasGutter className="page-title">
           <SplitItem isFilled>
@@ -130,14 +96,6 @@ const SamplePage = () => {
                 <AboutRemoteHostConfigPopover />
               </FlexItem>
             </Flex>
-          </SplitItem>
-          <SplitItem>
-            <Button
-              onClick={() => navigate(`./${paths.logModal}`)}
-              variant="link"
-            >
-              View log
-            </Button>
           </SplitItem>
         </Split>
         <Stack hasGutter>
