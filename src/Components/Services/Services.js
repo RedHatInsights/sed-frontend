@@ -201,7 +201,9 @@ const Services = ({
                       </Flex>
                     </StackItem>
                     <StackItem style={{ fontSize: 14 }}>
-                      {row.description}
+                      <div style={{ whiteSpace: 'pre-line' }}>
+                        {row.description}
+                      </div>
                     </StackItem>
                     {row.links && (
                       <StackItem className="stack-item">
