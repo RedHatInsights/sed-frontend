@@ -117,7 +117,6 @@
   "routes": {
     "connector": "/*",
     "connectSystemsModal": "/connect-systems",
-    "logModal": "log",
     "activationKeys": "/activation-keys",
     "activationKey": "/activation-keys/:id"
   },
