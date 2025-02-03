@@ -1,7 +1,6 @@
 import { useConfigApi, useInventoryApi } from '../api';
 import {
   GET_CURR_STATE,
-  GET_LOG,
   SET_CURR_STATE,
   GET_CONNECTED_HOSTS,
 } from './actionTypes';
@@ -23,13 +22,6 @@ const saveCurrState =
     }),
   });
 
-const fetchLog =
-  (api) =>
-  ({ sort = 'created_at:desc', perPage = 50, page = 1 } = {}) => ({
-    type: GET_LOG,
-    payload: api.getProfiles(sort, perPage, (page - 1) * perPage),
-  });
-
 const fetchConnectedHosts = (api) => () => ({
   type: GET_CONNECTED_HOSTS,
   payload: api.getConnectedHosts(),
@@ -41,7 +33,6 @@ export const useActions = () => {
 
   return {
     fetchConnectedHosts: fetchConnectedHosts(inventoryApi),
-    fetchLog: fetchLog(api),
     saveCurrState: saveCurrState(api),
     fetchCurrState: fetchCurrState(api),
   };
