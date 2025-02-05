@@ -15,7 +15,8 @@ jobs:
   - stage: Lint
     script: npm run lint
   - stage: Test
-    script: npm run test && npm run coverage
+    script: npm run test && npm run test:ct 
+    after_success: npm run coverage
 env:
   global:
   - BRANCH=${TRAVIS_PULL_REQUEST_BRANCH:-$TRAVIS_BRANCH}
