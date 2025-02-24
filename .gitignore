@@ -17,16 +17,16 @@ yarn-debug.log*
 yarn-error.log*
 
 .DS_Store
-coverage
 
 # cypress
 cypress/downloads
 cypress/screenshots
 cypress/videos
 
-codecov*
+codecov
+coverage/*
+coverage-*
 .nyc_output/
-reports/
 
 .cache/
 
