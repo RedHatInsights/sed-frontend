@@ -156,7 +156,7 @@ const Services = ({
                     Cancel
                   </Button>
                 </ToolbarItem>
-                <ToolbarItem>
+                <ToolbarItem style={{ margin: 'auto', marginLeft: 0 }}>
                   <Alert
                     variant="info"
                     isInline
