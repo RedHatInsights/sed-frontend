@@ -57,9 +57,6 @@ const Services = ({
     '',
     [
       'config-manager:activation_keys:*',
-      'config-manager:state:read',
-      'config-manager:state:write',
-      'config-manager:state-changes:read',
       'inventory:hosts:read',
       'inventory:hosts:write',
       'playbook-dispatcher:run:read',
