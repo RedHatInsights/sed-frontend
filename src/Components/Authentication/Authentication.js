@@ -7,16 +7,21 @@ import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable'
 import propTypes from 'prop-types';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import NotAuthorized from '@redhat-cloud-services/frontend-components/NotAuthorized';
+import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 const Authentication = ({ children }) => {
   const queryClient = useQueryClient();
   const location = useLocation();
   const chrome = useChrome();
-  const { isLoading, isFetching, isSuccess, isError, data } = useUser();
-  const hasAnyPermission =
-    data?.rbacPermissions &&
-    (data.rbacPermissions.canReadActivationKeys ||
-      data.rbacPermissions.canWriteActivationKeys);
+  const { isLoading, isFetching, isSuccess, isError } = useUser();
+
+  console.log(">>> All permissions:", chrome.getUserPermissions('config-manager'));
+
+  const { hasAccess: hasAnyPermission } = usePermissionsWithContext([
+    'config-manager:activation_keys:write',
+  ]);
+
+  console.log(">>> usePermissionsWithContext indicates having config-manager:activation_keys:write", hasAnyPermission);
 
   useEffect(() => {
     isSuccess && chrome?.hideGlobalFilter();

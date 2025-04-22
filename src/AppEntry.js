@@ -5,6 +5,7 @@ import { init, RegistryContext } from './store';
 import App from './App';
 import logger from 'redux-logger';
 import Authentication from './Components/Authentication/Authentication';
+import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACProvider';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,9 +29,11 @@ const AppEntry = () => {
         }}
       >
         <Provider store={registry.getStore()}>
-          <Authentication>
-            <App />
-          </Authentication>
+          <RBACProvider>
+            <Authentication>
+              <App />
+            </Authentication>
+          </RBACProvider>
         </Provider>
       </RegistryContext.Provider>
     </QueryClientProvider>

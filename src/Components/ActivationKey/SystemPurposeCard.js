@@ -16,13 +16,14 @@ import EditButton from './EditButton';
 import propTypes from 'prop-types';
 import ActivationKeysDocsPopover from '../ActivationKeysDocsPopover';
 import NoAccessPopover from '../NoAccessPopover';
-import { useQueryClient } from '@tanstack/react-query';
+import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 const SystemPurposeCard = (props) => {
   const { activationKey, actionHandler } = props;
   const notDefinedText = 'Not defined';
-  const queryClient = useQueryClient();
-  const user = queryClient.getQueryData(['user']);
+  const { hasAccess: canWriteActivationKeys } = usePermissionsWithContext([
+    'config-manager:activation_keys:write',
+  ]);
 
   const ButtonWrapper = () => {
     return <EditButton onClick={actionHandler} />;
@@ -44,7 +45,7 @@ const SystemPurposeCard = (props) => {
         actions={{
           actions: (
             <>
-              {user.rbacPermissions.canWriteActivationKeys ? (
+              {canWriteActivationKeys ? (
                 <ButtonWrapper />
               ) : (
                 <NoAccessPopover content={ButtonWrapper} />
