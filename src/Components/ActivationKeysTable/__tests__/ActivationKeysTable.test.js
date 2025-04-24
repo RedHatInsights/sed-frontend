@@ -14,6 +14,15 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useLocation: () => ({ pathname: '/connector/test-key' }),
 }));
+jest.mock(
+  '@redhat-cloud-services/frontend-components-utilities/RBACHook',
+  () => ({
+    ...jest.requireActual(
+      '@redhat-cloud-services/frontend-components-utilities/RBACHook'
+    ),
+    usePermissionsWithContext: () => ({ hasAccess: true }),
+  })
+);
 
 const queryClient = new QueryClient();
 
@@ -32,14 +41,6 @@ jest.mock(
 );
 
 describe('ActivationKeysTable', () => {
-  def('rbacPermissions', () => {
-    return {
-      rbacPermissions: {
-        canReadActivationKeys: true,
-        canWriteActivationKeys: true,
-      },
-    };
-  });
   def('loading', () => false);
   def('error', () => false);
   def('data', () => [
@@ -52,9 +53,6 @@ describe('ActivationKeysTable', () => {
   ]);
 
   beforeEach(() => {
-    jest
-      .spyOn(queryClient, 'getQueryData')
-      .mockReturnValue(get('rbacPermissions'));
     useActivationKeys.mockReturnValue({
       isLoading: get('loading'),
       error: get('error'),
@@ -75,17 +73,6 @@ describe('ActivationKeysTable', () => {
       const { container } = render(<Table />);
 
       expect(container).toMatchSnapshot();
-    });
-  });
-
-  describe('when user does not have write permissions', () => {
-    def('rbacPermissions', () => {
-      return {
-        rbacPermissions: {
-          canReadActivationKeys: true,
-          canWriteActivationKeys: false,
-        },
-      };
     });
   });
 

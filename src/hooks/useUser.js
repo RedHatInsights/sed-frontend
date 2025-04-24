@@ -1,23 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import { useRbacPermissions } from './useRbacPermissions';
 import { useAuthenticateUser } from '../utils/platformServices';
 
 const useUser = () => {
-  const rbacPermissions = useRbacPermissions();
   const authenticateUser = useAuthenticateUser();
 
   return useQuery(
     ['user'],
-    () =>
-      Promise.all([authenticateUser, rbacPermissions]).then(
-        ([userStatus, rbacPermissions]) => ({
-          accountNumber: userStatus?.data.identity?.account_number,
-          orgId: userStatus?.data.identity?.internal?.org_id,
-          rbacPermissions: rbacPermissions?.data,
-        })
-      ),
+    () => ({
+      accountNumber: authenticateUser?.data.identity?.account_number,
+      orgId: authenticateUser?.data.identity?.internal?.org_id,
+    }),
     {
-      enabled: rbacPermissions.isSuccess,
+      enabled: authenticateUser.isSuccess,
     }
   );
 };

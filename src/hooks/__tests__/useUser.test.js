@@ -5,21 +5,6 @@ import { createQueryWrapper } from '../../utils/testHelpers';
 jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
   __esModule: true,
   default: () => ({
-    getUserPermissions: () =>
-      Promise.resolve([
-        {
-          resourceDefinitions: [],
-          permission: 'config-manager:activation_keys:*',
-        },
-        {
-          resourceDefinitions: [],
-          permission: 'config-manager:activation_keys:read',
-        },
-        {
-          resourceDefinitions: [],
-          permission: 'inventory:hosts:read',
-        },
-      ]),
     auth: {
       getUser: () =>
         Promise.resolve({
@@ -49,11 +34,6 @@ describe('useUser hook', () => {
     expect(result.current.data).toEqual({
       accountNumber: '1',
       orgId: 1,
-      rbacPermissions: {
-        canReadActivationKeys: true,
-        canWriteActivationKeys: true,
-        canReadInventory: true,
-      },
     });
   });
 });
