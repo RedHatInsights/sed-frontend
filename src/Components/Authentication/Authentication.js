@@ -14,8 +14,11 @@ const Authentication = ({ children }) => {
   const location = useLocation();
   const chrome = useChrome();
   const { isLoading, isFetching, isSuccess, isError } = useUser();
-  const { hasAccess: hasAnyPermission } = usePermissionsWithContext([
-    'config-manager:activation_keys:*',
+  const { hasAccess: hasReadPermission } = usePermissionsWithContext([
+    'config-manager:activation_keys:read',
+  ]);
+  const { hasAccess: hasWritePermission } = usePermissionsWithContext([
+    'config-manager:activation_keys:write',
   ]);
 
   useEffect(() => {
@@ -34,7 +37,7 @@ const Authentication = ({ children }) => {
     return <Unavailable />;
   } else if (isLoading === true || isFetching === true) {
     return <Loading />;
-  } else if (isSuccess === true && !hasAnyPermission) {
+  } else if (isSuccess === true && !hasReadPermission && !hasWritePermission) {
     return <NotAuthorized serviceName="Remote Host Configuration" />;
   } else if (isSuccess === true) {
     return <>{children}</>;
