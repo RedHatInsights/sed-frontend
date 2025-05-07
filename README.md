@@ -1,4 +1,4 @@
-[![Build Status](https://app.travis-ci.com/RedHatInsights/sed-frontend.svg?branch=master)](https://app.travis-ci.com/RedHatInsights/sed-frontend) [![codecov](https://codecov.io/gh/RedHatInsights/sed-frontend/branch/master/graph/badge.svg?token=XC4AD7NQFW)](https://codecov.io/gh/RedHatInsights/sed-frontend)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/RedhatInsights/sed-frontend/test.yml?branch=master)](https://github.com/RedHatInsights/sed-frontend/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/RedHatInsights/sed-frontend/branch/master/graph/badge.svg?token=XC4AD7NQFW)](https://codecov.io/gh/RedHatInsights/sed-frontend)
 
 # Red Hat Connector Dashboard
 

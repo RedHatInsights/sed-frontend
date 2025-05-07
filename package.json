@@ -16,10 +16,10 @@
     "start:proxy": "PROXY=true fec dev",
     "test": "TZ=UTC jest --passWithNoTests --verbose --no-cache",
     "test:coverage": "curl -sSL 'https://raw.githubusercontent.com/RedHatInsights/insights-interact-tools/refs/heads/main/scripts/coverage.sh' | bash",
-    "test:ct": "BABEL_ENV=componentTest cypress run --component",
+    "test:ct": "BABEL_ENV=componentTest cypress run --browser chrome --component",
     "verify": "npm-run-all build lint test",
     "test:openct": "cypress open --component",
-    "travis:verify": "npm run test:coverage"
+    "ci:verify": "npm run test:coverage"
   },
   "jest": {
     "testEnvironment": "jsdom",
@@ -72,6 +72,8 @@
     "@babel/plugin-transform-runtime": "7.12.13",
     "@babel/preset-env": "7.12.13",
     "@babel/preset-react": "7.12.13",
+    "@commitlint/cli": "^19.8.0",
+    "@commitlint/config-conventional": "^19.8.0",
     "@cypress/code-coverage": "^3.13.12",
     "@cypress/react18": "^2.0.1",
     "@patternfly/patternfly": "^4.222.4",
@@ -82,8 +84,8 @@
     "@testing-library/react": "^14.1.2",
     "axios-mock-adapter": "^1.19.0",
     "babel-core": "7.0.0-bridge.0",
-    "babel-loader": "^9.2.1",
     "babel-jest": "=26.6.3",
+    "babel-loader": "^9.2.1",
     "babel-plugin-dual-import": "1.2.1",
     "babel-plugin-istanbul": "^6.1.1",
     "babel-plugin-lodash": "3.3.4",
