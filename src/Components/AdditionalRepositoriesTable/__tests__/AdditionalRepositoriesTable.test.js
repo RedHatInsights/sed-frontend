@@ -14,18 +14,19 @@ jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
   useRouteMatch: () => ({ url: '/' }),
 }));
+jest.mock(
+  '@redhat-cloud-services/frontend-components-utilities/RBACHook',
+  () => ({
+    ...jest.requireActual(
+      '@redhat-cloud-services/frontend-components-utilities/RBACHook'
+    ),
+    usePermissionsWithContext: () => ({ hasAccess: true }),
+  })
+);
 
 const queryClient = new QueryClient();
 
 describe('AdditionalRepositoriesTable', () => {
-  def('rbacPermissions', () => {
-    return {
-      rbacPermissions: {
-        canReadActivationKeys: true,
-        canWriteActivationKeys: true,
-      },
-    };
-  });
   def('loading', () => false);
   def('error', () => false);
   def('data', () => [
@@ -37,9 +38,6 @@ describe('AdditionalRepositoriesTable', () => {
     },
   ]);
   beforeEach(() => {
-    jest
-      .spyOn(queryClient, 'getQueryData')
-      .mockReturnValue(get('rbacPermissions'));
     useAvailableRepositories.mockReturnValue({
       isLoading: get('loading'),
       error: get('error'),
@@ -62,12 +60,6 @@ describe('AdditionalRepositoriesTable', () => {
       isFetching: false,
       isSuccess: true,
       isError: false,
-      data: {
-        rbacPermissions: {
-          canReadActivationKeys: true,
-          canWriteActivationKeys: true,
-        },
-      },
     }),
   }));
 

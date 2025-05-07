@@ -26,6 +26,7 @@ import connectedSystemsReducer from '../../store/connectedSystems';
 import activeStateReducer from '../../store/currStateReducer';
 import useUser from '../../hooks/useUser';
 import './dashboard.scss';
+import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 const AboutRemoteHostConfigPopover = lazy(() =>
   import(
@@ -47,6 +48,10 @@ const SamplePage = () => {
   const dispatch = useDispatch();
   const { fetchConnectedHosts, fetchCurrState, saveCurrState } = useActions();
   const { data: userData } = useUser();
+  const { hasAccess: canReadInventory } = usePermissionsWithContext(
+    ['inventory:hosts:read'],
+    true
+  );
 
   const activeStateLoaded = useSelector(
     ({ activeStateReducer }) => activeStateReducer?.loaded
@@ -74,7 +79,7 @@ const SamplePage = () => {
       connectedSystemsReducer,
     });
     dispatch(fetchCurrState());
-    if (userData.rbacPermissions.canReadInventory) {
+    if (canReadInventory) {
       dispatch(fetchConnectedHosts());
     }
   }, [getRegistry, userData]);
