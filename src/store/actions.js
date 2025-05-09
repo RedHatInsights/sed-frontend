@@ -12,12 +12,11 @@ const fetchCurrState = (api) => () => ({
 
 const saveCurrState =
   (api) =>
-  ({ compliance, remediations, active }) => ({
+  ({ compliance, active }) => ({
     type: SET_CURR_STATE,
     payload: api.createProfile({
       compliance,
-      insights: true,
-      remediations,
+      remediations: true,
       active,
     }),
   });
