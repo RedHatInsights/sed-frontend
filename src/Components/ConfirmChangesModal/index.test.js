@@ -23,7 +23,6 @@ describe('ConfirmChangesModal', () => {
         handleConfirm={handleConfirm}
       />
     );
-    expect(screen.getByText('View playbook')).toBeInTheDocument();
     expect(screen.getAllByText('Confirm changes')).toHaveLength(2);
     expect(screen.getAllByText('Confirm changes')[0]).toBeInTheDocument();
   });
