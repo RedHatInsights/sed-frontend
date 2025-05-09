@@ -1,18 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useGetPlaybookPreview } from '../../api';
 import { Button, Modal, Text, TextContent } from '@patternfly/react-core';
-import { pluralize, downloadFile } from '../../utils/helpers';
+import { pluralize } from '../../utils/helpers';
 
 const ConfirmChangesModal = ({
   isOpen = false,
   handleCancel,
   handleConfirm,
   systemsCount,
-  profileId,
 }) => {
-  const playbook = useGetPlaybookPreview(profileId);
-
   return (
     <Modal
       variant="small"
@@ -52,15 +48,6 @@ const ConfirmChangesModal = ({
           {systemsCount} {pluralize(systemsCount, 'system')} to apply changes.
         </Text>
       </TextContent>
-      <Button
-        variant="link"
-        onClick={() => {
-          downloadFile(playbook);
-        }}
-        style={{ paddingLeft: 0 }}
-      >
-        View playbook
-      </Button>
     </Modal>
   );
 };
@@ -70,7 +57,6 @@ ConfirmChangesModal.propTypes = {
   handleConfirm: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
   systemsCount: PropTypes.number.isRequired,
-  profileId: PropTypes.string.isRequired,
 };
 
 export default ConfirmChangesModal;
