@@ -11,6 +11,8 @@ import { get, def } from 'bdd-lazy-var/global';
 import useActivationKey from '../../../hooks/useActivationKey';
 import '@testing-library/jest-dom';
 import useAvailableRepositories from '../../../hooks/useAvailableRepositories';
+import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACProvider';
+import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 jest.mock('../../../hooks/useAvailableRepositories');
 jest.mock('../../../hooks/useActivationKey');
@@ -21,26 +23,36 @@ jest.mock('react-router-dom', () => ({
     pathname: '/',
   }),
 }));
+jest.mock(
+  '@redhat-cloud-services/frontend-components-utilities/RBACHook',
+  () => ({
+    ...jest.requireActual(
+      '@redhat-cloud-services/frontend-components-utilities/RBACHook'
+    ),
+    usePermissionsWithContext: jest.fn(),
+  })
+);
 
 const queryClient = new QueryClient();
 
 const PageContainer = () => (
   <QueryClientProvider client={queryClient}>
-    <Authentication>
-      <Provider store={init().getStore()}>
-        <Router>
-          <ActivationKey />
-        </Router>
-      </Provider>
-    </Authentication>
+    <RBACProvider appName={null}>
+      <Authentication>
+        <Provider store={init().getStore()}>
+          <Router>
+            <ActivationKey />
+          </Router>
+        </Provider>
+      </Authentication>
+    </RBACProvider>
   </QueryClientProvider>
 );
 
-const mockAuthenticateUser = (isLoading, isError, rbacPermissions) => {
+const mockAuthenticateUser = (isLoading, isError) => {
   const user = {
     accountNumber: '123',
     orgId: '123',
-    rbacPermissions: rbacPermissions,
   };
   useUser.mockReturnValue({
     isLoading: isLoading,
@@ -78,9 +90,6 @@ jest.mock(
 describe('ActivationKey', () => {
   def('isLoading', () => false);
   def('isError', () => false);
-  def('rbacPermissions', () => {
-    return { canReadActivationKeys: true, canWriteActivationKeys: true };
-  });
   def('keyData', () => {
     return {
       name: 'A',
@@ -94,17 +103,17 @@ describe('ActivationKey', () => {
 
   beforeEach(() => {
     jest.resetAllMocks();
-    mockAuthenticateUser(
-      get('isLoading'),
-      get('isError'),
-      get('rbacPermissions')
-    );
+    mockAuthenticateUser(get('isLoading'), get('isError'));
     useActivationKey.mockReturnValue({
       isLoading: false,
       isFetching: false,
       isError: false,
       isSuccess: true,
       data: get('keyData'),
+    });
+
+    usePermissionsWithContext.mockReturnValue({
+      hasAccess: true,
     });
   });
 
@@ -119,7 +128,9 @@ describe('ActivationKey', () => {
 
     render(
       <QueryClientProvider client={queryClient}>
-        <PageContainer />
+        <RBACProvider appName={null}>
+          <PageContainer />
+        </RBACProvider>
       </QueryClientProvider>
     );
 
@@ -141,11 +152,11 @@ describe('ActivationKey', () => {
   });
 
   describe('when the user does not have proper permissions', () => {
-    def('rbacPermissions', () => {
-      return { canReadActivationKeys: false };
-    });
-
     it('redirects to not authorized page', async () => {
+      usePermissionsWithContext.mockReturnValue({
+        hasAccess: false,
+      });
+
       render(<PageContainer />);
       await waitFor(() => expect(useUser).toHaveBeenCalledTimes(1));
       expect(screen.getByText('Not Authorized')).toBeInTheDocument();

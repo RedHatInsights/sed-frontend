@@ -26,14 +26,15 @@ import DeleteButton from './DeleteButton';
 import DeleteActivationKeyConfirmationModal from '../Modals/DeleteActivationKeyConfirmationModal';
 import EditActivationKeyModal from '../Modals/EditActivationKeyModal';
 import NoAccessPopover from '../NoAccessPopover';
-import { useQueryClient } from '@tanstack/react-query';
 import { EditReleaseVersionModal } from '../Modals/EditReleaseVersionModal';
 import useReleaseVersions from '../../hooks/useReleaseVersions';
+import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 const ActivationKey = () => {
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
-  const user = queryClient.getQueryData(['user']);
+  const { hasAccess: canWriteActivationKeys } = usePermissionsWithContext([
+    'config-manager:activation_keys:write',
+  ]);
   const { id } = useParams();
   const breadcrumbs = [
     { title: 'Activation Keys', to: '../activation-keys' },
@@ -85,7 +86,7 @@ const ActivationKey = () => {
             </TextContent>
           </LevelItem>
           <LevelItem>
-            {user.rbacPermissions.canWriteActivationKeys ? (
+            {canWriteActivationKeys ? (
               <DeleteButton onClick={handleDeleteActivationKeyModalToggle} />
             ) : (
               <NoAccessPopover content={DeleteButton} />
