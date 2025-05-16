@@ -1,8 +1,6 @@
 import {
-  Bullseye,
   Flex,
   FlexItem,
-  Spinner,
   Split,
   SplitItem,
   Page,
@@ -41,8 +39,6 @@ const SamplePage = () => {
   );
   const { getRegistry } = useContext(RegistryContext);
   const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
-  const [madeChanges, setMadeChanges] = useState(false);
-  const [isEditing, setIsEditing] = useState(false);
   const dataRef = useRef();
   const dispatch = useDispatch();
   const { fetchConnectedHosts, fetchCurrState, saveCurrState } = useActions();
@@ -51,11 +47,9 @@ const SamplePage = () => {
   const activeStateLoaded = useSelector(
     ({ activeStateReducer }) => activeStateReducer?.loaded
   );
-  const { compliance, remediations, active, profileId } = useSelector(
+  const { remediations, profileId } = useSelector(
     ({ activeStateReducer }) => ({
-      compliance: activeStateReducer?.values?.compliance,
       remediations: activeStateReducer?.values?.remediations,
-      active: activeStateReducer?.values?.active,
       profileId: activeStateReducer?.values?.id,
     }),
     shallowEqual
@@ -122,28 +116,14 @@ const SamplePage = () => {
       </PageHeader>
       <Page>
         <div className="dashboard__content">
-          {activeStateLoaded ||
-          (compliance !== undefined && remediations !== undefined) ? (
-            <Services
-              madeChanges={madeChanges}
-              setConfirmChangesOpen={setConfirmChangesOpen}
-              setMadeChanges={setMadeChanges}
-              setIsEditing={setIsEditing}
-              isEditing={isEditing}
-              defaults={{
-                compliance,
-                remediations,
-                active,
-              }}
-              onChange={(data) => {
-                dataRef.current = data;
-              }}
-            />
-          ) : (
-            <Bullseye>
-              <Spinner className="pf-v5-u-p-lg" size="xl" />
-            </Bullseye>
-          )}
+          <Services
+            setConfirmChangesOpen={setConfirmChangesOpen}
+            defaults={{ remediations }}
+            onChange={(data) => {
+              dataRef.current = data;
+            }}
+            isLoading={!activeStateLoaded}
+          />
         </div>
       </Page>
       <ConfirmChangesModal
@@ -164,8 +144,6 @@ const SamplePage = () => {
                   'Your service enablement changes were applied to connected systems',
               })
             );
-            setMadeChanges(false);
-            setIsEditing(false);
           })();
         }}
         profileId={profileId}
