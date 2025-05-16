@@ -41,7 +41,7 @@ describe('connectedSystems', () => {
         type: `${GET_CONNECTED_HOSTS}_FULFILLED`,
         payload: {
           results: ['one'],
-          count: 10,
+          total: 10,
           page: 1,
           per_page: 10,
         },

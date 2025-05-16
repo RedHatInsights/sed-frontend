@@ -40,7 +40,7 @@ const ConfirmChangesModal = ({
     >
       <TextContent>
         <Text component="p">
-          Your changes applies to{' '}
+          Your change applies to{' '}
           <b>
             {systemsCount} connected {pluralize(systemsCount, 'system')}
           </b>
