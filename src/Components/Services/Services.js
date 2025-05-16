@@ -1,59 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Alert,
-  Button,
   Stack,
   StackItem,
   ToggleGroup,
   ToggleGroupItem,
-  Toolbar,
-  ToolbarItem,
-  ToolbarContent,
-  Tooltip,
   FlexItem,
   Flex,
+  Spinner,
+  spinnerSize,
 } from '@patternfly/react-core';
-import {
-  CheckCircleIcon,
-  BanIcon,
-  ExternalLinkAltIcon,
-} from '@patternfly/react-icons';
+import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 import { Table, Thead, Tr, Th, Tbody, Td } from '@patternfly/react-table';
 import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 import { permissions } from './permissionsConfig';
+import ConditionalTooltip from '../shared/ConditionalTooltip';
 
-const changeSettingsButton = (isLoading, hasAccess, setIsEditing) => (
-  <Button
-    ouiaId="secondary-edit-button"
-    onClick={() => setIsEditing(true)}
-    variant="secondary"
-    isAriaDisabled={isLoading || !hasAccess}
-  >
-    Change settings
-  </Button>
-);
-
-const Services = ({
-  defaults,
-  setConfirmChangesOpen,
-  onChange,
-  isEditing,
-  setIsEditing,
-}) => {
-  const initState = {
-    remediations: {
-      value: defaults.remediations,
-      isDisabled: false,
-    },
-    compliance: { value: defaults.compliance, isDisabled: false },
-    active: { value: defaults.active, isDisabled: false },
-  };
-  const [formState, setFormState] = useState(initState);
-  const [madeChanges, setMadeChanges] = useState(false);
-
-  const { hasAccess, isLoading } = usePermissions(
+const Services = ({ defaults, setConfirmChangesOpen, onChange, isLoading }) => {
+  const { hasAccess, isLoading: isRbacLoading } = usePermissions(
     '',
     [
       'config-manager:activation_keys:*',
@@ -65,106 +31,22 @@ const Services = ({
     true
   );
 
-  const cancelEditing = () => {
-    setFormState(initState);
-    setIsEditing(false);
-  };
-
-  useEffect(() => {
-    setMadeChanges(
-      formState.compliance.value !== defaults.compliance ||
-        formState.remediations.value !== defaults.remediations ||
-        formState.active.value !== defaults.active
-    );
-    onChange({
-      compliance: formState.compliance.value,
-      remediations: formState.remediations.value,
-      active: formState.active.value,
-    });
-  }, [formState]);
-
-  const getStatusIcon = (row) => {
-    if (formState[row.id].value) {
-      return (
-        <Flex style={{ color: 'var(--pf-v5-global--success-color--200)' }}>
-          <FlexItem spacer={{ default: 'spacerXs' }}>
-            <CheckCircleIcon />
-          </FlexItem>
-          <FlexItem className="status">
-            <b>Enabled</b>
-          </FlexItem>
-        </Flex>
-      );
-    }
-    return (
-      <Flex style={{ color: 'var(--pf-v5-global--default-color--300)' }}>
-        <FlexItem spacer={{ default: 'spacerXs' }}>
-          <BanIcon />
-        </FlexItem>
-        <FlexItem className="status">
-          <b>Disabled</b>
-        </FlexItem>
-      </Flex>
-    );
-  };
+  const NO_ACCESS_TOOLTIP_CONTENT = (
+    <div>
+      To perform this action, you must be granted the &quot;RHC
+      Administrator&quot; and &quot;Inventory Hosts Administrator&quot; roles by
+      your Organization Administrator in your Setting&apos;s User Access area.
+    </div>
+  );
 
   return (
     <Stack hasGutter className="pf-v5-u-p-md">
       <StackItem>
-        <Toolbar id="toolbar-items">
-          <ToolbarContent>
-            {!isEditing && (
-              <ToolbarItem>
-                {!hasAccess ? (
-                  <Tooltip
-                    content={
-                      <div>
-                        To perform this action, you must be granted the
-                        &quot;RHC Administrator&quot; and &quot;Inventory Hosts
-                        Administrator&quot; roles by your Organization
-                        Administrator in your Setting&apos;s User Access area.
-                      </div>
-                    }
-                  >
-                    {changeSettingsButton(isLoading, hasAccess, setIsEditing)}
-                  </Tooltip>
-                ) : (
-                  changeSettingsButton(isLoading, hasAccess, setIsEditing)
-                )}
-              </ToolbarItem>
-            )}
-            {isEditing && (
-              <>
-                <ToolbarItem>
-                  <Button
-                    ouiaId="primary-save-button"
-                    onClick={() => setConfirmChangesOpen(true)}
-                    isDisabled={!madeChanges}
-                  >
-                    Save changes
-                  </Button>
-                </ToolbarItem>
-                <ToolbarItem>
-                  <Button
-                    ouiaId="secondary-cancel-button"
-                    onClick={() => cancelEditing()}
-                    variant="secondary"
-                  >
-                    Cancel
-                  </Button>
-                </ToolbarItem>
-                <ToolbarItem style={{ margin: 'auto', marginLeft: 0 }}>
-                  <Alert
-                    variant="info"
-                    isInline
-                    isPlain
-                    title="Changes will affect all systems connected with Red Hat connector"
-                  />
-                </ToolbarItem>
-              </>
-            )}
-          </ToolbarContent>
-        </Toolbar>
+        <Alert
+          variant="info"
+          isInline
+          title="Changes will affect all systems connected with Red Hat connector"
+        />
       </StackItem>
       <StackItem>
         <Table aria-label="Settings table">
@@ -222,35 +104,46 @@ const Services = ({
                     )}
                   </Stack>
                 </Td>
-                {!isEditing && <Td dataLabel="Status">{getStatusIcon(row)}</Td>}
-                {isEditing && (
-                  <Td dataLabel="Status">
+                <Td dataLabel="Status">
+                  {isLoading || isRbacLoading ? (
+                    <Spinner size={spinnerSize.lg} />
+                  ) : (
                     <ToggleGroup aria-label="Default with single selectable">
-                      <ToggleGroupItem
-                        text="Enabled"
-                        isSelected={formState[row.id].value}
-                        onChange={() =>
-                          setFormState({
-                            ...formState,
-                            [row.id]: { ...formState[row.id], value: true },
-                          })
-                        }
-                        isDisabled={formState[row.id].isDisabled}
-                      />
-                      <ToggleGroupItem
-                        text="Disabled"
-                        isSelected={!formState[row.id].value}
-                        onChange={() =>
-                          setFormState({
-                            ...formState,
-                            [row.id]: { ...formState[row.id], value: false },
-                          })
-                        }
-                        isDisabled={formState[row.id].isDisabled}
-                      />
+                      <ConditionalTooltip
+                        isVisible={!hasAccess && !defaults.remediations}
+                        content={NO_ACCESS_TOOLTIP_CONTENT}
+                      >
+                        <ToggleGroupItem
+                          text="Enabled"
+                          isSelected={defaults.remediations}
+                          onChange={() => {
+                            if (!defaults.remediations) {
+                              onChange({ remediations: true });
+                              setConfirmChangesOpen(true);
+                            }
+                          }}
+                          isDisabled={!hasAccess && !defaults.remediations}
+                        />
+                      </ConditionalTooltip>
+                      <ConditionalTooltip
+                        isVisible={!hasAccess && defaults.remediations}
+                        content={NO_ACCESS_TOOLTIP_CONTENT}
+                      >
+                        <ToggleGroupItem
+                          text="Disabled"
+                          isSelected={!defaults.remediations}
+                          onChange={() => {
+                            if (defaults.remediations) {
+                              onChange({ remediations: false });
+                              setConfirmChangesOpen(true);
+                            }
+                          }}
+                          isDisabled={!hasAccess && defaults.remediations}
+                        />
+                      </ConditionalTooltip>
                     </ToggleGroup>
-                  </Td>
-                )}
+                  )}
+                </Td>
               </Tr>
             ))}
           </Tbody>
@@ -261,17 +154,14 @@ const Services = ({
 };
 
 Services.propTypes = {
-  setMadeChanges: propTypes.func.isRequired,
+  isLoading: propTypes.bool,
   defaults: propTypes.shape({
     compliance: propTypes.bool,
     active: propTypes.bool,
     remediations: propTypes.bool,
   }),
   onChange: propTypes.func.isRequired,
-  madeChanges: propTypes.bool,
   setConfirmChangesOpen: propTypes.func.isRequired,
-  isEditing: propTypes.bool.isRequired,
-  setIsEditing: propTypes.func.isRequired,
 };
 
 Services.defaultProps = {
