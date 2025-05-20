@@ -10,6 +10,8 @@ import useUser from '../../../hooks/useUser';
 import { get, def } from 'bdd-lazy-var';
 import useActivationKeys from '../../../hooks/useActivationKeys';
 import '@testing-library/jest-dom';
+import { RBACProvider } from '@redhat-cloud-services/frontend-components/RBACProvider';
+import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 jest.mock('../../../hooks/useActivationKeys');
 jest.mock('../../../hooks/useUser');
 jest.mock('react-router-dom', () => ({
@@ -18,26 +20,36 @@ jest.mock('react-router-dom', () => ({
     pathname: '/',
   }),
 }));
+jest.mock(
+  '@redhat-cloud-services/frontend-components-utilities/RBACHook',
+  () => ({
+    ...jest.requireActual(
+      '@redhat-cloud-services/frontend-components-utilities/RBACHook'
+    ),
+    usePermissionsWithContext: jest.fn(),
+  })
+);
 
 const queryClient = new QueryClient();
 
 const PageContainer = () => (
   <QueryClientProvider client={queryClient}>
-    <Authentication>
-      <Provider store={init().getStore()}>
-        <Router>
-          <ActivationKeys />
-        </Router>
-      </Provider>
-    </Authentication>
+    <RBACProvider appName={null}>
+      <Authentication>
+        <Provider store={init().getStore()}>
+          <Router>
+            <ActivationKeys />
+          </Router>
+        </Provider>
+      </Authentication>
+    </RBACProvider>
   </QueryClientProvider>
 );
 
-const mockAuthenticateUser = (isLoading, isError, rbacPermissions) => {
+const mockAuthenticateUser = (isLoading, isError) => {
   const user = {
     accountNumber: '123',
     orgId: '123',
-    rbacPermissions: rbacPermissions,
   };
   useUser.mockReturnValue({
     isLoading: isLoading,
@@ -71,9 +83,6 @@ jest.mock(
 describe('ActivationKeys', () => {
   def('isLoading', () => false);
   def('isError', () => false);
-  def('rbacPermissions', () => {
-    return { canReadActivationKeys: true, canWriteActivationKeys: true };
-  });
   def('keysData', () => [
     {
       name: 'A',
@@ -85,17 +94,17 @@ describe('ActivationKeys', () => {
 
   beforeEach(() => {
     jest.resetAllMocks();
-    mockAuthenticateUser(
-      get('isLoading'),
-      get('isError'),
-      get('rbacPermissions')
-    );
+    mockAuthenticateUser(get('isLoading'), get('isError'));
     useActivationKeys.mockReturnValue({
       isLoading: false,
       isFetching: false,
       isError: false,
       isSuccess: true,
       data: get('keysData'),
+    });
+
+    usePermissionsWithContext.mockReturnValue({
+      hasAccess: true,
     });
   });
 
@@ -116,11 +125,11 @@ describe('ActivationKeys', () => {
   });
 
   describe('when the user does not have proper permissions', () => {
-    def('rbacPermissions', () => {
-      return { canReadActivationKeys: false };
-    });
-
     it('redirects to not authorized page', async () => {
+      usePermissionsWithContext.mockReturnValue({
+        hasAccess: false,
+      });
+
       const { container } = render(<PageContainer />);
       await waitFor(() => expect(useUser).toHaveBeenCalledTimes(1));
       expect(container).toMatchSnapshot();
@@ -128,11 +137,13 @@ describe('ActivationKeys', () => {
   });
 
   describe('when the user have only read permissions', () => {
-    def('rbacPermissions', () => {
-      return { canReadActivationKeys: true, canWriteActivationKeys: false };
-    });
-
     it('create activation key button is disabled', async () => {
+      usePermissionsWithContext.mockImplementation((permissions) =>
+        permissions.includes('config-manager:activation_keys:write')
+          ? { hasAccess: false }
+          : { hasAccess: true }
+      );
+
       render(<PageContainer />);
       await waitFor(() => expect(useUser).toHaveBeenCalledTimes(1));
       expect(screen.getByText('Create activation key')).toBeDisabled();
@@ -144,7 +155,10 @@ describe('ActivationKeys', () => {
 
     it('renders blank state', async () => {
       render(<PageContainer />);
-      expect(screen.getByText('No activation keys')).toBeInTheDocument();
+
+      await waitFor(() =>
+        expect(screen.getByText('No activation keys')).toBeInTheDocument()
+      );
     });
   });
 });

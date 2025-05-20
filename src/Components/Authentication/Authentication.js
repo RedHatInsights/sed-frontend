@@ -7,16 +7,19 @@ import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable'
 import propTypes from 'prop-types';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import NotAuthorized from '@redhat-cloud-services/frontend-components/NotAuthorized';
+import { usePermissionsWithContext } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 const Authentication = ({ children }) => {
   const queryClient = useQueryClient();
   const location = useLocation();
   const chrome = useChrome();
-  const { isLoading, isFetching, isSuccess, isError, data } = useUser();
-  const hasAnyPermission =
-    data?.rbacPermissions &&
-    (data.rbacPermissions.canReadActivationKeys ||
-      data.rbacPermissions.canWriteActivationKeys);
+  const { isLoading, isFetching, isSuccess, isError } = useUser();
+  const { hasAccess: hasReadPermission } = usePermissionsWithContext([
+    'config-manager:activation_keys:read',
+  ]);
+  const { hasAccess: hasWritePermission } = usePermissionsWithContext([
+    'config-manager:activation_keys:write',
+  ]);
 
   useEffect(() => {
     isSuccess && chrome?.hideGlobalFilter();
@@ -34,7 +37,7 @@ const Authentication = ({ children }) => {
     return <Unavailable />;
   } else if (isLoading === true || isFetching === true) {
     return <Loading />;
-  } else if (isSuccess === true && !hasAnyPermission) {
+  } else if (isSuccess === true && !hasReadPermission && !hasWritePermission) {
     return <NotAuthorized serviceName="Remote Host Configuration" />;
   } else if (isSuccess === true) {
     return <>{children}</>;
