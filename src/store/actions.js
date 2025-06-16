@@ -7,19 +7,21 @@ import {
 
 const fetchCurrState = (api) => () => ({
   type: GET_CURR_STATE,
-  payload: api.getProfile('current'),
+  payload: api.getProfile('current').then((response) => response.data),
 });
 
 const saveCurrState =
   (api) =>
   ({ remediations }) => ({
     type: SET_CURR_STATE,
-    payload: api.createProfile({
-      active: true,
-      compliance: true,
-      insights: true,
-      remediations,
-    }),
+    payload: api
+      .createProfile({
+        active: true,
+        compliance: true,
+        insights: true,
+        remediations,
+      })
+      .then((response) => response.data),
   });
 
 const fetchConnectedHosts = (api) => () => ({
