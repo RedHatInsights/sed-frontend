@@ -127,6 +127,7 @@ const SamplePage = () => {
         </div>
       </Page>
       <ConfirmChangesModal
+        remediation={dataRef?.current?.remediations}
         isOpen={confirmChangesOpen}
         handleCancel={() => setConfirmChangesOpen(false)}
         systemsCount={systemsCount}

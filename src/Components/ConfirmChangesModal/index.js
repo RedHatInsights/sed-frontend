@@ -2,8 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button, Modal, Text, TextContent } from '@patternfly/react-core';
 import { pluralize } from '../../utils/helpers';
+import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 
 const ConfirmChangesModal = ({
+  remediation,
   isOpen = false,
   handleCancel,
   handleConfirm,
@@ -12,7 +14,7 @@ const ConfirmChangesModal = ({
   return (
     <Modal
       variant="small"
-      title="Confirm changes"
+      title="Confirm change"
       isOpen={isOpen}
       onClose={handleCancel}
       actions={[
@@ -22,7 +24,7 @@ const ConfirmChangesModal = ({
           type="button"
           onClick={handleConfirm}
         >
-          Confirm changes
+          Confirm change
         </Button>,
         <Button
           key="cancel"
@@ -36,12 +38,20 @@ const ConfirmChangesModal = ({
     >
       <TextContent>
         <Text component="p">
-          Your change applies to{' '}
+          Do you wish to {remediation ? 'enable' : 'disable'} the execution of
+          Remediation playbooks for systems connecting with the RHC client?
+        </Text>
+        <Text component="p">
+          Your change will be applied to{' '}
           <b>
             {systemsCount} connected {pluralize(systemsCount, 'system')}
-          </b>
-          . Selected settings will also be applied to <b>all future systems</b>{' '}
-          that are connected through remote host configuration (rhc).
+          </b>{' '}
+          and <b>all future systems</b> connected via remote host configuration
+          (rhc). Altering this setting may affect{' '}
+          <InsightsLink app="remediations" to="/">
+            Remediation Plan
+          </InsightsLink>{' '}
+          execution.
         </Text>
       </TextContent>
     </Modal>
@@ -49,6 +59,7 @@ const ConfirmChangesModal = ({
 };
 
 ConfirmChangesModal.propTypes = {
+  remediation: PropTypes.bool,
   isOpen: PropTypes.bool,
   handleConfirm: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,

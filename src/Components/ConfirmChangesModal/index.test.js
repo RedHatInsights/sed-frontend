@@ -2,6 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import ConfirmChangesModal from '.';
+import { BrowserRouter } from 'react-router-dom';
 
 jest.mock(
   '@redhat-cloud-services/frontend-components-utilities/interceptors',
@@ -16,14 +17,16 @@ describe('ConfirmChangesModal', () => {
     const handleCancel = jest.fn();
     const handleConfirm = jest.fn();
     render(
-      <ConfirmChangesModal
-        isOpen
-        systemsCount={2}
-        handleCancel={handleCancel}
-        handleConfirm={handleConfirm}
-      />
+      <BrowserRouter>
+        <ConfirmChangesModal
+          isOpen
+          systemsCount={2}
+          handleCancel={handleCancel}
+          handleConfirm={handleConfirm}
+        />
+      </BrowserRouter>
     );
-    expect(screen.getAllByText('Confirm changes')).toHaveLength(2);
-    expect(screen.getAllByText('Confirm changes')[0]).toBeInTheDocument();
+    expect(screen.getAllByText('Confirm change')).toHaveLength(2);
+    expect(screen.getAllByText('Confirm change')[0]).toBeInTheDocument();
   });
 });
