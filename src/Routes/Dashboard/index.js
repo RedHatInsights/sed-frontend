@@ -95,10 +95,7 @@ const SamplePage = () => {
         <Stack hasGutter>
           <StackItem>
             Selections here affect Red Hat Enterprise Linux (RHEL) systems
-            connected to Red Hat with remote host configuration (rhc). Upon
-            saving changes, Ansible Playbooks are automatically pushed to
-            connected systems to update the configuration of the connection to
-            Red Hat.
+            connected to Red Hat with remote host configuration (rhc).
           </StackItem>
           <StackItem>
             <a
