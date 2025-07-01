@@ -45,7 +45,7 @@ const Services = ({ defaults, setConfirmChangesOpen, onChange, isLoading }) => {
         <Alert
           variant="info"
           isInline
-          title="Changes will affect all systems connected with Red Hat connector"
+          title="Changes will affect all systems connected with Remote Host Configuration"
         />
       </StackItem>
       <StackItem>

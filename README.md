@@ -1,6 +1,6 @@
 [![Build Status](https://img.shields.io/github/actions/workflow/status/RedhatInsights/sed-frontend/test.yml?branch=master)](https://github.com/RedHatInsights/sed-frontend/actions/workflows/test.yml) [![codecov](https://codecov.io/gh/RedHatInsights/sed-frontend/branch/master/graph/badge.svg?token=XC4AD7NQFW)](https://codecov.io/gh/RedHatInsights/sed-frontend)
 
-# Red Hat Connector Dashboard
+# Remote Host Configuration Manager
 
 ## First time setup
 1. Make sure you have [`Node.js`](https://nodejs.org/en/) version >= 18 installed
