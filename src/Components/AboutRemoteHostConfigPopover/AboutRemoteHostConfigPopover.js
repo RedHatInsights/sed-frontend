@@ -3,9 +3,8 @@ import {
   Button,
   Popover,
   PopoverPosition,
-  Text,
-  TextContent,
-} from '@patternfly/react-core';
+  Content,
+  } from '@patternfly/react-core';
 import {
   OutlinedQuestionCircleIcon,
   ExternalLinkAltIcon,
@@ -20,8 +19,8 @@ const ConnectSystemsModal = () => {
       className="connector pf-v5-u-color-100"
       position={PopoverPosition.rightStart}
       bodyContent={
-        <TextContent className="pf-v5-u-font-size-sm">
-          <Text>
+        <Content className="pf-v5-u-font-size-sm">
+          <Content component="p">
             Remote host configuration (rhc) allows you to register with Red Hat
             Subscription Management (RHSM), connect to Red Hat Insights, and
             manage your Insights connections with one command.
@@ -29,20 +28,20 @@ const ConnectSystemsModal = () => {
             allow for remediation of Insights issues directly from
             console.redhat.com.
             <br />
-          </Text>
-          <Text>
+          </Content>
+          <Content component="p">
             Remote host configuration connects RHEL 7.9+ and 8.4+ systems. To
             register other systems with RHSM or Insights, check out the{' '}
-            <Text
+            <Content
               href="./insights/registration"
               component="a"
               target="_blank"
               rel="noopener noreferrer"
             >
               Registration Assistant
-            </Text>
+            </Content>
             .
-          </Text>
+          </Content>
           <div className="pf-v5-c-form pf-v5-u-pb-lg">
             <RegisterWithActivationKey />
           </div>
@@ -56,12 +55,10 @@ const ConnectSystemsModal = () => {
             Connecting with Red Hat
             {<ExternalLinkAltIcon className="pf-v5-u-ml-sm" />}
           </a>
-        </TextContent>
+        </Content>
       }
     >
-      <Button variant="plain" isInline style={{ padding: 0 }}>
-        <OutlinedQuestionCircleIcon />
-      </Button>
+      <Button icon={<OutlinedQuestionCircleIcon />} variant="plain" isInline style={{ padding: 0 }} />
     </Popover>
   );
 };
