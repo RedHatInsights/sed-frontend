@@ -116,9 +116,7 @@
   },
   "routes": {
     "connector": "/*",
-    "connectSystemsModal": "/connect-systems",
-    "activationKeys": "/activation-keys",
-    "activationKey": "/activation-keys/:id"
+    "connectSystemsModal": "/connect-systems"
   },
   "nyc": {
     "report-dir": "coverage-cypress",
