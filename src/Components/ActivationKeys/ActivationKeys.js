@@ -98,11 +98,13 @@ const ActivationKeys = () => {
           </SplitItem>
         </Split>
         <Content>
-          <Content component={ContentVariants.p}>Organization ID: {user.orgId}</Content>
+          <Content component={ContentVariants.p}>
+            Organization ID: {user.orgId}
+          </Content>
         </Content>
       </PageHeader>
       <Main>
-        <PageSection hasBodyWrapper={false} >
+        <PageSection hasBodyWrapper={false}>
           {isLoading && <Loading />}
           {!isLoading && !error && data.length > 0 && (
             <>

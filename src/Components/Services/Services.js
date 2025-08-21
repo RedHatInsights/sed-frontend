@@ -72,7 +72,10 @@ const Services = ({ defaults, setConfirmChangesOpen, onChange, isLoading }) => {
                         </FlexItem>
                         {row.additionalInfo && (
                           <FlexItem
-                            style={{ color: "var(--pf-t--temp--dev--tbd)"/* CODEMODS: original v5 color was --pf-v5-global--Color--100 */ }}
+                            style={{
+                              color:
+                                'var(--pf-t--temp--dev--tbd)' /* CODEMODS: original v5 color was --pf-v5-global--Color--100 */,
+                            }}
                           >
                             <i>{row.additionalInfo}</i>
                           </FlexItem>

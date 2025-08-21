@@ -18,7 +18,11 @@ const SuccessPage = ({ isLoading, name, onClose }) => {
   const content = isLoading ? (
     <Spinner />
   ) : (
-    <EmptyState  headingLevel="h4" icon={CheckCircleIcon}  titleText="Activation key created">
+    <EmptyState
+      headingLevel="h4"
+      icon={CheckCircleIcon}
+      titleText="Activation key created"
+    >
       <EmptyStateBody>
         <b>{name}</b> is now available for use. Click <b>View activation key</b>{' '}
         to edit settings or add repositories.

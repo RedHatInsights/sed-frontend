@@ -4,7 +4,7 @@ import {
   Popover,
   PopoverPosition,
   Content,
-  } from '@patternfly/react-core';
+} from '@patternfly/react-core';
 import {
   OutlinedQuestionCircleIcon,
   ExternalLinkAltIcon,
@@ -58,7 +58,12 @@ const ConnectSystemsModal = () => {
         </Content>
       }
     >
-      <Button icon={<OutlinedQuestionCircleIcon />} variant="plain" isInline style={{ padding: 0 }} />
+      <Button
+        icon={<OutlinedQuestionCircleIcon />}
+        variant="plain"
+        isInline
+        style={{ padding: 0 }}
+      />
     </Popover>
   );
 };

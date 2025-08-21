@@ -1,7 +1,4 @@
-import {
-	Modal,
-	ModalVariant
-} from '@patternfly/react-core/deprecated';
+import { Modal, ModalVariant } from '@patternfly/react-core/deprecated';
 import React from 'react';
 import { EditReleaseVersionForm } from '../Forms/EditReleaseVersionForm';
 import Loading from '../LoadingState/Loading';

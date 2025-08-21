@@ -7,7 +7,7 @@ import {
   DescriptionListTerm,
   DescriptionListGroup,
   DescriptionListDescription,
-  } from '@patternfly/react-core';
+} from '@patternfly/react-core';
 import Loading from '../LoadingState/Loading';
 import PropTypes from 'prop-types';
 

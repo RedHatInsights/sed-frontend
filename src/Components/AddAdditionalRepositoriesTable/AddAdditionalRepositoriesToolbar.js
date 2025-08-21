@@ -33,7 +33,7 @@ const AddAdditionalRepositoriesToolbar = ({
     <Toolbar id="add-additional-repositories-toolbar">
       <ToolbarContent>
         <ToolbarGroup>
-          <ToolbarItem gap={{ default: "gapNone" }}>
+          <ToolbarItem gap={{ default: 'gapNone' }}>
             <Select
               isOpen={isSelectFilterByExpanded}
               onToggle={(_event, isSelectFilterByExpanded) =>
@@ -89,7 +89,7 @@ const AddAdditionalRepositoriesToolbar = ({
             </ToggleGroup>
           </ToolbarItem>
         </ToolbarGroup>
-        <ToolbarItem variant="pagination" align={{ default: "alignEnd" }}>
+        <ToolbarItem variant="pagination" align={{ default: 'alignEnd' }}>
           {pagination}
         </ToolbarItem>
       </ToolbarContent>

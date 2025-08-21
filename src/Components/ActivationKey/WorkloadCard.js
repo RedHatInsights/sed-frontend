@@ -51,9 +51,7 @@ const WorkloadCard = (props) => {
       <CardBody>
         <Content>
           <Content component={ContentVariants.dl}>
-            <Content component={ContentVariants.dt}>
-              Release version
-            </Content>
+            <Content component={ContentVariants.dt}>Release version</Content>
             <Content component={ContentVariants.dd}>
               {activationKey && activationKey.releaseVersion
                 ? activationKey.releaseVersion

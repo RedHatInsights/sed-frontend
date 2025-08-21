@@ -10,7 +10,7 @@ import {
   FormSelect,
   FormSelectOption,
   Tooltip,
-  } from '@patternfly/react-core';
+} from '@patternfly/react-core';
 import PropTypes from 'prop-types';
 import useEusVersions from '../../hooks/useEusVersions';
 

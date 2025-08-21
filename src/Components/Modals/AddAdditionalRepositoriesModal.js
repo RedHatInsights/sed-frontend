@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import propTypes from 'prop-types';
-import {
-	ActionGroup,
-	Button
-} from '@patternfly/react-core';
-import {
-	Modal,
-	ModalVariant
-} from '@patternfly/react-core/deprecated';
+import { ActionGroup, Button } from '@patternfly/react-core';
+import { Modal, ModalVariant } from '@patternfly/react-core/deprecated';
 import { useQueryClient } from '@tanstack/react-query';
 import useAddAdditionalRepositories from '../../hooks/useAddAdditionalRepositories';
 import useNotifications from '../../hooks/useNotifications';

@@ -1,13 +1,6 @@
 import React from 'react';
-import {
-	Button,
-	Content,
-	ContentVariants
-} from '@patternfly/react-core';
-import {
-	Modal,
-	ModalVariant
-} from '@patternfly/react-core/deprecated';
+import { Button, Content, ContentVariants } from '@patternfly/react-core';
+import { Modal, ModalVariant } from '@patternfly/react-core/deprecated';
 import { ExclamationTriangleIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 import useNotifications from '../../hooks/useNotifications';

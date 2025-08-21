@@ -64,9 +64,7 @@ const SystemPurposeCard = (props) => {
       <CardBody>
         <Content>
           <Content component={ContentVariants.dl}>
-            <Content component={ContentVariants.dt}>
-              Role
-            </Content>
+            <Content component={ContentVariants.dt}>Role</Content>
             <Content component={ContentVariants.dd}>
               {activationKey && activationKey.role
                 ? activationKey.role
@@ -78,9 +76,7 @@ const SystemPurposeCard = (props) => {
                 ? activationKey.serviceLevel
                 : notDefinedText}
             </Content>
-            <Content component={ContentVariants.dt}>
-              Usage
-            </Content>
+            <Content component={ContentVariants.dt}>Usage</Content>
             <Content component={ContentVariants.dd}>
               {activationKey && activationKey.usage
                 ? activationKey.usage

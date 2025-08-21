@@ -1,13 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {
-	Button,
-	Content,
-	
-} from '@patternfly/react-core';
-import {
-	Modal
-} from '@patternfly/react-core/deprecated';
+import { Button, Content } from '@patternfly/react-core';
+import { Modal } from '@patternfly/react-core/deprecated';
 import { pluralize } from '../../utils/helpers';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 

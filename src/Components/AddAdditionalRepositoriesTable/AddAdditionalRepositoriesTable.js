@@ -130,7 +130,11 @@ const AddAdditionalRepositoriesTable = (props) => {
   );
 
   const emptyState = (
-    <EmptyState  headingLevel="h2" icon={SearchIcon}  titleText="No results found">
+    <EmptyState
+      headingLevel="h2"
+      icon={SearchIcon}
+      titleText="No results found"
+    >
       <EmptyStateBody>
         No results match the filter criteria. Clear all filters and try again.
       </EmptyStateBody>

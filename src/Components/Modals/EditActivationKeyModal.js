@@ -1,8 +1,5 @@
 import * as React from 'react';
-import {
-	Modal,
-	ModalVariant
-} from '@patternfly/react-core/deprecated';
+import { Modal, ModalVariant } from '@patternfly/react-core/deprecated';
 import ActivationKeyForm from '../Forms/ActivationKeyForm';
 import useUpdateActivationKey from '../../hooks/useUpdateActivationKey';
 import useActivationKey from '../../hooks/useActivationKey';
