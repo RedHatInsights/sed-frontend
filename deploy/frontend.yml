@@ -26,9 +26,6 @@ objects:
             - appId: connector
               title: Manage configuration
               href: /insights/connector
-            - appId: connector
-              title: Activation Keys
-              href: /insights/connector/activation-keys
       module:
         manifestLocation: /apps/connector/fed-mods.json
         modules:
