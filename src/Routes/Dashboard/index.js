@@ -8,7 +8,7 @@ import {
   StackItem,
 } from '@patternfly/react-core';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
-import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
+import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
 import {
   PageHeader,
   PageHeaderTitle,
@@ -106,7 +106,7 @@ const SamplePage = () => {
               }
             >
               Connecting with Red Hat
-              {<ExternalLinkAltIcon className="pf-v5-u-ml-sm" />}
+              {<ExternalLinkAltIcon className="pf-v6-u-ml-sm" />}
             </a>
           </StackItem>
         </Stack>
@@ -135,7 +135,7 @@ const SamplePage = () => {
             dispatch(saveAction);
             await saveAction.payload;
             dispatch(
-              addNotification({
+              useAddNotification({
                 variant: 'success',
                 title: 'Changes saved',
                 description:

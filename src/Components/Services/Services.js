@@ -40,7 +40,7 @@ const Services = ({ defaults, setConfirmChangesOpen, onChange, isLoading }) => {
   );
 
   return (
-    <Stack hasGutter className="pf-v5-u-p-md">
+    <Stack hasGutter className="pf-v6-u-p-md">
       <StackItem>
         <Alert
           variant="info"
@@ -74,7 +74,7 @@ const Services = ({ defaults, setConfirmChangesOpen, onChange, isLoading }) => {
                           <FlexItem
                             style={{
                               color:
-                                'var(--pf-t--temp--dev--tbd)' /* CODEMODS: original v5 color was --pf-v5-global--Color--100 */,
+                                'var(--pf-t--color--gray--50)'
                             }}
                           >
                             <i>{row.additionalInfo}</i>
@@ -98,7 +98,7 @@ const Services = ({ defaults, setConfirmChangesOpen, onChange, isLoading }) => {
                                 rel="noopener noreferrer"
                               >
                                 {link.name}
-                                <ExternalLinkAltIcon className="pf-v5-u-ml-sm" />
+                                <ExternalLinkAltIcon className="pf-v6-u-ml-sm" />
                               </a>
                             </FlexItem>
                           ))}
