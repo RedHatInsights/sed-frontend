@@ -3,20 +3,21 @@
 exports[`Authentication when user has no permissions renders the NotAuthorized 1`] = `
 <div>
   <div
-    class="pf-v5-c-empty-state"
+    class="pf-v6-c-empty-state"
+    data-ouia-component-id="UnauthorizedAccess"
   >
     <div
-      class="pf-v5-c-empty-state__content"
+      class="pf-v6-c-empty-state__content"
     >
       <div
-        class="pf-v5-c-empty-state__header"
+        class="pf-v6-c-empty-state__header"
       >
         <div
-          class="pf-v5-c-empty-state__icon"
+          class="pf-v6-c-empty-state__icon"
         >
           <svg
             aria-hidden="true"
-            class="pf-v5-svg"
+            class="pf-v6-svg"
             fill="currentColor"
             height="1em"
             role="img"
@@ -29,17 +30,18 @@ exports[`Authentication when user has no permissions renders the NotAuthorized 1
           </svg>
         </div>
         <div
-          class="pf-v5-c-empty-state__title"
+          class="pf-v6-c-empty-state__title"
         >
           <h5
-            class="pf-v5-c-empty-state__title-text"
+            class="pf-v6-c-empty-state__title-text"
           >
             You do not have access to Remote Host Configuration
           </h5>
         </div>
       </div>
       <div
-        class="pf-v5-c-empty-state__body"
+        class="pf-v6-c-empty-state__body"
+        data-ouia-component-id="UnauthorizedAccess-body"
       >
         Contact your organization administrator(s) for more information or visit 
         <a
@@ -50,22 +52,25 @@ exports[`Authentication when user has no permissions renders the NotAuthorized 1
          to learn more about your permissions.
       </div>
       <div
-        class="pf-v5-c-empty-state__footer"
+        class="pf-v6-c-empty-state__footer"
+        data-ouia-component-id="UnauthorizedAccess-footer"
       >
-        <div
-          class="pf-v5-c-empty-state__actions"
+        <a
+          class="pf-v6-c-button pf-m-primary"
+          data-ouia-component-id="UnauthorizedAccess-home-button"
+          data-ouia-component-type="PF6/Button"
+          data-ouia-safe="true"
+          href="."
         >
-          <a
-            aria-disabled="false"
-            class="pf-v5-c-button pf-m-link"
-            data-ouia-component-id="OUIA-Generated-Button-link-1"
-            data-ouia-component-type="PF5/Button"
-            data-ouia-safe="true"
-            href="."
+          <span
+            class="pf-v6-c-button__text"
           >
             Go to landing page
-          </a>
-        </div>
+          </span>
+        </a>
+        <div
+          class="pf-v6-c-empty-state__actions"
+        />
       </div>
     </div>
   </div>
