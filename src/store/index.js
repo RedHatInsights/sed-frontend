@@ -9,10 +9,7 @@ export const RegistryContext = createContext({
 });
 
 export function init(...middleware) {
-  registry = getRegistry({}, [
-    promiseMiddleware,
-    ...middleware,
-  ]);
+  registry = getRegistry({}, [promiseMiddleware, ...middleware]);
   return registry;
 }
 

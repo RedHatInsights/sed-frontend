@@ -31,6 +31,7 @@ const AboutRemoteHostConfigPopover = lazy(() =>
 
 const SamplePage = () => {
   const { updateDocumentTitle } = useChrome();
+  const addNotification = useAddNotification();
   updateDocumentTitle?.(
     'Remote Host Configuration - System Configuration | RHEL',
     true
@@ -84,7 +85,7 @@ const SamplePage = () => {
               <FlexItem spacer={{ default: 'spacerNone' }}>
                 <PageHeaderTitle title="Remote Host Configuration Manager" />
               </FlexItem>
-              <FlexItem alignSelf={{default: "alignSelfCenter"}}>
+              <FlexItem alignSelf={{ default: 'alignSelfCenter' }}>
                 <AboutRemoteHostConfigPopover />
               </FlexItem>
             </Flex>
@@ -132,14 +133,12 @@ const SamplePage = () => {
             const saveAction = saveCurrState(dataRef.current);
             dispatch(saveAction);
             await saveAction.payload;
-            dispatch(
-              useAddNotification({
-                variant: 'success',
-                title: 'Changes saved',
-                description:
-                  'Your service enablement changes were applied to connected systems',
-              })
-            );
+            addNotification({
+              variant: 'success',
+              title: 'Changes saved',
+              description:
+                'Your service enablement changes were applied to connected systems',
+            });
           })();
         }}
         profileId={profileId}

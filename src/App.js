@@ -1,17 +1,13 @@
 import React from 'react';
 import AppRoutes from './Routes';
-import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
-import NotificationProvider from './contexts/NotificationProvider';
-import Notifications from './Components/Notifications';
+import NotificationsProvider from '@redhat-cloud-services/frontend-components-notifications/NotificationsProvider';
 
 const App = () => {
   return (
     <>
-      <NotificationsPortal />
-      <NotificationProvider>
-        <Notifications />
+      <NotificationsProvider>
         <AppRoutes />
-      </NotificationProvider>
+      </NotificationsProvider>
     </>
   );
 };
