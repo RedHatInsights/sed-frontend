@@ -1,9 +1,0 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
-
-exports[`ActivationKey when the user call fails renders an error message when user call fails 1`] = `
-<div>
-  <div>
-    Unavailable
-  </div>
-</div>
-`;

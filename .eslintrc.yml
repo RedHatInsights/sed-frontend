@@ -1,6 +1,4 @@
-extends: 
-  - "@redhat-cloud-services/eslint-config-redhat-cloud-services"
-  - "plugin:cypress/recommended"
+extends: "@redhat-cloud-services/eslint-config-redhat-cloud-services"
 root: true
 globals:
   insights: 'readonly'
@@ -8,3 +6,5 @@ globals:
   render: 'readonly'
   mount: 'readonly'
   IS_DEV: 'readonly'
+rules:
+  rulesdir/forbid-pf-relative-imports: 'off'

@@ -18,15 +18,9 @@ yarn-error.log*
 
 .DS_Store
 
-# cypress
-cypress/downloads
-cypress/screenshots
-cypress/videos
-
 coverage
 coverage/*
 coverage-*
-.nyc_output/
 
 .cache/
 

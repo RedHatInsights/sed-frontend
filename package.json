@@ -16,9 +16,7 @@
     "start:proxy": "PROXY=true fec dev",
     "test": "TZ=UTC jest --passWithNoTests --verbose --no-cache",
     "test:coverage": "curl -sSL 'https://raw.githubusercontent.com/RedHatInsights/insights-interact-tools/refs/heads/main/scripts/coverage.sh' | bash",
-    "test:ct": "BABEL_ENV=componentTest cypress run --browser chrome --component",
     "verify": "npm-run-all build lint test",
-    "test:openct": "cypress open --component",
     "ci:verify": "npm run test:coverage"
   },
   "jest": {
@@ -74,7 +72,6 @@
     "@babel/preset-react": "7.12.13",
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
-    "@cypress/code-coverage": "^3.13.12",
     "@patternfly/patternfly": "^4.222.4",
     "@redhat-cloud-services/eslint-config-redhat-cloud-services": "^2.0.3",
     "@redhat-cloud-services/frontend-components-config": "^6.3.1",
@@ -92,9 +89,7 @@
     "bdd-lazy-var": "^2.6.1",
     "cross-fetch": "^3.0.6",
     "css-loader": "5.0.1",
-    "cypress": "^14.4.0",
     "eslint": "8.9.0",
-    "eslint-plugin-cypress": "^2.12.1",
     "identity-obj-proxy": "3.0.0",
     "jest": "^29.6.3",
     "jest-environment-jsdom": "^29.6.3",
@@ -116,18 +111,6 @@
   },
   "routes": {
     "connector": "/*",
-    "connectSystemsModal": "/connect-systems",
-    "activationKeys": "/activation-keys",
-    "activationKey": "/activation-keys/:id"
-  },
-  "nyc": {
-    "report-dir": "coverage-cypress",
-    "include": [
-      "src/**/*.{js,jsx}"
-    ],
-    "exclude": [
-      "src/**/*.test.js",
-      "src/**/*.cy.js"
-    ]
+    "connectSystemsModal": "/connect-systems"
   }
 }
