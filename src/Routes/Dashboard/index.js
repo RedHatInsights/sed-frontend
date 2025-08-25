@@ -1,8 +1,6 @@
 import {
   Flex,
   FlexItem,
-  Split,
-  SplitItem,
   Stack,
   StackItem,
   PageSection,
@@ -80,36 +78,36 @@ const SamplePage = () => {
   return (
     <React.Fragment>
       <PageHeader className="page-header">
-        <Split hasGutter className="page-title">
-          <SplitItem isFilled>
-            <Flex>
-              <FlexItem spacer={{ default: 'spacerSm' }}>
+        <div>
+          <div className="page-title">
+            <Flex alignItems={{ default: 'alignItemsStretch' }}>
+              <FlexItem spacer={{ default: 'spacerNone' }}>
                 <PageHeaderTitle title="Remote Host Configuration Manager" />
               </FlexItem>
-              <FlexItem>
+              <FlexItem alignSelf={{default: "alignSelfCenter"}}>
                 <AboutRemoteHostConfigPopover />
               </FlexItem>
             </Flex>
-          </SplitItem>
-        </Split>
-        <Stack hasGutter>
-          <StackItem>
-            Selections here affect Red Hat Enterprise Linux (RHEL) systems
-            connected to Red Hat with remote host configuration (rhc).
-          </StackItem>
-          <StackItem>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={
-                'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/remote_host_configuration_and_management/index'
-              }
-            >
-              Connecting with Red Hat
-              {<ExternalLinkAltIcon className="pf-v6-u-ml-sm" />}
-            </a>
-          </StackItem>
-        </Stack>
+          </div>
+          <Stack hasGutter>
+            <StackItem>
+              Selections here affect Red Hat Enterprise Linux (RHEL) systems
+              connected to Red Hat with remote host configuration (rhc).
+            </StackItem>
+            <StackItem>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={
+                  'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/remote_host_configuration_and_management/index'
+                }
+              >
+                Connecting with Red Hat
+                {<ExternalLinkAltIcon className="pf-v6-u-ml-sm" />}
+              </a>
+            </StackItem>
+          </Stack>
+        </div>
       </PageHeader>
       <PageSection>
         <div className="dashboard__content">
