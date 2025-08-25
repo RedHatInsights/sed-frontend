@@ -64,7 +64,7 @@ ConfirmChangesModal.propTypes = {
   isOpen: PropTypes.bool,
   handleConfirm: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
-  systemsCount: PropTypes.number.isRequired,
+  systemsCount: PropTypes.number,
 };
 
 export default ConfirmChangesModal;

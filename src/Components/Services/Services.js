@@ -18,7 +18,12 @@ import { usePermissions } from '@redhat-cloud-services/frontend-components-utili
 import { permissions } from './permissionsConfig';
 import ConditionalTooltip from '../shared/ConditionalTooltip';
 
-const Services = ({ defaults, setConfirmChangesOpen, onChange, isLoading }) => {
+const Services = ({
+  defaults = { compliance: false, active: false, remediations: false },
+  setConfirmChangesOpen,
+  onChange,
+  isLoading,
+}) => {
   const { hasAccess, isLoading: isRbacLoading } = usePermissions(
     '',
     [
@@ -164,14 +169,6 @@ Services.propTypes = {
   }),
   onChange: propTypes.func.isRequired,
   setConfirmChangesOpen: propTypes.func.isRequired,
-};
-
-Services.defaultProps = {
-  defaults: {
-    compliance: false,
-    active: false,
-    remediations: false,
-  },
 };
 
 export default Services;
