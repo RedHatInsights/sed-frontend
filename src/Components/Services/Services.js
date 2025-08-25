@@ -40,7 +40,7 @@ const Services = ({ defaults, setConfirmChangesOpen, onChange, isLoading }) => {
   );
 
   return (
-    <Stack hasGutter className="pf-v6-u-p-md">
+    <Stack hasGutter>
       <StackItem>
         <Alert
           variant="info"
@@ -52,8 +52,8 @@ const Services = ({ defaults, setConfirmChangesOpen, onChange, isLoading }) => {
         <Table aria-label="Settings table">
           <Thead>
             <Tr>
-              <Th>Permission</Th>
-              <Th>Status</Th>
+              <Th style={{ fontSize: 14 }}>Permission</Th>
+              <Th style={{ fontSize: 14 }}>Status</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -73,8 +73,7 @@ const Services = ({ defaults, setConfirmChangesOpen, onChange, isLoading }) => {
                         {row.additionalInfo && (
                           <FlexItem
                             style={{
-                              color:
-                                'var(--pf-t--color--gray--50)'
+                              color: 'var(--pf-t--color--gray--50)',
                             }}
                           >
                             <i>{row.additionalInfo}</i>

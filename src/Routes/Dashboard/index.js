@@ -3,9 +3,9 @@ import {
   FlexItem,
   Split,
   SplitItem,
-  Page,
   Stack,
   StackItem,
+  PageSection,
 } from '@patternfly/react-core';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
@@ -111,7 +111,7 @@ const SamplePage = () => {
           </StackItem>
         </Stack>
       </PageHeader>
-      <Page>
+      <PageSection>
         <div className="dashboard__content">
           <Services
             setConfirmChangesOpen={setConfirmChangesOpen}
@@ -122,7 +122,7 @@ const SamplePage = () => {
             isLoading={!activeStateLoaded}
           />
         </div>
-      </Page>
+      </PageSection>
       <ConfirmChangesModal
         remediation={dataRef?.current?.remediations}
         isOpen={confirmChangesOpen}
