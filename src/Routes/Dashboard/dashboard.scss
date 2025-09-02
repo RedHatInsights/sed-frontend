@@ -1,7 +1,7 @@
 .dashboard__ {
   &content {
     min-height: 100%;
-    background-color: var(--pf-v5-global--BackgroundColor--100);
+    background-color: var(--pf-v6-global--BackgroundColor--100);
   }
 
   &header {
@@ -9,7 +9,7 @@
     align-items: end;
   }
   &success-status {
-    color: var(--pf-v5-global--success-color--100)
+    color: var(--pf-v6-global--success-color--100)
   }
   &navtab-title {
     width: 100%;
@@ -21,7 +21,7 @@
     flex-shrink: 0;
   }
   &in-progress-text {
-    color: var(--pf-v5-global--palette--blue-500);
+    color: var(--pf-v6-chart-color-blue-500);
     > svg {
       color: initial
     }

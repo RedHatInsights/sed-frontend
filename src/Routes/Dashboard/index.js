@@ -1,14 +1,12 @@
 import {
   Flex,
   FlexItem,
-  Split,
-  SplitItem,
-  Page,
   Stack,
   StackItem,
+  PageSection,
 } from '@patternfly/react-core';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
-import { addNotification } from '@redhat-cloud-services/frontend-components-notifications/redux';
+import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
 import {
   PageHeader,
   PageHeaderTitle,
@@ -33,6 +31,7 @@ const AboutRemoteHostConfigPopover = lazy(() =>
 
 const SamplePage = () => {
   const { updateDocumentTitle } = useChrome();
+  const addNotification = useAddNotification();
   updateDocumentTitle?.(
     'Remote Host Configuration - System Configuration | RHEL',
     true
@@ -80,38 +79,38 @@ const SamplePage = () => {
   return (
     <React.Fragment>
       <PageHeader className="page-header">
-        <Split hasGutter className="page-title">
-          <SplitItem isFilled>
-            <Flex>
-              <FlexItem spacer={{ default: 'spacerSm' }}>
+        <div>
+          <div className="page-title">
+            <Flex alignItems={{ default: 'alignItemsStretch' }}>
+              <FlexItem spacer={{ default: 'spacerNone' }}>
                 <PageHeaderTitle title="Remote Host Configuration Manager" />
               </FlexItem>
-              <FlexItem>
+              <FlexItem alignSelf={{ default: 'alignSelfCenter' }}>
                 <AboutRemoteHostConfigPopover />
               </FlexItem>
             </Flex>
-          </SplitItem>
-        </Split>
-        <Stack hasGutter>
-          <StackItem>
-            Selections here affect Red Hat Enterprise Linux (RHEL) systems
-            connected to Red Hat with remote host configuration (rhc).
-          </StackItem>
-          <StackItem>
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={
-                'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/remote_host_configuration_and_management/index'
-              }
-            >
-              Connecting with Red Hat
-              {<ExternalLinkAltIcon className="pf-v5-u-ml-sm" />}
-            </a>
-          </StackItem>
-        </Stack>
+          </div>
+          <Stack hasGutter>
+            <StackItem>
+              Selections here affect Red Hat Enterprise Linux (RHEL) systems
+              connected to Red Hat with remote host configuration (rhc).
+            </StackItem>
+            <StackItem>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={
+                  'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/remote_host_configuration_and_management/index'
+                }
+              >
+                Connecting with Red Hat
+                {<ExternalLinkAltIcon className="pf-v6-u-ml-sm" />}
+              </a>
+            </StackItem>
+          </Stack>
+        </div>
       </PageHeader>
-      <Page>
+      <PageSection>
         <div className="dashboard__content">
           <Services
             setConfirmChangesOpen={setConfirmChangesOpen}
@@ -122,7 +121,7 @@ const SamplePage = () => {
             isLoading={!activeStateLoaded}
           />
         </div>
-      </Page>
+      </PageSection>
       <ConfirmChangesModal
         remediation={dataRef?.current?.remediations}
         isOpen={confirmChangesOpen}
@@ -134,14 +133,12 @@ const SamplePage = () => {
             const saveAction = saveCurrState(dataRef.current);
             dispatch(saveAction);
             await saveAction.payload;
-            dispatch(
-              addNotification({
-                variant: 'success',
-                title: 'Changes saved',
-                description:
-                  'Your service enablement changes were applied to connected systems',
-              })
-            );
+            addNotification({
+              variant: 'success',
+              title: 'Changes saved',
+              description:
+                'Your service enablement changes were applied to connected systems',
+            });
           })();
         }}
         profileId={profileId}

@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button, Modal, Text, TextContent } from '@patternfly/react-core';
+import { Button, Content } from '@patternfly/react-core';
+import { Modal } from '@patternfly/react-core/deprecated';
 import { pluralize } from '../../utils/helpers';
 import InsightsLink from '@redhat-cloud-services/frontend-components/InsightsLink';
 
@@ -36,12 +37,12 @@ const ConfirmChangesModal = ({
         </Button>,
       ]}
     >
-      <TextContent>
-        <Text component="p">
+      <Content>
+        <Content component="p">
           Do you wish to {remediation ? 'enable' : 'disable'} the execution of
           Remediation playbooks for systems connecting with the RHC client?
-        </Text>
-        <Text component="p">
+        </Content>
+        <Content component="p">
           Your change will be applied to{' '}
           <b>
             {systemsCount} connected {pluralize(systemsCount, 'system')}
@@ -52,8 +53,8 @@ const ConfirmChangesModal = ({
             Remediation Plan
           </InsightsLink>{' '}
           execution.
-        </Text>
-      </TextContent>
+        </Content>
+      </Content>
     </Modal>
   );
 };
@@ -63,7 +64,7 @@ ConfirmChangesModal.propTypes = {
   isOpen: PropTypes.bool,
   handleConfirm: PropTypes.func.isRequired,
   handleCancel: PropTypes.func.isRequired,
-  systemsCount: PropTypes.number.isRequired,
+  systemsCount: PropTypes.number,
 };
 
 export default ConfirmChangesModal;

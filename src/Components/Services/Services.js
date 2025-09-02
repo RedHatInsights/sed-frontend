@@ -18,7 +18,12 @@ import { usePermissions } from '@redhat-cloud-services/frontend-components-utili
 import { permissions } from './permissionsConfig';
 import ConditionalTooltip from '../shared/ConditionalTooltip';
 
-const Services = ({ defaults, setConfirmChangesOpen, onChange, isLoading }) => {
+const Services = ({
+  defaults = { compliance: false, active: false, remediations: false },
+  setConfirmChangesOpen,
+  onChange,
+  isLoading,
+}) => {
   const { hasAccess, isLoading: isRbacLoading } = usePermissions(
     '',
     [
@@ -40,7 +45,7 @@ const Services = ({ defaults, setConfirmChangesOpen, onChange, isLoading }) => {
   );
 
   return (
-    <Stack hasGutter className="pf-v5-u-p-md">
+    <Stack hasGutter>
       <StackItem>
         <Alert
           variant="info"
@@ -52,8 +57,8 @@ const Services = ({ defaults, setConfirmChangesOpen, onChange, isLoading }) => {
         <Table aria-label="Settings table">
           <Thead>
             <Tr>
-              <Th>Permission</Th>
-              <Th>Status</Th>
+              <Th style={{ fontSize: 14 }}>Permission</Th>
+              <Th style={{ fontSize: 14 }}>Status</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -72,7 +77,9 @@ const Services = ({ defaults, setConfirmChangesOpen, onChange, isLoading }) => {
                         </FlexItem>
                         {row.additionalInfo && (
                           <FlexItem
-                            style={{ color: 'var(--pf-v5-global--Color--100)' }}
+                            style={{
+                              color: 'var(--pf-t--color--gray--50)',
+                            }}
                           >
                             <i>{row.additionalInfo}</i>
                           </FlexItem>
@@ -95,7 +102,7 @@ const Services = ({ defaults, setConfirmChangesOpen, onChange, isLoading }) => {
                                 rel="noopener noreferrer"
                               >
                                 {link.name}
-                                <ExternalLinkAltIcon className="pf-v5-u-ml-sm" />
+                                <ExternalLinkAltIcon className="pf-v6-u-ml-sm" />
                               </a>
                             </FlexItem>
                           ))}
@@ -162,14 +169,6 @@ Services.propTypes = {
   }),
   onChange: propTypes.func.isRequired,
   setConfirmChangesOpen: propTypes.func.isRequired,
-};
-
-Services.defaultProps = {
-  defaults: {
-    compliance: false,
-    active: false,
-    remediations: false,
-  },
 };
 
 export default Services;
