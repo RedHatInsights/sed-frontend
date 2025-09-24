@@ -2,6 +2,8 @@ export const permissions = [
   {
     id: 'remediations',
     name: 'Allow permitted Insights users to execute remediation playbooks on rhc-connected systems',
+    nameLigthspeed:
+      'Allow permitted Red Hat Lightspeed users to execute remediation playbooks on rhc-connected systems',
     description:
       'Users with Remediations administrator access can execute Ansible Playbooks on rhc-connected systems in inventory.\nNOTE: This setting does not enable remote playbook remediations on Satellite-managed content hosts. ',
     links: [
