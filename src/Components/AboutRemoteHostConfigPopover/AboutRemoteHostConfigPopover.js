@@ -11,8 +11,13 @@ import {
 } from '@patternfly/react-icons';
 
 import { RegisterWithActivationKey } from '../FormGroups';
+import useFeatureFlag from '../../hooks/useFeatureFlag';
 
 const ConnectSystemsModal = () => {
+  const isLightspeedRebrandEnabled = useFeatureFlag(
+    'platform.lightspeed-rebrand'
+  );
+
   return (
     <Popover
       headerContent="About Remote Host Configuration Manager"
@@ -22,16 +27,24 @@ const ConnectSystemsModal = () => {
         <Content className="pf-v6-u-font-size-sm">
           <Content component="p">
             Remote host configuration (rhc) allows you to register with Red Hat
-            Subscription Management (RHSM), connect to Red Hat Insights, and
-            manage your Insights connections with one command.
+            Subscription Management (RHSM), connect to Red Hat{' '}
+            {isLightspeedRebrandEnabled ? 'Lightspeed' : 'Insights'}, and manage
+            your{' '}
+            {isLightspeedRebrandEnabled ? 'Red Hat Lightspeed' : 'Insights'}{' '}
+            connections with one command.
             <br /> rhc can enable Cloud Connector on supported configurations to
-            allow for remediation of Insights issues directly from
-            console.redhat.com.
+            allow for remediation of{' '}
+            {isLightspeedRebrandEnabled
+              ? 'Red Hat Lightspeed'
+              : 'Insights'}{' '}
+            issues directly from console.redhat.com.
             <br />
           </Content>
           <Content component="p">
             Remote host configuration connects RHEL 7.9+ and 8.4+ systems. To
-            register other systems with RHSM or Insights, check out the{' '}
+            register other systems with RHSM or{' '}
+            {isLightspeedRebrandEnabled ? 'Red Hat Lightspeed' : 'Insights'},
+            check out the{' '}
             <Content
               href="./insights/registration"
               component="a"

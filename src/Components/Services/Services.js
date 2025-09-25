@@ -18,6 +18,8 @@ import { usePermissions } from '@redhat-cloud-services/frontend-components-utili
 import { permissions } from './permissionsConfig';
 import ConditionalTooltip from '../shared/ConditionalTooltip';
 
+import useFeatureFlag from '../../hooks/useFeatureFlag';
+
 const Services = ({
   defaults = { compliance: false, active: false, remediations: false },
   setConfirmChangesOpen,
@@ -34,6 +36,10 @@ const Services = ({
     ],
     false,
     true
+  );
+
+  const isLightspeedRebrandEnabled = useFeatureFlag(
+    'platform.lightspeed-rebrand'
   );
 
   const NO_ACCESS_TOOLTIP_CONTENT = (
@@ -63,7 +69,9 @@ const Services = ({
           </Thead>
           <Tbody>
             {permissions.map((row) => (
-              <Tr key={row.name}>
+              <Tr
+                key={isLightspeedRebrandEnabled ? row.nameLigthspeed : row.name}
+              >
                 <Td
                   dataLabel="Permission"
                   width={80}
@@ -73,7 +81,11 @@ const Services = ({
                     <StackItem>
                       <Flex>
                         <FlexItem>
-                          <b>{row.name}</b>
+                          <b>
+                            {isLightspeedRebrandEnabled
+                              ? row.nameLigthspeed
+                              : row.name}
+                          </b>
                         </FlexItem>
                         {row.additionalInfo && (
                           <FlexItem
