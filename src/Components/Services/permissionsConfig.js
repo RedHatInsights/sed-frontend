@@ -9,11 +9,11 @@ export const permissions = [
     links: [
       {
         name: 'About Remote host configuration and management',
-        link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/remote_host_configuration_and_management/index',
+        link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/remote_host_configuration_and_management/index',
       },
       {
         name: 'About Enabling remote playbook remediations for Satellite-managed content hosts',
-        link: 'https://access.redhat.com/documentation/en-us/red_hat_insights/1-latest/html/red_hat_insights_remediations_guide/index',
+        link: 'https://docs.redhat.com/en/documentation/red_hat_lightspeed/1-latest/html/red_hat_lightspeed_remediations_guide/index',
       },
     ],
   },
