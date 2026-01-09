@@ -13,10 +13,8 @@ const Authentication = ({ children }) => {
   const location = useLocation();
   const chrome = useChrome();
   const { isLoading, isFetching, isSuccess, isError, data } = useUser();
-  const hasAnyPermission =
-    data?.rbacPermissions &&
-    (data.rbacPermissions.canReadActivationKeys ||
-      data.rbacPermissions.canWriteActivationKeys);
+  const hasPermissions =
+    data?.rbacPermissions && data.rbacPermissions.canReadConfigManagerProfile;
 
   useEffect(() => {
     isSuccess && chrome?.hideGlobalFilter();
@@ -34,7 +32,7 @@ const Authentication = ({ children }) => {
     return <Unavailable />;
   } else if (isLoading === true || isFetching === true) {
     return <Loading />;
-  } else if (isSuccess === true && !hasAnyPermission) {
+  } else if (isSuccess === true && !hasPermissions) {
     return <NotAuthorized serviceName="Remote Host Configuration" />;
   } else if (isSuccess === true) {
     return <>{children}</>;

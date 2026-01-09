@@ -67,7 +67,7 @@ const SamplePage = () => {
       connectedSystemsReducer,
     });
     dispatch(fetchCurrState());
-    if (userData.rbacPermissions.canReadInventory) {
+    if (userData.rbacPermissions.canReadInventoryHosts) {
       dispatch(fetchConnectedHosts());
     }
   }, [getRegistry, userData]);
