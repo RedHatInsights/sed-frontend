@@ -13,12 +13,12 @@ import {
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import propTypes from 'prop-types';
 import { Table, Thead, Tr, Th, Tbody, Td } from '@patternfly/react-table';
-import { usePermissions } from '@redhat-cloud-services/frontend-components-utilities/RBACHook';
 
 import { permissions } from './permissionsConfig';
 import ConditionalTooltip from '../shared/ConditionalTooltip';
 
 import useFeatureFlag from '../../hooks/useFeatureFlag';
+import { useRbacPermissions } from '../../hooks/useRbacPermissions';
 
 const Services = ({
   defaults = { compliance: false, active: false, remediations: false },
@@ -26,16 +26,13 @@ const Services = ({
   onChange,
   isLoading,
 }) => {
-  const { hasAccess, isLoading: isRbacLoading } = usePermissions(
-    '',
-    [
-      'config-manager:activation_keys:*',
-      'inventory:hosts:read',
-      'inventory:hosts:write',
-      'playbook-dispatcher:run:read',
-    ],
-    false,
-    true
+  const { data: rbacPermissions, isLoading: isRbacLoading } =
+    useRbacPermissions();
+  const hasAccess = Boolean(
+    rbacPermissions?.canReadConfigManagerProfile &&
+      rbacPermissions?.canWriteConfigManagerProfile &&
+      rbacPermissions?.canReadInventoryHosts &&
+      rbacPermissions?.canWriteInventoryHosts
   );
 
   const isLightspeedRebrandEnabled = useFeatureFlag(
