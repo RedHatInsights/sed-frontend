@@ -9,14 +9,17 @@ const getUserRbacPermissions = (permissions) => {
       .map((rawPermission) => rawPermission.permission);
 
     const rbacPermissions = {
-      canReadActivationKeys: doesHavePermissions(permissions, [
-        'config-manager:activation_keys:read',
+      canReadConfigManagerProfile: doesHavePermissions(permissions, [
+        'config-manager:profile:read',
       ]),
-      canWriteActivationKeys: doesHavePermissions(permissions, [
-        'config-manager:activation_keys:write',
+      canWriteConfigManagerProfile: doesHavePermissions(permissions, [
+        'config-manager:profile:write',
       ]),
-      canReadInventory: doesHavePermissions(permissions, [
+      canReadInventoryHosts: doesHavePermissions(permissions, [
         'inventory:hosts:read',
+      ]),
+      canWriteInventoryHosts: doesHavePermissions(permissions, [
+        'inventory:hosts:write',
       ]),
     };
 

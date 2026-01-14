@@ -60,7 +60,10 @@ describe('Authentication', () => {
 
   describe('with all permissions', () => {
     def('rbacPermissions', () => {
-      return { canReadActivationKeys: false, canWriteActivationKeys: true };
+      return {
+        canReadConfigManagerProfile: false,
+        canWriteConfigManagerProfile: true,
+      };
     });
 
     it('renders correctly with all permissions', async () => {
@@ -72,7 +75,10 @@ describe('Authentication', () => {
 
   describe('when user has some permissions', () => {
     def('rbacPermissions', () => {
-      return { canReadActivationKeys: false, canWriteActivationKeys: true };
+      return {
+        canReadConfigManagerProfile: false,
+        canWriteConfigManagerProfile: true,
+      };
     });
 
     it('renders content correctly', async () => {
@@ -84,7 +90,10 @@ describe('Authentication', () => {
 
   describe('when user has no permissions', () => {
     def('rbacPermissions', () => {
-      return { canReadActivationKeys: false, canWriteActivationKeys: false };
+      return {
+        canReadConfigManagerProfile: false,
+        canWriteConfigManagerProfile: false,
+      };
     });
 
     it('renders the NotAuthorized', async () => {
