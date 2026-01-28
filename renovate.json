@@ -35,8 +35,11 @@
       "matchManagers": [
         "git-submodules"
       ],
-      "matchPackageNames": [
+      "matchDepNames": [
         "build-tools"
+      ],
+      "matchUpdateTypes": [
+        "digest"
       ],
       "automerge": true,
       "platformAutomerge": true
