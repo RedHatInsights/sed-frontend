@@ -1,25 +1,28 @@
-import { useQuery } from '@tanstack/react-query';
-import { useRbacPermissions } from './useRbacPermissions';
+import { useMemo } from 'react';
 import { useAuthenticateUser } from '../utils/platformServices';
+import usePermissions from './usePermissions';
 
 const useUser = () => {
-  const rbacPermissions = useRbacPermissions();
   const authenticateUser = useAuthenticateUser();
-
-  return useQuery(
-    ['user'],
+  const { permissions, isLoading: permissionsLoading } = usePermissions();
+  const data = useMemo(
     () =>
-      Promise.all([authenticateUser, rbacPermissions]).then(
-        ([userStatus, rbacPermissions]) => ({
-          accountNumber: userStatus?.data.identity?.account_number,
-          orgId: userStatus?.data.identity?.internal?.org_id,
-          rbacPermissions: rbacPermissions?.data,
-        })
-      ),
-    {
-      enabled: rbacPermissions.isSuccess,
-    }
+      authenticateUser.data && {
+        accountNumber: authenticateUser.data.identity?.account_number,
+        orgId: authenticateUser.data.identity?.internal?.org_id,
+        permissions,
+        rbacPermissions: permissions,
+      },
+    [authenticateUser.data, permissions]
   );
+
+  return {
+    ...authenticateUser,
+    isLoading: authenticateUser.isLoading || permissionsLoading,
+    isFetching: authenticateUser.isFetching || permissionsLoading,
+    isSuccess: authenticateUser.isSuccess && !permissionsLoading,
+    data,
+  };
 };
 
 export default useUser;

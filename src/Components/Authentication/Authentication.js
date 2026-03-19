@@ -1,6 +1,4 @@
 import React, { useEffect } from 'react';
-import { useQueryClient } from '@tanstack/react-query';
-import { useLocation } from 'react-router-dom';
 import useUser from '../../hooks/useUser';
 import Loading from '../LoadingState/Loading';
 import Unavailable from '@redhat-cloud-services/frontend-components/Unavailable';
@@ -9,8 +7,6 @@ import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import NotAuthorized from '@redhat-cloud-services/frontend-components/NotAuthorized';
 
 const Authentication = ({ children }) => {
-  const queryClient = useQueryClient();
-  const location = useLocation();
   const chrome = useChrome();
   const { isLoading, isFetching, isSuccess, isError, data } = useUser();
   const hasPermissions =
@@ -19,14 +15,6 @@ const Authentication = ({ children }) => {
   useEffect(() => {
     isSuccess && chrome?.hideGlobalFilter();
   }, [isSuccess]);
-
-  useEffect(() => {
-    /**
-     * On every rerender, based on URL change (location.pathname),
-     * reset the user's status to loading before authenticating again.
-     */
-    queryClient.invalidateQueries(['user']);
-  }, [location.pathname]);
 
   if (isError === true) {
     return <Unavailable />;
