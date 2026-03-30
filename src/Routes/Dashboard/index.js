@@ -42,6 +42,9 @@ const SamplePage = () => {
   const dispatch = useDispatch();
   const { fetchConnectedHosts, fetchCurrState, saveCurrState } = useActions();
   const { data: userData } = useUser();
+  const canReadInventoryHosts = Boolean(
+    userData?.rbacPermissions?.canReadInventoryHosts
+  );
 
   const activeStateLoaded = useSelector(
     ({ activeStateReducer }) => activeStateReducer?.loaded
@@ -67,10 +70,13 @@ const SamplePage = () => {
       connectedSystemsReducer,
     });
     dispatch(fetchCurrState());
-    if (userData.rbacPermissions.canReadInventoryHosts) {
+  }, [getRegistry]);
+
+  useEffect(() => {
+    if (canReadInventoryHosts) {
       dispatch(fetchConnectedHosts());
     }
-  }, [getRegistry, userData]);
+  }, [canReadInventoryHosts]);
 
   useEffect(() => {
     insights?.chrome?.appAction?.('cloud-connector-dashboard');

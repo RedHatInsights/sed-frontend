@@ -18,7 +18,7 @@ import { permissions } from './permissionsConfig';
 import ConditionalTooltip from '../shared/ConditionalTooltip';
 
 import useFeatureFlag from '../../hooks/useFeatureFlag';
-import { useRbacPermissions } from '../../hooks/useRbacPermissions';
+import usePermissions from '../../hooks/usePermissions';
 
 const Services = ({
   defaults = { compliance: false, active: false, remediations: false },
@@ -26,13 +26,13 @@ const Services = ({
   onChange,
   isLoading,
 }) => {
-  const { data: rbacPermissions, isLoading: isRbacLoading } =
-    useRbacPermissions();
+  const { permissions: userPermissions, isLoading: isPermissionsLoading } =
+    usePermissions();
   const hasAccess = Boolean(
-    rbacPermissions?.canReadConfigManagerProfile &&
-      rbacPermissions?.canWriteConfigManagerProfile &&
-      rbacPermissions?.canReadInventoryHosts &&
-      rbacPermissions?.canWriteInventoryHosts
+    userPermissions?.canReadConfigManagerProfile &&
+      userPermissions?.canWriteConfigManagerProfile &&
+      userPermissions?.canReadInventoryHosts &&
+      userPermissions?.canWriteInventoryHosts
   );
 
   const isLightspeedRebrandEnabled = useFeatureFlag(
@@ -121,7 +121,7 @@ const Services = ({
                   </Stack>
                 </Td>
                 <Td dataLabel="Status">
-                  {isLoading || isRbacLoading ? (
+                  {isLoading || isPermissionsLoading ? (
                     <Spinner size={spinnerSize.lg} />
                   ) : (
                     <ToggleGroup aria-label="Default with single selectable">
