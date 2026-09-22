@@ -5,7 +5,6 @@ global.React = React;
 jest.mock('@redhat-cloud-services/frontend-components/useChrome', () => ({
   __esModule: true,
   default: () => ({
-    hideGlobalFilter: jest.fn(),
     updateDocumentTitle: jest.fn(),
     auth: {
       getToken: () => Promise.resolve('TOKEN'),
