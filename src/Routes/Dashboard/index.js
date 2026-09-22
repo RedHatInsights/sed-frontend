@@ -6,21 +6,13 @@ import {
   PageSection,
 } from '@patternfly/react-core';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
-import { useAddNotification } from '@redhat-cloud-services/frontend-components-notifications/hooks';
 import {
   PageHeader,
   PageHeaderTitle,
 } from '@redhat-cloud-services/frontend-components/PageHeader';
-import React, { lazy, useContext, useEffect, useRef, useState } from 'react';
-import { shallowEqual, useDispatch, useSelector } from 'react-redux';
+import React, { lazy, useEffect } from 'react';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
-import ConfirmChangesModal from '../../Components/ConfirmChangesModal';
 import Services from '../../Components/Services/Services';
-import { RegistryContext } from '../../store';
-import { useActions } from '../../store/actions';
-import connectedSystemsReducer from '../../store/connectedSystems';
-import activeStateReducer from '../../store/currStateReducer';
-import useUser from '../../hooks/useUser';
 import './dashboard.scss';
 
 const AboutRemoteHostConfigPopover = lazy(() =>
@@ -31,52 +23,10 @@ const AboutRemoteHostConfigPopover = lazy(() =>
 
 const SamplePage = () => {
   const { updateDocumentTitle } = useChrome();
-  const addNotification = useAddNotification();
   updateDocumentTitle?.(
     'Remote Host Configuration - System Configuration | RHEL',
     true
   );
-  const { getRegistry } = useContext(RegistryContext);
-  const [confirmChangesOpen, setConfirmChangesOpen] = useState(false);
-  const dataRef = useRef();
-  const dispatch = useDispatch();
-  const { fetchConnectedHosts, fetchCurrState, saveCurrState } = useActions();
-  const { data: userData } = useUser();
-  const canReadInventoryHosts = Boolean(
-    userData?.rbacPermissions?.canReadInventoryHosts
-  );
-
-  const activeStateLoaded = useSelector(
-    ({ activeStateReducer }) => activeStateReducer?.loaded
-  );
-  const { remediations, profileId } = useSelector(
-    ({ activeStateReducer }) => ({
-      remediations: activeStateReducer?.values?.remediations,
-      profileId: activeStateReducer?.values?.id,
-    }),
-    shallowEqual
-  );
-  const { systemsCount } = useSelector(
-    ({ connectedSystemsReducer }) => ({
-      systemsLoaded: connectedSystemsReducer?.loaded,
-      systemsCount: connectedSystemsReducer?.total,
-    }),
-    shallowEqual
-  );
-
-  useEffect(() => {
-    getRegistry().register({
-      activeStateReducer,
-      connectedSystemsReducer,
-    });
-    dispatch(fetchCurrState());
-  }, [getRegistry]);
-
-  useEffect(() => {
-    if (canReadInventoryHosts) {
-      dispatch(fetchConnectedHosts());
-    }
-  }, [canReadInventoryHosts]);
 
   useEffect(() => {
     insights?.chrome?.appAction?.('cloud-connector-dashboard');
@@ -118,37 +68,9 @@ const SamplePage = () => {
       </PageHeader>
       <PageSection>
         <div className="dashboard__content">
-          <Services
-            setConfirmChangesOpen={setConfirmChangesOpen}
-            defaults={{ remediations }}
-            onChange={(data) => {
-              dataRef.current = data;
-            }}
-            isLoading={!activeStateLoaded}
-          />
+          <Services />
         </div>
       </PageSection>
-      <ConfirmChangesModal
-        remediation={dataRef?.current?.remediations}
-        isOpen={confirmChangesOpen}
-        handleCancel={() => setConfirmChangesOpen(false)}
-        systemsCount={systemsCount}
-        handleConfirm={() => {
-          setConfirmChangesOpen(false);
-          (async () => {
-            const saveAction = saveCurrState(dataRef.current);
-            dispatch(saveAction);
-            await saveAction.payload;
-            addNotification({
-              variant: 'success',
-              title: 'Changes saved',
-              description:
-                'Your service enablement changes were applied to connected systems',
-            });
-          })();
-        }}
-        profileId={profileId}
-      />
     </React.Fragment>
   );
 };

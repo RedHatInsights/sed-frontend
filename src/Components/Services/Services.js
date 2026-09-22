@@ -7,7 +7,6 @@ import {
   Flex,
 } from '@patternfly/react-core';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
-import propTypes from 'prop-types';
 import { Table, Thead, Tr, Th, Tbody, Td } from '@patternfly/react-table';
 
 import { permissions } from './permissionsConfig';
@@ -107,17 +106,6 @@ const Services = () => {
       </Stack>
     </>
   );
-};
-
-Services.propTypes = {
-  isLoading: propTypes.bool,
-  defaults: propTypes.shape({
-    compliance: propTypes.bool,
-    active: propTypes.bool,
-    remediations: propTypes.bool,
-  }),
-  onChange: propTypes.func.isRequired,
-  setConfirmChangesOpen: propTypes.func.isRequired,
 };
 
 export default Services;
