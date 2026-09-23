@@ -21,51 +21,13 @@ objects:
       image: ${IMAGE}:${IMAGE_TAG}
       feoConfigEnabled: true
 
-      serviceTiles:
-        - id: connector
-          section: configuration
-          group: rhel
-          title: Remote Host Configuration (RHC)
-          href: /insights/connector
-          description: Configure your systems to execute Ansible Playbooks.
-          icon: InsightsIcon
-
-      searchEntries:
-        - id: RHEL.connector
-          title: Remote Host Configuration (RHC)
-          href: /insights/connector
-          description: Configure your systems to execute Ansible Playbooks.
-          alt_title:
-            - Remote host configuration
-            - connect systems
-            - connection options
-            - connect settings
-            - settings
-            - Register
-            - rhc
-            - RHC
-            - rhcd
-
-      navigationSegments:
-        - segmentId: rhc-nav
-          navItems:
-            - id: rhc
-              title: Remote Host Configuration (RHC)
-              href: /insights/connector
-              icon: InsightsIcon
-              product: Red Hat Insights
-
       module:
         manifestLocation: /apps/connector/fed-mods.json
         config:
           supportCaseData:
             product: Red Hat Insights
             version: Remote Host Configuration (RHC)
-        modules:
-          - id: connector
-            module: ./RootApp
-            routes:
-              - pathname: /insights/connector
+        modules: []
 
 parameters:
   - name: ENV_NAME
