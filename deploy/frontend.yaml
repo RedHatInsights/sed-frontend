@@ -57,8 +57,6 @@ objects:
 
       module:
         manifestLocation: /apps/connector/fed-mods.json
-        analytics:
-          APIKey: "apRCg9V6oMXCcnTingqRYW6m1er4hkCW"
         config:
           supportCaseData:
             product: Red Hat Insights
