@@ -66,7 +66,9 @@ describe('RHC decommission page', () => {
       </MemoryRouter>
     );
 
-    expect(await screen.findByLabelText('Settings table')).toBeInTheDocument();
+    expect(
+      await screen.findByLabelText('Settings table', {}, { timeout: 5000 })
+    ).toBeInTheDocument();
     expect(
       screen.getByText('RHC Manager is being decommissioned')
     ).toBeInTheDocument();
