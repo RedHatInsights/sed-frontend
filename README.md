@@ -16,15 +16,12 @@
 ### Testing
 - ```npm run test``` - run all Jest tests
 - ```npm run lint``` - run linter
-- Travis is used to test the build for this code.
+- GitHub Actions runs linting, commit validation, and tests without building the application.
 
 ## Deploying
-The app uses containerized builds which are configured in [`app-interface`](https://gitlab.cee.redhat.com/service/app-interface/-/blob/master/data/services/insights/config-manager/deploy.yml).
+Automatic frontend builds are disabled as part of [RHC Manager decommissioning](https://redhat.atlassian.net/browse/RHINENG-30298): Konflux pipeline definitions are removed, MintMaker/Renovate updates are disabled, and the legacy `build_deploy.sh` entrypoint exits without building or deploying. Local development and build commands remain available.
 
-| Environment | Available at                     | Deployed version
-| :---------- | :--------------------------------| :----------
-| stage       | https://console.stage.redhat.com | master branch
-| production  | https://console.redhat.com       | up to the commit configured in `app-interface`
+Deployment removal is managed separately in [`app-interface`](https://gitlab.cee.redhat.com/service/app-interface/-/blob/master/data/services/insights/config-manager/deploy.yml). The live Konflux component must also be offboarded through its tenant configuration.
 
 ## Design System
 This project uses [Patternfly React](https://github.com/patternfly/patternfly-react).

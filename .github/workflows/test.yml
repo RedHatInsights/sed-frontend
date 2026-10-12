@@ -30,4 +30,3 @@ jobs:
           fail_ci_if_error: true
           files: ./coverage/coverage-final.json,./coverage-jest/coverage-final.json
           token: ${{ secrets.CODECOV_TOKEN }}
-      - run: npm run build
