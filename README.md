@@ -2,6 +2,9 @@
 
 # Remote Host Configuration Manager
 
+## Decommissioned
+The RHC Manager service has been decommissioned, see https://redhat.atlassian.net/browse/RHINENG-22545. This repository has been archived.
+
 ## First time setup
 1. Make sure you have [`Node.js`](https://nodejs.org/en/) version >= 18 installed
 2. Run [script to patch your `/etc/hosts`](https://github.com/RedHatInsights/insights-proxy/blob/master/scripts/patch-etc-hosts.sh)
